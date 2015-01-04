@@ -13,7 +13,7 @@ include_once('Html4PhpConfig.php)');
  * @link https://github.com/microuser/HTML4PHP 
  * @license https://github.com/microuser/HTML4PHP/blob/master/LICENSE MIT
  */
-class Html4PhpDatabase extends Html4PhpConfig{
+class Html4PhpDatabase extends Html4PhpConfig {
 
     /**
      * PDO
@@ -27,14 +27,13 @@ class Html4PhpDatabase extends Html4PhpConfig{
      */
     private $statement;
 
-    public function getStatementErrorInfo(){
+    public function getStatementErrorInfo() {
         return $this->statement->errorInfo();
     }
-    
-    public function getStatementErrorCode(){
+
+    public function getStatementErrorCode() {
         return $this->statement->errorCode();
     }
-    
 
     public function __destruct() {
         Html4PhpDebug::add(DEBUG_FUNCTION_TRACE, "Database Close");
@@ -47,20 +46,11 @@ class Html4PhpDatabase extends Html4PhpConfig{
     public function __construct($title) {
         Html4PhpDebug::add(DEBUG_FUNCTION_TRACE);
 
-        if ($_SERVER['SERVER_NAME'] == $this->getConfig('production','server','domainName') || $_SERVER['SERVER_NAME'] == $this->getConfig('production','server','domainName2')) {
-            $dbHost = $this->getConfig('production', 'database', 'dbHost');
-            $dbName = 'database_name';
-            $dbUser = 'username_database';
-            $dbPass = '';
-        } elseif ($_SERVER['SERVER_NAME'] == 'localhost' || $_SERVER['SERVER_NAME'] == '127.0.0.1' || $_SERVER['SERVER_NAME'] == '192.168.0.2') {
-            $dbHost = 'localhost';
-            $dbName = 'database_name';
-            $dbUser = 'username_database';
-            $dbPass = '';
-        } else {
-            Html4PhpDebug::add(DEBUG_ERROR,"Server production environment not detected. Entry needed for " . filter_var($_SERVER['SERVER_NAME']) . "<br/>Dropping off the deap end.<br/>");
-            die();
-        }
+            $dbHost = $this->getConfig('database', 'dbHost');
+            $dbName = $this->getConfig('database', 'dbName');
+            $dbUser = $this->getConfig('database', 'dbUser');
+            $dbPass = $this->getConfig('database', 'dbPass');
+
         try {
             $this->pdo = new PDO(
                     "mysql:host=$dbHost;dbname=$dbName"

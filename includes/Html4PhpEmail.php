@@ -27,23 +27,23 @@ class Html4PhpEmail {
 // 0 = off (for production use)
 // 1 = client messages
 // 2 = client and server messages
-        $mail->SMTPDebug = 2;
+        $mail->SMTPDebug = $this->getConfig('email','smtpDebug');
 //Ask for HTML-friendly debug output
         $mail->Debugoutput = 'html';
 //Set the hostname of the mail server
-        $mail->Host = "domain.com"; //localhost
+        $mail->Host = $this->getConfig('email','smtpHost'); //localhost
 //Set the SMTP port number - likely to be 25, 465 or 587
-        $mail->Port = 26; //was 25
+        $mail->Port = $this->getConfig('email','smtpPort'); //was 25
 //Whether to use SMTP authentication
-        $mail->SMTPAuth = true;
+        $mail->SMTPAuth = $this->getConfig('email','smtpAuth');
 //Username to use for SMTP authentication
-        $mail->Username = "webmaster@domain.com";
+        $mail->Username = $this->getConfig('email','smtpUsername');
 //Password to use for SMTP authentication
-        $mail->Password = "";
+        $mail->Password = $this->getConfig('email','smtpPassword');
 //Set who the message is to be sent from
-        $mail->setFrom('webmaster@domain.com.org', 'Webmaster domain.com.org');
+        $mail->setFrom($this->getConfig('email','fromEmail'), $this->getConfig('email','fromName'));
 //Set an alternative reply-to address
-        $mail->addReplyTo('webmaster@domain.com.org', 'Webmaster domain.com.org');
+        $mail->addReplyTo($this->getConfig('email','replyToEmail'), $this->getConfig('email','replyToName'));
 //Set who the message is to be sent to
         $mail->addAddress($toEmail, $toName);
 //Set the subject line
