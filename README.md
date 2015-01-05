@@ -17,7 +17,7 @@ cd ./install
 wget https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.1_i686.deb
 sudo dpkg -i vagrant_1.7.1_i686.deb
 
-cd ~/NetBeansProjects/streamschedule.com
+cd ~/NetBeansProjects/HTML4PHP
 sudo vagrant plugin install vagrant-bindfs
 
 vagrant up
@@ -40,6 +40,9 @@ sudo sed -iv "s#DocumentRoot \"/var/www/default\"#DocumentRoot /vagrant#g" /etc/
 sudo sed -iv "s#DocumentRoot \"/var/www/default\"#DocumentRoot /vagrant#g" /etc/apache2/sites-enabled/10-default_vhost_443.conf
 
 ```
+
+Make your database
+
 
 
 
