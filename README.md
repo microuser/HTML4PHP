@@ -20,6 +20,10 @@ sudo dpkg -i vagrant_1.7.1_i686.deb
 cd ~/NetBeansProjects/HTML4PHP
 sudo vagrant plugin install vagrant-bindfs
 
+sudo chmod -Rv 777 .
+
+
+
 vagrant up
 
 
@@ -102,7 +106,7 @@ Settings: <untouched>
 MySQL Quick Settings
 Install MySQL: [X]
 rootpassword: 123456
-Install Adminer: [X]
+Install Adminer :[X]
 
 DBName: dbname
 DBHost: localhost
@@ -115,3 +119,18 @@ Install MailCatcher: [X]
 HTTP Port: 1080
 
 
+Makde export. download. unzip
+
+#fix error, puppet/nodes/apache.pp.42
+$webroot_location_group = undef
+
+Maybe we don't want puphpet
+config.vm.synced_folder "#{folder['source']}", "#{folder['target']}", id: "#{folder['id']}", type: nfs, :linux__nfs_options => ["rw","no_root_squash","no_subtree_check"]
+
+also maybe https://github.com/puphpet/puphpet/wiki/Shared-Folder:-Permission-Denied
+The issue is complex and after having tried a million and one things, a few PuPHPet users have discovered that adding the following to your Vagrantfile:
+
+, :linux__nfs_options => ["rw","no_root_squash","no_subtree_check"]
+on the same line as:
+
+config.vm.synced_folder "#{folder['source']}", "#{folder['target']}", id: "#{i}", type: 'nfs'

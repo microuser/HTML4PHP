@@ -2,12 +2,12 @@
 
 class Html4PhpConfig {
 
-    private $config = array();
+    private $configs = array();
 /**
  * Contains Configuration data for HTML4PHP Framework
  */
-    protected function __contruct($title) {
-        //--------------------------------------------------------------------
+    public function __construct($title) {
+         //--------------------------------------------------------------------
         //  Development Config Details
         //====================================================================
         $developmentConfig = array(
@@ -66,6 +66,7 @@ class Html4PhpConfig {
             ),
         );
 
+        
         $this->autoSetConfig(array(
             'production' => $productionConfig,
             'development' => $developmentConfig
@@ -80,20 +81,21 @@ class Html4PhpConfig {
      * @param type $fallbackToDev
      */
     private function autoSetConfig($configs, $fallbackToDev = true) {
+        echo "autoSetConfig";
         if ($_SERVER['SERVER_NAME'] == $configs['production']['server']['domainName'] ||
                 $_SERVER['SERVER_NAME'] == $configs['production']['server']['domainName2'] ||
                 $_SERVER['SERVER_NAME'] == $configs['production']['server']['domainIp']) {
-            $this->config = $config['production'];
-            $this->config['config']['environment'] = 'production';
+            $this->configs = $configs['production'];
+            $this->configs['config']['environment'] = 'production';
         } elseif ($_SERVER['SERVER_NAME'] == $configs['development']['server']['domainName'] ||
                 $_SERVER['SERVER_NAME'] == $configs['development']['server']['domainName2'] ||
                 $_SERVER['SERVER_NAME'] == $configs['development']['server']['domainIp']) {
-            $this->config = $config['development'];
-            $this->config['config']['environment'] = 'development';
+            $this->configs = $configs['development'];
+            $this->configs['config']['environment'] = 'development';
         } elseif ($fallbackToDev === true) {
             //As a failsafe, fallback to devlopment config details
-            $this->config = $config['development'];
-            $this->config['config']['environment'] = 'development';
+            $this->configs = $configs['development'];
+            $this->configs['config']['environment'] = 'development';
         }
     }
 
@@ -105,9 +107,12 @@ class Html4PhpConfig {
      * @return type
      */
     public function getConfig($class, $item) {
-        if (isset($this->config[$class]) && isset($this->config[$class][$item])) {
-            return $this->config[$class][$item];
+        if (isset($this->configs[$class]) && isset($this->configs[$class][$item])) {
+            
+            return $this->configs[$class][$item];
+            
         }
+        return "<pre>ERROR on class=$class, item=$item:".print_r($this->configs,1);
     }
 
 }

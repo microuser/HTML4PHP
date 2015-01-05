@@ -45,13 +45,15 @@ class Html4PhpDatabase extends Html4PhpConfig {
      */
     public function __construct($title) {
         Html4PhpDebug::add(DEBUG_FUNCTION_TRACE);
+        parent::__construct($title);
 
+
+        try {
             $dbHost = $this->getConfig('database', 'dbHost');
             $dbName = $this->getConfig('database', 'dbName');
             $dbUser = $this->getConfig('database', 'dbUser');
             $dbPass = $this->getConfig('database', 'dbPass');
-
-        try {
+            echo $dbHost . " " . $dbName . " " . $dbUser . " " . $dbPass;
             $this->pdo = new PDO(
                     "mysql:host=$dbHost;dbname=$dbName"
                     , $dbUser
@@ -60,7 +62,8 @@ class Html4PhpDatabase extends Html4PhpConfig {
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (Exception $ex) {
             Html4PhpDebug::add(DEBUG_ERROR, "DB Failure:" . $ex->getMessage());
-            echo "No Database Connection";
+            echo "<br/>\n" . $ex->getMessage();
+            echo "\nNo Database Connection";
         }
     }
 

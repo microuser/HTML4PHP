@@ -22,7 +22,8 @@ class Html4PhpPage extends Html4PhpUser {
     private $javascript = array();
 
     public function __construct($title) {
-        Html4PhpDebug::add();
+        $a = (new Html4PhpDebug())->add();
+        
         parent::__construct($title);
         $this->title = $title;
     }

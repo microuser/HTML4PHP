@@ -81,7 +81,8 @@ Vagrant.configure('2') do |config|
       sync_group = !folder['sync_group'].nil? ? folder['sync_group'] : 'www-data'
 
       if folder['sync_type'] == 'nfs'
-        config.vm.synced_folder "#{folder['source']}", "#{folder['target']}", id: "#{i}", type: 'nfs'
+        config.vm.synced_folder "#{folder['source']}", "#{folder['target']}", id: "#{i}", type: 'nfs', :linux__nfs_options => ["rw","no_root_squash","no_subtree_check"]
+
         if Vagrant.has_plugin?('vagrant-bindfs')
           config.bindfs.bind_folder "#{folder['target']}", "/mnt/vagrant-#{i}"
         end

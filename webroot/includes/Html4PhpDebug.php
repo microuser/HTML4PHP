@@ -69,9 +69,10 @@ class Html4PhpDebug {
 
     /**
      * empty and private __construct funtion to prevent instantiation through the use of $a = new Debug();
-     */
-    private function __construct() {
-        
+     * Changed behavior to public so work with new syntax
+     *      */
+    public function __construct() {
+        return $this->getInstance();
     }
 
     /**
