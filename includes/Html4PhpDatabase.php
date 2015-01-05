@@ -1,7 +1,7 @@
 <?php
 
 include_once("Html4PhpDebug.php");
-include_once('Html4PhpConfig.php)');
+include_once('Html4PhpConfig.php');
 
 /**
  * Description of Html4Database
@@ -60,6 +60,7 @@ class Html4PhpDatabase extends Html4PhpConfig {
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (Exception $ex) {
             Html4PhpDebug::add(DEBUG_ERROR, "DB Failure:" . $ex->getMessage());
+            echo "No Database Connection";
         }
     }
 

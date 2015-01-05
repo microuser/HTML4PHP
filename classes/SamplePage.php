@@ -1,6 +1,6 @@
 <?php
 
-include_once('includes' . 'Html4PhpModel');
+include_once('SampleModel.php');
 
 /**
  * Html4PhpSampleApp is a sample page showing how to use the main functions of the Html4Php framework.
@@ -12,10 +12,21 @@ include_once('includes' . 'Html4PhpModel');
  * @link https://github.com/microuser/HTML4PHP 
  * @license https://github.com/microuser/HTML4PHP/blob/master/LICENSE MIT
  */
-class Html4PhpSampleApp extends Html4PhpPage {
+class SamplePage extends SampleModel {
 
     public function __construct($title = 'Html4PhpSampleApp') {
         parent::__construct($title);
+    }
+    
+    public function generateSamplePage(){
+        
+        $this->makeDatabaseTableTable();
+        
+        return $this->generatePage();
+    }
+    
+    public function makeDatabaseTableTable(){
+        $this->addTable("Show Tables", array("Tables"), $this->getDatabaseTables());
     }
 
 }

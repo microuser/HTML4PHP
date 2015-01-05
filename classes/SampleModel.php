@@ -1,6 +1,6 @@
 <?php
 
-include_once('includes' . 'Html4PhpPage.php');
+include_once($_SERVER['DOCUMENT_ROOT'].'/includes/Html4PhpPage.php');
 
 /**
  * Html4PhpSampleApp is a sample page showing how to use the main functions of the Html4Php framework.
@@ -12,10 +12,17 @@ include_once('includes' . 'Html4PhpPage.php');
  * @link https://github.com/microuser/HTML4PHP 
  * @license https://github.com/microuser/HTML4PHP/blob/master/LICENSE MIT
  */
-class Html4PhpSampleApp extends Html4PhpPage {
+class SampleModel extends Html4PhpPage {
 
     public function __construct($title = 'Html4PhpSampleApp') {
         parent::__construct($title);
+    }
+    
+    protected function getDatabaseTables(){
+        
+        $this->statementPrepare("show tables");
+        //$this->statementExecute();
+        return $this->statementFetchAssocs();
     }
 
 }

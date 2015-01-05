@@ -12,14 +12,14 @@ class Html4PhpConfig {
         //====================================================================
         $developmentConfig = array(
             'server' => array(
-                'domainName' => 'localhost',
-                'domainName2' => '127.0.0.1',
-                'domainIp' => '192.168.0.1'
+                'domainName' => 'html4php.dev',
+                'domainName2' => 'www.html4php.dev',
+                'domainIp' => '192.168.56.156'
             ),
             'database' => array(
                 'dbHost' => 'localhost',
-                'dbName' => 'database_name',
-                'dbUser' => 'username_database',
+                'dbName' => 'dbname',
+                'dbUser' => 'dbuser',
                 'dbPass' => 'password'
             )
             ,

@@ -1,3 +1,5 @@
 <?php
 
-include_once('Html4PhpSamplePage.php');
+include_once('SamplePage.php');
+$page = new SamplePage();
+echo $page->generateSamplePage();
