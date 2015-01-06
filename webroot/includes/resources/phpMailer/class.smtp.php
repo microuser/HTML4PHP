@@ -169,7 +169,7 @@ class SMTP
                 break;
             case 'html':
                 //Cleans up output a bit for a better looking, HTML-safe output
-                Html4PhpDebug::add(DEBUG_ERROR, htmlentities(
+                Html4PhpDebug::getInstance()->add(DEBUG_ERROR, htmlentities(
                     preg_replace('/[\r\n]+/', '', $str),
                     ENT_QUOTES,
                     'UTF-8'
@@ -178,7 +178,7 @@ class SMTP
                 break;
             case 'echo':
             default:
-                Html4PhpDebug::add(DEBUG_ERROR, gmdate('Y-m-d H:i:s')."\t".trim($str)."\n");
+                Html4PhpDebug::getInstance()->add(DEBUG_ERROR, gmdate('Y-m-d H:i:s')."\t".trim($str)."\n");
         }
     }
 

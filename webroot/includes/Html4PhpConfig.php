@@ -1,6 +1,6 @@
 <?php
-
-class Html4PhpConfig {
+include_once 'Html4PhpDebug.php';
+class Html4PhpConfig extends Html4PhpDebug{
 
     private $configs = array();
 /**

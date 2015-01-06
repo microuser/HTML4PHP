@@ -630,15 +630,15 @@ class PHPMailer
         }
         switch ($this->Debugoutput) {
             case 'error_log':
-                Html4PhpDebug::add(DEBUG_ERROR, $str);
+                Html4PhpDebug::getInstance()->add(DEBUG_ERROR, $str);
                 break;
             case 'html':
                 //Cleans up output a bit for a better looking display that's HTML-safe
-                Html4PhpDebug::add(DEBUG_ERROR, htmlentities(preg_replace('/[\r\n]+/', '', $str), ENT_QUOTES, $this->CharSet) . "<br>\n");
+                Html4PhpDebug::getInstance()->add(DEBUG_ERROR, htmlentities(preg_replace('/[\r\n]+/', '', $str), ENT_QUOTES, $this->CharSet) . "<br>\n");
                 break;
             case 'echo':
             default:
-                Html4PhpDebug::add(DEBUG_ERROR, $str."\n");
+                Html4PhpDebug::getInstance()->add(DEBUG_ERROR, $str."\n");
         }
     }
 

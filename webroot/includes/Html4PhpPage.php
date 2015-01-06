@@ -1,5 +1,4 @@
 <?php
-
 include_once "Html4PhpUser.php";
 /**
  * @version 2015-01-04
@@ -22,45 +21,45 @@ class Html4PhpPage extends Html4PhpUser {
     private $javascript = array();
 
     public function __construct($title) {
-        $a = (new Html4PhpDebug())->add();
+        $this->addDebug();
         
         parent::__construct($title);
         $this->title = $title;
     }
 
     public function addJavascriptLink($src) {
-        Html4PhpDebug::add(DEBUG_FUNCTION_TRACE, '$src=' . $src);
+        $this->addDebug(DEBUG_FUNCTION_TRACE, '$src=' . $src);
         $this->javascript[] = '<script type="text/javascript" src="' . $src . '"></script>' . $this->newLine;
     }
 
     public function addJavascriptCode($code) {
-        Html4PhpDebug::add(DEBUG_FUNCTION_TRACE, '$code=' . $code);
+        $this->addDebug(DEBUG_FUNCTION_TRACE, '$code=' . $code);
         $this->javascript[] = '<script type="text/javascript">' . $code . '</script>' . $this->newLine;
     }
 
     public function addCssLink($href) {
-        Html4PhpDebug::add(DEBUG_FUNCTION_TRACE, '$href=' . $href);
+        $this->addDebug(DEBUG_FUNCTION_TRACE, '$href=' . $href);
         $this->css[] = '<link rel="stylesheet" type="text/css" href="' . $href . '">';
     }
 
     public function appendHead($html) {
-        Html4PhpDebug::add(DEBUG_FUNCTION_TRACE, '$html=' . $html);
+        $this->addDebug(DEBUG_FUNCTION_TRACE, '$html=' . $html);
         $this->head[] = $html;
     }
 
     public function appendHeader($html) {
-        Html4PhpDebug::add(DEBUG_FUNCTION_TRACE, '$html=' . $html);
+        $this->addDebug(DEBUG_FUNCTION_TRACE, '$html=' . $html);
         $this->header[] = $html;
     }
 
     public function appendFooter($html) {
-        Html4PhpDebug::add(DEBUG_FUNCTION_TRACE, '$html=' . $html);
+        $this->addDebug(DEBUG_FUNCTION_TRACE, '$html=' . $html);
         $this->footer[] = $html;
     }
 
     public function generateHead() {
         //TODO fix confusing terminology between HEAD (meta) and HEADER (style)
-        Html4PhpDebug::add(DEBUG_FUNCTION_TRACE);
+        $this->addDebug(DEBUG_FUNCTION_TRACE);
         $head = '';
         $this->appendHead('<title>' . $this->title . '</title>');
         $this->appendHead('<meta charset="UTF-8">');
@@ -85,7 +84,7 @@ class Html4PhpPage extends Html4PhpUser {
     }
 
     public function generateHeader() {
-        Html4PhpDebug::add(DEBUG_FUNCTION_TRACE);
+        $this->addDebug(DEBUG_FUNCTION_TRACE);
         $out = '<!-- Begin Generate Header-->';
 
         foreach ($this->header as $headerItem) {
@@ -97,7 +96,7 @@ class Html4PhpPage extends Html4PhpUser {
     }
 
     public function generateFooter() {
-        Html4PhpDebug::add(DEBUG_FUNCTION_TRACE);
+        $this->addDebug(DEBUG_FUNCTION_TRACE);
         if (DEBUG & DEBUG_ECHO) {
             $this->appendFooter(Html4PhpDebugFooter());
         }
@@ -106,7 +105,7 @@ class Html4PhpPage extends Html4PhpUser {
         if (DEBUG & (DEBUG_VERBOSE + DEBUG_ECHO)) {
             $out .= '<div><pre>$_REQUEST=' . print_r($_REQUEST, 1) . '</pre></div>';
         }
-        Html4PhpDebug::add(DEBUG_VERBOSE + DEBUG_ERROR_LOG, '$_REQUEST=' . print_r($_REQUEST, 1));
+        $this->addDebug(DEBUG_VERBOSE + DEBUG_ERROR_LOG, '$_REQUEST=' . print_r($_REQUEST, 1));
 
         foreach ($this->footer as $footerItem) {
             $out .= $footerItem . $this->newLine;
@@ -118,7 +117,7 @@ class Html4PhpPage extends Html4PhpUser {
     }
 
     public function generateBody() {
-        Html4PhpDebug::add(DEBUG_FUNCTION_TRACE);
+        $this->addDebug(DEBUG_FUNCTION_TRACE);
 
         $out = ('<div class="main">');
         $out .= ('<div class="mainContent">');
@@ -132,7 +131,7 @@ class Html4PhpPage extends Html4PhpUser {
     }
 
     public function generatePage() {
-        Html4PhpDebug::add(DEBUG_FUNCTION_TRACE);
+        $this->addDebug(DEBUG_FUNCTION_TRACE);
         if(isset($html4PhpConfig)){
             //Prevent credentials from becomming exposed
             unset($html4PhpConfig);
@@ -141,23 +140,23 @@ class Html4PhpPage extends Html4PhpUser {
     }
     
     public function echoGeneratedPage(){
-        Html4PhpDebug::add(DEBUG_FUNCTION_TRACE);
+        $this->addDebug(DEBUG_FUNCTION_TRACE);
         echo $this->generatePage();
     }
 
     private function appendBody($html) {
-        Html4PhpDebug::add(DEBUG_FUNCTION_TRACE, '$html=' . $html);
+        $this->addDebug(DEBUG_FUNCTION_TRACE, '$html=' . $html);
         $this->body[] = $html;
     }
 
     public function add($html) {
-        Html4PhpDebug::add(DEBUG_FUNCTION_TRACE, '$html=' . $html);
+        $this->addDebug(DEBUG_FUNCTION_TRACE, '$html=' . $html);
         $this->appendBody($html . $this->newLine);
         return $html;
     }
 
     public function addDiv($html, $class = '', $extraTag = '') {
-        Html4PhpDebug::add(DEBUG_FUNCTION_TRACE, '$html=' . $html . ', $class=' . $class . ', $extraTag=' . $extraTag);
+        $this->addDebug(DEBUG_FUNCTION_TRACE, '$html=' . $html . ', $class=' . $class . ', $extraTag=' . $extraTag);
         $out = "\n" . '<!-- beginAddDiv-->'
                 . "\n" . '<div';
         if ($class !== '' && is_string($class)) {
@@ -173,7 +172,7 @@ class Html4PhpPage extends Html4PhpUser {
     }
 
     public function addHeaderDiv($html, $class = '', $extraTag = '') {
-        Html4PhpDebug::add(DEBUG_FUNCTION_TRACE, '$html=' . $html . ', $class=' . $class . ', $extraTag=' . $extraTag);
+        $this->addDebug(DEBUG_FUNCTION_TRACE, '$html=' . $html . ', $class=' . $class . ', $extraTag=' . $extraTag);
         $out = "\n" . '<!-- beginAddHeaderDiv-->'
                 . "\n" . '<div';
         if ($class !== '' && is_string($class)) {
@@ -189,7 +188,7 @@ class Html4PhpPage extends Html4PhpUser {
     }
 
     public function addTable($title = null, $theadArray = null, $tbodyArray = null, $tfootArray = null, $tableClass = 'tablesorter', $tableId = null) {
-        Html4PhpDebug::add(DEBUG_FUNCTION_TRACE, '$title=' . $title . ', $treadArray=' . print_r($theadArray, 1) . ', $tbodyArray=' . print_r($tbodyArray, 1) . ', $tfootArray=' . print_r($tfootArray, 1) . ', $tableClass=' . $tableClass . ', $tableId=' . $tableId);
+        $this->addDebug(DEBUG_FUNCTION_TRACE, '$title=' . $title . ', $treadArray=' . print_r($theadArray, 1) . ', $tbodyArray=' . print_r($tbodyArray, 1) . ', $tfootArray=' . print_r($tfootArray, 1) . ', $tableClass=' . $tableClass . ', $tableId=' . $tableId);
         //Consider allowing styling/javascript using the following pattern
         //$a = array();
         //$a['1,x'] = 'onclick="alert(\'YouClickedRow\');"';
