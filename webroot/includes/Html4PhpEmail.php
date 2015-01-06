@@ -1,7 +1,5 @@
 <?php
-
-include_once('Html4PhpConfig.php');
-
+include_once('Html4PhpDebug.php');
 /**
  * Html4PhpEmail Depends on PHPMailer located at https://github.com/Synchro/PHPMailer. 
  * Many variables are contained in this class, be sure to set these for your situation.

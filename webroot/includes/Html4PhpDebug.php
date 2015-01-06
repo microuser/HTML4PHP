@@ -9,7 +9,7 @@
  * @license https://github.com/microuser/HTML4PHP/blob/master/LICENSE MIT
  */
 //Example:
-//Html4PhpDebug::add(DEBUG_FUNCTION_TRACE, "Custom Error Message");
+//$this->addDebug(DEBUG_FUNCTION_TRACE, "Custom Error Message");
 //echo Html4PhpDebuggenerateHtml();
 
 if (!defined("DEBUG")) {
@@ -39,7 +39,7 @@ if (!defined("DEBUG")) {
 
 /**
  * Debug class uses the singleton pattern. It provides the capability of a debug trace through the static member variable. Unlike most singleton paterns, the getInstance() funciton is hidden, and interface through use is implimented inside the add() and get() functions themselfs.
- * The object of the class is not tobe returned externally, but rather used like Html4PhpDebug::add(DEBUG_VERBOSE, "custom error message"); echo Html4PhpDebuggenerateHtml();
+ * The object of the class is not tobe returned externally, but rather used like $this->addDebug(DEBUG_VERBOSE, "custom error message"); echo Html4PhpDebuggenerateHtml();
  * 
  * 
  *
@@ -49,49 +49,12 @@ if (!defined("DEBUG")) {
 class Html4PhpDebug {
 
     /**
-     * private static object of the class itself, persists using singleton pattern, like a global value.
-     * @var Debug 
-     */
-    private static $instance = null;
-
-    /**
      * The array of with the debuglog is stored
      * @var array 
      */
     private $debugLog = array();
 
-    /**
-     * empty and protected __clone function to prevent copying object
-     */
-    protected function __clone() {
-        
-    }
-
-    /**
-     * empty and private __construct funtion to prevent instantiation through the use of $a = new Debug();
-     * Changed behavior to public so work with new syntax
-     *      */
-    public function __construct() {
-        return $this->getInstance();
-    }
-
-    /**
-     * Set the class object to the persisted static variable of itself, and returns the global reference.
-     * @return Debug
-     */
-    private static function getInstance() {
-        if (self::$instance === null) {
-            self::$instance = new self;
-        }
-        return self::$instance;
-    }
-
-    /*
-     * tell the user who reads the code somrhing
-     * asdlfkjasldkfjalskdf
-     */
-    
-    
+ 
     
     /**
      * Appends text to the persisted global variable array named debugLog.  It also performs a backtrace such that the calling class and time are written to the log. For appropariate values of the bitmask, see the CONSTANTS such as:     DEBUG_ECHO,    DEBUG_ERROR_LOG,    DEBUG_VERBOSE,    DEBUG_FUNCTION_TRACE,    DEBUG_RETURN_VALUE,    DEBUG_DECISION.
@@ -99,24 +62,17 @@ class Html4PhpDebug {
      * @param int $bitmask
      * @param String $text
      */
-    public function add($bitmask = DEBUG, $text = '') {
+    public function addDebug($bitmask = DEBUG, $text = '') {
         if ($bitmask & DEBUG) {
             $time = microtime(1);
             $messageToWrite = self::getCallingFunctionName() . ": \t " . $text;
-            self::getInstance()->debugLog[] = date("j/d/y\@H:i:s.", $time) . ($time * 1000) % 1000 . " \t " . $messageToWrite;
+            $this->debugLog[] = date("j/d/y\@H:i:s.", $time) . ($time * 1000) % 1000 . " \t " . $messageToWrite;
             if (DEBUG & DEBUG_ERROR_LOG) {
                 error_log($messageToWrite);
             }
         }
     }
 
-    /**
-     * Returns the array of the persisted global variable array of debugLog
-     * @return array
-     */
-    public function get() {
-        return self::getInstance()->debugLog;
-    }
 
     /**
      * Perform a debug_backtrace() and infer the calling function and its class.
@@ -146,12 +102,17 @@ class Html4PhpDebug {
         return $str;
     }
 
+    public function getDebugArray(){
+        return $this->debugLog;
+    }
+    
     /**
      * Returns formatted HTML of the persisted global variable array of debugLog.
      * @return string
      */
-    public function generateHtml() {
-        self::add(DEBUG_FUNCTION_TRACE);
+    public function getDebugHtml() {
+        
+        self::addDebug(DEBUG_FUNCTION_TRACE);
         if (DEBUG & DEBUG_ECHO) {
             $out = "<div>";
             foreach (self::getInstance()->debugLog as $line => $text) {

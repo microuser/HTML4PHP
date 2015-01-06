@@ -1,6 +1,4 @@
 <?php
-
-include_once("Html4PhpDebug.php");
 include_once('Html4PhpConfig.php');
 
 /**
@@ -36,7 +34,7 @@ class Html4PhpDatabase extends Html4PhpConfig {
     }
 
     public function __destruct() {
-        Html4PhpDebug::add(DEBUG_FUNCTION_TRACE, "Database Close");
+        $this->addDebug(DEBUG_FUNCTION_TRACE, "Database Close");
     }
 
     /**
@@ -44,7 +42,7 @@ class Html4PhpDatabase extends Html4PhpConfig {
      * @param String $title
      */
     public function __construct($title) {
-        Html4PhpDebug::add(DEBUG_FUNCTION_TRACE);
+        $this->addDebug(DEBUG_FUNCTION_TRACE);
         parent::__construct($title);
 
 
@@ -61,7 +59,7 @@ class Html4PhpDatabase extends Html4PhpConfig {
             );
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (Exception $ex) {
-            Html4PhpDebug::add(DEBUG_ERROR, "DB Failure:" . $ex->getMessage());
+            $this->addDebug(DEBUG_ERROR, "DB Failure:" . $ex->getMessage());
             echo "<br/>\n" . $ex->getMessage();
             echo "\nNo Database Connection";
         }
@@ -72,7 +70,7 @@ class Html4PhpDatabase extends Html4PhpConfig {
      * @param String $query Sql Query
      */
     public function statementPrepare($query) {
-        Html4PhpDebug::add(DEBUG_FUNCTION_TRACE);
+        $this->addDebug(DEBUG_FUNCTION_TRACE);
         $this->statement = $this->pdo->prepare($query);
     }
 
@@ -82,7 +80,7 @@ class Html4PhpDatabase extends Html4PhpConfig {
      * @param type $value
      */
     public function statementBindParam($param, $value) {
-        Html4PhpDebug::add(DEBUG_FUNCTION_TRACE);
+        $this->addDebug(DEBUG_FUNCTION_TRACE);
         $this->statement->bindParam($param, $value);
     }
 
@@ -91,7 +89,7 @@ class Html4PhpDatabase extends Html4PhpConfig {
      * @param type $keyValuePair
      */
     public function statementBindParams($keyValuePair) {
-        Html4PhpDebug::add(DEBUG_FUNCTION_TRACE);
+        $this->addDebug(DEBUG_FUNCTION_TRACE);
         foreach ($keyValuePair as $param => $value) {
             $this->statement->bindParam($param, $value);
         }
@@ -101,7 +99,7 @@ class Html4PhpDatabase extends Html4PhpConfig {
      * Simple PDO execute
      */
     public function statementExecute() {
-        Html4PhpDebug::add(DEBUG_FUNCTION_TRACE);
+        $this->addDebug(DEBUG_FUNCTION_TRACE);
         $this->statement->execute();
     }
 
@@ -110,7 +108,7 @@ class Html4PhpDatabase extends Html4PhpConfig {
      * @return Array 
      */
     public function statementFetchAssoc() {
-        Html4PhpDebug::add(DEBUG_FUNCTION_TRACE);
+        $this->addDebug(DEBUG_FUNCTION_TRACE);
         return $this->statement->fetch(PDO::FETCH_ASSOC);
     }
 
@@ -119,7 +117,7 @@ class Html4PhpDatabase extends Html4PhpConfig {
      * @return type
      */
     public function statementFetchObject() {
-        Html4PhpDebug::add(DEBUG_FUNCTION_TRACE);
+        $this->addDebug(DEBUG_FUNCTION_TRACE);
         return $this->statement->fetch(PDO::FETCH_OBJ);
     }
 
@@ -128,7 +126,7 @@ class Html4PhpDatabase extends Html4PhpConfig {
      * @return type
      */
     public function statementFetchAssocs() {
-        Html4PhpDebug::add(DEBUG_FUNCTION_TRACE);
+        $this->addDebug(DEBUG_FUNCTION_TRACE);
         return $this->statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -137,7 +135,7 @@ class Html4PhpDatabase extends Html4PhpConfig {
      * @return type
      */
     public function statementFetchObjects() {
-        Html4PhpDebug::add(DEBUG_FUNCTION_TRACE);
+        $this->addDebug(DEBUG_FUNCTION_TRACE);
         return $this->statement->fetch(PDO::FETCH_OBJ);
     }
 
@@ -146,7 +144,7 @@ class Html4PhpDatabase extends Html4PhpConfig {
      * @return type
      */
     public function getPdo() {
-        Html4PhpDebug::add(DEBUG_FUNCTION_TRACE);
+        $this->addDebug(DEBUG_FUNCTION_TRACE);
         return $this->pdo;
     }
 
@@ -155,7 +153,7 @@ class Html4PhpDatabase extends Html4PhpConfig {
      * @return type
      */
     public function getStatement() {
-        Html4PhpDebug::add(DEBUG_FUNCTION_TRACE);
+        $this->addDebug(DEBUG_FUNCTION_TRACE);
         return $this->statement;
     }
 
