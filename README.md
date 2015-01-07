@@ -137,3 +137,11 @@ The issue is complex and after having tried a million and one things, a few PuPH
 on the same line as:
 
 config.vm.synced_folder "#{folder['source']}", "#{folder['target']}", id: "#{i}", type: 'nfs'
+
+
+
+Other Project Dependencies
+===================================
+- https://github.com/arshaw/fullcalendar
+- Jquery
+- Jqueryui
