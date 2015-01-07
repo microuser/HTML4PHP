@@ -145,3 +145,6 @@ Other Project Dependencies
 - https://github.com/arshaw/fullcalendar
 - Jquery
 - Jqueryui
+- tablesorter
+- Want: http://malsup.com/jquery/form/#file-upload
+- Want: https://github.com/malsup/form/
