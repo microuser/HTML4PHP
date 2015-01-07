@@ -1,0 +1,6 @@
+{
+    "require": {
+        "components/jquery": "~2.1",
+        "components/jqueryui": "~1.11"
+    }
+}

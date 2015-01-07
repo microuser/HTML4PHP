@@ -21,7 +21,6 @@ class SamplePage extends SampleModel {
     public function generateSamplePage(){
         
         $this->makeDatabaseTableTable();
-        
         return $this->generatePage();
     }
     

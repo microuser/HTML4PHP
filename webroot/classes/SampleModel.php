@@ -18,11 +18,19 @@ class SampleModel extends Html4PhpPage {
         parent::__construct($title);
     }
     
-    protected function getDatabaseTables(){
+    public function getDatabaseTables(){
         
         $this->statementPrepare("show tables");
-        //$this->statementExecute();
+        echo $this->getStatementErrorCode();        
+        $this->statementExecute();
+               
         return $this->statementFetchAssocs();
+    }
+    
+    public function insertTableName($value){
+        $this->statementPrepare("create table testTable3 (col1 int, col2 int)");
+        //$this->statementBindParam(":testTable", $value);
+        $this->statementExecute();
     }
 
 }

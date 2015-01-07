@@ -7,6 +7,10 @@
  * @author microuser
  * @link https://github.com/microuser/HTML4PHP 
  * @license https://github.com/microuser/HTML4PHP/blob/master/LICENSE MIT
+ * <pre>
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: The above copyright notice, this permission notice, and the public RSA key shall be included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+-----BEGIN RSA PUBLIC KEY----- ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDfpROYHVyYHe2yok8Ut5OEmNzNriV9QGdzzPm1vFJSf8Wp9iBY74xf5oYdMmUOOfLlZfcrXP6Dc3VXOlTU7P46t14s9CcoGR6As2EamV7q9sAh4Nkr6xZb4kNdy9Bd4SxY/I3kxEbTpbpPq2T5B68xJWVjf83SQI43eyjO2Hv3iA8iEyifeyAGNVX46X3uuCsBftXF5Ng1GCCp6fMeCXeY0p3qmOg7m6SMGAXY97hKakNHPN2+vDP2fCOfefFmZihP/0mQNNLu1VNfI3MKonyfiHI4k1WAbFP2ozWSGmzv3dhej3wguYmRYKsgkK3ay5QoZQSLDHnZXtkuO9rJbAuz -----END RSA PUBLIC KEY-----
+ * </pre>
  */
 //Example:
 //$this->addDebug(DEBUG_FUNCTION_TRACE, "Custom Error Message");
@@ -25,7 +29,7 @@ if (!defined("DEBUG")) {
 /////////////////////////////////////////////////////////////////////////////////////////////        
 //SET YOUR DESIRED DEVELOPMENT DEBUG BITMASK HERE. (Add the values of desired from below)  //
 /////////////////////////////////////////////////////////////////////////////////////////////
-        define("DEBUG", 255);
+        define("DEBUG", 127);
     } else {
         //255 is all debug to screen and log
         //127 is all debug to log
@@ -33,7 +37,7 @@ if (!defined("DEBUG")) {
 /////////////////////////////////////////////////////////////////////////////////////////////
 //SET YOUR DESIRED PRODUCTION DEBUG BITMASK HERE. (Add the values of desired from below)   //
 /////////////////////////////////////////////////////////////////////////////////////////////
-        define("DEBUG", 0);
+        define("DEBUG", 127);
     }
 }
 
@@ -115,7 +119,7 @@ class Html4PhpDebug {
         self::addDebug(DEBUG_FUNCTION_TRACE);
         if (DEBUG & DEBUG_ECHO) {
             $out = "<div>";
-            foreach (self::getInstance()->debugLog as $line => $text) {
+            foreach ($this->debugLog as $line => $text) {
                 $out .= "<pre>" . filter_var($line . "\t " . $text, FILTER_SANITIZE_SPECIAL_CHARS) . "</pre>";
             }
             $out .= "</div>";
