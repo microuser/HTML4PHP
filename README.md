@@ -142,9 +142,34 @@ config.vm.synced_folder "#{folder['source']}", "#{folder['target']}", id: "#{i}"
 
 Other Project Dependencies
 ===================================
-- https://github.com/arshaw/fullcalendar
-- Jquery
-- Jqueryui
-- tablesorter
+- MIT
+-    - https://github.com/arshaw/fullcalendar
+-    - Jquery
+-    - Jqueryui
+-    - tablesorter
+-    - Jquery Form Validator - https://github.com/victorjonsson/jQuery-Form-Validator
 - Want: http://malsup.com/jquery/form/#file-upload
 - Want: https://github.com/malsup/form/
+
+
+Enable X-Debug
+=================
+Not validated:::
+
+- Option 1, Allow all computers to connect
+```sh
+sudo sed -i 's#;xdebug.remote_connect_back = 0#xdebug.remote_connect_back = 1#g' /.puphpet-stuff/xdebug/xdebug.ini
+```
+- Option 2, Allow just your comptuer to connect
+Be sure to change 192.168.56.1 to represent your development IP.
+```sh
+sudo sed -i 's#;xdebug.remote_host = localhost#xdebug.remote_host = 192.168.56.1#g' /.puphpet-stuff/xdebug/xdebug.ini
+```
+
+
+Create Documentation using api-gen
+====================================
+On your host
+```sh
+sudo apt-et install php-apigen
+```

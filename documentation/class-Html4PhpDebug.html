@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class Html4PhpDebug | HTML4PHP</title>
+
+	<script type="text/javascript" src="resources/combined.js?2615087600"></script>
+	<script type="text/javascript" src="elementlist.js?3696250449"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Packages</h3>
+			<ul>
+				<li class="active"><a href="package-HTML4PHP.html">HTML4PHP</a>
+						</li>
+				<li><a href="package-None.html">None</a>
+						</li>
+				<li><a href="package-PHP.html">PHP</a>
+						</li>
+				<li><a href="package-PHPMailer.html">PHPMailer</a>
+						</li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Html4PhpConfig.html">Html4PhpConfig</a></li>
+				<li><a href="class-Html4PhpDatabase.html">Html4PhpDatabase</a></li>
+				<li class="active"><a href="class-Html4PhpDebug.html">Html4PhpDebug</a></li>
+				<li><a href="class-Html4PhpEmail.html">Html4PhpEmail</a></li>
+				<li><a href="class-Html4PhpForm.html">Html4PhpForm</a></li>
+				<li><a href="class-Html4PhpPage.html">Html4PhpPage</a></li>
+				<li><a href="class-Html4PhpUser.html">Html4PhpUser</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="package-HTML4PHP.html" title="Summary of HTML4PHP"><span>Package</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class Html4PhpDebug</h1>
+
+
+	<div class="description">
+	
+<p>Debug class uses the singleton pattern. It provides the capability of a debug
+trace through the static member variable. Unlike most singleton paterns, the
+getInstance() funciton is hidden, and interface through use is implimented
+inside the add() and get() functions themselfs. The object of the class is not
+tobe returned externally, but rather used like $this-&gt;addDebug(DEBUG_VERBOSE,
+"custom error message"); echo Html4PhpDebuggenerateHtml();</p>
+
+	</div>
+
+
+
+	<div>
+		<h4>Direct known subclasses</h4>
+			<a href="class-Html4PhpConfig.html">Html4PhpConfig</a>
+	</div>
+
+	<div>
+		<h4>Indirect known subclasses</h4>
+			<a href="class-Html4PhpDatabase.html">Html4PhpDatabase</a>, 
+			<a href="class-Html4PhpPage.html">Html4PhpPage</a>, 
+			<a href="class-Html4PhpUser.html">Html4PhpUser</a>, 
+			<a href="class-SampleModel.html">SampleModel</a>, 
+			<a href="class-SamplePage.html">SamplePage</a>
+	</div>
+
+
+
+
+
+	<div class="info">
+		
+		
+		
+		<b>Package:</b> <a href="package-HTML4PHP.html">HTML4PHP</a><br />
+
+				<b>Copyright:</b>
+				microuser 2014, <a
+href="mailto:macro_user&#64;outlook.com">macro_user&#64;<!---->outlook.com</a><br />
+				<b>License:</b>
+				<a href="https://github.com/microuser/HTML4PHP/blob/master/LICENSE">MIT OR GPL
+&lt;pre&gt;
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: The above copyright notice, this permission notice, and the public RSA key shall be included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+-----BEGIN RSA PUBLIC KEY----- ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDfpROYHVyYHe2yok8Ut5OEmNzNriV9QGdzzPm1vFJSf8Wp9iBY74xf5oYdMmUOOfLlZfcrXP6Dc3VXOlTU7P46t14s9CcoGR6As2EamV7q9sAh4Nkr6xZb4kNdy9Bd4SxY/I3kxEbTpbpPq2T5B68xJWVjf83SQI43eyjO2Hv3iA8iEyifeyAGNVX46X3uuCsBftXF5Ng1GCCp6fMeCXeY0p3qmOg7m6SMGAXY97hKakNHPN2+vDP2fCOfefFmZihP/0mQNNLu1VNfI3MKonyfiHI4k1WAbFP2ozWSGmzv3dhej3wguYmRYKsgkK3ay5QoZQSLDHnZXtkuO9rJbAuz -----END RSA PUBLIC KEY-----
+&lt;/pre&gt;</a><br />
+				<b>Author:</b>
+				microuser<br />
+		<b>Located at</b> <a href="source-class-Html4PhpDebug.html#45-133" title="Go to source code">webroot/includes/Html4PhpDebug.php</a><br />
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="addDebug" id="_addDebug">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_addDebug">#</a>
+		<code><a href="source-class-Html4PhpDebug.html#64-79" title="Go to source code">addDebug</a>( <span>integer <var>$bitmask</var> = DEBUG</span>, <span>String <var>$text</var> = <span class="php-quote">''</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Appends text to the persisted global variable array named debugLog. It also
+performs a backtrace such that the calling class and time are written to the
+log. For appropariate values of the bitmask, see the CONSTANTS such as:
+DEBUG_ECHO, DEBUG_ERROR_LOG, DEBUG_VERBOSE, DEBUG_FUNCTION_TRACE,
+DEBUG_RETURN_VALUE, DEBUG_DECISION. Also, if the bitmask of DEBUG has
+DEBUG_ERROR_LOG bit set, then the debug will be written with error_log() to the
+file set in php.ini</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Appends text to the persisted global variable array named debugLog. It also
+performs a backtrace such that the calling class and time are written to the
+log. For appropariate values of the bitmask, see the CONSTANTS such as:
+DEBUG_ECHO, DEBUG_ERROR_LOG, DEBUG_VERBOSE, DEBUG_FUNCTION_TRACE,
+DEBUG_RETURN_VALUE, DEBUG_DECISION. Also, if the bitmask of DEBUG has
+DEBUG_ERROR_LOG bit set, then the debug will be written with error_log() to the
+file set in php.ini</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$bitmask</var></dt>
+					<dd><code>integer</code><br>$bitmask</dd>
+					<dt><var>$text</var></dt>
+					<dd><code>String</code><br>$text</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getDebugArray" id="_getDebugArray">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getDebugArray">#</a>
+		<code><a href="source-class-Html4PhpDebug.html#110-112" title="Go to source code">getDebugArray</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getDebugHtml" id="_getDebugHtml">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getDebugHtml">#</a>
+		<code><a href="source-class-Html4PhpDebug.html#114-131" title="Go to source code">getDebugHtml</a>( )</code>
+
+		<div class="description short">
+			
+<p>Returns formatted HTML of the persisted global variable array of
+debugLog.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Returns formatted HTML of the persisted global variable array of
+debugLog.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		HTML4PHP API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

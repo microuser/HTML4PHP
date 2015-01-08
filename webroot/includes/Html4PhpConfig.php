@@ -4,6 +4,7 @@ include_once 'Html4PhpDebug.php';
 /** 
  * @version 2015-01-04
  * @category PHP Framework
+ * @package HTML4PHP
  * @author microuser
  * @link https://github.com/microuser/HTML4PHP 
  * @license https://github.com/microuser/HTML4PHP/blob/master/LICENSE MIT OR GPL
@@ -27,7 +28,11 @@ class Html4PhpConfig extends Html4PhpDebug{
             'server' => array(
                 'domainName' => 'html4php.dev',
                 'domainName2' => 'www.html4php.dev',
-                'domainIp' => '192.168.56.156'
+                'domainIp' => '192.168.56.156',
+                'documentRoot' => $_SERVER['DOCUMENT_ROOT'],
+                'serverName' => $_SERVER['SERVER_NAME'],
+                'relativeUrl' => '/',
+                'absoluteUrl' => 'http://'.$_SERVER['SERVER_NAME'].'/',
             ),
             'database' => array(
                 'dbHost' => 'localhost',
@@ -48,6 +53,9 @@ class Html4PhpConfig extends Html4PhpDebug{
                 'replyToEmail' => 'webmaster@domain.com',
                 'replyToName' => 'The Webmaster domain.com',
             ),
+            'site' => array(
+                'layout' => 'default',
+            ),
         );
         //--------------------------------------------------------------------
         //  Production Config Details
@@ -56,7 +64,9 @@ class Html4PhpConfig extends Html4PhpDebug{
             'server' => array(
                 'domainName' => 'www.domain.com',
                 'domainName2' => 'domain.com',
-                'domainIp' => '0.0.0.0'
+                'domainIp' => '0.0.0.0',
+                'relativeUrl' => '/',
+                'absoluteUrl' => 'http://'.$_SERVER['SERVER_NAME'].'/',
             ),
             'database' => array(
                 'dbHost' => 'localhost',
@@ -77,6 +87,9 @@ class Html4PhpConfig extends Html4PhpDebug{
                 'replyToEmail' => 'webmaster@domain.com',
                 'replyToName' => 'The Webmaster domain.com',
             ),
+            'site' => array(
+                'layout' => 'default',
+            ),
         );
 
         
@@ -94,7 +107,7 @@ class Html4PhpConfig extends Html4PhpDebug{
      * @param type $fallbackToDev
      */
     private function autoSetConfig($configs, $fallbackToDev = true) {
-        echo "autoSetConfig";
+        
         if ($_SERVER['SERVER_NAME'] == $configs['production']['server']['domainName'] ||
                 $_SERVER['SERVER_NAME'] == $configs['production']['server']['domainName2'] ||
                 $_SERVER['SERVER_NAME'] == $configs['production']['server']['domainIp']) {

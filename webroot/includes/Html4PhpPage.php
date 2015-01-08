@@ -1,19 +1,21 @@
 <?php
-include_once "Html4PhpUser.php";
+
+include_once "Html4PhpSite.php";
 
 /**
  * @version 2015-01-04
  * @category PHP Framework
+ * @package HTML4PHP
  * @copyright (c) microuser 1014, macro_user@outlook.com
  * @author microuser
  * @link https://github.com/microuser/HTML4PHP 
  * @license https://github.com/microuser/HTML4PHP/blob/master/LICENSE MIT OR GPL
  * <pre>
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: The above copyright notice, this permission notice, and the public RSA key shall be included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
------BEGIN RSA PUBLIC KEY----- ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDfpROYHVyYHe2yok8Ut5OEmNzNriV9QGdzzPm1vFJSf8Wp9iBY74xf5oYdMmUOOfLlZfcrXP6Dc3VXOlTU7P46t14s9CcoGR6As2EamV7q9sAh4Nkr6xZb4kNdy9Bd4SxY/I3kxEbTpbpPq2T5B68xJWVjf83SQI43eyjO2Hv3iA8iEyifeyAGNVX46X3uuCsBftXF5Ng1GCCp6fMeCXeY0p3qmOg7m6SMGAXY97hKakNHPN2+vDP2fCOfefFmZihP/0mQNNLu1VNfI3MKonyfiHI4k1WAbFP2ozWSGmzv3dhej3wguYmRYKsgkK3ay5QoZQSLDHnZXtkuO9rJbAuz -----END RSA PUBLIC KEY-----
+  -----BEGIN RSA PUBLIC KEY----- ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDfpROYHVyYHe2yok8Ut5OEmNzNriV9QGdzzPm1vFJSf8Wp9iBY74xf5oYdMmUOOfLlZfcrXP6Dc3VXOlTU7P46t14s9CcoGR6As2EamV7q9sAh4Nkr6xZb4kNdy9Bd4SxY/I3kxEbTpbpPq2T5B68xJWVjf83SQI43eyjO2Hv3iA8iEyifeyAGNVX46X3uuCsBftXF5Ng1GCCp6fMeCXeY0p3qmOg7m6SMGAXY97hKakNHPN2+vDP2fCOfefFmZihP/0mQNNLu1VNfI3MKonyfiHI4k1WAbFP2ozWSGmzv3dhej3wguYmRYKsgkK3ay5QoZQSLDHnZXtkuO9rJbAuz -----END RSA PUBLIC KEY-----
  * </pre>
  */
-class Html4PhpPage extends Html4PhpUser {
+class Html4PhpPage extends Html4PhpSite {
 
     private $docType = '<!DOCTYPE html>';
     public $newLine = "\n";
@@ -27,9 +29,10 @@ class Html4PhpPage extends Html4PhpUser {
 
     public function __construct($title) {
         $this->addDebug();
-        
+
         parent::__construct($title);
         $this->title = $title;
+        
     }
 
     public function addJavascriptLink($src) {
@@ -103,7 +106,7 @@ class Html4PhpPage extends Html4PhpUser {
     public function generateFooter() {
         $this->addDebug(DEBUG_FUNCTION_TRACE);
         if (DEBUG & DEBUG_ECHO) {
-            $this->appendFooter("<pre>".$this->getDebugHtml()."</pre>");
+            $this->appendFooter("<pre>" . $this->getDebugHtml() . "</pre>");
         }
         $out = '<footer>';
 
@@ -137,11 +140,11 @@ class Html4PhpPage extends Html4PhpUser {
 
     public function generatePage() {
         $this->addDebug(DEBUG_FUNCTION_TRACE);
-        
+
         return $this->generateHead() . $this->generateHeader() . $this->generateBody() . $this->generateFooter() . "</html>";
     }
-    
-    public function echoGeneratedPage(){
+
+    public function echoGeneratedPage() {
         $this->addDebug(DEBUG_FUNCTION_TRACE);
         echo $this->generatePage();
     }
@@ -303,5 +306,6 @@ class Html4PhpPage extends Html4PhpUser {
         $out .= '</div>';
         $this->appendBody($out);
     }
+
 
 }

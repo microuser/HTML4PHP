@@ -5,6 +5,7 @@ include_once('Html4PhpDebug.php');
  * Many variables are contained in this class, be sure to set these for your situation.
  * @version 2015-01-04
  * @category PHP Framework
+ * @package HTML4PHP
  * @copyright (c) microuser 1014, macro_user@outlook.com
  * @author microuser
  * @link https://github.com/microuser/HTML4PHP 

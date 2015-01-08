@@ -3,8 +3,8 @@ vagrantfile-local:
     vm:
         box: puphpet/ubuntu1404-x32
         box_url: puphpet/ubuntu1404-x32
-        hostname: ''
-        memory: '512'
+        hostname: 'html4php.dev'
+        memory: '768'
         cpus: '1'
         chosen_provider: virtualbox
         network:
@@ -177,10 +177,13 @@ xdebug:
     settings:
         xdebug.default_enable: '1'
         xdebug.remote_autostart: '0'
-        xdebug.remote_connect_back: '1'
+        xdebug.remote_connect_back: '0'
         xdebug.remote_enable: '1'
         xdebug.remote_handler: dbgp
         xdebug.remote_port: '9000'
+        xdebug.remote_host: '192.168.56.1'
+        xdebug.idekey: 'netbeans-xdebug'
+        xdebug.remote_log: '/var/www/xdebug.log'
 xhprof:
     install: '0'
 wpcli:

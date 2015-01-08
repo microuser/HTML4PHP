@@ -21,7 +21,14 @@ class SamplePage extends SampleModel {
     public function generateSamplePage(){
         
         $this->makeDatabaseTableTable();
+        $this->makeRandomTable();
         return $this->generatePage();
+    }
+    
+    public function makeRandomTable(){
+        
+        $this->addTable('Title', array('a','b','c'), array(array(1,2,3),array(4,5,6), array(7,8,9)));
+        
     }
     
     public function makeDatabaseTableTable(){

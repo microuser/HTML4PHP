@@ -6,6 +6,7 @@ include_once('Html4PhpConfig.php');
  *
  * @version 2015-01-04
  * @category PHP Framework
+ * @package HTML4PHP
  * @copyright (c) microuser 1014, macro_user@outlook.com
  * @author microuser
  * @link https://github.com/microuser/HTML4PHP 
@@ -55,7 +56,6 @@ class Html4PhpDatabase extends Html4PhpConfig {
             $dbName = $this->getConfig('database', 'dbName');
             $dbUser = $this->getConfig('database', 'dbUser');
             $dbPass = $this->getConfig('database', 'dbPass');
-            echo $dbHost . " " . $dbName . " " . $dbUser . " " . $dbPass;
             $this->pdo = new PDO(
                     "mysql:host=$dbHost;dbname=$dbName"
                     , $dbUser

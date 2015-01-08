@@ -5,6 +5,7 @@ include_once "Html4PhpDatabase.php";
  * Description of Html4User
  * @version 2015-01-04
  * @category PHP Framework
+ * @package HTML4PHP
  * @copyright (c) microuser 1014, macro_user@outlook.com
  * @author microuser
  * @link https://github.com/microuser/HTML4PHP 
@@ -23,6 +24,7 @@ class Html4PhpUser extends Html4PhpDatabase {
     public function __construct($title) {
         $this->addDebug(DEBUG_FUNCTION_TRACE);
         parent::__construct($title);
+        session_start();
     }
 
     private function saltPassword($password) {
