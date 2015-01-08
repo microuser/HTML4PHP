@@ -21,7 +21,9 @@ class Html4PhpSite extends Html4PhpUser{
        parent::__construct($title);
        if($this->getConfig('site','layout') === 'default'){
        $this->constructDefaultLayout();
-       }
+       } 
+       
+       //TODO:else allow custom layout (file||array??);
     }
     
     
