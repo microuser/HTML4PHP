@@ -211,8 +211,42 @@ class Html4PhpPage extends Html4PhpSite {
         //$a = array();
         //$a['1,x'] = 'onclick="alert(\'YouClickedRow\');"';
         //$a['1,1'] = 'onclick="alert(\'YouClikcedCell\');"';
+        //If a string is provided as a column title, then assume vertical list
+        if (!is_array($theadArray)) {
+            $theadArray = array($theadArray);
+        }
+
+
+        $isValidArray = is_array($tbodyArray) && is_array($tbodyArray[0]);
+
+        if (!$isValidArray) {
+            //If its not a valid array, look at the theadarray, find if its susposed to be vertical list to make it valid
+            if (sizeof($theadArray) === 1 && is_array($tbodyArray)) {
+                foreach ($tbodyArray as $horizontalArray) {
+                    $verticalArray[] = array($horizontalArray);
+                }
+                $tbodyArray = $verticalArray;
+                $isValidArray = true;
+            }
+            //If tbody is not a valid array, or even an array, it must be a single item
+            if (!is_array($tbodyArray)) {
+                $tbodyArray = array(array($tbodyArray));
+                $isValidArray = true;
+            }
+            //if tbody is not a valid array, and it should be horizontal, then make it one
+            if(!$isValidArray && sizeof($theadArray > 1)){
+                print_r($tbodyArray);
+                $tbodyArray = array($tbodyArray);
+                $isValidArray = true;
+            }
+        }
+
+
+
+
 
         $tableList = array();
+
 
         //Build the THEAD
         //The THEAD tag will handle these attributes:
@@ -242,7 +276,7 @@ class Html4PhpPage extends Html4PhpSite {
             }
         }
 
-        if (strpos($tableClass, 'tablesorter') !== false) {
+        if ($isValidArray && strpos($tableClass, 'tablesorter') !== false) {
             $this->addJavascriptCodeFooter("	$(function() {
 		$('#" . $tableId . "').tablesorter({sortList:[[0,0]], widgets: ['zebra']});
 	});");
@@ -268,23 +302,26 @@ class Html4PhpPage extends Html4PhpSite {
         $tableList[] = '<tbody>';
 
         //Build the TABLE body
-        foreach ($tbodyArray as $tableRow) {
-            $colSpan = 1;
-            $tableList[] = '<tr>';
-            foreach ($tableRow as $colNum => $tableCell) {
-                if ($tableCell === '&colspan') {
-                    //Incriment colspan
-                    $colSpan += 1;
-                    //Delete the last entry
-                    array_pop($tableList);
+        if ($isValidArray) {
+            foreach ($tbodyArray as $tableRow) {
 
-                    //rewrite last entry by accessing $tableRow[$colNum-$colSpan]
-                    $tableList[] = '<td colspan = "' . $colSpan . '">' . $tableRow[$colNum - $colSpan + 1] . '</td>';
-                } else {
-                    $tableList[] = '<td>' . $tableCell . '</td>';
+                $colSpan = 1;
+                $tableList[] = '<tr>';
+                foreach ($tableRow as $colNum => $tableCell) {
+                    if ($tableCell === '&colspan') {
+                        //Incriment colspan
+                        $colSpan += 1;
+                        //Delete the last entry
+                        array_pop($tableList);
+
+                        //rewrite last entry by accessing $tableRow[$colNum-$colSpan]
+                        $tableList[] = '<td colspan = "' . $colSpan . '">' . $tableRow[$colNum - $colSpan + 1] . '</td>';
+                    } else {
+                        $tableList[] = '<td>' . $tableCell . '</td>';
+                    }
                 }
+                $tableList[] = '</tr>';
             }
-            $tableList[] = '</tr>';
         }
         $tableList[] = '</tbody>';
 

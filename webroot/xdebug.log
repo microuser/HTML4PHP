@@ -1387,3 +1387,199 @@ UlsnU0VSVkVSX05BTUUnXS4kX1NFUlZFUlsnUkVRVUVTVF9VUkknXQ==
 
 Log closed at 2015-01-09 03:48:36
 
+Log opened at 2015-01-09 03:52:11
+I: Connecting to configured address/port: 192.168.56.1:9000.
+I: Connected to client. :-)
+-> <init xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" fileuri="file:///var/www/index.php" language="PHP" protocol_version="1.0" appid="2511" idekey="netbeans-xdebug"><engine version="2.3.0dev"><![CDATA[Xdebug]]></engine><author><![CDATA[Derick Rethans]]></author><url><![CDATA[http://xdebug.org]]></url><copyright><![CDATA[Copyright (c) 2002-2015 by Derick Rethans]]></copyright></init>
+
+<- feature_set -i 85 -n show_hidden -v 1
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="feature_set" transaction_id="85" feature="show_hidden" success="1"></response>
+
+<- feature_set -i 86 -n max_depth -v 3
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="feature_set" transaction_id="86" feature="max_depth" success="1"></response>
+
+<- feature_set -i 87 -n max_children -v 30
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="feature_set" transaction_id="87" feature="max_children" success="1"></response>
+
+<- feature_set -i 88 -n max_data -v 2048
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="feature_set" transaction_id="88" feature="max_data" success="1"></response>
+
+<- stdout -i 89 -c 1
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="stdout" transaction_id="89" success="1"></response>
+
+<- eval -i 90 -- KGlzc2V0KCRfU0VSVkVSWydTU0wnXSkgPyAnaHR0cHMnIDogJ2h0dHAnKS4nOi8vJy4kX1NFUlZF
+UlsnU0VSVkVSX05BTUUnXS4kX1NFUlZFUlsnUkVRVUVTVF9VUkknXQ==
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="eval" transaction_id="90"><property address="-1077828784" type="string" size="31" encoding="base64"><![CDATA[aHR0cDovL2h0bWw0cGhwLmRldi8/dGFibGU9ZGRkMw==]]></property></response>
+
+<- run -i 91
+-> <stream xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" type="stdout" encoding="base64"><![CDATA[RXhwaXJlczogVGh1LCAxOSBOb3YgMTk4MSAwODo1MjowMCBHTVQ=]]></stream>
+
+-> <stream xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" type="stdout" encoding="base64"><![CDATA[DQo=]]></stream>
+
+-> <stream xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" type="stdout" encoding="base64"><![CDATA[Q2FjaGUtQ29udHJvbDogbm8tc3RvcmUsIG5vLWNhY2hlLCBtdXN0LXJldmFsaWRhdGUsIHBvc3QtY2hlY2s9MCwgcHJlLWNoZWNrPTA=]]></stream>
+
+-> <stream xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" type="stdout" encoding="base64"><![CDATA[DQo=]]></stream>
+
+-> <stream xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" type="stdout" encoding="base64"><![CDATA[UHJhZ21hOiBuby1jYWNoZQ==]]></stream>
+
+-> <stream xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" type="stdout" encoding="base64"><![CDATA[DQo=]]></stream>
+
+-> <stream xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" type="stdout" encoding="base64"><![CDATA[Q29udGVudC10eXBlOiB0ZXh0L2h0bWw7IGNoYXJzZXQ9VVRGLTg=]]></stream>
+
+-> <stream xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" type="stdout" encoding="base64"><![CDATA[DQo=]]></stream>
+
+-> <stream xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" type="stdout" encoding="base64"><![CDATA[DQo=]]></stream>
+
+-> <stream xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" type="stdout" encoding="base64"><![CDATA[PGJyIC8+Cjxmb250IHNpemU9JzEnPjx0YWJsZSBjbGFzcz0neGRlYnVnLWVycm9yIHhlLWNhdGNoYWJsZS1mYXRhbC1lcnJvcicgZGlyPSdsdHInIGJvcmRlcj0nMScgY2VsbHNwYWNpbmc9JzAnIGNlbGxwYWRkaW5nPScxJz4KPHRyPjx0aCBhbGlnbj0nbGVmdCcgYmdjb2xvcj0nI2Y1NzkwMCcgY29sc3Bhbj0iNSI+PHNwYW4gc3R5bGU9J2JhY2tncm91bmQtY29sb3I6ICNjYzAwMDA7IGNvbG9yOiAjZmNlOTRmOyBmb250LXNpemU6IHgtbGFyZ2U7Jz4oICEgKTwvc3Bhbj4gQ2F0Y2hhYmxlIGZhdGFsIGVycm9yOiBBcmd1bWVudCAxIHBhc3NlZCB0byBTYW1wbGVNb2RlbDo6aW5zZXJ0VGFibGVOYW1lKCkgbXVzdCBiZSBhbiBpbnN0YW5jZSBvZiBzdHJpbmcsIHN0cmluZyBnaXZlbiwgY2FsbGVkIGluIC92YXIvd3d3L2NsYXNzZXMvU2FtcGxlUGFnZS5waHAgb24gbGluZSAyMyBhbmQgZGVmaW5lZCBpbiAvdmFyL3d3dy9jbGFzc2VzL1NhbXBsZU1vZGVsLnBocCBvbiBsaW5lIDxpPjMxPC9pPjwvdGg+PC90cj4KPHRyPjx0aCBhbGlnbj0nbGVmdCcgYmdjb2xvcj0nI2U5Yjk2ZScgY29sc3Bhbj0nNSc+Q2FsbCBTdGFjazwvdGg+PC90cj4KPHRyPjx0aCBhbGlnbj0nY2VudGVyJyBiZ2NvbG9yPScjZWVlZWVjJz4jPC90aD48dGggYWxpZ249J2xlZnQnIGJnY29sb3I9JyNlZWVlZWMnPlRpbWU8L3RoPjx0aCBhbGlnbj0nbGVmdCcgYmdjb2xvcj0nI2VlZWVlYyc+TWVtb3J5PC90aD48dGggYWxpZ249J2xlZnQnIGJnY29sb3I9JyNlZWVlZWMnPkZ1bmN0aW9uPC90aD48dGggYWxpZ249J2xlZnQnIGJnY29sb3I9JyNlZWVlZWMnPkxvY2F0aW9uPC90aD48L3RyPgo8dHI+PHRkIGJnY29sb3I9JyNlZWVlZWMnIGFsaWduPSdjZW50ZXInPjE8L3RkPjx0ZCBiZ2NvbG9yPScjZWVlZWVjJyBhbGlnbj0nY2VudGVyJz4wLjIxNzM8L3RkPjx0ZCBiZ2NvbG9yPScjZWVlZWVjJyBhbGlnbj0ncmlnaHQnPjEyOTE1NjwvdGQ+PHRkIGJnY29sb3I9JyNlZWVlZWMnPnttYWlufSggICk8L3RkPjx0ZCB0aXRsZT0nL3Zhci93d3cvaW5kZXgucGhwJyBiZ2NvbG9yPScjZWVlZWVjJz4uLi4vaW5kZXgucGhwPGI+OjwvYj4wPC90ZD48L3RyPgo8dHI+PHRkIGJnY29sb3I9JyNlZWVlZWMnIGFsaWduPSdjZW50ZXInPjI8L3RkPjx0ZCBiZ2NvbG9yPScjZWVlZWVjJyBhbGlnbj0nY2VudGVyJz4wLjIxODU8L3RkPjx0ZCBiZ2NvbG9yPScjZWVlZWVjJyBhbGlnbj0ncmlnaHQnPjEyOTQyNDwvdGQ+PHRkIGJnY29sb3I9JyNlZWVlZWMnPmluY2x1ZGVfb25jZSggPGZvbnQgY29sb3I9JyMwMGJiMDAnPicvdmFyL3d3dy9jbGFzc2VzL1NhbXBsZS5waHAnPC9mb250PiApPC90ZD48dGQgdGl0bGU9Jy92YXIvd3d3L2luZGV4LnBocCcgYmdjb2xvcj0nI2VlZWVlYyc+Li4uL2luZGV4LnBocDxiPjo8L2I+NTwvdGQ+PC90cj4KPHRyPjx0ZCBiZ2NvbG9yPScjZWVlZWVjJyBhbGlnbj0nY2VudGVyJz4zPC90ZD48dGQgYmdjb2xvcj0nI2VlZWVlYycgYWxpZ249J2NlbnRlcic+MC4yMzMyPC90ZD48dGQgYmdjb2xvcj0nI2VlZWVlYycgYWxpZ249J3JpZ2h0Jz4yMjM2NTY8L3RkPjx0ZCBiZ2NvbG9yPScjZWVlZWVjJz5TYW1wbGVQYWdlLT5nZW5lcmF0ZVNhbXBsZVBhZ2UoICApPC90ZD48dGQgdGl0bGU9Jy92YXIvd3d3L2NsYXNzZXMvU2FtcGxlLnBocCcgYmdjb2xvcj0nI2VlZWVlYyc+Li4uL1NhbXBsZS5waHA8Yj46PC9iPjg8L3RkPjwvdHI+Cjx0cj48dGQgYmdjb2xvcj0nI2VlZWVlYycgYWxpZ249J2NlbnRlcic+NDwvdGQ+PHRkIGJnY29sb3I9JyNlZWVlZWMnIGFsaWduPSdjZW50ZXInPjAuMjMzMjwvdGQ+PHRkIGJnY29sb3I9JyNlZWVlZWMnIGFsaWduPSdyaWdodCc+MjIzNjg4PC90ZD48dGQgYmdjb2xvcj0nI2VlZWVlYyc+U2FtcGxlTW9kZWwtPmluc2VydFRhYmxlTmFtZSggPz8/ICk8L3RkPjx0ZCB0aXRsZT0nL3Zhci93d3cvY2xhc3Nlcy9TYW1wbGVQYWdlLnBocCcgYmdjb2xvcj0nI2VlZWVlYyc+Li4uL1NhbXBsZVBhZ2UucGhwPGI+OjwvYj4yMzwvdGQ+PC90cj4KPC90YWJsZT48L2ZvbnQ+Cg==]]></stream>
+
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="run" transaction_id="91" status="stopping" reason="ok"></response>
+
+Log closed at 2015-01-09 03:52:12
+
+Log opened at 2015-01-09 03:52:29
+I: Connecting to configured address/port: 192.168.56.1:9000.
+I: Connected to client. :-)
+-> <init xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" fileuri="file:///var/www/index.php" language="PHP" protocol_version="1.0" appid="1758" idekey="netbeans-xdebug"><engine version="2.3.0dev"><![CDATA[Xdebug]]></engine><author><![CDATA[Derick Rethans]]></author><url><![CDATA[http://xdebug.org]]></url><copyright><![CDATA[Copyright (c) 2002-2015 by Derick Rethans]]></copyright></init>
+
+<- feature_set -i 92 -n show_hidden -v 1
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="feature_set" transaction_id="92" feature="show_hidden" success="1"></response>
+
+<- feature_set -i 93 -n max_depth -v 3
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="feature_set" transaction_id="93" feature="max_depth" success="1"></response>
+
+<- feature_set -i 94 -n max_children -v 30
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="feature_set" transaction_id="94" feature="max_children" success="1"></response>
+
+<- feature_set -i 95 -n max_data -v 2048
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="feature_set" transaction_id="95" feature="max_data" success="1"></response>
+
+<- stdout -i 96 -c 1
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="stdout" transaction_id="96" success="1"></response>
+
+<- eval -i 97 -- KGlzc2V0KCRfU0VSVkVSWydTU0wnXSkgPyAnaHR0cHMnIDogJ2h0dHAnKS4nOi8vJy4kX1NFUlZF
+UlsnU0VSVkVSX05BTUUnXS4kX1NFUlZFUlsnUkVRVUVTVF9VUkknXQ==
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="eval" transaction_id="97"><property address="-1077828784" type="string" size="31" encoding="base64"><![CDATA[aHR0cDovL2h0bWw0cGhwLmRldi8/dGFibGU9ZGRkMw==]]></property></response>
+
+<- run -i 98
+-> <stream xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" type="stdout" encoding="base64"><![CDATA[RXhwaXJlczogVGh1LCAxOSBOb3YgMTk4MSAwODo1MjowMCBHTVQ=]]></stream>
+
+-> <stream xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" type="stdout" encoding="base64"><![CDATA[DQo=]]></stream>
+
+-> <stream xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" type="stdout" encoding="base64"><![CDATA[Q2FjaGUtQ29udHJvbDogbm8tc3RvcmUsIG5vLWNhY2hlLCBtdXN0LXJldmFsaWRhdGUsIHBvc3QtY2hlY2s9MCwgcHJlLWNoZWNrPTA=]]></stream>
+
+-> <stream xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" type="stdout" encoding="base64"><![CDATA[DQo=]]></stream>
+
+-> <stream xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" type="stdout" encoding="base64"><![CDATA[UHJhZ21hOiBuby1jYWNoZQ==]]></stream>
+
+-> <stream xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" type="stdout" encoding="base64"><![CDATA[DQo=]]></stream>
+
+-> <stream xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" type="stdout" encoding="base64"><![CDATA[Q29udGVudC10eXBlOiB0ZXh0L2h0bWw7IGNoYXJzZXQ9VVRGLTg=]]></stream>
+
+-> <stream xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" type="stdout" encoding="base64"><![CDATA[DQo=]]></stream>
+
+-> <stream xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" type="stdout" encoding="base64"><![CDATA[DQo=]]></stream>
+
+-> <stream xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" type="stdout" encoding="base64"><![CDATA[PGJyIC8+Cjxmb250IHNpemU9JzEnPjx0YWJsZSBjbGFzcz0neGRlYnVnLWVycm9yIHhlLWNhdGNoYWJsZS1mYXRhbC1lcnJvcicgZGlyPSdsdHInIGJvcmRlcj0nMScgY2VsbHNwYWNpbmc9JzAnIGNlbGxwYWRkaW5nPScxJz4KPHRyPjx0aCBhbGlnbj0nbGVmdCcgYmdjb2xvcj0nI2Y1NzkwMCcgY29sc3Bhbj0iNSI+PHNwYW4gc3R5bGU9J2JhY2tncm91bmQtY29sb3I6ICNjYzAwMDA7IGNvbG9yOiAjZmNlOTRmOyBmb250LXNpemU6IHgtbGFyZ2U7Jz4oICEgKTwvc3Bhbj4gQ2F0Y2hhYmxlIGZhdGFsIGVycm9yOiBBcmd1bWVudCAxIHBhc3NlZCB0byBTYW1wbGVNb2RlbDo6aW5zZXJ0VGFibGVOYW1lKCkgbXVzdCBiZSBhbiBpbnN0YW5jZSBvZiBzdHJpbmcsIHN0cmluZyBnaXZlbiwgY2FsbGVkIGluIC92YXIvd3d3L2NsYXNzZXMvU2FtcGxlUGFnZS5waHAgb24gbGluZSAyMyBhbmQgZGVmaW5lZCBpbiAvdmFyL3d3dy9jbGFzc2VzL1NhbXBsZU1vZGVsLnBocCBvbiBsaW5lIDxpPjMxPC9pPjwvdGg+PC90cj4KPHRyPjx0aCBhbGlnbj0nbGVmdCcgYmdjb2xvcj0nI2U5Yjk2ZScgY29sc3Bhbj0nNSc+Q2FsbCBTdGFjazwvdGg+PC90cj4KPHRyPjx0aCBhbGlnbj0nY2VudGVyJyBiZ2NvbG9yPScjZWVlZWVjJz4jPC90aD48dGggYWxpZ249J2xlZnQnIGJnY29sb3I9JyNlZWVlZWMnPlRpbWU8L3RoPjx0aCBhbGlnbj0nbGVmdCcgYmdjb2xvcj0nI2VlZWVlYyc+TWVtb3J5PC90aD48dGggYWxpZ249J2xlZnQnIGJnY29sb3I9JyNlZWVlZWMnPkZ1bmN0aW9uPC90aD48dGggYWxpZ249J2xlZnQnIGJnY29sb3I9JyNlZWVlZWMnPkxvY2F0aW9uPC90aD48L3RyPgo8dHI+PHRkIGJnY29sb3I9JyNlZWVlZWMnIGFsaWduPSdjZW50ZXInPjE8L3RkPjx0ZCBiZ2NvbG9yPScjZWVlZWVjJyBhbGlnbj0nY2VudGVyJz4wLjIyNTA8L3RkPjx0ZCBiZ2NvbG9yPScjZWVlZWVjJyBhbGlnbj0ncmlnaHQnPjEyOTQ2NDwvdGQ+PHRkIGJnY29sb3I9JyNlZWVlZWMnPnttYWlufSggICk8L3RkPjx0ZCB0aXRsZT0nL3Zhci93d3cvaW5kZXgucGhwJyBiZ2NvbG9yPScjZWVlZWVjJz4uLi4vaW5kZXgucGhwPGI+OjwvYj4wPC90ZD48L3RyPgo8dHI+PHRkIGJnY29sb3I9JyNlZWVlZWMnIGFsaWduPSdjZW50ZXInPjI8L3RkPjx0ZCBiZ2NvbG9yPScjZWVlZWVjJyBhbGlnbj0nY2VudGVyJz4wLjIyNTA8L3RkPjx0ZCBiZ2NvbG9yPScjZWVlZWVjJyBhbGlnbj0ncmlnaHQnPjEyOTczMjwvdGQ+PHRkIGJnY29sb3I9JyNlZWVlZWMnPmluY2x1ZGVfb25jZSggPGZvbnQgY29sb3I9JyMwMGJiMDAnPicvdmFyL3d3dy9jbGFzc2VzL1NhbXBsZS5waHAnPC9mb250PiApPC90ZD48dGQgdGl0bGU9Jy92YXIvd3d3L2luZGV4LnBocCcgYmdjb2xvcj0nI2VlZWVlYyc+Li4uL2luZGV4LnBocDxiPjo8L2I+NTwvdGQ+PC90cj4KPHRyPjx0ZCBiZ2NvbG9yPScjZWVlZWVjJyBhbGlnbj0nY2VudGVyJz4zPC90ZD48dGQgYmdjb2xvcj0nI2VlZWVlYycgYWxpZ249J2NlbnRlcic+MC4yMzM3PC90ZD48dGQgYmdjb2xvcj0nI2VlZWVlYycgYWxpZ249J3JpZ2h0Jz4yMjI3NjA8L3RkPjx0ZCBiZ2NvbG9yPScjZWVlZWVjJz5TYW1wbGVQYWdlLT5nZW5lcmF0ZVNhbXBsZVBhZ2UoICApPC90ZD48dGQgdGl0bGU9Jy92YXIvd3d3L2NsYXNzZXMvU2FtcGxlLnBocCcgYmdjb2xvcj0nI2VlZWVlYyc+Li4uL1NhbXBsZS5waHA8Yj46PC9iPjg8L3RkPjwvdHI+Cjx0cj48dGQgYmdjb2xvcj0nI2VlZWVlYycgYWxpZ249J2NlbnRlcic+NDwvdGQ+PHRkIGJnY29sb3I9JyNlZWVlZWMnIGFsaWduPSdjZW50ZXInPjAuMjMzNzwvdGQ+PHRkIGJnY29sb3I9JyNlZWVlZWMnIGFsaWduPSdyaWdodCc+MjIyNzkyPC90ZD48dGQgYmdjb2xvcj0nI2VlZWVlYyc+U2FtcGxlTW9kZWwtPmluc2VydFRhYmxlTmFtZSggPz8/ICk8L3RkPjx0ZCB0aXRsZT0nL3Zhci93d3cvY2xhc3Nlcy9TYW1wbGVQYWdlLnBocCcgYmdjb2xvcj0nI2VlZWVlYyc+Li4uL1NhbXBsZVBhZ2UucGhwPGI+OjwvYj4yMzwvdGQ+PC90cj4KPC90YWJsZT48L2ZvbnQ+Cg==]]></stream>
+
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="run" transaction_id="98" status="stopping" reason="ok"></response>
+
+Log closed at 2015-01-09 03:52:31
+
+Log opened at 2015-01-09 03:52:35
+I: Connecting to configured address/port: 192.168.56.1:9000.
+I: Connected to client. :-)
+-> <init xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" fileuri="file:///var/www/index.php" language="PHP" protocol_version="1.0" appid="1759" idekey="netbeans-xdebug"><engine version="2.3.0dev"><![CDATA[Xdebug]]></engine><author><![CDATA[Derick Rethans]]></author><url><![CDATA[http://xdebug.org]]></url><copyright><![CDATA[Copyright (c) 2002-2015 by Derick Rethans]]></copyright></init>
+
+<- feature_set -i 100 -n show_hidden -v 1
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="feature_set" transaction_id="100" feature="show_hidden" success="1"></response>
+
+<- feature_set -i 101 -n max_depth -v 3
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="feature_set" transaction_id="101" feature="max_depth" success="1"></response>
+
+<- feature_set -i 102 -n max_children -v 30
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="feature_set" transaction_id="102" feature="max_children" success="1"></response>
+
+<- feature_set -i 103 -n max_data -v 2048
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="feature_set" transaction_id="103" feature="max_data" success="1"></response>
+
+<- stdout -i 104 -c 1
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="stdout" transaction_id="104" success="1"></response>
+
+<- eval -i 105 -- KGlzc2V0KCRfU0VSVkVSWydTU0wnXSkgPyAnaHR0cHMnIDogJ2h0dHAnKS4nOi8vJy4kX1NFUlZF
+UlsnU0VSVkVSX05BTUUnXS4kX1NFUlZFUlsnUkVRVUVTVF9VUkknXQ==
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="eval" transaction_id="105"><property address="-1077828784" type="string" size="31" encoding="base64"><![CDATA[aHR0cDovL2h0bWw0cGhwLmRldi8/dGFibGU9ZGRkMw==]]></property></response>
+
+<- run -i 106
+-> <stream xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" type="stdout" encoding="base64"><![CDATA[RXhwaXJlczogVGh1LCAxOSBOb3YgMTk4MSAwODo1MjowMCBHTVQ=]]></stream>
+
+-> <stream xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" type="stdout" encoding="base64"><![CDATA[DQo=]]></stream>
+
+-> <stream xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" type="stdout" encoding="base64"><![CDATA[Q2FjaGUtQ29udHJvbDogbm8tc3RvcmUsIG5vLWNhY2hlLCBtdXN0LXJldmFsaWRhdGUsIHBvc3QtY2hlY2s9MCwgcHJlLWNoZWNrPTA=]]></stream>
+
+-> <stream xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" type="stdout" encoding="base64"><![CDATA[DQo=]]></stream>
+
+-> <stream xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" type="stdout" encoding="base64"><![CDATA[UHJhZ21hOiBuby1jYWNoZQ==]]></stream>
+
+-> <stream xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" type="stdout" encoding="base64"><![CDATA[DQo=]]></stream>
+
+-> <stream xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" type="stdout" encoding="base64"><![CDATA[Q29udGVudC10eXBlOiB0ZXh0L2h0bWw7IGNoYXJzZXQ9VVRGLTg=]]></stream>
+
+-> <stream xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" type="stdout" encoding="base64"><![CDATA[DQo=]]></stream>
+
+-> <stream xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" type="stdout" encoding="base64"><![CDATA[DQo=]]></stream>
+
+-> <stream xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" type="stdout" encoding="base64"><![CDATA[PGJyIC8+Cjxmb250IHNpemU9JzEnPjx0YWJsZSBjbGFzcz0neGRlYnVnLWVycm9yIHhlLWNhdGNoYWJsZS1mYXRhbC1lcnJvcicgZGlyPSdsdHInIGJvcmRlcj0nMScgY2VsbHNwYWNpbmc9JzAnIGNlbGxwYWRkaW5nPScxJz4KPHRyPjx0aCBhbGlnbj0nbGVmdCcgYmdjb2xvcj0nI2Y1NzkwMCcgY29sc3Bhbj0iNSI+PHNwYW4gc3R5bGU9J2JhY2tncm91bmQtY29sb3I6ICNjYzAwMDA7IGNvbG9yOiAjZmNlOTRmOyBmb250LXNpemU6IHgtbGFyZ2U7Jz4oICEgKTwvc3Bhbj4gQ2F0Y2hhYmxlIGZhdGFsIGVycm9yOiBBcmd1bWVudCAxIHBhc3NlZCB0byBTYW1wbGVNb2RlbDo6aW5zZXJ0VGFibGVOYW1lKCkgbXVzdCBiZSBhbiBpbnN0YW5jZSBvZiBzdHJpbmcsIHN0cmluZyBnaXZlbiwgY2FsbGVkIGluIC92YXIvd3d3L2NsYXNzZXMvU2FtcGxlUGFnZS5waHAgb24gbGluZSAyMyBhbmQgZGVmaW5lZCBpbiAvdmFyL3d3dy9jbGFzc2VzL1NhbXBsZU1vZGVsLnBocCBvbiBsaW5lIDxpPjMxPC9pPjwvdGg+PC90cj4KPHRyPjx0aCBhbGlnbj0nbGVmdCcgYmdjb2xvcj0nI2U5Yjk2ZScgY29sc3Bhbj0nNSc+Q2FsbCBTdGFjazwvdGg+PC90cj4KPHRyPjx0aCBhbGlnbj0nY2VudGVyJyBiZ2NvbG9yPScjZWVlZWVjJz4jPC90aD48dGggYWxpZ249J2xlZnQnIGJnY29sb3I9JyNlZWVlZWMnPlRpbWU8L3RoPjx0aCBhbGlnbj0nbGVmdCcgYmdjb2xvcj0nI2VlZWVlYyc+TWVtb3J5PC90aD48dGggYWxpZ249J2xlZnQnIGJnY29sb3I9JyNlZWVlZWMnPkZ1bmN0aW9uPC90aD48dGggYWxpZ249J2xlZnQnIGJnY29sb3I9JyNlZWVlZWMnPkxvY2F0aW9uPC90aD48L3RyPgo8dHI+PHRkIGJnY29sb3I9JyNlZWVlZWMnIGFsaWduPSdjZW50ZXInPjE8L3RkPjx0ZCBiZ2NvbG9yPScjZWVlZWVjJyBhbGlnbj0nY2VudGVyJz4wLjIxNzM8L3RkPjx0ZCBiZ2NvbG9yPScjZWVlZWVjJyBhbGlnbj0ncmlnaHQnPjEyOTQ2NDwvdGQ+PHRkIGJnY29sb3I9JyNlZWVlZWMnPnttYWlufSggICk8L3RkPjx0ZCB0aXRsZT0nL3Zhci93d3cvaW5kZXgucGhwJyBiZ2NvbG9yPScjZWVlZWVjJz4uLi4vaW5kZXgucGhwPGI+OjwvYj4wPC90ZD48L3RyPgo8dHI+PHRkIGJnY29sb3I9JyNlZWVlZWMnIGFsaWduPSdjZW50ZXInPjI8L3RkPjx0ZCBiZ2NvbG9yPScjZWVlZWVjJyBhbGlnbj0nY2VudGVyJz4wLjIxNzM8L3RkPjx0ZCBiZ2NvbG9yPScjZWVlZWVjJyBhbGlnbj0ncmlnaHQnPjEyOTczMjwvdGQ+PHRkIGJnY29sb3I9JyNlZWVlZWMnPmluY2x1ZGVfb25jZSggPGZvbnQgY29sb3I9JyMwMGJiMDAnPicvdmFyL3d3dy9jbGFzc2VzL1NhbXBsZS5waHAnPC9mb250PiApPC90ZD48dGQgdGl0bGU9Jy92YXIvd3d3L2luZGV4LnBocCcgYmdjb2xvcj0nI2VlZWVlYyc+Li4uL2luZGV4LnBocDxiPjo8L2I+NTwvdGQ+PC90cj4KPHRyPjx0ZCBiZ2NvbG9yPScjZWVlZWVjJyBhbGlnbj0nY2VudGVyJz4zPC90ZD48dGQgYmdjb2xvcj0nI2VlZWVlYycgYWxpZ249J2NlbnRlcic+MC4yMTk1PC90ZD48dGQgYmdjb2xvcj0nI2VlZWVlYycgYWxpZ249J3JpZ2h0Jz4yMjI3NjA8L3RkPjx0ZCBiZ2NvbG9yPScjZWVlZWVjJz5TYW1wbGVQYWdlLT5nZW5lcmF0ZVNhbXBsZVBhZ2UoICApPC90ZD48dGQgdGl0bGU9Jy92YXIvd3d3L2NsYXNzZXMvU2FtcGxlLnBocCcgYmdjb2xvcj0nI2VlZWVlYyc+Li4uL1NhbXBsZS5waHA8Yj46PC9iPjg8L3RkPjwvdHI+Cjx0cj48dGQgYmdjb2xvcj0nI2VlZWVlYycgYWxpZ249J2NlbnRlcic+NDwvdGQ+PHRkIGJnY29sb3I9JyNlZWVlZWMnIGFsaWduPSdjZW50ZXInPjAuMjE5NTwvdGQ+PHRkIGJnY29sb3I9JyNlZWVlZWMnIGFsaWduPSdyaWdodCc+MjIyNzkyPC90ZD48dGQgYmdjb2xvcj0nI2VlZWVlYyc+U2FtcGxlTW9kZWwtPmluc2VydFRhYmxlTmFtZSggPz8/ICk8L3RkPjx0ZCB0aXRsZT0nL3Zhci93d3cvY2xhc3Nlcy9TYW1wbGVQYWdlLnBocCcgYmdjb2xvcj0nI2VlZWVlYyc+Li4uL1NhbXBsZVBhZ2UucGhwPGI+OjwvYj4yMzwvdGQ+PC90cj4KPC90YWJsZT48L2ZvbnQ+Cg==]]></stream>
+
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="run" transaction_id="106" status="stopping" reason="ok"></response>
+
+Log closed at 2015-01-09 03:52:36
+
+Log opened at 2015-01-09 03:52:45
+I: Connecting to configured address/port: 192.168.56.1:9000.
+I: Connected to client. :-)
+-> <init xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" fileuri="file:///var/www/index.php" language="PHP" protocol_version="1.0" appid="2511" idekey="netbeans-xdebug"><engine version="2.3.0dev"><![CDATA[Xdebug]]></engine><author><![CDATA[Derick Rethans]]></author><url><![CDATA[http://xdebug.org]]></url><copyright><![CDATA[Copyright (c) 2002-2015 by Derick Rethans]]></copyright></init>
+
+<- feature_set -i 107 -n show_hidden -v 1
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="feature_set" transaction_id="107" feature="show_hidden" success="1"></response>
+
+<- feature_set -i 108 -n max_depth -v 3
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="feature_set" transaction_id="108" feature="max_depth" success="1"></response>
+
+<- feature_set -i 109 -n max_children -v 30
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="feature_set" transaction_id="109" feature="max_children" success="1"></response>
+
+<- feature_set -i 110 -n max_data -v 2048
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="feature_set" transaction_id="110" feature="max_data" success="1"></response>
+
+<- stdout -i 111 -c 1
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="stdout" transaction_id="111" success="1"></response>
+
+<- eval -i 112 -- KGlzc2V0KCRfU0VSVkVSWydTU0wnXSkgPyAnaHR0cHMnIDogJ2h0dHAnKS4nOi8vJy4kX1NFUlZF
+UlsnU0VSVkVSX05BTUUnXS4kX1NFUlZFUlsnUkVRVUVTVF9VUkknXQ==
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="eval" transaction_id="112"><property address="-1077828784" type="string" size="31" encoding="base64"><![CDATA[aHR0cDovL2h0bWw0cGhwLmRldi8/dGFibGU9ZGRkMw==]]></property></response>
+
+<- run -i 113
+-> <stream xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" type="stdout" encoding="base64"><![CDATA[RXhwaXJlczogVGh1LCAxOSBOb3YgMTk4MSAwODo1MjowMCBHTVQ=]]></stream>
+
+-> <stream xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" type="stdout" encoding="base64"><![CDATA[DQo=]]></stream>
+
+-> <stream xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" type="stdout" encoding="base64"><![CDATA[Q2FjaGUtQ29udHJvbDogbm8tc3RvcmUsIG5vLWNhY2hlLCBtdXN0LXJldmFsaWRhdGUsIHBvc3QtY2hlY2s9MCwgcHJlLWNoZWNrPTA=]]></stream>
+
+-> <stream xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" type="stdout" encoding="base64"><![CDATA[DQo=]]></stream>
+
+-> <stream xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" type="stdout" encoding="base64"><![CDATA[UHJhZ21hOiBuby1jYWNoZQ==]]></stream>
+
+-> <stream xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" type="stdout" encoding="base64"><![CDATA[DQo=]]></stream>
+
+-> <stream xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" type="stdout" encoding="base64"><![CDATA[Q29udGVudC10eXBlOiB0ZXh0L2h0bWw7IGNoYXJzZXQ9VVRGLTg=]]></stream>
+
+-> <stream xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" type="stdout" encoding="base64"><![CDATA[DQo=]]></stream>
+
+-> <stream xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" type="stdout" encoding="base64"><![CDATA[DQo=]]></stream>
+
+-> <stream xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" type="stdout" encoding="base64"><![CDATA[PGJyIC8+Cjxmb250IHNpemU9JzEnPjx0YWJsZSBjbGFzcz0neGRlYnVnLWVycm9yIHhlLXdhcm5pbmcnIGRpcj0nbHRyJyBib3JkZXI9JzEnIGNlbGxzcGFjaW5nPScwJyBjZWxscGFkZGluZz0nMSc+Cjx0cj48dGggYWxpZ249J2xlZnQnIGJnY29sb3I9JyNmNTc5MDAnIGNvbHNwYW49IjUiPjxzcGFuIHN0eWxlPSdiYWNrZ3JvdW5kLWNvbG9yOiAjY2MwMDAwOyBjb2xvcjogI2ZjZTk0ZjsgZm9udC1zaXplOiB4LWxhcmdlOyc+KCAhICk8L3NwYW4+IFdhcm5pbmc6IGZpbHRlcl92YXIoKSBleHBlY3RzIHBhcmFtZXRlciAyIHRvIGJlIGxvbmcsIHN0cmluZyBnaXZlbiBpbiAvdmFyL3d3dy9jbGFzc2VzL1NhbXBsZU1vZGVsLnBocCBvbiBsaW5lIDxpPjMyPC9pPjwvdGg+PC90cj4KPHRyPjx0aCBhbGlnbj0nbGVmdCcgYmdjb2xvcj0nI2U5Yjk2ZScgY29sc3Bhbj0nNSc+Q2FsbCBTdGFjazwvdGg+PC90cj4KPHRyPjx0aCBhbGlnbj0nY2VudGVyJyBiZ2NvbG9yPScjZWVlZWVjJz4jPC90aD48dGggYWxpZ249J2xlZnQnIGJnY29sb3I9JyNlZWVlZWMnPlRpbWU8L3RoPjx0aCBhbGlnbj0nbGVmdCcgYmdjb2xvcj0nI2VlZWVlYyc+TWVtb3J5PC90aD48dGggYWxpZ249J2xlZnQnIGJnY29sb3I9JyNlZWVlZWMnPkZ1bmN0aW9uPC90aD48dGggYWxpZ249J2xlZnQnIGJnY29sb3I9JyNlZWVlZWMnPkxvY2F0aW9uPC90aD48L3RyPgo8dHI+PHRkIGJnY29sb3I9JyNlZWVlZWMnIGFsaWduPSdjZW50ZXInPjE8L3RkPjx0ZCBiZ2NvbG9yPScjZWVlZWVjJyBhbGlnbj0nY2VudGVyJz4wLjIzMzE8L3RkPjx0ZCBiZ2NvbG9yPScjZWVlZWVjJyBhbGlnbj0ncmlnaHQnPjEyOTQ2NDwvdGQ+PHRkIGJnY29sb3I9JyNlZWVlZWMnPnttYWlufSggICk8L3RkPjx0ZCB0aXRsZT0nL3Zhci93d3cvaW5kZXgucGhwJyBiZ2NvbG9yPScjZWVlZWVjJz4uLi4vaW5kZXgucGhwPGI+OjwvYj4wPC90ZD48L3RyPgo8dHI+PHRkIGJnY29sb3I9JyNlZWVlZWMnIGFsaWduPSdjZW50ZXInPjI8L3RkPjx0ZCBiZ2NvbG9yPScjZWVlZWVjJyBhbGlnbj0nY2VudGVyJz4wLjIzMzI8L3RkPjx0ZCBiZ2NvbG9yPScjZWVlZWVjJyBhbGlnbj0ncmlnaHQnPjEyOTczMjwvdGQ+PHRkIGJnY29sb3I9JyNlZWVlZWMnPmluY2x1ZGVfb25jZSggPGZvbnQgY29sb3I9JyMwMGJiMDAnPicvdmFyL3d3dy9jbGFzc2VzL1NhbXBsZS5waHAnPC9mb250PiApPC90ZD48dGQgdGl0bGU9Jy92YXIvd3d3L2luZGV4LnBocCcgYmdjb2xvcj0nI2VlZWVlYyc+Li4uL2luZGV4LnBocDxiPjo8L2I+NTwvdGQ+PC90cj4KPHRyPjx0ZCBiZ2NvbG9yPScjZWVlZWVjJyBhbGlnbj0nY2VudGVyJz4zPC90ZD48dGQgYmdjb2xvcj0nI2VlZWVlYycgYWxpZ249J2NlbnRlcic+MC4yNDE4PC90ZD48dGQgYmdjb2xvcj0nI2VlZWVlYycgYWxpZ249J3JpZ2h0Jz4yMjM5ODA8L3RkPjx0ZCBiZ2NvbG9yPScjZWVlZWVjJz5TYW1wbGVQYWdlLT5nZW5lcmF0ZVNhbXBsZVBhZ2UoICApPC90ZD48dGQgdGl0bGU9Jy92YXIvd3d3L2NsYXNzZXMvU2FtcGxlLnBocCcgYmdjb2xvcj0nI2VlZWVlYyc+Li4uL1NhbXBsZS5waHA8Yj46PC9iPjg8L3RkPjwvdHI+Cjx0cj48dGQgYmdjb2xvcj0nI2VlZWVlYycgYWxpZ249J2NlbnRlcic+NDwvdGQ+PHRkIGJnY29sb3I9JyNlZWVlZWMnIGFsaWduPSdjZW50ZXInPjAuMjQxODwvdGQ+PHRkIGJnY29sb3I9JyNlZWVlZWMnIGFsaWduPSdyaWdodCc+MjI0MDEyPC90ZD48dGQgYmdjb2xvcj0nI2VlZWVlYyc+U2FtcGxlTW9kZWwtPmluc2VydFRhYmxlTmFtZSggPz8/ICk8L3RkPjx0ZCB0aXRsZT0nL3Zhci93d3cvY2xhc3Nlcy9TYW1wbGVQYWdlLnBocCcgYmdjb2xvcj0nI2VlZWVlYyc+Li4uL1NhbXBsZVBhZ2UucGhwPGI+OjwvYj4yMzwvdGQ+PC90cj4KPHRyPjx0ZCBiZ2NvbG9yPScjZWVlZWVjJyBhbGlnbj0nY2VudGVyJz41PC90ZD48dGQgYmdjb2xvcj0nI2VlZWVlYycgYWxpZ249J2NlbnRlcic+MC4yNTIyPC90ZD48dGQgYmdjb2xvcj0nI2VlZWVlYycgYWxpZ249J3JpZ2h0Jz4yMjQyMzY8L3RkPjx0ZCBiZ2NvbG9yPScjZWVlZWVjJz48YSBocmVmPSdodHRwOi8vd3d3LnBocC5uZXQvZnVuY3Rpb24uZmlsdGVyLXZhcicgdGFyZ2V0PSdfbmV3Jz5maWx0ZXJfdmFyPC9hPgooID8/PywgPz8/ICk8L3RkPjx0ZCB0aXRsZT0nL3Zhci93d3cvY2xhc3Nlcy9TYW1wbGVNb2RlbC5waHAnIGJnY29sb3I9JyNlZWVlZWMnPi4uLi9TYW1wbGVNb2RlbC5waHA8Yj46PC9iPjMyPC90ZD48L3RyPgo8L3RhYmxlPjwvZm9udD4KPGJyIC8+Cjxmb250IHNpemU9JzEnPjx0YWJsZSBjbGFzcz0neGRlYnVnLWVycm9yIHhlLXVuY2F1Z2h0LWV4Y2VwdGlvbicgZGlyPSdsdHInIGJvcmRlcj0nMScgY2VsbHNwYWNpbmc9JzAnIGNlbGxwYWRkaW5nPScxJz4KPHRyPjx0aCBhbGlnbj0nbGVmdCcgYmdjb2xvcj0nI2Y1NzkwMCcgY29sc3Bhbj0iNSI+PHNwYW4gc3R5bGU9J2JhY2tncm91bmQtY29sb3I6ICNjYzAwMDA7IGNvbG9yOiAjZmNlOTRmOyBmb250LXNpemU6IHgtbGFyZ2U7Jz4oICEgKTwvc3Bhbj4gRmF0YWwgZXJyb3I6IFVuY2F1Z2h0IGV4Y2VwdGlvbiAnUERPRXhjZXB0aW9uJyB3aXRoIG1lc3NhZ2UgJ1NRTFNUQVRFWzQyMDAwXTogU3ludGF4IGVycm9yIG9yIGFjY2VzcyB2aW9sYXRpb246IDEwNjQgWW91IGhhdmUgYW4gZXJyb3IgaW4geW91ciBTUUwgc3ludGF4OyBjaGVjayB0aGUgbWFudWFsIHRoYXQgY29ycmVzcG9uZHMgdG8geW91ciBNeVNRTCBzZXJ2ZXIgdmVyc2lvbiBmb3IgdGhlIHJpZ2h0IHN5bnRheCB0byB1c2UgbmVhciAnKGNvbDEgaW50LCBjb2wyIGludCknIGF0IGxpbmUgMScgaW4gL3Zhci93d3cvaW5jbHVkZXMvSHRtbDRQaHBEYXRhYmFzZS5waHAgb24gbGluZSA8aT4xMDc8L2k+PC90aD48L3RyPgo8dHI+PHRoIGFsaWduPSdsZWZ0JyBiZ2NvbG9yPScjZjU3OTAwJyBjb2xzcGFuPSI1Ij48c3BhbiBzdHlsZT0nYmFja2dyb3VuZC1jb2xvcjogI2NjMDAwMDsgY29sb3I6ICNmY2U5NGY7IGZvbnQtc2l6ZTogeC1sYXJnZTsnPiggISApPC9zcGFuPiBQRE9FeGNlcHRpb246IFNRTFNUQVRFWzQyMDAwXTogU3ludGF4IGVycm9yIG9yIGFjY2VzcyB2aW9sYXRpb246IDEwNjQgWW91IGhhdmUgYW4gZXJyb3IgaW4geW91ciBTUUwgc3ludGF4OyBjaGVjayB0aGUgbWFudWFsIHRoYXQgY29ycmVzcG9uZHMgdG8geW91ciBNeVNRTCBzZXJ2ZXIgdmVyc2lvbiBmb3IgdGhlIHJpZ2h0IHN5bnRheCB0byB1c2UgbmVhciAnKGNvbDEgaW50LCBjb2wyIGludCknIGF0IGxpbmUgMSBpbiAvdmFyL3d3dy9pbmNsdWRlcy9IdG1sNFBocERhdGFiYXNlLnBocCBvbiBsaW5lIDxpPjEwNzwvaT48L3RoPjwvdHI+Cjx0cj48dGggYWxpZ249J2xlZnQnIGJnY29sb3I9JyNlOWI5NmUnIGNvbHNwYW49JzUnPkNhbGwgU3RhY2s8L3RoPjwvdHI+Cjx0cj48dGggYWxpZ249J2NlbnRlcicgYmdjb2xvcj0nI2VlZWVlYyc+IzwvdGg+PHRoIGFsaWduPSdsZWZ0JyBiZ2NvbG9yPScjZWVlZWVjJz5UaW1lPC90aD48dGggYWxpZ249J2xlZnQnIGJnY29sb3I9JyNlZWVlZWMnPk1lbW9yeTwvdGg+PHRoIGFsaWduPSdsZWZ0JyBiZ2NvbG9yPScjZWVlZWVjJz5GdW5jdGlvbjwvdGg+PHRoIGFsaWduPSdsZWZ0JyBiZ2NvbG9yPScjZWVlZWVjJz5Mb2NhdGlvbjwvdGg+PC90cj4KPHRyPjx0ZCBiZ2NvbG9yPScjZWVlZWVjJyBhbGlnbj0nY2VudGVyJz4xPC90ZD48dGQgYmdjb2xvcj0nI2VlZWVlYycgYWxpZ249J2NlbnRlcic+MC4yMzMxPC90ZD48dGQgYmdjb2xvcj0nI2VlZWVlYycgYWxpZ249J3JpZ2h0Jz4xMjk0NjQ8L3RkPjx0ZCBiZ2NvbG9yPScjZWVlZWVjJz57bWFpbn0oICApPC90ZD48dGQgdGl0bGU9Jy92YXIvd3d3L2luZGV4LnBocCcgYmdjb2xvcj0nI2VlZWVlYyc+Li4uL2luZGV4LnBocDxiPjo8L2I+MDwvdGQ+PC90cj4KPHRyPjx0ZCBiZ2NvbG9yPScjZWVlZWVjJyBhbGlnbj0nY2VudGVyJz4yPC90ZD48dGQgYmdjb2xvcj0nI2VlZWVlYycgYWxpZ249J2NlbnRlcic+MC4yMzMyPC90ZD48dGQgYmdjb2xvcj0nI2VlZWVlYycgYWxpZ249J3JpZ2h0Jz4xMjk3MzI8L3RkPjx0ZCBiZ2NvbG9yPScjZWVlZWVjJz5pbmNsdWRlX29uY2UoIDxmb250IGNvbG9yPScjMDBiYjAwJz4nL3Zhci93d3cvY2xhc3Nlcy9TYW1wbGUucGhwJzwvZm9udD4gKTwvdGQ+PHRkIHRpdGxlPScvdmFyL3d3dy9pbmRleC5waHAnIGJnY29sb3I9JyNlZWVlZWMnPi4uLi9pbmRleC5waHA8Yj46PC9iPjU8L3RkPjwvdHI+Cjx0cj48dGQgYmdjb2xvcj0nI2VlZWVlYycgYWxpZ249J2NlbnRlcic+MzwvdGQ+PHRkIGJnY29sb3I9JyNlZWVlZWMnIGFsaWduPSdjZW50ZXInPjAuMjQxODwvdGQ+PHRkIGJnY29sb3I9JyNlZWVlZWMnIGFsaWduPSdyaWdodCc+MjIzOTgwPC90ZD48dGQgYmdjb2xvcj0nI2VlZWVlYyc+U2FtcGxlUGFnZS0+Z2VuZXJhdGVTYW1wbGVQYWdlKCAgKTwvdGQ+PHRkIHRpdGxlPScvdmFyL3d3dy9jbGFzc2VzL1NhbXBsZS5waHAnIGJnY29sb3I9JyNlZWVlZWMnPi4uLi9TYW1wbGUucGhwPGI+OjwvYj44PC90ZD48L3RyPgo8dHI+PHRkIGJnY29sb3I9JyNlZWVlZWMnIGFsaWduPSdjZW50ZXInPjQ8L3RkPjx0ZCBiZ2NvbG9yPScjZWVlZWVjJyBhbGlnbj0nY2VudGVyJz4wLjI0MTg8L3RkPjx0ZCBiZ2NvbG9yPScjZWVlZWVjJyBhbGlnbj0ncmlnaHQnPjIyNDAxMjwvdGQ+PHRkIGJnY29sb3I9JyNlZWVlZWMnPlNhbXBsZU1vZGVsLT5pbnNlcnRUYWJsZU5hbWUoID8/PyApPC90ZD48dGQgdGl0bGU9Jy92YXIvd3d3L2NsYXNzZXMvU2FtcGxlUGFnZS5waHAnIGJnY29sb3I9JyNlZWVlZWMnPi4uLi9TYW1wbGVQYWdlLnBocDxiPjo8L2I+MjM8L3RkPjwvdHI+Cjx0cj48dGQgYmdjb2xvcj0nI2VlZWVlYycgYWxpZ249J2NlbnRlcic+NTwvdGQ+PHRkIGJnY29sb3I9JyNlZWVlZWMnIGFsaWduPSdjZW50ZXInPjAuMjUyNDwvdGQ+PHRkIGJnY29sb3I9JyNlZWVlZWMnIGFsaWduPSdyaWdodCc+MjI0NzI0PC90ZD48dGQgYmdjb2xvcj0nI2VlZWVlYyc+SHRtbDRQaHBEYXRhYmFzZS0+c3RhdGVtZW50RXhlY3V0ZSggICk8L3RkPjx0ZCB0aXRsZT0nL3Zhci93d3cvY2xhc3Nlcy9TYW1wbGVNb2RlbC5waHAnIGJnY29sb3I9JyNlZWVlZWMnPi4uLi9TYW1wbGVNb2RlbC5waHA8Yj46PC9iPjM0PC90ZD48L3RyPgo8dHI+PHRkIGJnY29sb3I9JyNlZWVlZWMnIGFsaWduPSdjZW50ZXInPjY8L3RkPjx0ZCBiZ2NvbG9yPScjZWVlZWVjJyBhbGlnbj0nY2VudGVyJz4wLjI1MjU8L3RkPjx0ZCBiZ2NvbG9yPScjZWVlZWVjJyBhbGlnbj0ncmlnaHQnPjIyNDkwMDwvdGQ+PHRkIGJnY29sb3I9JyNlZWVlZWMnPjxhIGhyZWY9J2h0dHA6Ly93d3cucGhwLm5ldC9QRE9TdGF0ZW1lbnQuZXhlY3V0ZScgdGFyZ2V0PSdfbmV3Jz5leGVjdXRlPC9hPgooICApPC90ZD48dGQgdGl0bGU9Jy92YXIvd3d3L2luY2x1ZGVzL0h0bWw0UGhwRGF0YWJhc2UucGhwJyBiZ2NvbG9yPScjZWVlZWVjJz4uLi4vSHRtbDRQaHBEYXRhYmFzZS5waHA8Yj46PC9iPjEwNzwvdGQ+PC90cj4KPC90YWJsZT48L2ZvbnQ+Cg==]]></stream>
+
+-> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/xdebug" command="run" transaction_id="113" status="stopping" reason="ok"></response>
+
+Log closed at 2015-01-09 03:52:47
+

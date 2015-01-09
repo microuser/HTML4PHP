@@ -19,22 +19,47 @@ class SampleModel extends Html4PhpPage {
     }
     
     public function getDatabaseTables(){
+        try{
+        //$this->statementPrepare("show tables");
+        $baseTable = "Base Table";
         
-        $this->statementPrepare("show tables");
+        $this->statementPrepare("SELECT TABLE_NAME,TABLE_TYPE,AUTO_INCREMENT FROM information_schema.tables");
+        $this->statementBindParam(":baseTable", $baseTable);
+
+        
         echo $this->getStatementErrorCode();        
         $this->statementExecute();
-        print_r($this->getPdo());
+        
         //xdebug_break();
         return $this->statementFetchAssocs();
+        }
+        catch(Exception $e){
+            return array("1");
+        }
     }
     
     public function insertTableName($value){
-        $this->statementPrepare("create table test4 (col1 int, col2 int)");
-        //$this->statementBindParam(":testTable", $value);
+        try{
+        $this->statementPrepare("create table ".  filter_var( htmlentities($value),FILTER_SANITIZE_STRING)." (col1 int, col2 int)");
+        
         $this->statementExecute();
-        $this->statementPrepare("create table test5 (col1 int, col2 int)");
-        //$this->statementBindParam(":testTable", $value);
+        }
+        catch(Exception $e){
+            
+        }
+        
+
+    }
+    
+    public function getDatabaseUsers(){
+        try{
+        $this->statementPrepare("SELECT * FROM mysql.user");
         $this->statementExecute();
+        return $this->statementFetchAssocs();
+        }
+        catch(Exception $e) {
+            return array(array("ACCESS IS DENIED FOR YOUR USER"));
+        }
     }
     
 
