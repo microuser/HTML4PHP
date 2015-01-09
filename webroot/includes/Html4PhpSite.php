@@ -69,11 +69,10 @@ class Html4PhpSite extends Html4PhpPage {
         //use link to find where we are at.
         if ($self === null) {
             $self = htmlspecialchars($_SERVER['PHP_SELF']);
-            echo $self;
         }
 
         $selectedItemName = '';//Home';
-        $selectedSubItemName = '';//Home';
+        $selectedSubItemName = 'Home';
         $itemMenu = array();
         $subItemMenu = array('Home' => '/index.php');
         foreach ($this->menu as $itemName => $subItems) {
@@ -81,14 +80,12 @@ class Html4PhpSite extends Html4PhpPage {
             $itemMenu[$itemName] = $itemLink;
             //If link matches level 1, it may not match subitems
             if ($itemLink === $self) {
-                echo "Match Item";
                 $selectedItemName = $itemName;
                 $subItemMenu = $subItems[1];
             }
             //Find selected in list
             foreach ($subItems[1] as $subItemName => $subItemLink) {
                 if ($subItemLink === $self) {
-                    echo "Match subitem";
                     $selectedItemName = $itemName;
                     $selectedSubItemName = $subItemName;
                     $subItemMenu = $subItems[1];
