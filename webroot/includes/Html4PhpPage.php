@@ -26,13 +26,13 @@ class Html4PhpPage extends Html4PhpSite {
     private $title = '';
     private $css = array();
     private $javascript = array();
+    private $javascriptFooter = array();
 
     public function __construct($title) {
         $this->addDebug();
 
         parent::__construct($title);
         $this->title = $title;
-        
     }
 
     public function addJavascriptLink($src) {
@@ -43,6 +43,11 @@ class Html4PhpPage extends Html4PhpSite {
     public function addJavascriptCode($code) {
         $this->addDebug(DEBUG_FUNCTION_TRACE, '$code=' . $code);
         $this->javascript[] = '<script type="text/javascript">' . $code . '</script>' . $this->newLine;
+    }
+
+    public function addJavascriptCodeFooter($code) {
+        $this->addDebug(DEBUG_FUNCTION_TRACE, '$code=' . $code);
+        $this->javascriptFooter[] = '<script type="text/javascript">' . $code . '</script>' . $this->newLine;
     }
 
     public function addCssLink($href) {
@@ -115,12 +120,20 @@ class Html4PhpPage extends Html4PhpSite {
         }
         $this->addDebug(DEBUG_VERBOSE + DEBUG_ERROR_LOG, '$_REQUEST=' . print_r($_REQUEST, 1));
 
+        foreach ($this->javascriptFooter as $javascriptItem) {
+            //   print_r($javascriptItem);
+            $this->appendFooter($javascriptItem);
+        }
+
         foreach ($this->footer as $footerItem) {
             $out .= $footerItem . $this->newLine;
         }
         $out .= '</footer>' . $this->newLine;
         //Footer is within body element.
         $out .= '</body>';
+
+
+
         return $out;
     }
 
@@ -230,7 +243,7 @@ class Html4PhpPage extends Html4PhpSite {
         }
 
         if (strpos($tableClass, 'tablesorter') !== false) {
-            $this->addJavascriptCode("	$(function() {
+            $this->addJavascriptCodeFooter("	$(function() {
 		$('#" . $tableId . "').tablesorter({sortList:[[0,0]], widgets: ['zebra']});
 	});");
         }
@@ -306,6 +319,5 @@ class Html4PhpPage extends Html4PhpSite {
         $out .= '</div>';
         $this->appendBody($out);
     }
-
 
 }

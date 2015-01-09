@@ -23,14 +23,19 @@ class SampleModel extends Html4PhpPage {
         $this->statementPrepare("show tables");
         echo $this->getStatementErrorCode();        
         $this->statementExecute();
-               
+        print_r($this->getPdo());
+        //xdebug_break();
         return $this->statementFetchAssocs();
     }
     
     public function insertTableName($value){
-        $this->statementPrepare("create table testTable3 (col1 int, col2 int)");
+        $this->statementPrepare("create table test4 (col1 int, col2 int)");
+        //$this->statementBindParam(":testTable", $value);
+        $this->statementExecute();
+        $this->statementPrepare("create table test5 (col1 int, col2 int)");
         //$this->statementBindParam(":testTable", $value);
         $this->statementExecute();
     }
+    
 
 }

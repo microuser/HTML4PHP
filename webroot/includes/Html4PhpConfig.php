@@ -56,6 +56,13 @@ class Html4PhpConfig extends Html4PhpDebug{
             'site' => array(
                 'layout' => 'default',
             ),
+            'resources' => array(
+                'fullcalendar' => 1,
+                'jquery' => 1,
+                'jquery-form-validator' => 0,
+                'jqueryui' => 1,
+                'tablesorter' => 1,
+            ),
         );
         //--------------------------------------------------------------------
         //  Production Config Details
