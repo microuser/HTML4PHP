@@ -1,6 +1,6 @@
 <?php
 
-include_once "Html4PhpSite.php";
+include_once "Html4PhpUser.php";
 
 /**
  * @version 2015-01-04
@@ -15,7 +15,7 @@ include_once "Html4PhpSite.php";
   -----BEGIN RSA PUBLIC KEY----- ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDfpROYHVyYHe2yok8Ut5OEmNzNriV9QGdzzPm1vFJSf8Wp9iBY74xf5oYdMmUOOfLlZfcrXP6Dc3VXOlTU7P46t14s9CcoGR6As2EamV7q9sAh4Nkr6xZb4kNdy9Bd4SxY/I3kxEbTpbpPq2T5B68xJWVjf83SQI43eyjO2Hv3iA8iEyifeyAGNVX46X3uuCsBftXF5Ng1GCCp6fMeCXeY0p3qmOg7m6SMGAXY97hKakNHPN2+vDP2fCOfefFmZihP/0mQNNLu1VNfI3MKonyfiHI4k1WAbFP2ozWSGmzv3dhej3wguYmRYKsgkK3ay5QoZQSLDHnZXtkuO9rJbAuz -----END RSA PUBLIC KEY-----
  * </pre>
  */
-class Html4PhpPage extends Html4PhpSite {
+class Html4PhpPage extends Html4PhpUser {
 
     private $docType = '<!DOCTYPE html>';
     public $newLine = "\n";

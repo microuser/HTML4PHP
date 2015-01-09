@@ -29,7 +29,7 @@ class Html4PhpConfig extends Html4PhpDebug{
                 'domainName' => 'html4php.dev',
                 'domainName2' => 'www.html4php.dev',
                 'domainIp' => '192.168.56.156',
-                'documentRoot' => $_SERVER['DOCUMENT_ROOT'],
+                'documentRoot' => $_SERVER['DOCUMENT_ROOT'].'/',
                 'serverName' => $_SERVER['SERVER_NAME'],
                 'relativeUrl' => '/',
                 'absoluteUrl' => 'http://'.$_SERVER['SERVER_NAME'].'/',

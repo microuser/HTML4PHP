@@ -1,6 +1,6 @@
 <?php
 
-include_once 'Html4PhpUser.php';
+include_once 'Html4PhpPage.php';
 
 /**
  * @version 2015-01-04
@@ -15,132 +15,89 @@ include_once 'Html4PhpUser.php';
   -----BEGIN RSA PUBLIC KEY----- ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDfpROYHVyYHe2yok8Ut5OEmNzNriV9QGdzzPm1vFJSf8Wp9iBY74xf5oYdMmUOOfLlZfcrXP6Dc3VXOlTU7P46t14s9CcoGR6As2EamV7q9sAh4Nkr6xZb4kNdy9Bd4SxY/I3kxEbTpbpPq2T5B68xJWVjf83SQI43eyjO2Hv3iA8iEyifeyAGNVX46X3uuCsBftXF5Ng1GCCp6fMeCXeY0p3qmOg7m6SMGAXY97hKakNHPN2+vDP2fCOfefFmZihP/0mQNNLu1VNfI3MKonyfiHI4k1WAbFP2ozWSGmzv3dhej3wguYmRYKsgkK3ay5QoZQSLDHnZXtkuO9rJbAuz -----END RSA PUBLIC KEY-----
  * </pre>
  * </pre> */
-class Html4PhpSite extends Html4PhpUser {
+class Html4PhpSite extends Html4PhpPage {
+
+    private $resources = array();
+    private $menu = array();
+    private $titleName;
+    private $titleLink = 'index.php';
+    private $topNav = '<a href="/login.php"></a>';
 
     public function __construct($title) {
         parent::__construct($title);
-        if ($this->getConfig('site', 'layout') === 'default') {
-            $this->constructDefaultLayout();
-        }
+        $this->titleName = $title;
 
-        //TODO:else allow custom layout (file||array??);
+        include_once($this->getConfig('server', 'documentRoot') . 'layouts/' . $this->getConfig('site', 'layout') . '/resources.php');
+        include_once($this->getConfig('server', 'documentRoot') . 'layouts/' . $this->getConfig('site', 'layout') . '/menu.php');
+
+        //TODO, call upon generate head.
+        $this->constructLayout();
     }
 
-    public function constructDefaultLayout() {
-
-        $this->addCssLink($this->getConfig('server', 'relativeUrl') . 'resources/screen.css');
-        $this->addCssLink($this->getConfig('server', 'relativeUrl') . 'resources/print.css');
+    public function constructLayout() {
 
 
-        if ($this->getConfig('resources', 'jquery')) {
-            //$this->addJavascriptLink($this->getConfig('server', 'relativeUrl')                    . 'resources/jquery/jquery.js');
+        $relativeUrl = $this->getConfig('server', 'relativeUrl');
+        if (isset($this->resources['js'])) {
+            //This variable was set in webroot/layouts/default/resources.php
+            foreach ($this->resources['js'] as $js) {
+                $this->addJavascriptLink($relativeUrl . $js);
+            }
         }
 
-
-        if ($this->getConfig('resources', 'tablesorter')) {
-            $this->addJavascriptLink($this->getConfig('server', 'relativeUrl') . 'resources/tablesorter/jquery-latest.js');
-            $this->addJavascriptLink($this->getConfig('server', 'relativeUrl') . 'resources/tablesorter/jquery.metadata.js');
-            $this->addJavascriptLink($this->getConfig('server', 'relativeUrl') . 'resources/tablesorter/jquery.tablesorter.js');
-            $this->addCssLink($this->getConfig('server', 'relativeUrl') . 'resources/tablesorter/themes/blue/style.css');
+        if (isset($this->resources['css'])) {
+            //This variable was set in webroot/layouts/default/resources.php
+            foreach ($this->resources['css'] as $css) {
+                $this->addCssLink($relativeUrl . $css);
+            }
         }
-
-
-        if ($this->getConfig('resources', 'jquery-form-validator')) {
-            $this->addJavascriptLink($this->getConfig('server', 'relativeUrl')
-                    . 'resources/jquery-form-validator/form-validator/jquery.form-validator.min.js');
-        }
-
-        $this->addJavascriptLink($this->getConfig('server', 'relativeUrl')
-                . 'resources/jquery-form-validator/form-validator/jquery.form-validator.min.js');
-
-        $this->addCssLink($this->getConfig('server', 'relativeUrl')
-                . 'resources/jqueryui/themes/ui-lightness/jquery-ui.css');
-        $this->addCssLink($this->getConfig('server', 'relativeUrl')
-                . 'resources/jqueryui/themes/ui-lightness/theme.css');
 
 
 
         $this->layoutTopNavSmall();
+        $this->layoutTopTitle($this->titleName, $this->titleLink, $this->topNav);
         $this->generateNavBar();
     }
 
-    private function generateNavBar() {
-        //Debug::add(DEBUG_FUNCTION_TRACE);
-        $level1 = 'Home';
-        $level2 = '';
-        switch (htmlspecialchars($_SERVER['PHP_SELF'])) {
-            case "/index.php":
-                $level1 = "Home";
-                $level2 = "Start";
-                break;
-            case "/KSPSolarWorkshop/index.php":
-                $level1 = "KSPSolarWorkshop";
-                $level2 = "Start";
-                break;
-            case "/KSPSolarWorkshop/powerLab.php":
-                $level1 = "KSPSolarWorkshop";
-                $level2 = "PowerLab";
-                break;
-            case "/KSPSolarWorkshop/landerLab.php":
-                $level1 = "KSPSolarWorkshop";
-                $level2 = "LanderLab";
-                break;
-            case "/KSPHitlist/index.php":
-                $level1 = "KSPHitlist";
-                $level2 = "Submit";
-                break;
-            //case "/register.php":
-            //    $level1 = "Home";
-            //    $level2 = "Register";
-            //    break;
-            //case "/keepalive/index.php":
-            //    $level1 = "KeepAlive";
-            //    $level2 = "Start";
-            //    break;
-            //case "/keepalive/register.php":
-            //    $level1 = "KeepAlive";
-            //    $level2 = "Register";
+    /**
+     * Generates the navbar from the given data in /webroot/layouts/default/menu.php
+     * The idea of $self parameter is to allow MVC type location masking, in the future.
+     * @param type $self
+     */
+    private function generateNavBar($self = null) {
+
+        //use link to find where we are at.
+        if ($self === null) {
+            $self = htmlspecialchars($_SERVER['PHP_SELF']);
+            echo $self;
         }
 
-
-        $this->layoutNavLevel1(array(
-            "Home" => "/index.php"
-            , "KSPSolarWorkshop" => "/KSPSolarWorkshop/index.php"
-            , "KSPHitlist" => "/KSPHitlist/index.php"
-
-                // , "KerbalSpaceProgram" => "/KerbalSpaceProgram/index.php"
-                //,"Recipees"=>"recipees.php"
-                )
-                , $level1);
-
-        if ($level1 == 'KSPSolarWorkshop') {
-            $this->layoutNavLevel2(array(
-                "Start" => "/KSPSolarWorkshop/index.php"
-                , "PowerLab" => "/KSPSolarWorkshop/powerLab.php"
-                , "LanderLab" => "/KSPSolarWorkshop/landerLab.php"
-                    //, "Register" => "register.php"
-                    //, "About" => "servies.php"
-                    //, "Contact" => "account.php"
-                    )
-                    , $level2);
-        } if ($level1 == 'KSPHitlist') {
-            $this->layoutNavLevel2(array(
-                "Start" => "/KSPSolarWorkshop/index.php"
-                , "Submit" => "/KSPSolarWorkshop/submit.php"
-                , "Retrieve" => "/KSPSolarWorkshop/view.php"
-                    //, "Register" => "register.php"
-                    //, "About" => "servies.php"
-                    //, "Contact" => "account.php"
-                    )
-                    , $level2);
-        } elseif ($level1 == 'Home') {
-            $this->layoutNavLevel2(array(
-                "Start" => "index.php"
-                    //, "About" => "servies.php"
-                    //, "Contact" => "account.php"
-                    )
-                    , $level2);
+        $selectedItemName = '';//Home';
+        $selectedSubItemName = '';//Home';
+        $itemMenu = array();
+        $subItemMenu = array('Home' => '/index.php');
+        foreach ($this->menu as $itemName => $subItems) {
+            $itemLink = $subItems[0];
+            $itemMenu[$itemName] = $itemLink;
+            //If link matches level 1, it may not match subitems
+            if ($itemLink === $self) {
+                echo "Match Item";
+                $selectedItemName = $itemName;
+                $subItemMenu = $subItems[1];
+            }
+            //Find selected in list
+            foreach ($subItems[1] as $subItemName => $subItemLink) {
+                if ($subItemLink === $self) {
+                    echo "Match subitem";
+                    $selectedItemName = $itemName;
+                    $selectedSubItemName = $subItemName;
+                    $subItemMenu = $subItems[1];
+                }
+            }
         }
+        
+        $this->layoutNavLevel1($itemMenu, $selectedItemName);
+        $this->layoutNavLevel2($this->menu[$selectedItemName][1], $selectedSubItemName);
     }
 
     private function layoutTopNavSmall($html = '') {
@@ -160,6 +117,11 @@ class Html4PhpSite extends Html4PhpUser {
                 . '</div><!-- end topTitleContent -->' . $this->newLine, 'topTitle');
     }
 
+    /**
+     * Where Key is name, and value is link
+     * @param type $menuKeyValuePair
+     * @param type $selectedName
+     */
     private function layoutNavLevel1($menuKeyValuePair, $selectedName) {
         //Debug::add('$menuKeyValuePair=' . print_r($menuKeyValuePair, 1) . '$selectedName=' . $selectedName);
         $out = '<ul>' . $this->newLine;
