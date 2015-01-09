@@ -121,7 +121,7 @@ class Html4PhpPage extends Html4PhpSite {
         $this->addDebug(DEBUG_VERBOSE + DEBUG_ERROR_LOG, '$_REQUEST=' . print_r($_REQUEST, 1));
 
         foreach ($this->javascriptFooter as $javascriptItem) {
-            //   print_r($javascriptItem);
+
             $this->appendFooter($javascriptItem);
         }
 
@@ -205,48 +205,46 @@ class Html4PhpPage extends Html4PhpSite {
         $this->appendHeader($out);
     }
 
+    private function makeArrayOfArrayByRef(&$tbodyArray, &$theadArray = null) {
+
+        if (!is_array($theadArray)) {
+            $theadArray = array($theadArray);
+        }
+
+        $isValidArray = is_array($tbodyArray) && is_array($tbodyArray[0]);
+
+        //If its not a valid array, look at the theadarray, find if its susposed to be vertical list to make it valid
+        if (sizeof($theadArray) === 1 && is_array($tbodyArray) && !is_array($tbodyArray[0])) {
+            foreach ($tbodyArray as $horizontalArray) {
+                $verticalArray[] = array($horizontalArray);
+            }
+            $tbodyArray = $verticalArray;
+            $isValidArray = true;
+        }
+        //If tbody is not a valid array, or even an array, it must be a single item
+        if (!is_array($tbodyArray)) {
+            $tbodyArray = array(array($tbodyArray));
+            $isValidArray = true;
+        }
+        //if tbody is not a valid array, and it should be horizontal, then make it one
+        if (!$isValidArray && sizeof($theadArray > 1)) {
+            $tbodyArray = array($tbodyArray);
+            $isValidArray = true;
+        }
+        return $isValidArray;
+    }
+
     public function addTable($title = null, $theadArray = null, $tbodyArray = null, $tfootArray = null, $tableClass = 'tablesorter', $tableId = null) {
         $this->addDebug(DEBUG_FUNCTION_TRACE, '$title=' . $title . ', $treadArray=' . print_r($theadArray, 1) . ', $tbodyArray=' . print_r($tbodyArray, 1) . ', $tfootArray=' . print_r($tfootArray, 1) . ', $tableClass=' . $tableClass . ', $tableId=' . $tableId);
         //Consider allowing styling/javascript using the following pattern
         //$a = array();
         //$a['1,x'] = 'onclick="alert(\'YouClickedRow\');"';
         //$a['1,1'] = 'onclick="alert(\'YouClikcedCell\');"';
-        //If a string is provided as a column title, then assume vertical list
-        if (!is_array($theadArray)) {
-            $theadArray = array($theadArray);
-        }
 
-
-        $isValidArray = is_array($tbodyArray) && is_array($tbodyArray[0]);
-
-        if (!$isValidArray) {
-            //If its not a valid array, look at the theadarray, find if its susposed to be vertical list to make it valid
-            if (sizeof($theadArray) === 1 && is_array($tbodyArray)) {
-                foreach ($tbodyArray as $horizontalArray) {
-                    $verticalArray[] = array($horizontalArray);
-                }
-                $tbodyArray = $verticalArray;
-                $isValidArray = true;
-            }
-            //If tbody is not a valid array, or even an array, it must be a single item
-            if (!is_array($tbodyArray)) {
-                $tbodyArray = array(array($tbodyArray));
-                $isValidArray = true;
-            }
-            //if tbody is not a valid array, and it should be horizontal, then make it one
-            if(!$isValidArray && sizeof($theadArray > 1)){
-                print_r($tbodyArray);
-                $tbodyArray = array($tbodyArray);
-                $isValidArray = true;
-            }
-        }
-
-
-
+        $isValidArray = $this->makeArrayOfArrayByRef($tbodyArray, $theadArray);
 
 
         $tableList = array();
-
 
         //Build the THEAD
         //The THEAD tag will handle these attributes:

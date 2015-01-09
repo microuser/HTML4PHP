@@ -23,11 +23,11 @@ class SamplePage extends SampleModel {
         if (isset($_GET['table'])) {
             $this->insertTableName($_GET['table']);
         }
-        //$this->makeDatabaseTableTable();
-        //$this->makeRandomTable();
-        //$this->makeDatabaseUserTable();
+        $this->makeDatabaseTableTable();
+        $this->makeRandomTable();
+        $this->makeDatabaseUserTable();
         
-        //$this->addTable("Test Table as Vertical List", array("Column Name"), array(1,2,3,4,5,6));
+        $this->addTable("Test Table as Vertical List", array("Column Name"), array(1,2,3,4,5,6));
         $this->addTable("Test Table as Vertical List with String","Column Name as String", array(1));
         $this->addTable("Test Table as Vertical List with String",null, array(1));
         $this->addTable("Test Table one item",null, 1);
