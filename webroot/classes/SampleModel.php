@@ -1,6 +1,6 @@
 <?php
 
-include_once($_SERVER['DOCUMENT_ROOT'].'/includes/Html4PhpPage.php');
+include_once($_SERVER['DOCUMENT_ROOT'].'/includes/Html4PhpSite.php');
 
 /**
  * Html4PhpSampleApp is a sample page showing how to use the main functions of the Html4Php framework.
@@ -12,7 +12,7 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/includes/Html4PhpPage.php');
  * @link https://github.com/microuser/HTML4PHP 
  * @license https://github.com/microuser/HTML4PHP/blob/master/LICENSE MIT
  */
-class SampleModel extends Html4PhpPage {
+class SampleModel extends Html4PhpSite {
 
     public function __construct($title = 'Html4PhpSampleApp') {
         parent::__construct($title);
@@ -30,7 +30,6 @@ class SampleModel extends Html4PhpPage {
         echo $this->getStatementErrorCode();        
         $this->statementExecute();
         
-        //xdebug_break();
         return $this->statementFetchAssocs();
         }
         catch(Exception $e){
