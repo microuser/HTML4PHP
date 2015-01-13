@@ -3,7 +3,7 @@ include_once('Html4PhpDebug.php');
 /**
  * Html4PhpEmail Depends on PHPMailer located at https://github.com/Synchro/PHPMailer. 
  * Many variables are contained in this class, be sure to set these for your situation.
- * @version 2015-01-04
+ * @version 2015-01-12
  * @category PHP Framework
  * @package HTML4PHP
  * @copyright (c) microuser 1014, macro_user@outlook.com

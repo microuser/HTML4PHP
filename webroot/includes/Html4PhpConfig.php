@@ -2,7 +2,7 @@
 include_once 'Html4PhpDebug.php';
 
 /** 
- * @version 2015-01-04
+ * @version 2015-01-12
  * @category PHP Framework
  * @package HTML4PHP
  * @author microuser

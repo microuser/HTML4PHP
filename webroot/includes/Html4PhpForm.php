@@ -3,7 +3,7 @@
 /**
  * Html4Form creates a valid HTML form. Begin with using startForm(), add what you want, generate with generateForm();
  *
- * @version 2015-01-04
+ * @version 2015-01-12
  * @category PHP Framework
  * @package HTML4PHP
  * @copyright (c) microuser 1014, macro_user@outlook.com

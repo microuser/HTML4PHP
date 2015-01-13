@@ -5,7 +5,7 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/includes/Html4PhpSite.php');
 /**
  * Html4PhpSampleApp is a sample page showing how to use the main functions of the Html4Php framework.
  *
- * @version 2015-01-04
+ * @version 2015-01-12
  * @category PHP Framework
  * @copyright (c) microuser 1014, macro_user@outlook.com
  * @author microuser
