@@ -7,7 +7,7 @@
 	<title>Class Html4PhpDatabase | HTML4PHP</title>
 
 	<script type="text/javascript" src="resources/combined.js?2615087600"></script>
-	<script type="text/javascript" src="elementlist.js?3696250449"></script>
+	<script type="text/javascript" src="elementlist.js?772254135"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -44,6 +44,7 @@
 				<li><a href="class-Html4PhpEmail.html">Html4PhpEmail</a></li>
 				<li><a href="class-Html4PhpForm.html">Html4PhpForm</a></li>
 				<li><a href="class-Html4PhpPage.html">Html4PhpPage</a></li>
+				<li><a href="class-Html4PhpSite.html">Html4PhpSite</a></li>
 				<li><a href="class-Html4PhpUser.html">Html4PhpUser</a></li>
 			</ul>
 
@@ -127,6 +128,7 @@
 	<div>
 		<h4>Indirect known subclasses</h4>
 			<a href="class-Html4PhpPage.html">Html4PhpPage</a>, 
+			<a href="class-Html4PhpSite.html">Html4PhpSite</a>, 
 			<a href="class-SampleModel.html">SampleModel</a>, 
 			<a href="class-SamplePage.html">SamplePage</a>
 	</div>
@@ -155,10 +157,10 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 				<b>Author:</b>
 				microuser<br />
 				<b>Version:</b>
-				2015-01-04<br />
+				2015-01-12<br />
 				<b>Link:</b>
 				<a href="https://github.com/microuser/HTML4PHP">https://github.com/microuser/HTML4PHP</a><br />
-		<b>Located at</b> <a href="source-class-Html4PhpDatabase.html#4-165" title="Go to source code">webroot/includes/Html4PhpDatabase.php</a><br />
+		<b>Located at</b> <a href="source-class-Html4PhpDatabase.html#4-164" title="Go to source code">webroot/includes/Html4PhpDatabase.php</a><br />
 	</div>
 
 
@@ -263,7 +265,7 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-Html4PhpDatabase.html#45-71" title="Go to source code">__construct</a>( <span>String <var>$title</var></span> )</code>
+		<code><a href="source-class-Html4PhpDatabase.html#45-70" title="Go to source code">__construct</a>( <span>String <var>$title</var></span> )</code>
 
 		<div class="description short">
 			
@@ -305,7 +307,7 @@ Connect to Production database if server name matches production domain.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_statementPrepare">#</a>
-		<code><a href="source-class-Html4PhpDatabase.html#73-80" title="Go to source code">statementPrepare</a>( <span>String <var>$query</var></span> )</code>
+		<code><a href="source-class-Html4PhpDatabase.html#72-79" title="Go to source code">statementPrepare</a>( <span>String <var>$query</var></span> )</code>
 
 		<div class="description short">
 			
@@ -345,7 +347,7 @@ Execute.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_statementBindParam">#</a>
-		<code><a href="source-class-Html4PhpDatabase.html#82-90" title="Go to source code">statementBindParam</a>( <span>type <var>$param</var></span>, <span>type <var>$value</var></span> )</code>
+		<code><a href="source-class-Html4PhpDatabase.html#81-89" title="Go to source code">statementBindParam</a>( <span>type <var>$param</var></span>, <span>type <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -385,7 +387,7 @@ Execute.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_statementBindParams">#</a>
-		<code><a href="source-class-Html4PhpDatabase.html#92-101" title="Go to source code">statementBindParams</a>( <span>type <var>$keyValuePair</var></span> )</code>
+		<code><a href="source-class-Html4PhpDatabase.html#91-100" title="Go to source code">statementBindParams</a>( <span>type <var>$keyValuePair</var></span> )</code>
 
 		<div class="description short">
 			
@@ -425,7 +427,7 @@ statement.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_statementExecute">#</a>
-		<code><a href="source-class-Html4PhpDatabase.html#103-109" title="Go to source code">statementExecute</a>( )</code>
+		<code><a href="source-class-Html4PhpDatabase.html#102-108" title="Go to source code">statementExecute</a>( )</code>
 
 		<div class="description short">
 			
@@ -458,7 +460,7 @@ statement.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_statementFetchAssoc">#</a>
-		<code><a href="source-class-Html4PhpDatabase.html#111-118" title="Go to source code">statementFetchAssoc</a>( )</code>
+		<code><a href="source-class-Html4PhpDatabase.html#110-117" title="Go to source code">statementFetchAssoc</a>( )</code>
 
 		<div class="description short">
 			
@@ -495,7 +497,7 @@ statement.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_statementFetchObject">#</a>
-		<code><a href="source-class-Html4PhpDatabase.html#120-127" title="Go to source code">statementFetchObject</a>( )</code>
+		<code><a href="source-class-Html4PhpDatabase.html#119-126" title="Go to source code">statementFetchObject</a>( )</code>
 
 		<div class="description short">
 			
@@ -532,7 +534,7 @@ statement.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_statementFetchAssocs">#</a>
-		<code><a href="source-class-Html4PhpDatabase.html#129-136" title="Go to source code">statementFetchAssocs</a>( )</code>
+		<code><a href="source-class-Html4PhpDatabase.html#128-135" title="Go to source code">statementFetchAssocs</a>( )</code>
 
 		<div class="description short">
 			
@@ -569,7 +571,7 @@ statement.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_statementFetchObjects">#</a>
-		<code><a href="source-class-Html4PhpDatabase.html#138-145" title="Go to source code">statementFetchObjects</a>( )</code>
+		<code><a href="source-class-Html4PhpDatabase.html#137-144" title="Go to source code">statementFetchObjects</a>( )</code>
 
 		<div class="description short">
 			
@@ -606,7 +608,7 @@ statement.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getPdo">#</a>
-		<code><a href="source-class-Html4PhpDatabase.html#147-154" title="Go to source code">getPdo</a>( )</code>
+		<code><a href="source-class-Html4PhpDatabase.html#146-153" title="Go to source code">getPdo</a>( )</code>
 
 		<div class="description short">
 			
@@ -643,7 +645,7 @@ statement.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getStatement">#</a>
-		<code><a href="source-class-Html4PhpDatabase.html#156-163" title="Go to source code">getStatement</a>( )</code>
+		<code><a href="source-class-Html4PhpDatabase.html#155-162" title="Go to source code">getStatement</a>( )</code>
 
 		<div class="description short">
 			
