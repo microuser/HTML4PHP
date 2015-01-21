@@ -24,8 +24,8 @@ class Html4PhpConfig extends Html4PhpDebug {
      */
     public function __construct($title) {
 
-        $productionConfig = $developmentConfig = array(array());
-        include_once('Html4PhpConfigData.php');
+        $productionConfig = $stagingConfig = $developmentConfig = array(array());
+        include('Html4PhpConfigData.php');
 
         $this->autoSetConfig(array(
             'production' => $productionConfig,

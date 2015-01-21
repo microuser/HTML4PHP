@@ -12,31 +12,22 @@
  * @author user
  */
 class Html4PhpValidator {
-    
-    private $validatorData = array();
-    
-    public function __construct(){
-        include_once('Html4PhpValidatorData.php');       
+
+    public $validatorData = null;
+
+    public function __construct() {
+
+        include('Html4PhpValidatorData.php');
+        $this->validatorData = $validatorData;
     }
-    
-    public function isMatch($type,$subject){
-        if(isset($this->validatorData[$type]) && isset($this->validatorData[$type]['regex'])){
-            return preg_match($this->validatorData[$type]['regex'], $subject);
+
+    public function isMatch($type, $subject, &$matches) {
+        if (isset($this->validatorData[$type])) {
+            return preg_match('/'.$this->validatorData[$type].'/', $subject, $matches);
+        } else {
+            return false;
         }
-        return false;
+        echo "Type does not match entry.";
     }
-    
-    
-    
-    private function runTests(){
-        
-        
-        
-        
-        
-        
-        
-        
-    }
-    
+
 }

@@ -1,5 +1,16 @@
 <?php
 
+if (!defined("DEBUG")) {
+    define("DEBUG_ECHO", 128);
+    define("DEBUG_ERROR_LOG", 64);
+    define("DEBUG_VERBOSE", 32);
+    define("DEBUG_FUNCTION_TRACE", 16);
+    define("DEBUG_RETURN_VALUE", 8);
+    define("DEBUG_DECISION", 4);
+    define("DEBUG_PAGE_LEVEL", 2);
+    define("DEBUG_ERROR", 1);
+    define("DEBUG", 15);
+}
 /**
  * 
  * @version 2015-01-12
@@ -18,18 +29,6 @@
 //$this->addDebug(DEBUG_FUNCTION_TRACE, "Custom Error Message");
 //echo Html4PhpDebuggenerateHtml();
 
-if (!defined("DEBUG")) {
-    define("DEBUG_ECHO", 128);
-    define("DEBUG_ERROR_LOG", 64);
-    define("DEBUG_VERBOSE", 32);
-    define("DEBUG_FUNCTION_TRACE", 16);
-    define("DEBUG_RETURN_VALUE", 8);
-    define("DEBUG_DECISION", 4);
-    define("DEBUG_PAGE_LEVEL", 2);
-    define("DEBUG_ERROR", 1);
-    define("DEBUG", $this->getConfig('environment', 'debugLevel'));
-}
-
 /**
  * Debug class uses the singleton pattern. It provides the capability of a debug trace through the static member variable. Unlike most singleton paterns, the getInstance() funciton is hidden, and interface through use is implimented inside the add() and get() functions themselfs.
  * The object of the class is not tobe returned externally, but rather used like $this->addDebug(DEBUG_VERBOSE, "custom error message"); echo Html4PhpDebuggenerateHtml();
@@ -47,13 +46,20 @@ class Html4PhpDebug {
      */
     private $debugLog = array();
 
+    public function __construct() {
+        $this->getConfig('DEBUG',$this->getConfig('envifronment','debugLevel'));
+    }
+
     /**
      * Appends text to the persisted global variable array named debugLog.  It also performs a backtrace such that the calling class and time are written to the log. For appropariate values of the bitmask, see the CONSTANTS such as:     DEBUG_ECHO,    DEBUG_ERROR_LOG,    DEBUG_VERBOSE,    DEBUG_FUNCTION_TRACE,    DEBUG_RETURN_VALUE,    DEBUG_DECISION.
      * Also, if the bitmask of DEBUG has DEBUG_ERROR_LOG bit set, then the debug will be written with error_log() to the file set in php.ini
      * @param int $bitmask
      * @param String $text
      */
-    public function addDebug($bitmask = DEBUG, $text = '') {
+    public function addDebug($bitmask = null, $text = '') {
+        if ($bitmask === null) {
+            $bitmask = DEBUG;
+        }
         if ($bitmask & DEBUG) {
             $time = microtime(1);
             $messageToWrite = self::getCallingFunctionName() . ": \t " . $text;
