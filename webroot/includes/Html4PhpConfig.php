@@ -48,21 +48,24 @@ class Html4PhpConfig extends Html4PhpDebug {
                 $_SERVER['SERVER_NAME'] == $configs['production']['server']['domainName2'] ||
                 $_SERVER['SERVER_NAME'] == $configs['production']['server']['domainIp']) {
             $this->configs = $configs['production'];
-            $this->configs['config']['environment'] = 'production';
+            $this->configs['environment']['tier'] = 'production';
+            
+        } elseif ($_SERVER['SERVER_NAME'] == $configs['staging']['server']['domainName'] ||
+                $_SERVER['SERVER_NAME'] == $configs['staging']['server']['domainName2'] ||
+                $_SERVER['SERVER_NAME'] == $configs['staging']['server']['domainIp']) {
+            $this->configs = $configs['staging'];
+            $this->configs['environment']['tier'] = 'staging';
+            
         } elseif ($_SERVER['SERVER_NAME'] == $configs['development']['server']['domainName'] ||
                 $_SERVER['SERVER_NAME'] == $configs['development']['server']['domainName2'] ||
                 $_SERVER['SERVER_NAME'] == $configs['development']['server']['domainIp']) {
             $this->configs = $configs['development'];
-            $this->configs['config']['environment'] = 'development';
-        } elseif ($_SERVER['SERVER_NAME'] == $configs['staging']['server']['domainName'] ||
-                $_SERVER['SERVER_NAME'] == $configs['staging']['server']['domainName2'] ||
-                $_SERVER['SERVER_NAME'] == $configs['staging']['server']['domainIp']) {
-            $this->configs = $configs['development'];
-            $this->configs['config']['environment'] = 'development';
+            $this->configs['environment']['tier'] = 'development';
+            
         } elseif ($fallbackToDev === true) {
             //As a failsafe, fallback to devlopment config details
             $this->configs = $configs['development'];
-            $this->configs['config']['environment'] = 'development';
+            $this->configs['environment']['tier'] = 'development';
         }
     }
 

@@ -41,7 +41,9 @@
                 'jqueryui' => 1,
                 'tablesorter' => 1,
             ),
-        );$stagingConfig = array(
+        );
+        
+        $stagingConfig = array(
             'server' => array(
                 'domainName' => 'html4php.dev',
                 'domainName2' => 'www.html4php.dev',
