@@ -13,6 +13,7 @@ class ValidatorPage extends ValidatorModel{
     
     public function generateValidatorPage(){
         $this->makeValidatorRulesTable();
+        $this->makeRuleSpecialChar();
         $this->makeRulePasswordSpecialCharLength8OrMore();
         $this->makeRulePassword();
         $this->makeRulePassword8OrMore();
@@ -114,7 +115,9 @@ class ValidatorPage extends ValidatorModel{
         $rulesArray[] = $this->makeTestRow('passwordSpecialCharLength8OrMore', 1 , 'aaaaaaaaaaaaaA1{=');
         $rulesArray[] = $this->makeTestRow('passwordSpecialCharLength8OrMore', 1 , 'aaaaaaaaaaaaaA1{-');
         $rulesArray[] = $this->makeTestRow('passwordSpecialCharLength8OrMore', 1 , 'aaaaaaaaaaaaaA1{_');
-        $rulesArray[] = $this->makeTestRow('passwordSpecialCharLength8OrMore', 1 , 'aaaaaaaaaaaaaA1{+');
+        $rulesArray[] = $this->makeTestRow('passwordSpecialCharLength8OrMore', 0 , '0000000000000');
+        $rulesArray[] = $this->makeTestRow('passwordSpecialCharLength8OrMore', 0 , 'aev4esv54e323g4ED');
+        $rulesArray[] = $this->makeTestRow('passwordSpecialCharLength8OrMore', 0 , 'aaadd44');
         
         $rulesArray[] = $this->makeTestRow('passwordSpecialCharLength8OrMore', 0 , '');
         $rulesArray[] = $this->makeTestRow('passwordSpecialCharLength8OrMore', 0 , '');
@@ -132,6 +135,49 @@ class ValidatorPage extends ValidatorModel{
         return $outcome;
             
     }
+    
+        private function makeRuleSpecialChar(){
+        $title = '<a name="specialChar">specialChar</a>';
+        
+        $rulesArray[] = $this->makeTestRow('specialChar', 1 , '`');
+        $rulesArray[] = $this->makeTestRow('specialChar', 1 , '~');
+        $rulesArray[] = $this->makeTestRow('specialChar', 1 , '!');
+        $rulesArray[] = $this->makeTestRow('specialChar', 1 , '@');
+        $rulesArray[] = $this->makeTestRow('specialChar', 1 , '#');
+        $rulesArray[] = $this->makeTestRow('specialChar', 1 , '$');
+        $rulesArray[] = $this->makeTestRow('specialChar', 1 , '%');
+        $rulesArray[] = $this->makeTestRow('specialChar', 1 , '^');
+        $rulesArray[] = $this->makeTestRow('specialChar', 1 , '&');
+        $rulesArray[] = $this->makeTestRow('specialChar', 1 , '*');
+        $rulesArray[] = $this->makeTestRow('specialChar', 1 , '(');
+        $rulesArray[] = $this->makeTestRow('specialChar', 1 , ')');
+        $rulesArray[] = $this->makeTestRow('specialChar', 1 , '-');
+        $rulesArray[] = $this->makeTestRow('specialChar', 1 , '_');
+        $rulesArray[] = $this->makeTestRow('specialChar', 1 , '=');
+        $rulesArray[] = $this->makeTestRow('specialChar', 1 , '+');
+        $rulesArray[] = $this->makeTestRow('specialChar', 1 , '[');
+        $rulesArray[] = $this->makeTestRow('specialChar', 1 , '{');
+        $rulesArray[] = $this->makeTestRow('specialChar', 1 , ']');
+        $rulesArray[] = $this->makeTestRow('specialChar', 1 , '}');
+        $rulesArray[] = $this->makeTestRow('specialChar', 1 , '\\');
+        $rulesArray[] = $this->makeTestRow('specialChar', 1 , '|');
+        $rulesArray[] = $this->makeTestRow('specialChar', 1 , ';');
+        $rulesArray[] = $this->makeTestRow('specialChar', 1 , ':');
+        $rulesArray[] = $this->makeTestRow('specialChar', 1 , '\'');
+        $rulesArray[] = $this->makeTestRow('specialChar', 1 , '"');
+        $rulesArray[] = $this->makeTestRow('specialChar', 1 , ',');
+        $rulesArray[] = $this->makeTestRow('specialChar', 1 , '.');
+        $rulesArray[] = $this->makeTestRow('specialChar', 1 , '<');
+        $rulesArray[] = $this->makeTestRow('specialChar', 1 , '>');
+        $rulesArray[] = $this->makeTestRow('specialChar', 1 , '/');
+        $rulesArray[] = $this->makeTestRow('specialChar', 1 , '?');
+        $rulesArray[] = $this->makeTestRow('specialChar', 1 , ' ');
+        $rulesArray[] = $this->makeTestRow('specialChar', 1 , '`~!@#$%^&*()_+-=[]\\{}|\':;",./<>?');
+        $rulesArray[] = $this->makeTestRow('specialChar', 0 , '`~!@#$%^&*()_+-=[]\\{}|\':;",./<>?abcdef');
+        
+        $this->addTable($title, array("#","Assessment","Desired","Result","Subject","Preg Matchs"), $this->enumerateArrays($rulesArray));
+    }
+    
     
     private function makeRuleNumbers(){
         $title = '<a name="numbersInteger">numbersInteger</a>';
