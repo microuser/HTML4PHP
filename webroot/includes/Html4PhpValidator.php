@@ -24,9 +24,18 @@ class Html4PhpValidator {
         $this->validatorData = $validatorData;
     }
 
-    public function isMatch($type, $subject, &$matches) {
+    public function isMatchWithRefArray($type, $subject, &$matches) {
         if (isset($this->validatorData[$type])) {
-            return preg_match('/'.$this->validatorData[$type].'/', $subject, $matches);
+            return preg_match('/' . $this->validatorData[$type] . '/', $subject, $matches);
+        } else {
+            return false;
+        }
+        echo "Type does not match entry.";
+    }
+
+    public function isMatch($type, $subject) {
+        if (isset($this->validatorData[$type])) {
+            return preg_match('/' . $this->validatorData[$type] . '/', $subject);
         } else {
             return false;
         }
