@@ -25,23 +25,15 @@ $this->menu = array(
             'Three' => '/sample/three.php',
         )
     ),
-    //'Item3' => array(
-    //    'link3.html',
-    //    array(
-    //        'subitem3.1' => 'link3.1.html',
-    //        'subitem3.2' => 'link3.2.html',
-    //        'subitem3.3' => 'link3.3.html',
-    //    )
-    //),
-    //'Item4' => array(
-    //    'link4.html',
-    //    array(
-    //        'subitem4.1' => 'link4.1.html',
-    //        'subitem4.2' => 'link4.2.html',
-    //        'subitem4.3' => 'link4.3.html',
-    //        'subitem4.4' => 'link4.4.html',
-    //        'subitem4.5' => 'link4.5.html',
-    //        'subitem4.6' => 'link4.6.html',
-    //    )
-    //),
+    'Tests' => array(
+        '/tests/index.php',
+        array(
+            'Config' => '/tests/config.php',
+            'Form' => '/tests/form.php',
+            'Page' => '/tests/page.php',
+            'Site' => '/tests/site.php',
+            'Validator' => '/tests/validator.php',
+        )
+    ),
+    
 );

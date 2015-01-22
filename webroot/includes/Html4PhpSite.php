@@ -21,7 +21,7 @@ class Html4PhpSite extends Html4PhpPage {
     private $menu = array();
     private $titleName;
     private $titleLink = 'index.php';
-    private $topNav = '<a href="/login.php"></a>';
+    private $topNav = '';
 
     public function __construct($title) {
         parent::__construct($title);
@@ -54,11 +54,25 @@ class Html4PhpSite extends Html4PhpPage {
 
 
 
-        $this->layoutTopNavSmall();
+  
+        $this->generateLoginTopNavSmall();
         $this->layoutTopTitle($this->titleName, $this->titleLink, $this->topNav);
         $this->generateNavBar();
     }
 
+    private function generateLoginTopNavSmall(){
+        if(
+                    isset($_SESSION['PHPSESSIONID']) &&
+                    isset($_SESSION['LOGIN_TOKEN']) &&
+                    $this->verifyLoginToken($_SESSION['PHPSESSIONID'], $_SESSION['LOGIN_TOKEN'])
+                    )
+                {
+                $this->layoutTopNavSmall("<a href=\"/login/logout.php\">Logout</a>");
+            }else {
+                $this->layoutTopNavSmall("<a href=\"/login/\">Login</a>");
+            }
+              
+    }
     /**
      * Generates the navbar from the given data in /webroot/layouts/default/menu.php
      * The idea of $self parameter is to allow MVC type location masking, in the future.

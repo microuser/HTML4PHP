@@ -27,13 +27,6 @@ class SamplePage extends SampleModel {
         $this->makeRandomTable();
         $this->makeDatabaseUserTable();
         
-        $this->addTable("Test Table as Vertical List", array("Column Name"), array(1,2,3,4,5,6));
-        $this->addTable("Test Table as Vertical List with String","Column Name as String", array(1));
-        $this->addTable("Test Table as Vertical List with String",null, array(1));
-        $this->addTable("Test Table one item",null, 1);
-        $this->addTable("Test Table Horizontal", array(1,2,3,4,5), array(1,2,3,4,5));
-        
-        
         return $this->generatePage();
     }
 
