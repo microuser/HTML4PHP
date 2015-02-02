@@ -19,6 +19,20 @@ Vagrant.configure('2') do |config|
     config.vm.network 'private_network', ip: "#{data['vm']['network']['private_network']}"
   end
 
+  if data['vm']['network']['public_network'].to_s != ''
+        puts "settings up public network by ip"
+        config.vm.network 'public_network', ip: "#{data['vm']['network']['public_network']}"
+  end
+
+  if data['vm']['network']['public_bridge'].to_s != ''
+         puts "bridge new"
+         config.vm.network 'public_network', bridge: "#{data['vm']['network']['public_bridge']}"
+         puts "bridge old"
+         config.vm.network :bridged, :bridge => "#{data['vm']['network']['public_bridge']}"
+  end
+
+
+
   data['vm']['network']['forwarded_port'].each do |i, port|
     if port['guest'] != '' && port['host'] != ''
       config.vm.network :forwarded_port, guest: port['guest'].to_i, host: port['host'].to_i

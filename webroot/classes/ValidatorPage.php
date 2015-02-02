@@ -29,7 +29,8 @@ class ValidatorPage extends ValidatorModel {
 
     private function generateFormIterationCount() {
         $form = new Html4PhpForm("iterationcount");
-        $form->addFormInputNumber("Iterations", "i",$this->runTimeIterations);
+        $form->addFormInputNumber("Iterations", "i", $this->runTimeIterations);
+        $form->addFormInputCustomRegexp("numbers", "number", '', '', null, null, 'Thats not a number',' custom', '^-?([0-9]{0,3}(,[0-9]{3})*(\\.[0-9]+)?|[0-9]+(\\.[0-9]+)?(e-?[0-9]+)?)$');
         $form->addFormSubmitButton();
         $this->add($form->generateForm("Set Iteration Count for Runtime"));
     }
@@ -39,11 +40,141 @@ class ValidatorPage extends ValidatorModel {
         $this->generateFormIterationCount();
 
         $this->makeValidatorRulesTable();
+
+        $this->makeRuleNumbers();
+        $this->makeRuleAlpha();
+        $this->makeRuleNumbersWithDecimalsAndCommasAllowNegative();
+        $this->makeRuleNumbersWithDecimalsAndCommas();
+        $this->makeRuleNumbersDecimalsAllowNegative();
+        $this->makeRuleNumbersWithDecimals();
+        $this->makeRuleNumbersIntegerAllowNegative();
         $this->makeRuleSpecialChar();
         $this->makeRulePasswordSpecialCharLength8OrMore();
         $this->makeRulePassword();
         $this->makeRulePassword8OrMore();
-        $this->makeRuleNumbers();
+        $this->makeRuleNumbersInteger();
+    }
+
+    private function makeRuleNumbers() {
+        $title = '<a name="numbers">numbers</a>';
+
+        $rulesArray[] = $this->makeTestRow('numbers', 1, "123");
+        $rulesArray[] = $this->makeTestRow('numbers', 1, "12345");
+        $rulesArray[] = $this->makeTestRow('numbers', 1, "0");
+        $rulesArray[] = $this->makeTestRow('numbers', 1, "12");
+        $rulesArray[] = $this->makeTestRow('numbers', 1, "123456789");
+        $rulesArray[] = $this->makeTestRow('numbers', 1, "12345678.00");
+        $rulesArray[] = $this->makeTestRow('numbers', 1, "445,678");
+        $rulesArray[] = $this->makeTestRow('numbers', 1, "2,445,678");
+        $rulesArray[] = $this->makeTestRow('numbers', 1, "2,445,678");
+        $rulesArray[] = $this->makeTestRow('numbers', 0, "12345,678.00");
+        $rulesArray[] = $this->makeTestRow('numbers', 0, "12345,678.");
+        $rulesArray[] = $this->makeTestRow('numbers', 1, "12,345,678.1");
+        $rulesArray[] = $this->makeTestRow('numbers', 1, "12345678.3");
+        $rulesArray[] = $this->makeTestRow('numbers', 1, "1.2e6");
+        $rulesArray[] = $this->makeTestRow('numbers', 1, "-1.2e6");
+        $rulesArray[] = $this->makeTestRow('numbers', 1, "-1.2e-6");
+
+
+
+        $this->addTable($title, array("#", "Assessment", "Desired", "Result", "Subject", "Preg Matchs", "Run Time [ms]"), $this->enumerateArrays($rulesArray));
+    }
+
+    private function makeRuleAlpha() {
+        $title = '<a name="alpha">alpha</a>';
+
+        $rulesArray[] = $this->makeTestRow('alpha', 1, "123");
+        $rulesArray[] = $this->makeTestRow('alpha', 1, "12345");
+        $rulesArray[] = $this->makeTestRow('alpha', 0, "0");
+        $rulesArray[] = $this->makeTestRow('alpha', 0, "12");
+        $rulesArray[] = $this->makeTestRow('alpha', 1, "123456789");
+        $rulesArray[] = $this->makeTestRow('alpha', 0, "12345678");
+
+
+
+        $this->addTable($title, array("#", "Assessment", "Desired", "Result", "Subject", "Preg Matchs", "Run Time [ms]"), $this->enumerateArrays($rulesArray));
+    }
+
+    private function makeRuleNumbersWithDecimalsAndCommasAllowNegative() {
+        $title = '<a name="numbersWithDecimalsAndCommasAllowNegative">numbersWithDecimalsAndCommasAllowNegative</a>';
+
+        $rulesArray[] = $this->makeTestRow('numbersWithDecimalsAndCommasAllowNegative', 1, 100, 000);
+        $rulesArray[] = $this->makeTestRow('numbersWithDecimalsAndCommasAllowNegative', 1, -100, 000);
+        $rulesArray[] = $this->makeTestRow('numbersWithDecimalsAndCommasAllowNegative', 1, "100,000,000");
+        $rulesArray[] = $this->makeTestRow('numbersWithDecimalsAndCommasAllowNegative', 1, "10,000,000");
+        $rulesArray[] = $this->makeTestRow('numbersWithDecimalsAndCommasAllowNegative', 1, "1,000,000");
+        $rulesArray[] = $this->makeTestRow('numbersWithDecimalsAndCommasAllowNegative', 0, "1,000,00");
+        $rulesArray[] = $this->makeTestRow('numbersWithDecimalsAndCommasAllowNegative', 1, "-100,000");
+        $rulesArray[] = $this->makeTestRow('numbersWithDecimalsAndCommasAllowNegative', 1, "100,000.0");
+        $rulesArray[] = $this->makeTestRow('numbersWithDecimalsAndCommasAllowNegative', 1, "-100,000.0");
+        $rulesArray[] = $this->makeTestRow('numbersWithDecimalsAndCommasAllowNegative', 0, "100,000des");
+        $rulesArray[] = $this->makeTestRow('numbersWithDecimalsAndCommasAllowNegative', 0, "100,00");
+        $rulesArray[] = $this->makeTestRow('numbersWithDecimalsAndCommasAllowNegative', 0, "a1");
+
+        $this->addTable($title, array("#", "Assessment", "Desired", "Result", "Subject", "Preg Matchs", "Run Time [ms]"), $this->enumerateArrays($rulesArray));
+    }
+
+    private function makeRuleNumbersWithDecimalsAndCommas() {
+        $title = '<a name="numbersWithDecimalsAndCommas">numbersWithDecimalsAndCommas</a>';
+
+        $rulesArray[] = $this->makeTestRow('numbersWithDecimalsAndCommas', 1, 100, 000);
+        $rulesArray[] = $this->makeTestRow('numbersWithDecimalsAndCommas', 0, -100, 000);
+        $rulesArray[] = $this->makeTestRow('numbersWithDecimalsAndCommas', 1, "100,000,000");
+        $rulesArray[] = $this->makeTestRow('numbersWithDecimalsAndCommas', 1, "10,000,000");
+        $rulesArray[] = $this->makeTestRow('numbersWithDecimalsAndCommas', 1, "1,000,000");
+        $rulesArray[] = $this->makeTestRow('numbersWithDecimalsAndCommas', 0, "1,000,00");
+        $rulesArray[] = $this->makeTestRow('numbersWithDecimalsAndCommas', 0, "-100,000");
+        $rulesArray[] = $this->makeTestRow('numbersWithDecimalsAndCommas', 1, "100,000.0");
+        $rulesArray[] = $this->makeTestRow('numbersWithDecimalsAndCommas', 0, "-100,000.0");
+        $rulesArray[] = $this->makeTestRow('numbersWithDecimalsAndCommas', 0, "100,000des");
+        $rulesArray[] = $this->makeTestRow('numbersWithDecimalsAndCommas', 0, "100,00");
+        $rulesArray[] = $this->makeTestRow('numbersWithDecimalsAndCommas', 0, "a1");
+
+        $this->addTable($title, array("#", "Assessment", "Desired", "Result", "Subject", "Preg Matchs", "Run Time [ms]"), $this->enumerateArrays($rulesArray));
+    }
+
+    private function makeRuleNumbersDecimalsAllowNegative() {
+        $title = '<a name="numbersDecimalsAllowNegative">numbersDecimalsAllowNegative</a>';
+
+        $rulesArray[] = $this->makeTestRow('numbersDecimalsAllowNegative', 1, 1);
+        $rulesArray[] = $this->makeTestRow('numbersDecimalsAllowNegative', 1, -1);
+        $rulesArray[] = $this->makeTestRow('numbersDecimalsAllowNegative', 1, "1");
+        $rulesArray[] = $this->makeTestRow('numbersDecimalsAllowNegative', 1, "-1");
+        $rulesArray[] = $this->makeTestRow('numbersDecimalsAllowNegative', 1, "1.0");
+        $rulesArray[] = $this->makeTestRow('numbersDecimalsAllowNegative', 1, "-1.0");
+        $rulesArray[] = $this->makeTestRow('numbersDecimalsAllowNegative', 0, " 1");
+        $rulesArray[] = $this->makeTestRow('numbersDecimalsAllowNegative', 0, "1 ");
+        $rulesArray[] = $this->makeTestRow('numbersDecimalsAllowNegative', 0, "a1");
+
+        $this->addTable($title, array("#", "Assessment", "Desired", "Result", "Subject", "Preg Matchs", "Run Time [ms]"), $this->enumerateArrays($rulesArray));
+    }
+
+    private function makeRuleNumbersWithDecimals() {
+        $title = '<a name="numbersWithDecimals">numbersWithDecimals</a>';
+
+        $rulesArray[] = $this->makeTestRow('numbersWithDecimals', 1, 1);
+        $rulesArray[] = $this->makeTestRow('numbersWithDecimals', 0, -1);
+        $rulesArray[] = $this->makeTestRow('numbersWithDecimals', 1, "1");
+        $rulesArray[] = $this->makeTestRow('numbersWithDecimals', 0, "-1");
+        $rulesArray[] = $this->makeTestRow('numbersWithDecimals', 1, "1.0");
+        $rulesArray[] = $this->makeTestRow('numbersWithDecimals', 0, "-1.0");
+        $rulesArray[] = $this->makeTestRow('numbersWithDecimals', 0, " 1");
+
+        $this->addTable($title, array("#", "Assessment", "Desired", "Result", "Subject", "Preg Matchs", "Run Time [ms]"), $this->enumerateArrays($rulesArray));
+    }
+
+    private function makeRuleNumbersIntegerAllowNegative() {
+        $title = '<a name="numbersIntegerAllowNegative">numbersIntegerAllowNegative</a>';
+
+        $rulesArray[] = $this->makeTestRow('numbersIntegerAllowNegative', 1, 1);
+        $rulesArray[] = $this->makeTestRow('numbersIntegerAllowNegative', 1, -1);
+        $rulesArray[] = $this->makeTestRow('numbersIntegerAllowNegative', 1, "1");
+        $rulesArray[] = $this->makeTestRow('numbersIntegerAllowNegative', 1, "-1");
+        $rulesArray[] = $this->makeTestRow('numbersIntegerAllowNegative', 0, "1.0");
+        $rulesArray[] = $this->makeTestRow('numbersIntegerAllowNegative', 0, "-1.0");
+        $rulesArray[] = $this->makeTestRow('numbersIntegerAllowNegative', 0, " 1");
+
+        $this->addTable($title, array("#", "Assessment", "Desired", "Result", "Subject", "Preg Matchs", "Run Time [ms]"), $this->enumerateArrays($rulesArray));
     }
 
     private function makeValidatorRulesTable() {
@@ -202,7 +333,7 @@ class ValidatorPage extends ValidatorModel {
         $this->addTable($title, array("#", "Assessment", "Desired", "Result", "Subject", "Preg Matchs", "Run Time [ms]"), $this->enumerateArrays($rulesArray));
     }
 
-    private function makeRuleNumbers() {
+    private function makeRuleNumbersInteger() {
         $title = '<a name="numbersInteger">numbersInteger</a>';
 
         $rulesArray[] = $this->makeTestRow('numbersInteger', 1, 1);
@@ -228,7 +359,7 @@ class ValidatorPage extends ValidatorModel {
         }
         $runTime = microtime(true) - $startTime;
         $result = (int) $this->isMatchWithRefArray($type, $subject, $matchArray);
-        return array($this->makeRedGreen($result == $desired), $desired, $result, htmlentities($subject), '<pre style="margin:0px; font-size:8px;">' . str_replace("\n)", "", str_replace("Array\n(", "", htmlentities(print_r($matchArray, 1)))) . '</pre>', ((int)($runTime*1000000))/1000.0);
+        return array($this->makeRedGreen($result == $desired), $desired, $result, htmlentities($subject), '<pre style="margin:0px; font-size:8px;">' . str_replace("\n)", "", str_replace("Array\n(", "", htmlentities(print_r($matchArray, 1)))) . '</pre>', ((int) ($runTime * 1000000)) / 1000.0);
     }
 
     private function makeRedGreen($boolean) {

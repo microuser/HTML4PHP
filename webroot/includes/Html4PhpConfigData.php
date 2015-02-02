@@ -16,8 +16,8 @@ $developmentConfig = array(
     'database' => array(
         'dbHost' => 'localhost',
         'dbName' => 'dbname',
-        'dbUser' => 'dbuser',
-        'dbPass' => 'password'
+        'dbUser' => 'root',
+        'dbPass' => '12gDbWsCbsHr10995'
     )
     ,
     'email' => array(

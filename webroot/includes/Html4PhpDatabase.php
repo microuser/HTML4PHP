@@ -66,6 +66,7 @@ class Html4PhpDatabase extends Html4PhpConfig {
             $this->addDebug(DEBUG_ERROR, "DB Failure:" . $ex->getMessage());
             echo "<br/>\n" . $ex->getMessage();
             echo "\nNo Database Connection";
+            die();
         }
     }
 
