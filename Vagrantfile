@@ -15,6 +15,19 @@ Vagrant.configure('2') do |config|
     config.vm.hostname = "#{data['vm']['hostname']}"
   end
 
+#config.vm.network :public_network, type: "dhcp", :bridge => 'eth0'
+#config.vm.network :bridged, :bridge => 'eth0'
+#config.vm.network :public_network, ip: "192.168.0.56"
+#config.vm.network "public_network", :bridge => "eth1", :ip => "192.168.0.56"
+#config.vm.network :public_network, :public_network => "eth0"
+#config.vm.network :public_network, ip: "192.168.0.160"
+#config.vm.network "public_network", ip: "192.168.0.56"
+#config.vm.network "public_network", bridge: 'eth1'
+#config.vm.customize ["modifyvm", :id, "--nicpromisc3", "allow-all"]
+config.vm.network "public_network", :bridge => "eth1"
+
+
+
   if data['vm']['network']['private_network'].to_s != ''
     config.vm.network 'private_network', ip: "#{data['vm']['network']['private_network']}"
   end

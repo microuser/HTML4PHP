@@ -48,11 +48,12 @@ Fix Initial-setup.sh
 =======================
 In the guest...
 ```sh
+vagrant ssh
 rm -Rfv /var/www/default/
 sudo ln -s /vagrant/ /var/www/default
-sudo sed -iv "s#DocumentRoot \"/var/www/default\"#DocumentRoot /vagrant#g" /etc/apache2/sites-enabled/10-default_vhost_80.conf
-sudo sed -iv "s#DocumentRoot \"/var/www/default\"#DocumentRoot /vagrant#g" /etc/apache2/sites-enabled/10-default_vhost_443.conf
-
+sudo sed -iv "s#/var/www/default#/var/www/default/webroot#g" /etc/apache2/sites-enabled/10-default_vhost_80.conf
+sudo sed -iv "s#/var/www/default#/var/www/default/webroot#g" /etc/apache2/sites-enabled/10-default_vhost_443.conf
+sudo service apache2 restart
 ```
 
 Make your database
