@@ -130,7 +130,7 @@ class Html4PhpPage extends Html4PhpUser {
     }
 
     /**
-     * 
+     * The header is the part of the page right below the HEAD and above the body.
      * @return string
      */
     public function generateHeader() {
