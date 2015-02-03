@@ -144,7 +144,10 @@ class Html4PhpPage extends Html4PhpUser {
         $out .= '<!-- End Generate Header-->';
         return $out;
     }
-
+/**
+ * The footer of the page is the part of the document near the end below the body, which includes the closing </html> tag of the document set in the HEAD
+ * @return string
+ */
     public function generateFooter() {
         $this->addDebug(DEBUG_FUNCTION_TRACE);
         if (DEBUG & DEBUG_ECHO) {
