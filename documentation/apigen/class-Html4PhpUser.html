@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Class Html4PhpUser</title>
+
+	<link rel="stylesheet" href="resources/style.css?e99947befd7bf673c6b43ff75e9e0f170c88a60e">
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+				<h3>Packages</h3>
+			<ul>
+				<li>
+					<a href="package-HTML4PHP.html">
+						HTML4PHP					</a>
+
+						</li>
+				<li>
+					<a href="package-None.html">
+						None					</a>
+
+						</li>
+				<li>
+					<a href="package-PHPMailer.html">
+						PHPMailer					</a>
+
+						</li>
+			</ul>
+		</div>
+
+		<hr>
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Html4PhpConfig.html">Html4PhpConfig</a></li>
+				<li><a href="class-Html4PhpDatabase.html">Html4PhpDatabase</a></li>
+				<li><a href="class-Html4PhpEmail.html">Html4PhpEmail</a></li>
+				<li><a href="class-Html4PhpForm.html">Html4PhpForm</a></li>
+				<li><a href="class-Html4PhpPage.html">Html4PhpPage</a></li>
+				<li><a href="class-Html4PhpSite.html">Html4PhpSite</a></li>
+				<li class="active"><a href="class-Html4PhpUser.html">Html4PhpUser</a></li>
+				<li><a href="class-Html4PhpValidator.html">Html4PhpValidator</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="">
+		<input type="hidden" name="ie" value="UTF-8">
+		<input type="text" name="q" class="text" placeholder="Search">
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+<span>Package</span>			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class Html4PhpUser</h1>
+
+
+	<div class="description">
+	<p>Description of Html4User</p>
+	</div>
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+			<a href="class-Html4PhpDebug.html"><span>Html4PhpDebug</span></a>
+			
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by">
+			<a href="class-Html4PhpConfig.html"><span>Html4PhpConfig</span></a>
+			
+			
+			
+		</dd>
+		<dd style="padding-left:60px">
+			<img src="resources/inherit.png" alt="Extended by">
+			<a href="class-Html4PhpDatabase.html"><span>Html4PhpDatabase</span></a>
+			
+			
+			
+		</dd>
+		<dd style="padding-left:90px">
+			<img src="resources/inherit.png" alt="Extended by">
+<b><span>Html4PhpUser</span></b>			
+			
+			
+		</dd>
+	</dl>
+
+
+	<div>
+		<h4>Direct known subclasses</h4>
+			<a href="class-Html4PhpPage.html">Html4PhpPage</a>
+	</div>
+
+	<div>
+		<h4>Indirect known subclasses</h4>
+			<a href="class-ConfigModel.html">ConfigModel</a>, 
+			<a href="class-ConfigPage.html">ConfigPage</a>, 
+			<a href="class-Html4PhpSite.html">Html4PhpSite</a>, 
+			<a href="class-SampleModel.html">SampleModel</a>, 
+			<a href="class-SamplePage.html">SamplePage</a>, 
+			<a href="class-ValidatorModel.html">ValidatorModel</a>, 
+			<a href="class-ValidatorPage.html">ValidatorPage</a>
+	</div>
+
+
+
+
+
+	<div class="info">
+		
+		
+		
+		<b>Package:</b> <a href="package-HTML4PHP.html">HTML4PHP</a><br>
+
+				<b>Category:</b>
+				PHP Framework<br>
+				<b>Copyright:</b>
+				(c) microuser 1014, macro_user@outlook.com<br>
+				<b>License:</b>
+				<a href="https://github.com/microuser/HTML4PHP/blob/master/LICENSE">MIT OR GPL
+&lt;pre&gt;
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: The above copyright notice, this permission notice, and the public RSA key shall be included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+-----BEGIN RSA PUBLIC KEY----- ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDfpROYHVyYHe2yok8Ut5OEmNzNriV9QGdzzPm1vFJSf8Wp9iBY74xf5oYdMmUOOfLlZfcrXP6Dc3VXOlTU7P46t14s9CcoGR6As2EamV7q9sAh4Nkr6xZb4kNdy9Bd4SxY/I3kxEbTpbpPq2T5B68xJWVjf83SQI43eyjO2Hv3iA8iEyifeyAGNVX46X3uuCsBftXF5Ng1GCCp6fMeCXeY0p3qmOg7m6SMGAXY97hKakNHPN2+vDP2fCOfefFmZihP/0mQNNLu1VNfI3MKonyfiHI4k1WAbFP2ozWSGmzv3dhej3wguYmRYKsgkK3ay5QoZQSLDHnZXtkuO9rJbAuz -----END RSA PUBLIC KEY-----
+&lt;/pre&gt;</a><br>
+				<b>Author:</b>
+				microuser<br>
+				<b>Version:</b>
+				2015-01-12<br>
+				<b>Link:</b>
+				<a href="https://github.com/microuser/HTML4PHP">https://github.com/microuser/HTML4PHP</a><br>
+			<b>Located at</b> <a href="source-class-Html4PhpUser.html#5-423" title="Go to source code">includes/Html4PhpUser.php</a>
+		<br>
+	</div>
+
+
+
+	<table class="summary methods" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-Html4PhpUser.html#30-34" title="Go to source code">__construct</a>( <span>String <var>$title</var></span> )</code>
+
+		<div class="description short">
+			<p>Construct the Html4Database. Connect to local instance if DEV environment. Connect to Production database if server name matches production domain.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Construct the Html4Database. Connect to local instance if DEV environment. Connect to Production database if server name matches production domain.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$title</var></dt>
+					<dd></dd>
+				</dl></div>
+
+
+
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-Html4PhpDatabase.html#___construct">Html4PhpDatabase::__construct()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="createUser" id="_createUser">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_createUser">#</a>
+		<code><a href="source-class-Html4PhpUser.html#36-73" title="Go to source code">createUser</a>( <span> <var>$username</var></span>, <span> <var>$email</var></span>, <span> <var>$password</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="findUsernameWithEmail" id="_findUsernameWithEmail">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_findUsernameWithEmail">#</a>
+		<code><a href="source-class-Html4PhpUser.html#75-80" title="Go to source code">findUsernameWithEmail</a>( <span> <var>$email</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getEmailWithUsername" id="_getEmailWithUsername">
+
+		<td class="attributes"><code>
+			 public 
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getEmailWithUsername">#</a>
+		<code><a href="source-class-Html4PhpUser.html#83-99" title="Go to source code">getEmailWithUsername</a>( <span> <var>$username</var></span> )</code>
+
+		<div class="description short">
+			<p>select the email from the user table matching the username.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>select the email from the user table matching the username.</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getUserCount" id="_getUserCount">
+
+		<td class="attributes"><code>
+			 public 
+
+			type
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getUserCount">#</a>
+		<code><a href="source-class-Html4PhpUser.html#103-116" title="Go to source code">getUserCount</a>( )</code>
+
+		<div class="description short">
+			<p>Get the number of users in the user table</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Get the number of users in the user table</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					type
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="loginWithEmailPassword" id="_loginWithEmailPassword">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_loginWithEmailPassword">#</a>
+		<code><a href="source-class-Html4PhpUser.html#119-142" title="Go to source code">loginWithEmailPassword</a>( <span>type <var>$email</var></span>, <span>type <var>$password</var></span> )</code>
+
+		<div class="description short">
+			<p>Perform login with Email and password. Select details from user table matching email. Pass userDetails to loginWithUserDetailsAndPassword</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Perform login with Email and password. Select details from user table matching email. Pass userDetails to loginWithUserDetailsAndPassword</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$email</var></dt>
+					<dd></dd>
+					<dt><var>$password</var></dt>
+					<dd></dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="loginWithSessionCookieToken" id="_loginWithSessionCookieToken">
+
+		<td class="attributes"><code>
+			 public 
+
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_loginWithSessionCookieToken">#</a>
+		<code><a href="source-class-Html4PhpUser.html#146-166" title="Go to source code">loginWithSessionCookieToken</a>( )</code>
+
+		<div class="description short">
+			<p>Perform login using existing token by matching information in $_SESSION and $_COOKIE. Call selectAndSetUserClassDetilasWithUseridAndToken with information from $_SESSION. If valid, then set $this->loggedin = true;</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Perform login using existing token by matching information in $_SESSION and $_COOKIE. Call selectAndSetUserClassDetilasWithUseridAndToken with information from $_SESSION. If valid, then set $this->loggedin = true;</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					boolean
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="loginWithUsernamePassword" id="_loginWithUsernamePassword">
+
+		<td class="attributes"><code>
+			 public 
+
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_loginWithUsernamePassword">#</a>
+		<code><a href="source-class-Html4PhpUser.html#196-219" title="Go to source code">loginWithUsernamePassword</a>( <span>string <var>$username</var></span>, <span>string <var>$password</var></span> )</code>
+
+		<div class="description short">
+			<p>Perform login with username and password. Select user details from user table matching username. Pass data to loginWithUserDetailsAndPassword(). If sucess, set $this->loggedin = true.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Perform login with username and password. Select user details from user table matching username. Pass data to loginWithUserDetailsAndPassword(). If sucess, set $this->loggedin = true.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$username</var></dt>
+					<dd></dd>
+					<dt><var>$password</var></dt>
+					<dd></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					boolean
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="sendEmail" id="_sendEmail">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_sendEmail">#</a>
+		<code><a href="source-class-Html4PhpUser.html#287-299" title="Go to source code">sendEmail</a>( <span>type <var>$toName</var></span>, <span>type <var>$toEmail</var></span>, <span>type <var>$subject</var></span>, <span>type <var>$messageHtml</var></span> )</code>
+
+		<div class="description short">
+			<p>Send an email through a simple instiation of Html4PhpEmail.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Send an email through a simple instiation of Html4PhpEmail.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$toName</var></dt>
+					<dd></dd>
+					<dt><var>$toEmail</var></dt>
+					<dd></dd>
+					<dt><var>$subject</var></dt>
+					<dd></dd>
+					<dt><var>$messageHtml</var></dt>
+					<dd></dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-Html4PhpDatabase.html#methods">Html4PhpDatabase</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Html4PhpDatabase.html#___destruct">__destruct()</a>, 
+			<a href="class-Html4PhpDatabase.html#_getPdo">getPdo()</a>, 
+			<a href="class-Html4PhpDatabase.html#_getStatement">getStatement()</a>, 
+			<a href="class-Html4PhpDatabase.html#_getStatementErrorCode">getStatementErrorCode()</a>, 
+			<a href="class-Html4PhpDatabase.html#_getStatementErrorInfo">getStatementErrorInfo()</a>, 
+			<a href="class-Html4PhpDatabase.html#_statementBindParam">statementBindParam()</a>, 
+			<a href="class-Html4PhpDatabase.html#_statementBindParams">statementBindParams()</a>, 
+			<a href="class-Html4PhpDatabase.html#_statementExecute">statementExecute()</a>, 
+			<a href="class-Html4PhpDatabase.html#_statementFetchAssoc">statementFetchAssoc()</a>, 
+			<a href="class-Html4PhpDatabase.html#_statementFetchAssocs">statementFetchAssocs()</a>, 
+			<a href="class-Html4PhpDatabase.html#_statementFetchObject">statementFetchObject()</a>, 
+			<a href="class-Html4PhpDatabase.html#_statementFetchObjects">statementFetchObjects()</a>, 
+			<a href="class-Html4PhpDatabase.html#_statementPrepare">statementPrepare()</a>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-Html4PhpConfig.html#methods">Html4PhpConfig</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Html4PhpConfig.html#_getConfig">getConfig()</a>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-Html4PhpDebug.html#methods">Html4PhpDebug</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Html4PhpDebug.html#_addDebug">addDebug()</a>, 
+			<a href="class-Html4PhpDebug.html#_getDebugArray">getDebugArray()</a>, 
+			<a href="class-Html4PhpDebug.html#_getDebugHtml">getDebugHtml()</a>
+		</code></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary properties" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="errors" id="$errors">
+		<td class="attributes"><code>
+			public  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Html4PhpUser.html#27" title="Go to source code"><var>$errors</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$errors" class="anchor">#</a>
+				<code><span class="php-keyword1">array</span>()</code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="messages" id="$messages">
+		<td class="attributes"><code>
+			public  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Html4PhpUser.html#28" title="Go to source code"><var>$messages</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$messages" class="anchor">#</a>
+				<code><span class="php-keyword1">array</span>()</code>
+			</div>
+		</td>
+	</tr>
+	</table>
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen</a>
+	</div>
+</div>
+</div>
+<script src="resources/combined.js"></script>
+<script src="elementlist.js"></script>
+</body>
+</html>

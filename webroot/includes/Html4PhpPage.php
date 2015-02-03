@@ -177,6 +177,10 @@ class Html4PhpPage extends Html4PhpUser {
         return $out;
     }
 
+    /**
+     * Generate the HTML by unrolling everything added to the $this->body array,
+     * @return type
+     */
     public function generateBody() {
         $this->addDebug(DEBUG_FUNCTION_TRACE);
 
@@ -191,6 +195,10 @@ class Html4PhpPage extends Html4PhpUser {
         return $out . "\n";
     }
 
+    /**
+     * The meta function which calls generateHead/Header/Body/Footer
+     * @return type
+     */
     public function generatePage() {
         $this->addDebug(DEBUG_FUNCTION_TRACE);
 
@@ -207,12 +215,23 @@ class Html4PhpPage extends Html4PhpUser {
         $this->body[] = $html;
     }
 
+    /**
+     * Adds your $html parameter to the page body
+     * @param type $html
+     * @return type
+     */
     public function add($html) {
         $this->addDebug(DEBUG_FUNCTION_TRACE, '$html=' . $html);
         $this->appendBody($html . $this->newLine);
         return $html;
     }
 
+    /**
+     * Add $html content wrapped in a div styped using $class or perhaps other tags using $extraTag optional parameter.
+     * @param type $html
+     * @param type $class
+     * @param type $extraTag
+     */
     public function addDiv($html, $class = '', $extraTag = '') {
         $this->addDebug(DEBUG_FUNCTION_TRACE, '$html=' . $html . ', $class=' . $class . ', $extraTag=' . $extraTag);
         $out = "\n" . '<!-- beginAddDiv-->'
@@ -229,6 +248,12 @@ class Html4PhpPage extends Html4PhpUser {
         $this->appendBody($out);
     }
 
+    /**
+     * Add $html to the top of the page, styled with $class, and perhaps an $extraTag of your choice.
+     * @param type $html
+     * @param type $class
+     * @param type $extraTag
+     */
     public function addHeaderDiv($html, $class = '', $extraTag = '') {
         $this->addDebug(DEBUG_FUNCTION_TRACE, '$html=' . $html . ', $class=' . $class . ', $extraTag=' . $extraTag);
         $out = "\n" . '<!-- beginAddHeaderDiv-->'
@@ -245,6 +270,12 @@ class Html4PhpPage extends Html4PhpUser {
         $this->appendHeader($out);
     }
 
+    /**
+     * A private helper function used in addTable() to convert badly formed arrays into usable array of arrays. It uses pass by reference, so it modifies the array given to it in its parameter.
+     * @param type $tbodyArray
+     * @param type $theadArray
+     * @return boolean
+     */
     private function makeArrayOfArrayByRef(&$tbodyArray, &$theadArray = null) {
 
         if (!is_array($theadArray)) {
@@ -274,6 +305,15 @@ class Html4PhpPage extends Html4PhpUser {
         return $isValidArray;
     }
 
+    /**
+     * Provide a common way to feed arrays into an sortable styled table. Parameters of $title, and $tbodyArray are required.
+     * @param type $title
+     * @param type $theadArray
+     * @param type $tbodyArray
+     * @param type $tfootArray
+     * @param type $tableClass
+     * @param string $tableId
+     */
     public function addTable($title = null, $theadArray = null, $tbodyArray = null, $tfootArray = null, $tableClass = 'tablesorter', $tableId = null) {
         $this->addDebug(DEBUG_FUNCTION_TRACE, '$title=' . $title . ', $treadArray=' . print_r($theadArray, 1) . ', $tbodyArray=' . print_r($tbodyArray, 1) . ', $tfootArray=' . print_r($tfootArray, 1) . ', $tableClass=' . $tableClass . ', $tableId=' . $tableId);
         //Consider allowing styling/javascript using the following pattern
@@ -396,3 +436,4 @@ class Html4PhpPage extends Html4PhpUser {
     }
 
 }
+ss

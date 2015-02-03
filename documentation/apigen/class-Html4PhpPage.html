@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Class Html4PhpPage</title>
+
+	<link rel="stylesheet" href="resources/style.css?e99947befd7bf673c6b43ff75e9e0f170c88a60e">
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+				<h3>Packages</h3>
+			<ul>
+				<li>
+					<a href="package-HTML4PHP.html">
+						HTML4PHP					</a>
+
+						</li>
+				<li>
+					<a href="package-None.html">
+						None					</a>
+
+						</li>
+				<li>
+					<a href="package-PHPMailer.html">
+						PHPMailer					</a>
+
+						</li>
+			</ul>
+		</div>
+
+		<hr>
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Html4PhpConfig.html">Html4PhpConfig</a></li>
+				<li><a href="class-Html4PhpDatabase.html">Html4PhpDatabase</a></li>
+				<li><a href="class-Html4PhpEmail.html">Html4PhpEmail</a></li>
+				<li><a href="class-Html4PhpForm.html">Html4PhpForm</a></li>
+				<li class="active"><a href="class-Html4PhpPage.html">Html4PhpPage</a></li>
+				<li><a href="class-Html4PhpSite.html">Html4PhpSite</a></li>
+				<li><a href="class-Html4PhpUser.html">Html4PhpUser</a></li>
+				<li><a href="class-Html4PhpValidator.html">Html4PhpValidator</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="">
+		<input type="hidden" name="ie" value="UTF-8">
+		<input type="text" name="q" class="text" placeholder="Search">
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+<span>Package</span>			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class Html4PhpPage</h1>
+
+
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+			<a href="class-Html4PhpDebug.html"><span>Html4PhpDebug</span></a>
+			
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by">
+			<a href="class-Html4PhpConfig.html"><span>Html4PhpConfig</span></a>
+			
+			
+			
+		</dd>
+		<dd style="padding-left:60px">
+			<img src="resources/inherit.png" alt="Extended by">
+			<a href="class-Html4PhpDatabase.html"><span>Html4PhpDatabase</span></a>
+			
+			
+			
+		</dd>
+		<dd style="padding-left:90px">
+			<img src="resources/inherit.png" alt="Extended by">
+			<a href="class-Html4PhpUser.html"><span>Html4PhpUser</span></a>
+			
+			
+			
+		</dd>
+		<dd style="padding-left:120px">
+			<img src="resources/inherit.png" alt="Extended by">
+<b><span>Html4PhpPage</span></b>			
+			
+			
+		</dd>
+	</dl>
+
+
+	<div>
+		<h4>Direct known subclasses</h4>
+			<a href="class-Html4PhpSite.html">Html4PhpSite</a>
+	</div>
+
+	<div>
+		<h4>Indirect known subclasses</h4>
+			<a href="class-ConfigModel.html">ConfigModel</a>, 
+			<a href="class-ConfigPage.html">ConfigPage</a>, 
+			<a href="class-SampleModel.html">SampleModel</a>, 
+			<a href="class-SamplePage.html">SamplePage</a>, 
+			<a href="class-ValidatorModel.html">ValidatorModel</a>, 
+			<a href="class-ValidatorPage.html">ValidatorPage</a>
+	</div>
+
+
+
+
+
+	<div class="info">
+		
+		
+		
+		<b>Package:</b> <a href="package-HTML4PHP.html">HTML4PHP</a><br>
+
+				<b>Category:</b>
+				PHP Framework<br>
+				<b>Copyright:</b>
+				(c) microuser 1014, macro_user@outlook.com<br>
+				<b>License:</b>
+				<a href="https://github.com/microuser/HTML4PHP/blob/master/LICENSE">MIT OR GPL
+&lt;pre&gt;
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: The above copyright notice, this permission notice, and the public RSA key shall be included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+-----BEGIN RSA PUBLIC KEY----- ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDfpROYHVyYHe2yok8Ut5OEmNzNriV9QGdzzPm1vFJSf8Wp9iBY74xf5oYdMmUOOfLlZfcrXP6Dc3VXOlTU7P46t14s9CcoGR6As2EamV7q9sAh4Nkr6xZb4kNdy9Bd4SxY/I3kxEbTpbpPq2T5B68xJWVjf83SQI43eyjO2Hv3iA8iEyifeyAGNVX46X3uuCsBftXF5Ng1GCCp6fMeCXeY0p3qmOg7m6SMGAXY97hKakNHPN2+vDP2fCOfefFmZihP/0mQNNLu1VNfI3MKonyfiHI4k1WAbFP2ozWSGmzv3dhej3wguYmRYKsgkK3ay5QoZQSLDHnZXtkuO9rJbAuz -----END RSA PUBLIC KEY-----
+&lt;/pre&gt;</a><br>
+				<b>Author:</b>
+				microuser<br>
+				<b>Version:</b>
+				2015-01-12<br>
+				<b>Link:</b>
+				<a href="https://github.com/microuser/HTML4PHP">https://github.com/microuser/HTML4PHP</a><br>
+			<b>Located at</b> <a href="source-class-Html4PhpPage.html#5-398" title="Go to source code">includes/Html4PhpPage.php</a>
+		<br>
+	</div>
+
+
+
+	<table class="summary methods" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-Html4PhpPage.html#30-39" title="Go to source code">__construct</a>( <span>type <var>$title</var></span> )</code>
+
+		<div class="description short">
+			<p>Html4PhpPage</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Html4PhpPage</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$title</var></dt>
+					<dd></dd>
+				</dl></div>
+
+
+
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-Html4PhpUser.html#___construct">Html4PhpUser::__construct()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="addJavascriptLink" id="_addJavascriptLink">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_addJavascriptLink">#</a>
+		<code><a href="source-class-Html4PhpPage.html#40-47" title="Go to source code">addJavascriptLink</a>( <span>type <var>$src</var></span> )</code>
+
+		<div class="description short">
+			<p>Adds a script tagfor javascript in the header, provide a link to the $src parameter</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Adds a script tagfor javascript in the header, provide a link to the $src parameter</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$src</var></dt>
+					<dd></dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="addJavascriptCode" id="_addJavascriptCode">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_addJavascriptCode">#</a>
+		<code><a href="source-class-Html4PhpPage.html#48-55" title="Go to source code">addJavascriptCode</a>( <span>type <var>$code</var></span> )</code>
+
+		<div class="description short">
+			<p>Add a script tag for javascript in the header, provide javascript code in the $code parameter</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Add a script tag for javascript in the header, provide javascript code in the $code parameter</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$code</var></dt>
+					<dd></dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="addJavascriptCodeFooter" id="_addJavascriptCodeFooter">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_addJavascriptCodeFooter">#</a>
+		<code><a href="source-class-Html4PhpPage.html#57-64" title="Go to source code">addJavascriptCodeFooter</a>( <span>type <var>$code</var></span> )</code>
+
+		<div class="description short">
+			<p>Add a script tag for Javascript in the fotter, provide javascript code in the $code parameter</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Add a script tag for Javascript in the fotter, provide javascript code in the $code parameter</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$code</var></dt>
+					<dd></dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="addCssLink" id="_addCssLink">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_addCssLink">#</a>
+		<code><a href="source-class-Html4PhpPage.html#66-73" title="Go to source code">addCssLink</a>( <span>type <var>$href</var></span> )</code>
+
+		<div class="description short">
+			<p>Add a css file by using the $href</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Add a css file by using the $href</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$href</var></dt>
+					<dd></dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="appendHead" id="_appendHead">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_appendHead">#</a>
+		<code><a href="source-class-Html4PhpPage.html#75-82" title="Go to source code">appendHead</a>( <span>type <var>$html</var></span> )</code>
+
+		<div class="description short">
+			<p>Append $html directly to the head of the page</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Append $html directly to the head of the page</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$html</var></dt>
+					<dd></dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="appendHeader" id="_appendHeader">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_appendHeader">#</a>
+		<code><a href="source-class-Html4PhpPage.html#83-90" title="Go to source code">appendHeader</a>( <span>type <var>$html</var></span> )</code>
+
+		<div class="description short">
+			<p>Append $html to the header of the page</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Append $html to the header of the page</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$html</var></dt>
+					<dd></dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="appendFooter" id="_appendFooter">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_appendFooter">#</a>
+		<code><a href="source-class-Html4PhpPage.html#92-99" title="Go to source code">appendFooter</a>( <span>type <var>$html</var></span> )</code>
+
+		<div class="description short">
+			<p>Append $html to the footer of the page</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Append $html to the footer of the page</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$html</var></dt>
+					<dd></dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="generateHead" id="_generateHead">
+
+		<td class="attributes"><code>
+			 public 
+
+			type
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_generateHead">#</a>
+		<code><a href="source-class-Html4PhpPage.html#101-130" title="Go to source code">generateHead</a>( )</code>
+
+		<div class="description short">
+			<p>The HEAD of the page begins with the docType, includes the title, the javascript and the css links, as well as other items stored usign addHead.
+Generate the $HTML by using the content stored using addJavascript..., addCss,  addHead</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>The HEAD of the page begins with the docType, includes the title, the javascript and the css links, as well as other items stored usign addHead.
+Generate the $HTML by using the content stored using addJavascript..., addCss,  addHead</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					type
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="generateHeader" id="_generateHeader">
+
+		<td class="attributes"><code>
+			 public 
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_generateHeader">#</a>
+		<code><a href="source-class-Html4PhpPage.html#132-146" title="Go to source code">generateHeader</a>( )</code>
+
+		<div class="description short">
+			<p>The header is the part of the page right below the HEAD and above the body.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>The header is the part of the page right below the HEAD and above the body.</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="generateFooter" id="_generateFooter">
+
+		<td class="attributes"><code>
+			 public 
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_generateFooter">#</a>
+		<code><a href="source-class-Html4PhpPage.html#147-178" title="Go to source code">generateFooter</a>( )</code>
+
+		<div class="description short">
+			<p>The footer of the page is the part of the document near the end below the body, which includes the closing </html> tag of the document set in the HEAD</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>The footer of the page is the part of the document near the end below the body, which includes the closing </html> tag of the document set in the HEAD</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="generateBody" id="_generateBody">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_generateBody">#</a>
+		<code><a href="source-class-Html4PhpPage.html#180-192" title="Go to source code">generateBody</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="generatePage" id="_generatePage">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_generatePage">#</a>
+		<code><a href="source-class-Html4PhpPage.html#194-198" title="Go to source code">generatePage</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="echoGeneratedPage" id="_echoGeneratedPage">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_echoGeneratedPage">#</a>
+		<code><a href="source-class-Html4PhpPage.html#200-203" title="Go to source code">echoGeneratedPage</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="add" id="_add">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_add">#</a>
+		<code><a href="source-class-Html4PhpPage.html#210-214" title="Go to source code">add</a>( <span> <var>$html</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="addDiv" id="_addDiv">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_addDiv">#</a>
+		<code><a href="source-class-Html4PhpPage.html#216-230" title="Go to source code">addDiv</a>( <span> <var>$html</var></span>, <span> <var>$class</var> = <span class="php-quote">''</span></span>, <span> <var>$extraTag</var> = <span class="php-quote">''</span></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="addHeaderDiv" id="_addHeaderDiv">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_addHeaderDiv">#</a>
+		<code><a href="source-class-Html4PhpPage.html#232-246" title="Go to source code">addHeaderDiv</a>( <span> <var>$html</var></span>, <span> <var>$class</var> = <span class="php-quote">''</span></span>, <span> <var>$extraTag</var> = <span class="php-quote">''</span></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="addTable" id="_addTable">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_addTable">#</a>
+		<code><a href="source-class-Html4PhpPage.html#277-396" title="Go to source code">addTable</a>( <span> <var>$title</var> = <span class="php-keyword1">null</span></span>, <span> <var>$theadArray</var> = <span class="php-keyword1">null</span></span>, <span> <var>$tbodyArray</var> = <span class="php-keyword1">null</span></span>, <span> <var>$tfootArray</var> = <span class="php-keyword1">null</span></span>, <span> <var>$tableClass</var> = <span class="php-quote">'tablesorter'</span></span>, <span> <var>$tableId</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-Html4PhpUser.html#methods">Html4PhpUser</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Html4PhpUser.html#_createUser">createUser()</a>, 
+			<a href="class-Html4PhpUser.html#_findUsernameWithEmail">findUsernameWithEmail()</a>, 
+			<a href="class-Html4PhpUser.html#_getEmailWithUsername">getEmailWithUsername()</a>, 
+			<a href="class-Html4PhpUser.html#_getUserCount">getUserCount()</a>, 
+			<a href="class-Html4PhpUser.html#_loginWithEmailPassword">loginWithEmailPassword()</a>, 
+			<a href="class-Html4PhpUser.html#_loginWithSessionCookieToken">loginWithSessionCookieToken()</a>, 
+			<a href="class-Html4PhpUser.html#_loginWithUsernamePassword">loginWithUsernamePassword()</a>, 
+			<a href="class-Html4PhpUser.html#_sendEmail">sendEmail()</a>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-Html4PhpDatabase.html#methods">Html4PhpDatabase</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Html4PhpDatabase.html#___destruct">__destruct()</a>, 
+			<a href="class-Html4PhpDatabase.html#_getPdo">getPdo()</a>, 
+			<a href="class-Html4PhpDatabase.html#_getStatement">getStatement()</a>, 
+			<a href="class-Html4PhpDatabase.html#_getStatementErrorCode">getStatementErrorCode()</a>, 
+			<a href="class-Html4PhpDatabase.html#_getStatementErrorInfo">getStatementErrorInfo()</a>, 
+			<a href="class-Html4PhpDatabase.html#_statementBindParam">statementBindParam()</a>, 
+			<a href="class-Html4PhpDatabase.html#_statementBindParams">statementBindParams()</a>, 
+			<a href="class-Html4PhpDatabase.html#_statementExecute">statementExecute()</a>, 
+			<a href="class-Html4PhpDatabase.html#_statementFetchAssoc">statementFetchAssoc()</a>, 
+			<a href="class-Html4PhpDatabase.html#_statementFetchAssocs">statementFetchAssocs()</a>, 
+			<a href="class-Html4PhpDatabase.html#_statementFetchObject">statementFetchObject()</a>, 
+			<a href="class-Html4PhpDatabase.html#_statementFetchObjects">statementFetchObjects()</a>, 
+			<a href="class-Html4PhpDatabase.html#_statementPrepare">statementPrepare()</a>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-Html4PhpConfig.html#methods">Html4PhpConfig</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Html4PhpConfig.html#_getConfig">getConfig()</a>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-Html4PhpDebug.html#methods">Html4PhpDebug</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Html4PhpDebug.html#_addDebug">addDebug()</a>, 
+			<a href="class-Html4PhpDebug.html#_getDebugArray">getDebugArray()</a>, 
+			<a href="class-Html4PhpDebug.html#_getDebugHtml">getDebugHtml()</a>
+		</code></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary properties" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="newLine" id="$newLine">
+		<td class="attributes"><code>
+			public  
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Html4PhpPage.html#21" title="Go to source code"><var>$newLine</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$newLine" class="anchor">#</a>
+				<code><span class="php-quote">&quot;\n&quot;</span></code>
+			</div>
+		</td>
+	</tr>
+	</table>
+
+	<table class="summary inherited">
+	<caption>Properties inherited from <a href="class-Html4PhpUser.html#properties">Html4PhpUser</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Html4PhpUser.html#$errors"><var>$errors</var></a>, 
+			<a href="class-Html4PhpUser.html#$messages"><var>$messages</var></a>
+		</code></td>
+	</tr>
+	</table>
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen</a>
+	</div>
+</div>
+</div>
+<script src="resources/combined.js"></script>
+<script src="elementlist.js"></script>
+</body>
+</html>
