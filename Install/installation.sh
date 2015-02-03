@@ -21,3 +21,9 @@ sudo sh ./netbeans-8.0.2-linux.sh
 cd ~/Downloads
 wget https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2_i686.deb
 sudo dpkg -i ~/Downloads vagrant_1.7.2_i686.deb
+
+
+sudo apt-get -y install php5-cli php5
+wget http://apigen.org/apigen.phar
+sudo chmod +x apigen.phar
+sudo mv apigen.phar /usr/local/bin/apigen
