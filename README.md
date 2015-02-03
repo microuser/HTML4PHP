@@ -181,3 +181,17 @@ On your host
 ```sh
 sudo apt-et install php-apigen
 ```
+
+
+Allow Public Network in Vagrant File
+========================================
+```Vagrantfile
+  if data['vm']['network']['public_network'].to_s != ''
+        config.vm.network 'public_network', ip: "#{data['vm']['network']['public_network']}"
+  end
+
+  if data['vm']['network']['public_bridge'].to_s != ''
+         config.vm.network 'public_network', bridge: "#{data['vm']['network']['public_bridge']}"
+  end
+```
+Add `public_network: dhcp` to your config.yaml
