@@ -27,49 +27,82 @@ class Html4PhpPage extends Html4PhpUser {
     private $css = array();
     private $javascript = array();
     private $javascriptFooter = array();
-
+/**
+ * Html4PhpPage 
+ * @param type $title
+ */
     public function __construct($title) {
         $this->addDebug();
 
         parent::__construct($title);
         $this->title = $title;
     }
-
+/**
+ * Adds a script tagfor javascript in the header, provide a link to the $src parameter
+ * @param type $src
+ */
     public function addJavascriptLink($src) {
         $this->addDebug(DEBUG_FUNCTION_TRACE, '$src=' . $src);
         $this->javascript[] = '<script type="text/javascript" src="' . $src . '"></script>' . $this->newLine;
     }
-
+/**
+ * Add a script tag for javascript in the header, provide javascript code in the $code parameter
+ * @param type $code
+ */
     public function addJavascriptCode($code) {
         $this->addDebug(DEBUG_FUNCTION_TRACE, '$code=' . $code);
         $this->javascript[] = '<script type="text/javascript">' . $code . '</script>' . $this->newLine;
     }
 
+    /**
+     * Add a script tag for Javascript in the fotter, provide javascript code in the $code parameter
+     * @param type $code
+     */
     public function addJavascriptCodeFooter($code) {
         $this->addDebug(DEBUG_FUNCTION_TRACE, '$code=' . $code);
         $this->javascriptFooter[] = '<script type="text/javascript">' . $code . '</script>' . $this->newLine;
     }
 
+    /**
+     * Add a css file by using the $href
+     * @param type $href
+     */
     public function addCssLink($href) {
         $this->addDebug(DEBUG_FUNCTION_TRACE, '$href=' . $href);
         $this->css[] = '<link rel="stylesheet" type="text/css" href="' . $href . '">';
     }
 
+    /**
+     * Append $html directly to the head of the page
+     * @param type $html
+     */
     public function appendHead($html) {
         $this->addDebug(DEBUG_FUNCTION_TRACE, '$html=' . $html);
         $this->head[] = $html;
     }
-
+/**
+ * Append $html to the header of the page
+ * @param type $html
+ */
     public function appendHeader($html) {
         $this->addDebug(DEBUG_FUNCTION_TRACE, '$html=' . $html);
         $this->header[] = $html;
     }
 
+    /**
+     * Append $html to the footer of the page
+     * @param type $html
+     */
     public function appendFooter($html) {
         $this->addDebug(DEBUG_FUNCTION_TRACE, '$html=' . $html);
         $this->footer[] = $html;
     }
 
+    /**
+     * The HEAD of the page begins with the docType, includes the title, the javascript and the css links, as well as other items stored usign addHead.
+     * Generate the $HTML by using the content stored using addJavascript..., addCss,  addHead
+     * @return type
+     */
     public function generateHead() {
         //TODO fix confusing terminology between HEAD (meta) and HEADER (style)
         $this->addDebug(DEBUG_FUNCTION_TRACE);
@@ -96,6 +129,10 @@ class Html4PhpPage extends Html4PhpUser {
                 . '<body>';
     }
 
+    /**
+     * 
+     * @return string
+     */
     public function generateHeader() {
         $this->addDebug(DEBUG_FUNCTION_TRACE);
         $out = '<!-- Begin Generate Header-->';

@@ -111,12 +111,34 @@ class Html4PhpForm {
         }
         $this->addForm($title, 'input', $tags);
     }
-
+/**
+ * addFormInputAlphanumericAllowEmpty($title = '', $name = '', $value = '', $placeholder = '', $minLength = null, $maxLength = null, $errorMsg = '', $dataValidation = 'length alphanumeric', $dataValidationAllowing = '')
+ * @param type $title
+ * @param type $name
+ * @param type $value
+ * @param type $placeholder
+ * @param type $minLength
+ * @param type $maxLength
+ * @param type $errorMsg
+ * @param type $dataValidation
+ * @param type $dataValidationAllowing
+ */
     public function addFormInputAlphanumericAllowEmpty($title = '', $name = '', $value = '', $placeholder = '', $minLength = null, $maxLength = null, $errorMsg = '', $dataValidation = 'length alphanumeric', $dataValidationAllowing = '') {
         //$this->addDebug(DEBUG_FUNCTION_TRACE, '$title=' . $title . ', $name=' . $name . ', $placeholder=' . $placeholder . ', $minLength=' . $minLength . ', $maxLength=' . $maxLength . ', $errorMsg=' . $errorMsg . ', $dataValidation=' . $dataValidation . ', $dataValidationRegexp=' . $dataValidationRegexp);
         $this->addFormInputCustomRegexp($title, $name, $value, $placeholder, $minLength, $maxLength, $errorMsg, $dataValidation, '^([a-zA-Z0-9]*+)$');
     }
-
+/**
+ * public function addFormInputCustomRegexp($title = '', $name = '', $value = '', $placeholder = '', $minLength = null, $maxLength = null, $errorMsg = '', $dataValidation = 'length custom', $dataValidationRegexp = '^([a-zA-Z0-9.,]+)$') {
+ * @param type $title
+ * @param type $name
+ * @param type $value
+ * @param type $placeholder
+ * @param int $minLength
+ * @param int $maxLength
+ * @param type $errorMsg
+ * @param type $dataValidation
+ * @param type $dataValidationRegexp
+ */
     public function addFormInputCustomRegexp($title = '', $name = '', $value = '', $placeholder = '', $minLength = null, $maxLength = null, $errorMsg = '', $dataValidation = 'length custom', $dataValidationRegexp = '^([a-zA-Z0-9.,]+)$') {
         //$this->addDebug(DEBUG_FUNCTION_TRACE, '$title=' . $title . ', $name=' . $name . ', $placeholder=' . $placeholder . ', $minLength=' . $minLength . ', $maxLength=' . $maxLength . ', $errorMsg=' . $errorMsg . ', $dataValidation=' . $dataValidation . ', $dataValidationRegexp=' . $dataValidationRegexp);
         $tags[] = 'name="' . $name . '"';
@@ -205,7 +227,19 @@ class Html4PhpForm {
         }
         $this->addForm($title, 'input', $tags);
     }
-
+/**
+ * public function addFormInputNumber($title = '', $name = '', $value = '', $placeholder = '', $float = FALSE, $negative = TRUE, $range = array(), $dataValidationAllowing = '', $dataValidation = 'number', $errorMsg = '') {
+ * @param type $title
+ * @param type $name
+ * @param type $value
+ * @param type $placeholder
+ * @param type $float
+ * @param type $negative
+ * @param type $range
+ * @param type $dataValidationAllowing
+ * @param type $dataValidation
+ * @param type $errorMsg
+ */
     public function addFormInputNumber($title = '', $name = '', $value = '', $placeholder = '', $float = FALSE, $negative = TRUE, $range = array(), $dataValidationAllowing = '', $dataValidation = 'number', $errorMsg = '') {
         if ($float === TRUE) {
             if ($dataValidationAllowing != '') {
