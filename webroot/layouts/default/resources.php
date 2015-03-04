@@ -22,5 +22,6 @@ $this->resources = array(
         'resources/tablesorter/jquery.tablesorter.js',
         'resources/jquery-form-validator/form-validator/jquery.form-validator.min.js',
         'resources/jquery-form-validator/form-validator/jquery.form-validator.min.js',
+        'resources/jqueryui/jquery-ui.js',
     ),
 );
