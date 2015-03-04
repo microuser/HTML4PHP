@@ -14,7 +14,7 @@ $this->resources = array(
         'resources/print.css',
         'resources/jqueryui/themes/ui-lightness/jquery-ui.css',
         'resources/jqueryui/themes/ui-lightness/theme.css',
-        'resources/tablesorter/themes/blue/style.css',
+        'resources/tablesorter/chili/style.css',
     ),
     'js' => array(
         'resources/jquery/jquery.js',
