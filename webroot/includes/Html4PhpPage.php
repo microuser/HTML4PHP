@@ -434,5 +434,4 @@ class Html4PhpPage extends Html4PhpUser {
         $out .= '</div>';
         $this->appendBody($out);
     }
-
 }
