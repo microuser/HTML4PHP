@@ -20,28 +20,35 @@ class SamplePage extends SampleModel {
 
     public function generateSamplePage() {
 
+                       include_once($_SERVER['DOCUMENT_ROOT'].'/includes/Html4PhpElement.php');
+        $tab = new Html4PhpElement_Tab();
+        $tab->append("Database Table", $this->makeDatabaseTableTable());
+        $tab->append("Random Table",  $this->makeRandomTable());
+        $tab->append("User Table", $this->makeDatabaseUserTable());
+        $this->add($tab->generateHtml());
+        
+        
+        
         if (isset($_GET['table'])) {
             $this->insertTableName($_GET['table']);
         }
-        $this->makeDatabaseTableTable();
-        $this->makeRandomTable();
-        $this->makeDatabaseUserTable();
         
+
         return $this->generatePage();
     }
 
     public function makeRandomTable() {
 
-        $this->addTable('Title', array('a', 'b', 'c'), array(array(1, 2, 3), array(4, 5, 6), array(7, 8, 9)));
+        return $this->makeTable('Title', array('a', 'b', 'c'), array(array(1, 2, 3), array(4, 5, 6), array(7, 8, 9)));
     }
 
     public function makeDatabaseTableTable() {
-        $this->addTable("Show Tables", array("TABLE_NAME","TABLE_TYPE","AUTO_INCREMENT"), $this->getDatabaseTables());
+        return $this->makeTable("Show Tables", array("TABLE_NAME","TABLE_TYPE","AUTO_INCREMENT"), $this->getDatabaseTables());
 
     }
     
     public function makeDatabaseUserTable(){
-        $this->addTable("Users", array("users"), $this->getDatabaseUsers());
+        return $this->makeTable("Users", array("users"), $this->getDatabaseUsers());
     }
 
 }

@@ -304,7 +304,6 @@ class Html4PhpPage extends Html4PhpUser {
         }
         return $isValidArray;
     }
-
     /**
      * Provide a common way to feed arrays into an sortable styled table. Parameters of $title, and $tbodyArray are required.
      * @param type $title
@@ -314,7 +313,7 @@ class Html4PhpPage extends Html4PhpUser {
      * @param type $tableClass
      * @param string $tableId
      */
-    public function addTable($title = null, $theadArray = null, $tbodyArray = null, $tfootArray = null, $tableClass = 'tablesorter', $tableId = null) {
+    public function makeTable($title = null, $theadArray = null, $tbodyArray = null, $tfootArray = null, $tableClass = 'tablesorter', $tableId = null) {
         $this->addDebug(DEBUG_FUNCTION_TRACE, '$title=' . $title . ', $treadArray=' . print_r($theadArray, 1) . ', $tbodyArray=' . print_r($tbodyArray, 1) . ', $tfootArray=' . print_r($tfootArray, 1) . ', $tableClass=' . $tableClass . ', $tableId=' . $tableId);
         //Consider allowing styling/javascript using the following pattern
         //$a = array();
@@ -322,8 +321,6 @@ class Html4PhpPage extends Html4PhpUser {
         //$a['1,1'] = 'onclick="alert(\'YouClikcedCell\');"';
 
         $isValidArray = $this->makeArrayOfArrayByRef($tbodyArray, $theadArray);
-
-
         $tableList = array();
 
         //Build the THEAD
@@ -359,7 +356,6 @@ class Html4PhpPage extends Html4PhpUser {
 		$('#" . $tableId . "').tablesorter({sortList:[[0,0]], widgets: ['zebra']});
 	});");
         }
-
 
         $tableTag .= '>';
 
@@ -432,6 +428,21 @@ class Html4PhpPage extends Html4PhpUser {
         }
 
         $out .= '</div>';
+        return $out;
+        
+        
+    }   
+    /**
+     * Provide a common way to feed arrays into an sortable styled table. Parameters of $title, and $tbodyArray are required.
+     * @param type $title
+     * @param type $theadArray
+     * @param type $tbodyArray
+     * @param type $tfootArray
+     * @param type $tableClass
+     * @param string $tableId
+     */
+    public function addTable($title = null, $theadArray = null, $tbodyArray = null, $tfootArray = null, $tableClass = 'tablesorter', $tableId = null) {
+        $this->generatTable($title, $theadArray, $tbodyArray, $tfootArray, $tableClass, $tableId);
         $this->appendBody($out);
     }
 }

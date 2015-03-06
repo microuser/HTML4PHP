@@ -12,8 +12,11 @@ $this->resources = array(
     'css' => array(
         'resources/screen.css',
         'resources/print.css',
-        'resources/jqueryui/themes/ui-lightness/jquery-ui.css',
-        'resources/jqueryui/themes/ui-lightness/theme.css',
+        //'resources/jqueryui/themes/ui-lightness/jquery-ui.css',
+        //'resources/jqueryui/themes/ui-lightness/theme.css',
+        'resources/jquery-ui-1.11.3.custom/jquery-ui.css',
+        'resources/jquery-ui-1.11.3.custom/jquery-ui.structure.css',
+        'resources/jquery-ui-1.11.3.custom/jquery-ui.theme.css',
         'resources/tablesorter/chili/style.css',
     ),
     'js' => array(
@@ -22,6 +25,7 @@ $this->resources = array(
         'resources/tablesorter/jquery.tablesorter.js',
         'resources/jquery-form-validator/form-validator/jquery.form-validator.min.js',
         'resources/jquery-form-validator/form-validator/jquery.form-validator.min.js',
-        'resources/jqueryui/jquery-ui.js',
+        //'resources/jqueryui/jquery-ui.js',
+        'resources/jquery-ui-1.11.3.custom/jquery-ui.js'
     ),
 );
