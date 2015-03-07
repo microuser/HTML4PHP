@@ -25,7 +25,7 @@ class JqueryUIModel extends Html4PHPSite {
     
     public function makeButtons(){
         $button1 = new Html4PHPUI_Button("Button innert");
-        $button2 = new Html4PHPUI_Button("Button with Alert", "success", "alert('asdf');");
+        $button2 = new Html4PHPUI_Button("Button with Alert", "success", "");
         return $button1.$button2;
         
     }
