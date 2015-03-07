@@ -5,9 +5,7 @@
  *
  * @author user
  */
-
-
-class Html4PHPUI_Button{
+class Html4PHPUI_Button {
 
     private $clickEvent;
     private $class;
@@ -26,7 +24,7 @@ class Html4PHPUI_Button{
      * @param type $extraTag
      * @param type $href
      */
-    public function __construct($text = 'Button', $class= '', $clickEvent = '',$id = null, $elementType = 'button', $extraTag = '', $href = "#") {
+    public function __construct($text = 'Button', $class = '', $clickEvent = '', $id = null, $elementType = 'button', $extraTag = '', $href = "#") {
         $this->text = $text;
         $this->class = $class;
         if ($id === null) {
@@ -39,22 +37,24 @@ class Html4PHPUI_Button{
         $this->extraTag = $extraTag;
         $this->href = $href;
     }
-    
-    public function __toString(){
+
+    public function __toString() {
         return $this->makeHtml();
     }
 
     public function makeHtml() {
-        
+
         $classes = explode(" ", $this->class);
-        if($classes == ''){
+        if ($classes == '') {
             $classes = $this->class;
         }
         $classScript = '';
-        foreach($classes as $class){
-            $classScript .= '.addClass('.$class.')';
+        foreach ($classes as $class) {
+            if ($classes != "") {
+                $classScript .= '.addClass("' . $class . '")';
+            }
         }
-        
+
         $script = '
         <script>
             $(function() {
@@ -63,17 +63,18 @@ class Html4PHPUI_Button{
                 .click(function( event ) {
                     event.preventDefault();
                 ' . $this->clickEvent . '
-                })'.$classScript.'
+                })
+                ' . $classScript . '
                 ;
             });
         </script>';
         $element = '';
         if ($this->elementType == 'button') {
-            $element = '<button id="' . $this->id . '" class="'.$this->class.'" ' . $this->extraTag . '>' . $this->text . '</button>';
+            $element = '<button id="' . $this->id . '" class="' . $this->class . '" ' . $this->extraTag . '>' . $this->text . '</button>';
         } else if ($this->elementType == 'a') {
-            $element = '<a id="' . $this->id . '" class="'.$this->class.'" href="' . $this->href . '" ' . $this->extraTag . '>' . $this->text . '</a>';
+            $element = '<a id="' . $this->id . '" class="' . $this->class . '" href="' . $this->href . '" ' . $this->extraTag . '>' . $this->text . '</a>';
         } else if ($this->elementType == 'input') {
-            $element = '<input type="submit" id="' . $this->id . '" class="'.$this->class.'" value="' . $this->text . '" ' . $this->extaTag . '>';
+            $element = '<input type="submit" id="' . $this->id . '" class="' . $this->class . '" value="' . $this->text . '" ' . $this->extraTag . '>';
         }
         return $element . $script;
     }
