@@ -22,11 +22,8 @@ class SampleModel extends Html4PhpSite {
         try{
         //$this->statementPrepare("show tables");
         $baseTable = "Base Table";
-        
         $this->statementPrepare("SELECT TABLE_NAME,TABLE_TYPE,AUTO_INCREMENT FROM information_schema.tables");
         $this->statementBindParam(":baseTable", $baseTable);
-
-        
         echo $this->getStatementErrorCode();        
         $this->statementExecute();
         

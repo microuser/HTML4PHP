@@ -20,15 +20,8 @@ class SamplePage extends SampleModel {
 
     public function generateSamplePage() {
 
-                       include_once($_SERVER['DOCUMENT_ROOT'].'/includes/Html4PhpElement.php');
-        $tab = new Html4PhpElement_Tab();
-        $tab->append("Database Table", $this->makeDatabaseTableTable());
-        $tab->append("Random Table",  $this->makeRandomTable());
-        $tab->append("User Table", $this->makeDatabaseUserTable());
-        $this->add($tab->generateHtml());
         
-        
-        
+                
         if (isset($_GET['table'])) {
             $this->insertTableName($_GET['table']);
         }
@@ -44,7 +37,6 @@ class SamplePage extends SampleModel {
 
     public function makeDatabaseTableTable() {
         return $this->makeTable("Show Tables", array("TABLE_NAME","TABLE_TYPE","AUTO_INCREMENT"), $this->getDatabaseTables());
-
     }
     
     public function makeDatabaseUserTable(){

@@ -35,5 +35,15 @@ $this->menu = array(
             'Validator' => '/tests/validator.php',
         )
     ),
+    'jQueryUI' => array(
+        '/jqueryui/index.php',
+        array(
+            'Tabs' => '/jqueryui/tabs.php',
+            //'Form' => '/tests/form.php',
+            //'Page' => '/tests/page.php',
+            //'Site' => '/tests/site.php',
+            //'Validator' => '/tests/validator.php',
+        )
+    ),
     
 );

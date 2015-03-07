@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta name="robots" content="noindex">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+	<meta name="robots" content="noindex" />
 
-	<title>File includes/Html4PhpSite.php</title>
+	<title>File webroot/includes/Html4PhpSite.php | HTML4PHP</title>
 
-	<link rel="stylesheet" href="resources/style.css?e99947befd7bf673c6b43ff75e9e0f170c88a60e">
+	<script type="text/javascript" src="resources/combined.js?4216411405"></script>
+	<script type="text/javascript" src="elementlist.js?2328374671"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
 
@@ -17,49 +20,39 @@
 
 
 		<div id="groups">
-				<h3>Packages</h3>
+			<h3>Packages</h3>
 			<ul>
-				<li>
-					<a href="package-HTML4PHP.html">
-						HTML4PHP					</a>
-
+				<li class="active"><a href="package-HTML4PHP.html">HTML4PHP</a>
 						</li>
-				<li>
-					<a href="package-None.html">
-						None					</a>
-
+				<li><a href="package-None.html">None</a>
 						</li>
-				<li class="active">
-					<a href="package-PHPMailer.html">
-						PHPMailer					</a>
-
+				<li><a href="package-PHP.html">PHP</a>
+						</li>
+				<li><a href="package-PHPMailer.html">PHPMailer</a>
 						</li>
 			</ul>
 		</div>
 
-		<hr>
+		<hr />
 
 
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
-				<li><a href="class-PHPMailer.html">PHPMailer</a></li>
-				<li><a href="class-SMTP.html">SMTP</a></li>
+				<li><a href="class-Html4PhpConfig.html">Html4PhpConfig</a></li>
+				<li><a href="class-Html4PhpDatabase.html">Html4PhpDatabase</a></li>
+				<li><a href="class-Html4PhpEmail.html">Html4PhpEmail</a></li>
+				<li><a href="class-Html4PhpForm.html">Html4PhpForm</a></li>
+				<li><a href="class-Html4PhpPage.html">Html4PhpPage</a></li>
+				<li class="active"><a href="class-Html4PhpSite.html">Html4PhpSite</a></li>
+				<li><a href="class-Html4PhpUser.html">Html4PhpUser</a></li>
+				<li><a href="class-Html4PhpValidator.html">Html4PhpValidator</a></li>
 			</ul>
 
-			<h3>Interfaces</h3>
-			<ul>
-				<li class="active"><a href="class-phpmailerException.html">phpmailerException</a></li>
-			</ul>
 
 
 
 
-			<h3>Functions</h3>
-			<ul>
-				<li><a href="function-__autoload.html">__autoload</a></li>
-				<li><a href="function-PHPMailerAutoload.html">PHPMailerAutoload</a></li>
-			</ul>
 		</div>
 	</div>
 </div>
@@ -69,9 +62,10 @@
 <div id="right">
 <div id="rightInner">
 	<form id="search">
-		<input type="hidden" name="cx" value="">
-		<input type="hidden" name="ie" value="UTF-8">
-		<input type="text" name="q" class="text" placeholder="Search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
 	</form>
 
 	<div id="navigation">
@@ -80,209 +74,210 @@
 				<a href="index.html" title="Overview"><span>Overview</span></a>
 			</li>
 			<li>
-				<a href="package-PHPMailer.html" title="Summary of PHPMailer"><span>Package</span></a>
+				<a href="package-HTML4PHP.html" title="Summary of HTML4PHP"><span>Package</span></a>
 			</li>
 			<li>
-				<a href="function-stripTime.html" title="Summary of stripTime"><span>Function</span></a>
+				<a href="class-Html4PhpSite.html" title="Summary of Html4PhpSite"><span>Class</span></a>
+			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
 			</li>
 		</ul>
 		<ul>
 		</ul>
-		<ul>
-		</ul>
 	</div>
 
-<pre><code><span id="1" class="l"><a href="#1">  1: </a><span class="xlang">&lt;?php</span>
-</span><span id="2" class="l"><a href="#2">  2: </a>
-</span><span id="3" class="l"><a href="#3">  3: </a><span class="php-keyword1">include_once</span> <span class="php-quote">'Html4PhpPage.php'</span>;
-</span><span id="4" class="l"><a href="#4">  4: </a>
-</span><span id="5" class="l"><a href="#5">  5: </a><span class="php-comment">/**
-</span></span><span id="6" class="l"><a href="#6">  6: </a><span class="php-comment"> * @version 2015-01-12
-</span></span><span id="7" class="l"><a href="#7">  7: </a><span class="php-comment"> * @category PHP Framework
-</span></span><span id="8" class="l"><a href="#8">  8: </a><span class="php-comment"> * @package HTML4PHP
-</span></span><span id="9" class="l"><a href="#9">  9: </a><span class="php-comment"> * @author microuser
-</span></span><span id="10" class="l"><a href="#10"> 10: </a><span class="php-comment"> * @link https://github.com/microuser/HTML4PHP 
-</span></span><span id="11" class="l"><a href="#11"> 11: </a><span class="php-comment"> * @license https://github.com/microuser/HTML4PHP/blob/master/LICENSE MIT OR GPL
-</span></span><span id="12" class="l"><a href="#12"> 12: </a><span class="php-comment"> * @copyright (c) microuser 2014, macro_user@outlook.com
-</span></span><span id="13" class="l"><a href="#13"> 13: </a><span class="php-comment"> * &lt;pre&gt;
-</span></span><span id="14" class="l"><a href="#14"> 14: </a><span class="php-comment"> * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: The above copyright notice, this permission notice, and the public RSA key shall be included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-</span></span><span id="15" class="l"><a href="#15"> 15: </a><span class="php-comment">  -----BEGIN RSA PUBLIC KEY----- ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDfpROYHVyYHe2yok8Ut5OEmNzNriV9QGdzzPm1vFJSf8Wp9iBY74xf5oYdMmUOOfLlZfcrXP6Dc3VXOlTU7P46t14s9CcoGR6As2EamV7q9sAh4Nkr6xZb4kNdy9Bd4SxY/I3kxEbTpbpPq2T5B68xJWVjf83SQI43eyjO2Hv3iA8iEyifeyAGNVX46X3uuCsBftXF5Ng1GCCp6fMeCXeY0p3qmOg7m6SMGAXY97hKakNHPN2+vDP2fCOfefFmZihP/0mQNNLu1VNfI3MKonyfiHI4k1WAbFP2ozWSGmzv3dhej3wguYmRYKsgkK3ay5QoZQSLDHnZXtkuO9rJbAuz -----END RSA PUBLIC KEY-----
-</span></span><span id="16" class="l"><a href="#16"> 16: </a><span class="php-comment"> * &lt;/pre&gt;
-</span></span><span id="17" class="l"><a href="#17"> 17: </a><span class="php-comment"> * &lt;/pre&gt; */</span>
-</span><span id="18" class="l"><a href="#18"> 18: </a><span class="php-keyword1">class</span> Html4PhpSite <span class="php-keyword1">extends</span> Html4PhpPage {
-</span><span id="19" class="l"><a href="#19"> 19: </a>
-</span><span id="20" class="l"><a href="#20"> 20: </a>    <span class="php-keyword1">private</span> <span class="php-var">$resources</span> = <span class="php-keyword1">array</span>();
-</span><span id="21" class="l"><a href="#21"> 21: </a>    <span class="php-keyword1">private</span> <span class="php-var">$menu</span> = <span class="php-keyword1">array</span>();
-</span><span id="22" class="l"><a href="#22"> 22: </a>    <span class="php-keyword1">private</span> <span class="php-var">$titleName</span>;
-</span><span id="23" class="l"><a href="#23"> 23: </a>    <span class="php-keyword1">private</span> <span class="php-var">$titleLink</span> = <span class="php-quote">'index.php'</span>;
-</span><span id="24" class="l"><a href="#24"> 24: </a>    <span class="php-keyword1">private</span> <span class="php-var">$topNav</span> = <span class="php-quote">''</span>;
-</span><span id="25" class="l"><a href="#25"> 25: </a>
-</span><span id="26" class="l"><a href="#26"> 26: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> __construct(<span class="php-var">$title</span>) {
-</span><span id="27" class="l"><a href="#27"> 27: </a>        parent::__construct(<span class="php-var">$title</span>);
-</span><span id="28" class="l"><a href="#28"> 28: </a>        <span class="php-var">$this</span>-&gt;titleName = <span class="php-var">$title</span>;
-</span><span id="29" class="l"><a href="#29"> 29: </a>
-</span><span id="30" class="l"><a href="#30"> 30: </a>        <span class="php-keyword1">include_once</span>(<span class="php-var">$this</span>-&gt;getConfig(<span class="php-quote">'server'</span>, <span class="php-quote">'documentRoot'</span>) . <span class="php-quote">'layouts/'</span> . <span class="php-var">$this</span>-&gt;getConfig(<span class="php-quote">'site'</span>, <span class="php-quote">'layout'</span>) . <span class="php-quote">'/resources.php'</span>);
-</span><span id="31" class="l"><a href="#31"> 31: </a>        <span class="php-keyword1">include_once</span>(<span class="php-var">$this</span>-&gt;getConfig(<span class="php-quote">'server'</span>, <span class="php-quote">'documentRoot'</span>) . <span class="php-quote">'layouts/'</span> . <span class="php-var">$this</span>-&gt;getConfig(<span class="php-quote">'site'</span>, <span class="php-quote">'layout'</span>) . <span class="php-quote">'/menu.php'</span>);
-</span><span id="32" class="l"><a href="#32"> 32: </a>
-</span><span id="33" class="l"><a href="#33"> 33: </a>        <span class="php-comment">//TODO, call upon generate head.</span>
-</span><span id="34" class="l"><a href="#34"> 34: </a>        <span class="php-var">$this</span>-&gt;constructLayout();
-</span><span id="35" class="l"><a href="#35"> 35: </a>    }
-</span><span id="36" class="l"><a href="#36"> 36: </a>
-</span><span id="37" class="l"><a href="#37"> 37: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> constructLayout() {
-</span><span id="38" class="l"><a href="#38"> 38: </a>
-</span><span id="39" class="l"><a href="#39"> 39: </a>
-</span><span id="40" class="l"><a href="#40"> 40: </a>        <span class="php-var">$relativeUrl</span> = <span class="php-var">$this</span>-&gt;getConfig(<span class="php-quote">'server'</span>, <span class="php-quote">'relativeUrl'</span>);
-</span><span id="41" class="l"><a href="#41"> 41: </a>        <span class="php-keyword1">if</span> (<span class="php-keyword1">isset</span>(<span class="php-var">$this</span>-&gt;resources[<span class="php-quote">'js'</span>])) {
-</span><span id="42" class="l"><a href="#42"> 42: </a>            <span class="php-comment">//This variable was set in webroot/layouts/default/resources.php</span>
-</span><span id="43" class="l"><a href="#43"> 43: </a>            <span class="php-keyword1">foreach</span> (<span class="php-var">$this</span>-&gt;resources[<span class="php-quote">'js'</span>] <span class="php-keyword1">as</span> <span class="php-var">$js</span>) {
-</span><span id="44" class="l"><a href="#44"> 44: </a>                <span class="php-var">$this</span>-&gt;addJavascriptLink(<span class="php-var">$relativeUrl</span> . <span class="php-var">$js</span>);
-</span><span id="45" class="l"><a href="#45"> 45: </a>            }
-</span><span id="46" class="l"><a href="#46"> 46: </a>        }
-</span><span id="47" class="l"><a href="#47"> 47: </a>
-</span><span id="48" class="l"><a href="#48"> 48: </a>        <span class="php-keyword1">if</span> (<span class="php-keyword1">isset</span>(<span class="php-var">$this</span>-&gt;resources[<span class="php-quote">'css'</span>])) {
-</span><span id="49" class="l"><a href="#49"> 49: </a>            <span class="php-comment">//This variable was set in webroot/layouts/default/resources.php</span>
-</span><span id="50" class="l"><a href="#50"> 50: </a>            <span class="php-keyword1">foreach</span> (<span class="php-var">$this</span>-&gt;resources[<span class="php-quote">'css'</span>] <span class="php-keyword1">as</span> <span class="php-var">$css</span>) {
-</span><span id="51" class="l"><a href="#51"> 51: </a>                <span class="php-var">$this</span>-&gt;addCssLink(<span class="php-var">$relativeUrl</span> . <span class="php-var">$css</span>);
-</span><span id="52" class="l"><a href="#52"> 52: </a>            }
-</span><span id="53" class="l"><a href="#53"> 53: </a>        }
-</span><span id="54" class="l"><a href="#54"> 54: </a>
-</span><span id="55" class="l"><a href="#55"> 55: </a>
-</span><span id="56" class="l"><a href="#56"> 56: </a>
-</span><span id="57" class="l"><a href="#57"> 57: </a>  
-</span><span id="58" class="l"><a href="#58"> 58: </a>        <span class="php-var">$this</span>-&gt;generateLoginTopNavSmall();
-</span><span id="59" class="l"><a href="#59"> 59: </a>        <span class="php-var">$this</span>-&gt;layoutTopTitle(<span class="php-var">$this</span>-&gt;titleName, <span class="php-var">$this</span>-&gt;titleLink, <span class="php-var">$this</span>-&gt;topNav);
-</span><span id="60" class="l"><a href="#60"> 60: </a>        <span class="php-var">$this</span>-&gt;generateNavBar();
-</span><span id="61" class="l"><a href="#61"> 61: </a>    }
-</span><span id="62" class="l"><a href="#62"> 62: </a>
-</span><span id="63" class="l"><a href="#63"> 63: </a>    <span class="php-keyword1">private</span> <span class="php-keyword1">function</span> generateLoginTopNavSmall(){
-</span><span id="64" class="l"><a href="#64"> 64: </a>        <span class="php-keyword1">if</span>(
-</span><span id="65" class="l"><a href="#65"> 65: </a>                    <span class="php-keyword1">isset</span>(<span class="php-var">$_SESSION</span>[<span class="php-quote">'PHPSESSIONID'</span>]) &amp;&amp;
-</span><span id="66" class="l"><a href="#66"> 66: </a>                    <span class="php-keyword1">isset</span>(<span class="php-var">$_SESSION</span>[<span class="php-quote">'LOGIN_TOKEN'</span>]) &amp;&amp;
-</span><span id="67" class="l"><a href="#67"> 67: </a>                    <span class="php-var">$this</span>-&gt;verifyLoginToken(<span class="php-var">$_SESSION</span>[<span class="php-quote">'PHPSESSIONID'</span>], <span class="php-var">$_SESSION</span>[<span class="php-quote">'LOGIN_TOKEN'</span>])
-</span><span id="68" class="l"><a href="#68"> 68: </a>                    )
-</span><span id="69" class="l"><a href="#69"> 69: </a>                {
-</span><span id="70" class="l"><a href="#70"> 70: </a>                <span class="php-var">$this</span>-&gt;layoutTopNavSmall(<span class="php-quote">&quot;&lt;a href=\&quot;/login/logout.php\&quot;&gt;Logout&lt;/a&gt;&quot;</span>);
-</span><span id="71" class="l"><a href="#71"> 71: </a>            }<span class="php-keyword1">else</span> {
-</span><span id="72" class="l"><a href="#72"> 72: </a>                <span class="php-var">$this</span>-&gt;layoutTopNavSmall(<span class="php-quote">&quot;&lt;a href=\&quot;/login/\&quot;&gt;Login&lt;/a&gt;&quot;</span>);
-</span><span id="73" class="l"><a href="#73"> 73: </a>            }
-</span><span id="74" class="l"><a href="#74"> 74: </a>              
-</span><span id="75" class="l"><a href="#75"> 75: </a>    }
-</span><span id="76" class="l"><a href="#76"> 76: </a>    <span class="php-comment">/**
-</span></span><span id="77" class="l"><a href="#77"> 77: </a><span class="php-comment">     * Generates the navbar from the given data in /webroot/layouts/default/menu.php
-</span></span><span id="78" class="l"><a href="#78"> 78: </a><span class="php-comment">     * The idea of $self parameter is to allow MVC type location masking, in the future.
-</span></span><span id="79" class="l"><a href="#79"> 79: </a><span class="php-comment">     * @param type $self
-</span></span><span id="80" class="l"><a href="#80"> 80: </a><span class="php-comment">     */</span>
-</span><span id="81" class="l"><a href="#81"> 81: </a>    <span class="php-keyword1">private</span> <span class="php-keyword1">function</span> generateNavBar(<span class="php-var">$self</span> = <span class="php-keyword1">null</span>) {
-</span><span id="82" class="l"><a href="#82"> 82: </a>
-</span><span id="83" class="l"><a href="#83"> 83: </a>        <span class="php-comment">//use link to find where we are at.</span>
-</span><span id="84" class="l"><a href="#84"> 84: </a>        <span class="php-keyword1">if</span> (<span class="php-var">$self</span> === <span class="php-keyword1">null</span>) {
-</span><span id="85" class="l"><a href="#85"> 85: </a>            <span class="php-var">$self</span> = <span class="php-keyword2">htmlspecialchars</span>(<span class="php-var">$_SERVER</span>[<span class="php-quote">'PHP_SELF'</span>]);
-</span><span id="86" class="l"><a href="#86"> 86: </a>        }
-</span><span id="87" class="l"><a href="#87"> 87: </a>
-</span><span id="88" class="l"><a href="#88"> 88: </a>        <span class="php-var">$selectedItemName</span> = <span class="php-quote">''</span>;<span class="php-comment">//Home';</span>
-</span><span id="89" class="l"><a href="#89"> 89: </a>        <span class="php-var">$selectedSubItemName</span> = <span class="php-quote">'Home'</span>;
-</span><span id="90" class="l"><a href="#90"> 90: </a>        <span class="php-var">$itemMenu</span> = <span class="php-keyword1">array</span>();
-</span><span id="91" class="l"><a href="#91"> 91: </a>        <span class="php-var">$subItemMenu</span> = <span class="php-keyword1">array</span>(<span class="php-quote">'Home'</span> =&gt; <span class="php-quote">'/index.php'</span>);
-</span><span id="92" class="l"><a href="#92"> 92: </a>        <span class="php-keyword1">foreach</span> (<span class="php-var">$this</span>-&gt;menu <span class="php-keyword1">as</span> <span class="php-var">$itemName</span> =&gt; <span class="php-var">$subItems</span>) {
-</span><span id="93" class="l"><a href="#93"> 93: </a>            <span class="php-var">$itemLink</span> = <span class="php-var">$subItems</span>[<span class="php-num">0</span>];
-</span><span id="94" class="l"><a href="#94"> 94: </a>            <span class="php-var">$itemMenu</span>[<span class="php-var">$itemName</span>] = <span class="php-var">$itemLink</span>;
-</span><span id="95" class="l"><a href="#95"> 95: </a>            <span class="php-comment">//If link matches level 1, it may not match subitems</span>
-</span><span id="96" class="l"><a href="#96"> 96: </a>            <span class="php-keyword1">if</span> (<span class="php-var">$itemLink</span> === <span class="php-var">$self</span>) {
-</span><span id="97" class="l"><a href="#97"> 97: </a>                <span class="php-var">$selectedItemName</span> = <span class="php-var">$itemName</span>;
-</span><span id="98" class="l"><a href="#98"> 98: </a>                <span class="php-var">$subItemMenu</span> = <span class="php-var">$subItems</span>[<span class="php-num">1</span>];
-</span><span id="99" class="l"><a href="#99"> 99: </a>            }
-</span><span id="100" class="l"><a href="#100">100: </a>            <span class="php-comment">//Find selected in list</span>
-</span><span id="101" class="l"><a href="#101">101: </a>            <span class="php-keyword1">foreach</span> (<span class="php-var">$subItems</span>[<span class="php-num">1</span>] <span class="php-keyword1">as</span> <span class="php-var">$subItemName</span> =&gt; <span class="php-var">$subItemLink</span>) {
-</span><span id="102" class="l"><a href="#102">102: </a>                <span class="php-keyword1">if</span> (<span class="php-var">$subItemLink</span> === <span class="php-var">$self</span>) {
-</span><span id="103" class="l"><a href="#103">103: </a>                    <span class="php-var">$selectedItemName</span> = <span class="php-var">$itemName</span>;
-</span><span id="104" class="l"><a href="#104">104: </a>                    <span class="php-var">$selectedSubItemName</span> = <span class="php-var">$subItemName</span>;
-</span><span id="105" class="l"><a href="#105">105: </a>                    <span class="php-var">$subItemMenu</span> = <span class="php-var">$subItems</span>[<span class="php-num">1</span>];
-</span><span id="106" class="l"><a href="#106">106: </a>                }
-</span><span id="107" class="l"><a href="#107">107: </a>            }
-</span><span id="108" class="l"><a href="#108">108: </a>        }
-</span><span id="109" class="l"><a href="#109">109: </a>        
-</span><span id="110" class="l"><a href="#110">110: </a>        <span class="php-var">$this</span>-&gt;layoutNavLevel1(<span class="php-var">$itemMenu</span>, <span class="php-var">$selectedItemName</span>);
-</span><span id="111" class="l"><a href="#111">111: </a>        <span class="php-var">$this</span>-&gt;layoutNavLevel2(<span class="php-var">$this</span>-&gt;menu[<span class="php-var">$selectedItemName</span>][<span class="php-num">1</span>], <span class="php-var">$selectedSubItemName</span>);
-</span><span id="112" class="l"><a href="#112">112: </a>    }
-</span><span id="113" class="l"><a href="#113">113: </a>
-</span><span id="114" class="l"><a href="#114">114: </a>    <span class="php-keyword1">private</span> <span class="php-keyword1">function</span> layoutTopNavSmall(<span class="php-var">$html</span> = <span class="php-quote">''</span>) {
-</span><span id="115" class="l"><a href="#115">115: </a>        <span class="php-comment">//Debug::add(DEBUG_FUNCTION_TRACE, '$html=' . $html);</span>
-</span><span id="116" class="l"><a href="#116">116: </a>        <span class="php-var">$this</span>-&gt;addHeaderDiv(<span class="php-quote">'&lt;div class=&quot;topNavSmallContent&quot;&gt;'</span> . <span class="php-var">$html</span> . <span class="php-var">$this</span>-&gt;newLine . <span class="php-quote">'&lt;/div&gt;&lt;!-- endTopNavSmallContent--&gt;'</span> . <span class="php-var">$this</span>-&gt;newLine, <span class="php-quote">&quot;topNavSmall&quot;</span>);
-</span><span id="117" class="l"><a href="#117">117: </a>    }
-</span><span id="118" class="l"><a href="#118">118: </a>
-</span><span id="119" class="l"><a href="#119">119: </a>    <span class="php-keyword1">private</span> <span class="php-keyword1">function</span> layoutTopTitle(<span class="php-var">$html</span>, <span class="php-var">$link</span>, <span class="php-var">$subtitle</span>) {
-</span><span id="120" class="l"><a href="#120">120: </a>        <span class="php-comment">//Debug::add(DEBUG_FUNCTION_TRACE, '$html=' . $html . ', $link=' . $link . ', $subTitle=' . $subtitle);</span>
-</span><span id="121" class="l"><a href="#121">121: </a>        <span class="php-var">$this</span>-&gt;addHeaderDiv(<span class="php-quote">'&lt;div class=&quot;topTitleContent&quot;&gt;'</span> . <span class="php-var">$this</span>-&gt;newLine
-</span><span id="122" class="l"><a href="#122">122: </a>                . <span class="php-quote">'&lt;a href=&quot;'</span> . <span class="php-var">$link</span> . <span class="php-quote">'&quot;&gt;'</span> . <span class="php-var">$this</span>-&gt;newLine
-</span><span id="123" class="l"><a href="#123">123: </a>                . <span class="php-var">$html</span> . <span class="php-var">$this</span>-&gt;newLine
-</span><span id="124" class="l"><a href="#124">124: </a>                . <span class="php-quote">'&lt;/a&gt;'</span> . <span class="php-var">$this</span>-&gt;newLine
-</span><span id="125" class="l"><a href="#125">125: </a>                . <span class="php-quote">'&lt;span&gt;'</span> . <span class="php-var">$this</span>-&gt;newLine
-</span><span id="126" class="l"><a href="#126">126: </a>                . <span class="php-var">$subtitle</span> . <span class="php-var">$this</span>-&gt;newLine
-</span><span id="127" class="l"><a href="#127">127: </a>                . <span class="php-quote">'&lt;/span&gt;'</span> . <span class="php-var">$this</span>-&gt;newLine
-</span><span id="128" class="l"><a href="#128">128: </a>                . <span class="php-quote">'&lt;/div&gt;&lt;!-- end topTitleContent --&gt;'</span> . <span class="php-var">$this</span>-&gt;newLine, <span class="php-quote">'topTitle'</span>);
-</span><span id="129" class="l"><a href="#129">129: </a>    }
-</span><span id="130" class="l"><a href="#130">130: </a>
-</span><span id="131" class="l"><a href="#131">131: </a>    <span class="php-comment">/**
-</span></span><span id="132" class="l"><a href="#132">132: </a><span class="php-comment">     * Where Key is name, and value is link
-</span></span><span id="133" class="l"><a href="#133">133: </a><span class="php-comment">     * @param type $menuKeyValuePair
-</span></span><span id="134" class="l"><a href="#134">134: </a><span class="php-comment">     * @param type $selectedName
-</span></span><span id="135" class="l"><a href="#135">135: </a><span class="php-comment">     */</span>
-</span><span id="136" class="l"><a href="#136">136: </a>    <span class="php-keyword1">private</span> <span class="php-keyword1">function</span> layoutNavLevel1(<span class="php-var">$menuKeyValuePair</span>, <span class="php-var">$selectedName</span>) {
-</span><span id="137" class="l"><a href="#137">137: </a>        <span class="php-comment">//Debug::add('$menuKeyValuePair=' . print_r($menuKeyValuePair, 1) . '$selectedName=' . $selectedName);</span>
-</span><span id="138" class="l"><a href="#138">138: </a>        <span class="php-var">$out</span> = <span class="php-quote">'&lt;ul&gt;'</span> . <span class="php-var">$this</span>-&gt;newLine;
-</span><span id="139" class="l"><a href="#139">139: </a>
-</span><span id="140" class="l"><a href="#140">140: </a>        <span class="php-keyword1">foreach</span> (<span class="php-var">$menuKeyValuePair</span> <span class="php-keyword1">as</span> <span class="php-var">$key</span> =&gt; <span class="php-var">$value</span>) {
-</span><span id="141" class="l"><a href="#141">141: </a>            <span class="php-keyword1">if</span> (<span class="php-var">$selectedName</span> == <span class="php-var">$key</span>) {
-</span><span id="142" class="l"><a href="#142">142: </a>                <span class="php-var">$out</span> .= <span class="php-quote">'&lt;li class=&quot;selected&quot;&gt;'</span> . <span class="php-var">$this</span>-&gt;newLine .
-</span><span id="143" class="l"><a href="#143">143: </a>                        <span class="php-quote">'&lt;a href=&quot;'</span> . <span class="php-var">$value</span> . <span class="php-quote">'&quot;&gt;'</span> . <span class="php-var">$this</span>-&gt;newLine
-</span><span id="144" class="l"><a href="#144">144: </a>                        . <span class="php-var">$key</span> . <span class="php-var">$this</span>-&gt;newLine
-</span><span id="145" class="l"><a href="#145">145: </a>                        . <span class="php-quote">'&lt;/a&gt;'</span> . <span class="php-var">$this</span>-&gt;newLine
-</span><span id="146" class="l"><a href="#146">146: </a>                        . <span class="php-quote">'&lt;/li&gt;'</span> . <span class="php-var">$this</span>-&gt;newLine;
-</span><span id="147" class="l"><a href="#147">147: </a>            } <span class="php-keyword1">else</span> {
-</span><span id="148" class="l"><a href="#148">148: </a>                <span class="php-var">$out</span> .= <span class="php-quote">'&lt;li&gt;'</span> . <span class="php-var">$this</span>-&gt;newLine
-</span><span id="149" class="l"><a href="#149">149: </a>                        . <span class="php-quote">'&lt;a href=&quot;'</span> . <span class="php-var">$value</span> . <span class="php-quote">'&quot;&gt;'</span> . <span class="php-var">$this</span>-&gt;newLine
-</span><span id="150" class="l"><a href="#150">150: </a>                        . <span class="php-var">$key</span> . <span class="php-var">$this</span>-&gt;newLine
-</span><span id="151" class="l"><a href="#151">151: </a>                        . <span class="php-quote">'&lt;/a&gt;'</span> . <span class="php-var">$this</span>-&gt;newLine
-</span><span id="152" class="l"><a href="#152">152: </a>                        . <span class="php-quote">'&lt;/li&gt;'</span> . <span class="php-var">$this</span>-&gt;newLine;
-</span><span id="153" class="l"><a href="#153">153: </a>            }
-</span><span id="154" class="l"><a href="#154">154: </a>        }
-</span><span id="155" class="l"><a href="#155">155: </a>        <span class="php-var">$out</span> .= <span class="php-quote">'&lt;/ul&gt;'</span> . <span class="php-var">$this</span>-&gt;newLine;
-</span><span id="156" class="l"><a href="#156">156: </a>        <span class="php-var">$this</span>-&gt;addHeaderDiv(<span class="php-quote">'&lt;div class=&quot;navLevel1Content&quot;&gt;'</span> . <span class="php-var">$this</span>-&gt;newLine
-</span><span id="157" class="l"><a href="#157">157: </a>                . <span class="php-var">$out</span>
-</span><span id="158" class="l"><a href="#158">158: </a>                . <span class="php-var">$this</span>-&gt;newLine . <span class="php-quote">'&lt;/div&gt;&lt;!-- endNavLevel1Content --&gt;'</span>, <span class="php-quote">'navLevel1'</span>);
-</span><span id="159" class="l"><a href="#159">159: </a>    }
-</span><span id="160" class="l"><a href="#160">160: </a>
-</span><span id="161" class="l"><a href="#161">161: </a>    <span class="php-keyword1">private</span> <span class="php-keyword1">function</span> layoutNavLevel2(<span class="php-var">$menuKeyValuePair</span>, <span class="php-var">$selectedName</span>) {
-</span><span id="162" class="l"><a href="#162">162: </a>        <span class="php-comment">//Debug::add('$menuKeyValuePair=' . print_r($menuKeyValuePair, 1) . '$selectedName=' . $selectedName);</span>
-</span><span id="163" class="l"><a href="#163">163: </a>        <span class="php-var">$out</span> = <span class="php-quote">'&lt;ul&gt;'</span> . <span class="php-var">$this</span>-&gt;newLine;
-</span><span id="164" class="l"><a href="#164">164: </a>
-</span><span id="165" class="l"><a href="#165">165: </a>        <span class="php-keyword1">foreach</span> (<span class="php-var">$menuKeyValuePair</span> <span class="php-keyword1">as</span> <span class="php-var">$key</span> =&gt; <span class="php-var">$value</span>) {
-</span><span id="166" class="l"><a href="#166">166: </a>            <span class="php-keyword1">if</span> (<span class="php-var">$selectedName</span> == <span class="php-var">$key</span>) {
-</span><span id="167" class="l"><a href="#167">167: </a>                <span class="php-var">$out</span> .= <span class="php-quote">'&lt;li class=&quot;selected&quot;&gt;&lt;a href=&quot;'</span> . <span class="php-var">$value</span> . <span class="php-quote">'&quot;&gt;'</span> . <span class="php-var">$key</span> . <span class="php-quote">'&lt;/a&gt;&lt;/li&gt;'</span> . <span class="php-var">$this</span>-&gt;newLine;
-</span><span id="168" class="l"><a href="#168">168: </a>            } <span class="php-keyword1">else</span> {
-</span><span id="169" class="l"><a href="#169">169: </a>                <span class="php-var">$out</span> .= <span class="php-quote">'&lt;li&gt;&lt;a href=&quot;'</span> . <span class="php-var">$value</span> . <span class="php-quote">'&quot;&gt;'</span> . <span class="php-var">$key</span> . <span class="php-quote">'&lt;/a&gt;&lt;/li&gt;'</span> . <span class="php-var">$this</span>-&gt;newLine;
-</span><span id="170" class="l"><a href="#170">170: </a>            }
-</span><span id="171" class="l"><a href="#171">171: </a>        }
-</span><span id="172" class="l"><a href="#172">172: </a>
-</span><span id="173" class="l"><a href="#173">173: </a>        <span class="php-var">$out</span> .= <span class="php-quote">'&lt;/ul&gt;'</span> . <span class="php-var">$this</span>-&gt;newLine;
-</span><span id="174" class="l"><a href="#174">174: </a>
-</span><span id="175" class="l"><a href="#175">175: </a>
-</span><span id="176" class="l"><a href="#176">176: </a>
-</span><span id="177" class="l"><a href="#177">177: </a>
-</span><span id="178" class="l"><a href="#178">178: </a>        <span class="php-var">$this</span>-&gt;addHeaderDiv(<span class="php-quote">'&lt;div class=&quot;navLevel2Content&quot;&gt;'</span> . <span class="php-var">$this</span>-&gt;newLine
-</span><span id="179" class="l"><a href="#179">179: </a>                . <span class="php-var">$out</span> . <span class="php-var">$this</span>-&gt;newLine
-</span><span id="180" class="l"><a href="#180">180: </a>                . <span class="php-quote">'&lt;/div&gt;&lt;!-- endNavLevel2Content--&gt;'</span> . <span class="php-var">$this</span>-&gt;newLine, <span class="php-quote">'navLevel2'</span>);
-</span><span id="181" class="l"><a href="#181">181: </a>    }
-</span><span id="182" class="l"><a href="#182">182: </a>
-</span><span id="183" class="l"><a href="#183">183: </a>}
-</span><span id="184" class="l"><a href="#184">184: </a></span></code></pre>
+<pre><code><span id="1" class="l"><a class="l" href="#1">  1: </a><span class="xlang">&lt;?php</span>
+</span><span id="2" class="l"><a class="l" href="#2">  2: </a>
+</span><span id="3" class="l"><a class="l" href="#3">  3: </a><span class="php-keyword1">include_once</span> <span class="php-quote">'Html4PhpPage.php'</span>;
+</span><span id="4" class="l"><a class="l" href="#4">  4: </a>
+</span><span id="5" class="l"><a class="l" href="#5">  5: </a><span class="php-comment">/**
+</span></span><span id="6" class="l"><a class="l" href="#6">  6: </a><span class="php-comment"> * @version 2015-01-12
+</span></span><span id="7" class="l"><a class="l" href="#7">  7: </a><span class="php-comment"> * @category PHP Framework
+</span></span><span id="8" class="l"><a class="l" href="#8">  8: </a><span class="php-comment"> * @package HTML4PHP
+</span></span><span id="9" class="l"><a class="l" href="#9">  9: </a><span class="php-comment"> * @author microuser
+</span></span><span id="10" class="l"><a class="l" href="#10"> 10: </a><span class="php-comment"> * @link https://github.com/microuser/HTML4PHP 
+</span></span><span id="11" class="l"><a class="l" href="#11"> 11: </a><span class="php-comment"> * @license https://github.com/microuser/HTML4PHP/blob/master/LICENSE MIT OR GPL
+</span></span><span id="12" class="l"><a class="l" href="#12"> 12: </a><span class="php-comment"> * @copyright (c) microuser 2014, macro_user@outlook.com
+</span></span><span id="13" class="l"><a class="l" href="#13"> 13: </a><span class="php-comment"> * &lt;pre&gt;
+</span></span><span id="14" class="l"><a class="l" href="#14"> 14: </a><span class="php-comment"> * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: The above copyright notice, this permission notice, and the public RSA key shall be included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+</span></span><span id="15" class="l"><a class="l" href="#15"> 15: </a><span class="php-comment">  -----BEGIN RSA PUBLIC KEY----- ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDfpROYHVyYHe2yok8Ut5OEmNzNriV9QGdzzPm1vFJSf8Wp9iBY74xf5oYdMmUOOfLlZfcrXP6Dc3VXOlTU7P46t14s9CcoGR6As2EamV7q9sAh4Nkr6xZb4kNdy9Bd4SxY/I3kxEbTpbpPq2T5B68xJWVjf83SQI43eyjO2Hv3iA8iEyifeyAGNVX46X3uuCsBftXF5Ng1GCCp6fMeCXeY0p3qmOg7m6SMGAXY97hKakNHPN2+vDP2fCOfefFmZihP/0mQNNLu1VNfI3MKonyfiHI4k1WAbFP2ozWSGmzv3dhej3wguYmRYKsgkK3ay5QoZQSLDHnZXtkuO9rJbAuz -----END RSA PUBLIC KEY-----
+</span></span><span id="16" class="l"><a class="l" href="#16"> 16: </a><span class="php-comment"> * &lt;/pre&gt;
+</span></span><span id="17" class="l"><a class="l" href="#17"> 17: </a><span class="php-comment"> * &lt;/pre&gt; */</span>
+</span><span id="18" class="l"><a class="l" href="#18"> 18: </a><span class="php-keyword1">class</span> <a id="Html4PhpSite" href="#Html4PhpSite">Html4PhpSite</a> <span class="php-keyword1">extends</span> Html4PhpPage {
+</span><span id="19" class="l"><a class="l" href="#19"> 19: </a>
+</span><span id="20" class="l"><a class="l" href="#20"> 20: </a>    <span class="php-keyword1">private</span> <span class="php-var"><a id="$resources" href="#$resources">$resources</a></span> = <span class="php-keyword1">array</span>();
+</span><span id="21" class="l"><a class="l" href="#21"> 21: </a>    <span class="php-keyword1">private</span> <span class="php-var"><a id="$menu" href="#$menu">$menu</a></span> = <span class="php-keyword1">array</span>();
+</span><span id="22" class="l"><a class="l" href="#22"> 22: </a>    <span class="php-keyword1">private</span> <span class="php-var"><a id="$titleName" href="#$titleName">$titleName</a></span>;
+</span><span id="23" class="l"><a class="l" href="#23"> 23: </a>    <span class="php-keyword1">private</span> <span class="php-var"><a id="$titleLink" href="#$titleLink">$titleLink</a></span> = <span class="php-quote">'index.php'</span>;
+</span><span id="24" class="l"><a class="l" href="#24"> 24: </a>    <span class="php-keyword1">private</span> <span class="php-var"><a id="$topNav" href="#$topNav">$topNav</a></span> = <span class="php-quote">''</span>;
+</span><span id="25" class="l"><a class="l" href="#25"> 25: </a>
+</span><span id="26" class="l"><a class="l" href="#26"> 26: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="___construct" href="#___construct">__construct</a>(<span class="php-var">$title</span>) {
+</span><span id="27" class="l"><a class="l" href="#27"> 27: </a>        parent::__construct(<span class="php-var">$title</span>);
+</span><span id="28" class="l"><a class="l" href="#28"> 28: </a>        <span class="php-var">$this</span>-&gt;titleName = <span class="php-var">$title</span>;
+</span><span id="29" class="l"><a class="l" href="#29"> 29: </a>
+</span><span id="30" class="l"><a class="l" href="#30"> 30: </a>        <span class="php-keyword1">include_once</span>(<span class="php-var">$this</span>-&gt;getConfig(<span class="php-quote">'server'</span>, <span class="php-quote">'documentRoot'</span>) . <span class="php-quote">'layouts/'</span> . <span class="php-var">$this</span>-&gt;getConfig(<span class="php-quote">'site'</span>, <span class="php-quote">'layout'</span>) . <span class="php-quote">'/resources.php'</span>);
+</span><span id="31" class="l"><a class="l" href="#31"> 31: </a>        <span class="php-keyword1">include_once</span>(<span class="php-var">$this</span>-&gt;getConfig(<span class="php-quote">'server'</span>, <span class="php-quote">'documentRoot'</span>) . <span class="php-quote">'layouts/'</span> . <span class="php-var">$this</span>-&gt;getConfig(<span class="php-quote">'site'</span>, <span class="php-quote">'layout'</span>) . <span class="php-quote">'/menu.php'</span>);
+</span><span id="32" class="l"><a class="l" href="#32"> 32: </a>
+</span><span id="33" class="l"><a class="l" href="#33"> 33: </a>        <span class="php-comment">//TODO, call upon generate head.</span>
+</span><span id="34" class="l"><a class="l" href="#34"> 34: </a>        <span class="php-var">$this</span>-&gt;constructLayout();
+</span><span id="35" class="l"><a class="l" href="#35"> 35: </a>    }
+</span><span id="36" class="l"><a class="l" href="#36"> 36: </a>
+</span><span id="37" class="l"><a class="l" href="#37"> 37: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_constructLayout" href="#_constructLayout">constructLayout</a>() {
+</span><span id="38" class="l"><a class="l" href="#38"> 38: </a>
+</span><span id="39" class="l"><a class="l" href="#39"> 39: </a>
+</span><span id="40" class="l"><a class="l" href="#40"> 40: </a>        <span class="php-var">$relativeUrl</span> = <span class="php-var">$this</span>-&gt;getConfig(<span class="php-quote">'server'</span>, <span class="php-quote">'relativeUrl'</span>);
+</span><span id="41" class="l"><a class="l" href="#41"> 41: </a>        <span class="php-keyword1">if</span> (<span class="php-keyword1">isset</span>(<span class="php-var">$this</span>-&gt;resources[<span class="php-quote">'js'</span>])) {
+</span><span id="42" class="l"><a class="l" href="#42"> 42: </a>            <span class="php-comment">//This variable was set in webroot/layouts/default/resources.php</span>
+</span><span id="43" class="l"><a class="l" href="#43"> 43: </a>            <span class="php-keyword1">foreach</span> (<span class="php-var">$this</span>-&gt;resources[<span class="php-quote">'js'</span>] <span class="php-keyword1">as</span> <span class="php-var">$js</span>) {
+</span><span id="44" class="l"><a class="l" href="#44"> 44: </a>                <span class="php-var">$this</span>-&gt;addJavascriptLink(<span class="php-var">$relativeUrl</span> . <span class="php-var">$js</span>);
+</span><span id="45" class="l"><a class="l" href="#45"> 45: </a>            }
+</span><span id="46" class="l"><a class="l" href="#46"> 46: </a>        }
+</span><span id="47" class="l"><a class="l" href="#47"> 47: </a>
+</span><span id="48" class="l"><a class="l" href="#48"> 48: </a>        <span class="php-keyword1">if</span> (<span class="php-keyword1">isset</span>(<span class="php-var">$this</span>-&gt;resources[<span class="php-quote">'css'</span>])) {
+</span><span id="49" class="l"><a class="l" href="#49"> 49: </a>            <span class="php-comment">//This variable was set in webroot/layouts/default/resources.php</span>
+</span><span id="50" class="l"><a class="l" href="#50"> 50: </a>            <span class="php-keyword1">foreach</span> (<span class="php-var">$this</span>-&gt;resources[<span class="php-quote">'css'</span>] <span class="php-keyword1">as</span> <span class="php-var">$css</span>) {
+</span><span id="51" class="l"><a class="l" href="#51"> 51: </a>                <span class="php-var">$this</span>-&gt;addCssLink(<span class="php-var">$relativeUrl</span> . <span class="php-var">$css</span>);
+</span><span id="52" class="l"><a class="l" href="#52"> 52: </a>            }
+</span><span id="53" class="l"><a class="l" href="#53"> 53: </a>        }
+</span><span id="54" class="l"><a class="l" href="#54"> 54: </a>
+</span><span id="55" class="l"><a class="l" href="#55"> 55: </a>
+</span><span id="56" class="l"><a class="l" href="#56"> 56: </a>
+</span><span id="57" class="l"><a class="l" href="#57"> 57: </a>  
+</span><span id="58" class="l"><a class="l" href="#58"> 58: </a>        <span class="php-var">$this</span>-&gt;generateLoginTopNavSmall();
+</span><span id="59" class="l"><a class="l" href="#59"> 59: </a>        <span class="php-var">$this</span>-&gt;layoutTopTitle(<span class="php-var">$this</span>-&gt;titleName, <span class="php-var">$this</span>-&gt;titleLink, <span class="php-var">$this</span>-&gt;topNav);
+</span><span id="60" class="l"><a class="l" href="#60"> 60: </a>        <span class="php-var">$this</span>-&gt;generateNavBar();
+</span><span id="61" class="l"><a class="l" href="#61"> 61: </a>    }
+</span><span id="62" class="l"><a class="l" href="#62"> 62: </a>
+</span><span id="63" class="l"><a class="l" href="#63"> 63: </a>    <span class="php-keyword1">private</span> <span class="php-keyword1">function</span> <a id="_generateLoginTopNavSmall" href="#_generateLoginTopNavSmall">generateLoginTopNavSmall</a>(){
+</span><span id="64" class="l"><a class="l" href="#64"> 64: </a>        <span class="php-keyword1">if</span>(
+</span><span id="65" class="l"><a class="l" href="#65"> 65: </a>                    <span class="php-keyword1">isset</span>(<span class="php-var">$_SESSION</span>[<span class="php-quote">'PHPSESSIONID'</span>]) &amp;&amp;
+</span><span id="66" class="l"><a class="l" href="#66"> 66: </a>                    <span class="php-keyword1">isset</span>(<span class="php-var">$_SESSION</span>[<span class="php-quote">'LOGIN_TOKEN'</span>]) &amp;&amp;
+</span><span id="67" class="l"><a class="l" href="#67"> 67: </a>                    <span class="php-var">$this</span>-&gt;verifyLoginToken(<span class="php-var">$_SESSION</span>[<span class="php-quote">'PHPSESSIONID'</span>], <span class="php-var">$_SESSION</span>[<span class="php-quote">'LOGIN_TOKEN'</span>])
+</span><span id="68" class="l"><a class="l" href="#68"> 68: </a>                    )
+</span><span id="69" class="l"><a class="l" href="#69"> 69: </a>                {
+</span><span id="70" class="l"><a class="l" href="#70"> 70: </a>                <span class="php-var">$this</span>-&gt;layoutTopNavSmall(<span class="php-quote">&quot;&lt;a href=\&quot;/login/logout.php\&quot;&gt;Logout&lt;/a&gt;&quot;</span>);
+</span><span id="71" class="l"><a class="l" href="#71"> 71: </a>            }<span class="php-keyword1">else</span> {
+</span><span id="72" class="l"><a class="l" href="#72"> 72: </a>                <span class="php-var">$this</span>-&gt;layoutTopNavSmall(<span class="php-quote">&quot;&lt;a href=\&quot;/login/\&quot;&gt;Login&lt;/a&gt;&quot;</span>);
+</span><span id="73" class="l"><a class="l" href="#73"> 73: </a>            }
+</span><span id="74" class="l"><a class="l" href="#74"> 74: </a>              
+</span><span id="75" class="l"><a class="l" href="#75"> 75: </a>    }
+</span><span id="76" class="l"><a class="l" href="#76"> 76: </a>    <span class="php-comment">/**
+</span></span><span id="77" class="l"><a class="l" href="#77"> 77: </a><span class="php-comment">     * Generates the navbar from the given data in /webroot/layouts/default/menu.php
+</span></span><span id="78" class="l"><a class="l" href="#78"> 78: </a><span class="php-comment">     * The idea of $self parameter is to allow MVC type location masking, in the future.
+</span></span><span id="79" class="l"><a class="l" href="#79"> 79: </a><span class="php-comment">     * @param type $self
+</span></span><span id="80" class="l"><a class="l" href="#80"> 80: </a><span class="php-comment">     */</span>
+</span><span id="81" class="l"><a class="l" href="#81"> 81: </a>    <span class="php-keyword1">private</span> <span class="php-keyword1">function</span> <a id="_generateNavBar" href="#_generateNavBar">generateNavBar</a>(<span class="php-var">$self</span> = <span class="php-keyword1">null</span>) {
+</span><span id="82" class="l"><a class="l" href="#82"> 82: </a>
+</span><span id="83" class="l"><a class="l" href="#83"> 83: </a>        <span class="php-comment">//use link to find where we are at.</span>
+</span><span id="84" class="l"><a class="l" href="#84"> 84: </a>        <span class="php-keyword1">if</span> (<span class="php-var">$self</span> === <span class="php-keyword1">null</span>) {
+</span><span id="85" class="l"><a class="l" href="#85"> 85: </a>            <span class="php-var">$self</span> = <span class="php-keyword2">htmlspecialchars</span>(<span class="php-var">$_SERVER</span>[<span class="php-quote">'PHP_SELF'</span>]);
+</span><span id="86" class="l"><a class="l" href="#86"> 86: </a>        }
+</span><span id="87" class="l"><a class="l" href="#87"> 87: </a>
+</span><span id="88" class="l"><a class="l" href="#88"> 88: </a>        <span class="php-var">$selectedItemName</span> = <span class="php-quote">''</span>;<span class="php-comment">//Home';</span>
+</span><span id="89" class="l"><a class="l" href="#89"> 89: </a>        <span class="php-var">$selectedSubItemName</span> = <span class="php-quote">'Home'</span>;
+</span><span id="90" class="l"><a class="l" href="#90"> 90: </a>        <span class="php-var">$itemMenu</span> = <span class="php-keyword1">array</span>();
+</span><span id="91" class="l"><a class="l" href="#91"> 91: </a>        <span class="php-var">$subItemMenu</span> = <span class="php-keyword1">array</span>(<span class="php-quote">'Home'</span> =&gt; <span class="php-quote">'/index.php'</span>);
+</span><span id="92" class="l"><a class="l" href="#92"> 92: </a>        <span class="php-keyword1">foreach</span> (<span class="php-var">$this</span>-&gt;menu <span class="php-keyword1">as</span> <span class="php-var">$itemName</span> =&gt; <span class="php-var">$subItems</span>) {
+</span><span id="93" class="l"><a class="l" href="#93"> 93: </a>            <span class="php-var">$itemLink</span> = <span class="php-var">$subItems</span>[<span class="php-num">0</span>];
+</span><span id="94" class="l"><a class="l" href="#94"> 94: </a>            <span class="php-var">$itemMenu</span>[<span class="php-var">$itemName</span>] = <span class="php-var">$itemLink</span>;
+</span><span id="95" class="l"><a class="l" href="#95"> 95: </a>            <span class="php-comment">//If link matches level 1, it may not match subitems</span>
+</span><span id="96" class="l"><a class="l" href="#96"> 96: </a>            <span class="php-keyword1">if</span> (<span class="php-var">$itemLink</span> === <span class="php-var">$self</span>) {
+</span><span id="97" class="l"><a class="l" href="#97"> 97: </a>                <span class="php-var">$selectedItemName</span> = <span class="php-var">$itemName</span>;
+</span><span id="98" class="l"><a class="l" href="#98"> 98: </a>                <span class="php-var">$subItemMenu</span> = <span class="php-var">$subItems</span>[<span class="php-num">1</span>];
+</span><span id="99" class="l"><a class="l" href="#99"> 99: </a>            }
+</span><span id="100" class="l"><a class="l" href="#100">100: </a>            <span class="php-comment">//Find selected in list</span>
+</span><span id="101" class="l"><a class="l" href="#101">101: </a>            <span class="php-keyword1">foreach</span> (<span class="php-var">$subItems</span>[<span class="php-num">1</span>] <span class="php-keyword1">as</span> <span class="php-var">$subItemName</span> =&gt; <span class="php-var">$subItemLink</span>) {
+</span><span id="102" class="l"><a class="l" href="#102">102: </a>                <span class="php-keyword1">if</span> (<span class="php-var">$subItemLink</span> === <span class="php-var">$self</span>) {
+</span><span id="103" class="l"><a class="l" href="#103">103: </a>                    <span class="php-var">$selectedItemName</span> = <span class="php-var">$itemName</span>;
+</span><span id="104" class="l"><a class="l" href="#104">104: </a>                    <span class="php-var">$selectedSubItemName</span> = <span class="php-var">$subItemName</span>;
+</span><span id="105" class="l"><a class="l" href="#105">105: </a>                    <span class="php-var">$subItemMenu</span> = <span class="php-var">$subItems</span>[<span class="php-num">1</span>];
+</span><span id="106" class="l"><a class="l" href="#106">106: </a>                }
+</span><span id="107" class="l"><a class="l" href="#107">107: </a>            }
+</span><span id="108" class="l"><a class="l" href="#108">108: </a>        }
+</span><span id="109" class="l"><a class="l" href="#109">109: </a>        
+</span><span id="110" class="l"><a class="l" href="#110">110: </a>        <span class="php-var">$this</span>-&gt;layoutNavLevel1(<span class="php-var">$itemMenu</span>, <span class="php-var">$selectedItemName</span>);
+</span><span id="111" class="l"><a class="l" href="#111">111: </a>        <span class="php-var">$this</span>-&gt;layoutNavLevel2(<span class="php-var">$this</span>-&gt;menu[<span class="php-var">$selectedItemName</span>][<span class="php-num">1</span>], <span class="php-var">$selectedSubItemName</span>);
+</span><span id="112" class="l"><a class="l" href="#112">112: </a>    }
+</span><span id="113" class="l"><a class="l" href="#113">113: </a>
+</span><span id="114" class="l"><a class="l" href="#114">114: </a>    <span class="php-keyword1">private</span> <span class="php-keyword1">function</span> <a id="_layoutTopNavSmall" href="#_layoutTopNavSmall">layoutTopNavSmall</a>(<span class="php-var">$html</span> = <span class="php-quote">''</span>) {
+</span><span id="115" class="l"><a class="l" href="#115">115: </a>        <span class="php-comment">//Debug::add(DEBUG_FUNCTION_TRACE, '$html=' . $html);</span>
+</span><span id="116" class="l"><a class="l" href="#116">116: </a>        <span class="php-var">$this</span>-&gt;addHeaderDiv(<span class="php-quote">'&lt;div class=&quot;topNavSmallContent&quot;&gt;'</span> . <span class="php-var">$html</span> . <span class="php-var">$this</span>-&gt;newLine . <span class="php-quote">'&lt;/div&gt;&lt;!-- endTopNavSmallContent--&gt;'</span> . <span class="php-var">$this</span>-&gt;newLine, <span class="php-quote">&quot;topNavSmall&quot;</span>);
+</span><span id="117" class="l"><a class="l" href="#117">117: </a>    }
+</span><span id="118" class="l"><a class="l" href="#118">118: </a>
+</span><span id="119" class="l"><a class="l" href="#119">119: </a>    <span class="php-keyword1">private</span> <span class="php-keyword1">function</span> <a id="_layoutTopTitle" href="#_layoutTopTitle">layoutTopTitle</a>(<span class="php-var">$html</span>, <span class="php-var">$link</span>, <span class="php-var">$subtitle</span>) {
+</span><span id="120" class="l"><a class="l" href="#120">120: </a>        <span class="php-comment">//Debug::add(DEBUG_FUNCTION_TRACE, '$html=' . $html . ', $link=' . $link . ', $subTitle=' . $subtitle);</span>
+</span><span id="121" class="l"><a class="l" href="#121">121: </a>        <span class="php-var">$this</span>-&gt;addHeaderDiv(<span class="php-quote">'&lt;div class=&quot;topTitleContent&quot;&gt;'</span> . <span class="php-var">$this</span>-&gt;newLine
+</span><span id="122" class="l"><a class="l" href="#122">122: </a>                . <span class="php-quote">'&lt;a href=&quot;'</span> . <span class="php-var">$link</span> . <span class="php-quote">'&quot;&gt;'</span> . <span class="php-var">$this</span>-&gt;newLine
+</span><span id="123" class="l"><a class="l" href="#123">123: </a>                . <span class="php-var">$html</span> . <span class="php-var">$this</span>-&gt;newLine
+</span><span id="124" class="l"><a class="l" href="#124">124: </a>                . <span class="php-quote">'&lt;/a&gt;'</span> . <span class="php-var">$this</span>-&gt;newLine
+</span><span id="125" class="l"><a class="l" href="#125">125: </a>                . <span class="php-quote">'&lt;span&gt;'</span> . <span class="php-var">$this</span>-&gt;newLine
+</span><span id="126" class="l"><a class="l" href="#126">126: </a>                . <span class="php-var">$subtitle</span> . <span class="php-var">$this</span>-&gt;newLine
+</span><span id="127" class="l"><a class="l" href="#127">127: </a>                . <span class="php-quote">'&lt;/span&gt;'</span> . <span class="php-var">$this</span>-&gt;newLine
+</span><span id="128" class="l"><a class="l" href="#128">128: </a>                . <span class="php-quote">'&lt;/div&gt;&lt;!-- end topTitleContent --&gt;'</span> . <span class="php-var">$this</span>-&gt;newLine, <span class="php-quote">'topTitle'</span>);
+</span><span id="129" class="l"><a class="l" href="#129">129: </a>    }
+</span><span id="130" class="l"><a class="l" href="#130">130: </a>
+</span><span id="131" class="l"><a class="l" href="#131">131: </a>    <span class="php-comment">/**
+</span></span><span id="132" class="l"><a class="l" href="#132">132: </a><span class="php-comment">     * Where Key is name, and value is link
+</span></span><span id="133" class="l"><a class="l" href="#133">133: </a><span class="php-comment">     * @param type $menuKeyValuePair
+</span></span><span id="134" class="l"><a class="l" href="#134">134: </a><span class="php-comment">     * @param type $selectedName
+</span></span><span id="135" class="l"><a class="l" href="#135">135: </a><span class="php-comment">     */</span>
+</span><span id="136" class="l"><a class="l" href="#136">136: </a>    <span class="php-keyword1">private</span> <span class="php-keyword1">function</span> <a id="_layoutNavLevel1" href="#_layoutNavLevel1">layoutNavLevel1</a>(<span class="php-var">$menuKeyValuePair</span>, <span class="php-var">$selectedName</span>) {
+</span><span id="137" class="l"><a class="l" href="#137">137: </a>        <span class="php-comment">//Debug::add('$menuKeyValuePair=' . print_r($menuKeyValuePair, 1) . '$selectedName=' . $selectedName);</span>
+</span><span id="138" class="l"><a class="l" href="#138">138: </a>        <span class="php-var">$out</span> = <span class="php-quote">'&lt;ul&gt;'</span> . <span class="php-var">$this</span>-&gt;newLine;
+</span><span id="139" class="l"><a class="l" href="#139">139: </a>
+</span><span id="140" class="l"><a class="l" href="#140">140: </a>        <span class="php-keyword1">foreach</span> (<span class="php-var">$menuKeyValuePair</span> <span class="php-keyword1">as</span> <span class="php-var">$key</span> =&gt; <span class="php-var">$value</span>) {
+</span><span id="141" class="l"><a class="l" href="#141">141: </a>            <span class="php-keyword1">if</span> (<span class="php-var">$selectedName</span> == <span class="php-var">$key</span>) {
+</span><span id="142" class="l"><a class="l" href="#142">142: </a>                <span class="php-var">$out</span> .= <span class="php-quote">'&lt;li class=&quot;selected&quot;&gt;'</span> . <span class="php-var">$this</span>-&gt;newLine .
+</span><span id="143" class="l"><a class="l" href="#143">143: </a>                        <span class="php-quote">'&lt;a href=&quot;'</span> . <span class="php-var">$value</span> . <span class="php-quote">'&quot;&gt;'</span> . <span class="php-var">$this</span>-&gt;newLine
+</span><span id="144" class="l"><a class="l" href="#144">144: </a>                        . <span class="php-var">$key</span> . <span class="php-var">$this</span>-&gt;newLine
+</span><span id="145" class="l"><a class="l" href="#145">145: </a>                        . <span class="php-quote">'&lt;/a&gt;'</span> . <span class="php-var">$this</span>-&gt;newLine
+</span><span id="146" class="l"><a class="l" href="#146">146: </a>                        . <span class="php-quote">'&lt;/li&gt;'</span> . <span class="php-var">$this</span>-&gt;newLine;
+</span><span id="147" class="l"><a class="l" href="#147">147: </a>            } <span class="php-keyword1">else</span> {
+</span><span id="148" class="l"><a class="l" href="#148">148: </a>                <span class="php-var">$out</span> .= <span class="php-quote">'&lt;li&gt;'</span> . <span class="php-var">$this</span>-&gt;newLine
+</span><span id="149" class="l"><a class="l" href="#149">149: </a>                        . <span class="php-quote">'&lt;a href=&quot;'</span> . <span class="php-var">$value</span> . <span class="php-quote">'&quot;&gt;'</span> . <span class="php-var">$this</span>-&gt;newLine
+</span><span id="150" class="l"><a class="l" href="#150">150: </a>                        . <span class="php-var">$key</span> . <span class="php-var">$this</span>-&gt;newLine
+</span><span id="151" class="l"><a class="l" href="#151">151: </a>                        . <span class="php-quote">'&lt;/a&gt;'</span> . <span class="php-var">$this</span>-&gt;newLine
+</span><span id="152" class="l"><a class="l" href="#152">152: </a>                        . <span class="php-quote">'&lt;/li&gt;'</span> . <span class="php-var">$this</span>-&gt;newLine;
+</span><span id="153" class="l"><a class="l" href="#153">153: </a>            }
+</span><span id="154" class="l"><a class="l" href="#154">154: </a>        }
+</span><span id="155" class="l"><a class="l" href="#155">155: </a>        <span class="php-var">$out</span> .= <span class="php-quote">'&lt;/ul&gt;'</span> . <span class="php-var">$this</span>-&gt;newLine;
+</span><span id="156" class="l"><a class="l" href="#156">156: </a>        <span class="php-var">$this</span>-&gt;addHeaderDiv(<span class="php-quote">'&lt;div class=&quot;navLevel1Content&quot;&gt;'</span> . <span class="php-var">$this</span>-&gt;newLine
+</span><span id="157" class="l"><a class="l" href="#157">157: </a>                . <span class="php-var">$out</span>
+</span><span id="158" class="l"><a class="l" href="#158">158: </a>                . <span class="php-var">$this</span>-&gt;newLine . <span class="php-quote">'&lt;/div&gt;&lt;!-- endNavLevel1Content --&gt;'</span>, <span class="php-quote">'navLevel1'</span>);
+</span><span id="159" class="l"><a class="l" href="#159">159: </a>    }
+</span><span id="160" class="l"><a class="l" href="#160">160: </a>
+</span><span id="161" class="l"><a class="l" href="#161">161: </a>    <span class="php-keyword1">private</span> <span class="php-keyword1">function</span> <a id="_layoutNavLevel2" href="#_layoutNavLevel2">layoutNavLevel2</a>(<span class="php-var">$menuKeyValuePair</span>, <span class="php-var">$selectedName</span>) {
+</span><span id="162" class="l"><a class="l" href="#162">162: </a>        <span class="php-comment">//Debug::add('$menuKeyValuePair=' . print_r($menuKeyValuePair, 1) . '$selectedName=' . $selectedName);</span>
+</span><span id="163" class="l"><a class="l" href="#163">163: </a>        <span class="php-var">$out</span> = <span class="php-quote">'&lt;ul&gt;'</span> . <span class="php-var">$this</span>-&gt;newLine;
+</span><span id="164" class="l"><a class="l" href="#164">164: </a>
+</span><span id="165" class="l"><a class="l" href="#165">165: </a>        <span class="php-keyword1">foreach</span> (<span class="php-var">$menuKeyValuePair</span> <span class="php-keyword1">as</span> <span class="php-var">$key</span> =&gt; <span class="php-var">$value</span>) {
+</span><span id="166" class="l"><a class="l" href="#166">166: </a>            <span class="php-keyword1">if</span> (<span class="php-var">$selectedName</span> == <span class="php-var">$key</span>) {
+</span><span id="167" class="l"><a class="l" href="#167">167: </a>                <span class="php-var">$out</span> .= <span class="php-quote">'&lt;li class=&quot;selected&quot;&gt;&lt;a href=&quot;'</span> . <span class="php-var">$value</span> . <span class="php-quote">'&quot;&gt;'</span> . <span class="php-var">$key</span> . <span class="php-quote">'&lt;/a&gt;&lt;/li&gt;'</span> . <span class="php-var">$this</span>-&gt;newLine;
+</span><span id="168" class="l"><a class="l" href="#168">168: </a>            } <span class="php-keyword1">else</span> {
+</span><span id="169" class="l"><a class="l" href="#169">169: </a>                <span class="php-var">$out</span> .= <span class="php-quote">'&lt;li&gt;&lt;a href=&quot;'</span> . <span class="php-var">$value</span> . <span class="php-quote">'&quot;&gt;'</span> . <span class="php-var">$key</span> . <span class="php-quote">'&lt;/a&gt;&lt;/li&gt;'</span> . <span class="php-var">$this</span>-&gt;newLine;
+</span><span id="170" class="l"><a class="l" href="#170">170: </a>            }
+</span><span id="171" class="l"><a class="l" href="#171">171: </a>        }
+</span><span id="172" class="l"><a class="l" href="#172">172: </a>
+</span><span id="173" class="l"><a class="l" href="#173">173: </a>        <span class="php-var">$out</span> .= <span class="php-quote">'&lt;/ul&gt;'</span> . <span class="php-var">$this</span>-&gt;newLine;
+</span><span id="174" class="l"><a class="l" href="#174">174: </a>
+</span><span id="175" class="l"><a class="l" href="#175">175: </a>
+</span><span id="176" class="l"><a class="l" href="#176">176: </a>
+</span><span id="177" class="l"><a class="l" href="#177">177: </a>
+</span><span id="178" class="l"><a class="l" href="#178">178: </a>        <span class="php-var">$this</span>-&gt;addHeaderDiv(<span class="php-quote">'&lt;div class=&quot;navLevel2Content&quot;&gt;'</span> . <span class="php-var">$this</span>-&gt;newLine
+</span><span id="179" class="l"><a class="l" href="#179">179: </a>                . <span class="php-var">$out</span> . <span class="php-var">$this</span>-&gt;newLine
+</span><span id="180" class="l"><a class="l" href="#180">180: </a>                . <span class="php-quote">'&lt;/div&gt;&lt;!-- endNavLevel2Content--&gt;'</span> . <span class="php-var">$this</span>-&gt;newLine, <span class="php-quote">'navLevel2'</span>);
+</span><span id="181" class="l"><a class="l" href="#181">181: </a>    }
+</span><span id="182" class="l"><a class="l" href="#182">182: </a>
+</span><span id="183" class="l"><a class="l" href="#183">183: </a>}
+</span><span id="184" class="l"><a class="l" href="#184">184: </a></span></code></pre>
 
 	<div id="footer">
-		 API documentation generated by <a href="http://apigen.org">ApiGen</a>
+		HTML4PHP API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
 	</div>
 </div>
 </div>
-<script src="resources/combined.js?44e93de8fc3b749f55d0fae2da59a38c45b15f0b"></script>
-<script src="elementlist.js?6fb22916d9bc7a946f25146ef2ee191f5861ace8"></script>
 </body>
 </html>

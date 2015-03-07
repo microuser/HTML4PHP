@@ -1,52 +1,6 @@
 <?php
 
-
-
-/**
- * Description of Html4PhpElements
- *
- * @author user
- */
-class Html4PhpElement {
-    
-    
-    
-}
-
-
-class Html4PhpElement_Accordion{
-    
-}
-
-class Html4PhpElement_AutoComplete{
-    
-}
-
-class Html4PhpElement_Button{
-    
-}
-
-class Html4PhpElement_Datepicker{
-    
-}
-
-class Html4PhpElement_ProgressBar{
-    
-}
-
-class Html4PhpElement_SelectMenu{
-    
-}
-
-class Html4PhpElement_Slider{
-    
-}
-
-class Html4PhpElement_Spinner{
-    
-}
-
-class Html4PhpElement_Tab{
+class Html4PhpUI_Tab{
     
     private $tabs = array();
     private $id;
@@ -70,6 +24,10 @@ class Html4PhpElement_Tab{
     
     public function append($title, $content){
         $this->tabs[] = array($title, $content);
+    }
+    
+    public function __toString(){
+        return $this->generateHtml();
     }
     
     public function generateHtml(){
@@ -97,8 +55,4 @@ class Html4PhpElement_Tab{
         
         return $html . $js;
     }
-}
-
-class Html4PhpElement_Tooltip{
-    
 }

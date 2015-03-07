@@ -324,7 +324,7 @@
     div.main{
         margin:0px;
         background: #d0d0d0;
-        color: black;
+        color: white;
         background: rgb(100,100,100); /* Old browsers */
         background: -moz-linear-gradient(top, rgba(100,100,100,1) 0%, rgba(229,229,229,1) 100%); /* FF3.6+ */
         background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(204,204,204,1)), color-stop(100%,rgba(229,229,229,1))); /* Chrome,Safari4+ */
@@ -338,7 +338,7 @@
 
     div.main div.mainContent{
         padding: 10px;
-        color:black;
+        color:white;
         background: #424242;
         width:930px;
         margin: 0px auto;
@@ -411,16 +411,20 @@
         filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#959595', endColorstr='#1b1b1b',GradientType=0 ); /* IE6-8 */    
     }
 
+    a {
+        color: #5be;
+    }
+    
+    
     form {
-        border:3px solid #cccccc;
+        border:3px solid #444455;
         padding: 30px 0px;
         margin:0px;
-
     }
 
     form div.controlGroup {
         clear:both;
-        border:1px dotted #ddd;
+        border:1px dotted #445;
     }
 
     form div.controlGroup label{
@@ -437,7 +441,7 @@
     form div.controlGroup div.controls{
         float:left;
         margin-bottom: 10px;
-
+        
         margin-top:5px;
     }
 
@@ -445,8 +449,12 @@
         width:680px;
         border-radius: 5px;
         float:left;
+        background: #223;
+        color: white;
 
-    }form div.controlGroup div.controls select{
+    }
+    
+    form div.controlGroup div.controls select{
         width:680px;
         border-radius: 5px;
         float:left;
@@ -522,5 +530,27 @@
         float:left;
         height:1.2em;
     }
-
+    
+    .active{
+        background:#424242 !important;
+    }
+    .success{
+        background:#4ca20b !important;
+    }
+    .success:focus{
+        background:#88a20b !important;
+    }
+    .success:hover{
+        background:#3c924b !important;
+    }
+    .info{
+        background:#114477 !important;
+    }
+    .warning{
+        background:#e78f08 !important;
+    }
+    .danger{
+        background:firebrick !important;
+    }
+    
 }

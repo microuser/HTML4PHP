@@ -617,7 +617,7 @@ class Html4PhpForm {
      */
     public function generateForm($title) {
         //$this->addDebug(DEBUG_FUNCTION_TRACE, '$title=' . $title);
-        $out = '<div class="formTitle">' . $title . '</div><!--end formTitle--><form name="' . $this->name . '" action="' . $this->action . '" method="' . $this->method . '">' . $this->newLine;
+        $out = '<div class="formTitle">' . $title . '</div><!--end formTitle--><div><form name="' . $this->name . '" action="' . $this->action . '" method="' . $this->method . '">' . $this->newLine;
         $code = '';
         foreach ($this->formCode as $codeItem) {
             $code .= $codeItem;
@@ -650,7 +650,7 @@ var optionalConfig = {
                 . $code . $this->newLine
                 . '</script>';
 
-        $out .= '</form>' . $this->newLine;
+        $out .= '</form></div>' . $this->newLine;
         return $out;
     }
 }

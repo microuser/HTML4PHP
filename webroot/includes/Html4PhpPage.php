@@ -442,7 +442,7 @@ class Html4PhpPage extends Html4PhpUser {
      * @param string $tableId
      */
     public function addTable($title = null, $theadArray = null, $tbodyArray = null, $tfootArray = null, $tableClass = 'tablesorter', $tableId = null) {
-        $this->generatTable($title, $theadArray, $tbodyArray, $tfootArray, $tableClass, $tableId);
+        $out = $this->makeTable($title, $theadArray, $tbodyArray, $tfootArray, $tableClass, $tableId);
         $this->appendBody($out);
     }
 }
