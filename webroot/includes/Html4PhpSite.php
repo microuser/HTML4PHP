@@ -102,7 +102,9 @@ class Html4PhpSite extends Html4PhpPage {
         } else {
             $loginMenu = array("Login" => "/login/index.php", "Register" => "/login/create.php");
         }
-        $this->menu['Home'][1] = array_merge($this->menu['Home'][1], $loginMenu);
+        if (isset($this->menu) && isset($this->menu['Home']) && isset($this->menu['Home'][1])) {
+            $this->menu['Home'][1] = array_merge($this->menu['Home'][1], $loginMenu);
+        }
 
         foreach ($this->menu as $itemName => $subItems) {
             $itemLink = $subItems[0];
