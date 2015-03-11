@@ -1,5 +1,5 @@
 <?php
-
+include_once('Html4PhpValidator.php');
 /**
  * Html4Form creates a valid HTML form. Begin with using startForm(), add what you want, generate with generateForm();
  *
@@ -33,6 +33,7 @@ class Html4PhpForm {
         ////$this->addDebug(DEBUG_FUNCTION_TRACE);
     }
 
+    
     /**
      * startForm($name = '', $action = '#', $method = 'post') should be the first function called for an HTML4Form
      * @param type $name

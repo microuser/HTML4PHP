@@ -42,7 +42,12 @@ class Html4PHPUI_Button {
         return $this->makeHtml();
     }
 
-    public function makeHtml() {
+    public static function makeDefaultButton(){
+        
+    }
+    
+    
+    public function makeHtml($text = 'Button', $class = '', $clickEvent = '', $id = null, $elementType = 'button', $extraTag = '', $href = "#") {
 
         $classes = explode(" ", $this->class);
         if ($classes == '') {

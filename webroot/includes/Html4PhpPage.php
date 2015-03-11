@@ -225,14 +225,13 @@ class Html4PhpPage extends Html4PhpUser {
         $this->appendBody($html . $this->newLine);
         return $html;
     }
-
     /**
-     * Add $html content wrapped in a div styped using $class or perhaps other tags using $extraTag optional parameter.
+     * Return $html content wrapped in a div styped using $class or perhaps other tags using $extraTag optional parameter.
      * @param type $html
      * @param type $class
      * @param type $extraTag
      */
-    public function addDiv($html, $class = '', $extraTag = '') {
+    public function makeDiv($html, $class = '', $extraTag = ''){
         $this->addDebug(DEBUG_FUNCTION_TRACE, '$html=' . $html . ', $class=' . $class . ', $extraTag=' . $extraTag);
         $out = "\n" . '<!-- beginAddDiv-->'
                 . "\n" . '<div';
@@ -245,7 +244,17 @@ class Html4PhpPage extends Html4PhpUser {
         $out .= '>' . $this->newLine;
         $out .= $html . $this->newLine;
         $out .= '</div> <!-- endAddDiv-->' . $this->newLine;
-        $this->appendBody($out);
+        return $out;
+    }
+    
+    /**
+     * Add $html content wrapped in a div styped using $class or perhaps other tags using $extraTag optional parameter.
+     * @param type $html
+     * @param type $class
+     * @param type $extraTag
+     */
+    public function addDiv($html, $class = '', $extraTag = '') {
+        $this->appendBody($this->makeDiv($html, $class, $extraTag));
     }
 
     /**

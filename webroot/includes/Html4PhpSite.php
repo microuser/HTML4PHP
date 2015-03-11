@@ -22,6 +22,7 @@ class Html4PhpSite extends Html4PhpPage {
     private $titleName;
     private $titleLink = 'index.php';
     private $topNav = '';
+    private $validator = null;
 
     public function __construct($title) {
         parent::__construct($title);
@@ -32,6 +33,13 @@ class Html4PhpSite extends Html4PhpPage {
 
         //TODO, call upon generate head.
         $this->constructLayout();
+    }
+
+    public function getValidator() {
+        if ($this->validator === null) {
+            $this->validator = new Html4PhpValidator();
+        }
+        return $this->validator;
     }
 
     public function constructLayout() {
@@ -54,25 +62,25 @@ class Html4PhpSite extends Html4PhpPage {
 
 
 
-  
+
         $this->generateLoginTopNavSmall();
         $this->layoutTopTitle($this->titleName, $this->titleLink, $this->topNav);
         $this->generateNavBar();
     }
 
-    private function generateLoginTopNavSmall(){
-        if(
-                    isset($_SESSION['PHPSESSIONID']) &&
-                    isset($_SESSION['LOGIN_TOKEN']) &&
-                    $this->verifyLoginToken($_SESSION['PHPSESSIONID'], $_SESSION['LOGIN_TOKEN'])
-                    )
-                {
-                $this->layoutTopNavSmall("<a href=\"/login/logout.php\">Logout</a>");
-            }else {
-                $this->layoutTopNavSmall("<a href=\"/login/\">Login</a>");
-            }
-              
+    private function generateLoginTopNavSmall() {
+        if (
+        //isset($_SESSION['PHPSESSIONID']) &&
+        //isset($_SESSION['LOGIN_TOKEN']) &&
+        //$this->verifyLoginToken($_SESSION['PHPSESSIONID'], $_SESSION['LOGIN_TOKEN'])
+                $this->loginWithSessionCookieToken()
+        ) {
+            $this->layoutTopNavSmall("<a href=\"/login/logout.php\">Logout</a>");
+        } else {
+            $this->layoutTopNavSmall("<a href=\"/login/\">Login</a>");
+        }
     }
+
     /**
      * Generates the navbar from the given data in /webroot/layouts/default/menu.php
      * The idea of $self parameter is to allow MVC type location masking, in the future.
@@ -85,10 +93,17 @@ class Html4PhpSite extends Html4PhpPage {
             $self = htmlspecialchars($_SERVER['PHP_SELF']);
         }
 
-        $selectedItemName = '';//Home';
+        $selectedItemName = ''; //Home';
         $selectedSubItemName = 'Home';
         $itemMenu = array();
         $subItemMenu = array('Home' => '/index.php');
+        if (isset($this->isLoggedIn) && $this->isLoggedIn) {
+            $loginMenu = array("Logout" => "/login/logout.php");
+        } else {
+            $loginMenu = array("Login" => "/login/index.php", "Register" => "/login/create.php");
+        }
+        $this->menu['Home'][1] = array_merge($this->menu['Home'][1], $loginMenu);
+
         foreach ($this->menu as $itemName => $subItems) {
             $itemLink = $subItems[0];
             $itemMenu[$itemName] = $itemLink;
@@ -106,9 +121,11 @@ class Html4PhpSite extends Html4PhpPage {
                 }
             }
         }
-        
+
         $this->layoutNavLevel1($itemMenu, $selectedItemName);
-        $this->layoutNavLevel2($this->menu[$selectedItemName][1], $selectedSubItemName);
+        if (isset($this->menu[$selectedItemName]) && isset($this->menu[$selectedItemName][1])) {
+            $this->layoutNavLevel2($this->menu[$selectedItemName][1], $selectedSubItemName);
+        }
     }
 
     private function layoutTopNavSmall($html = '') {

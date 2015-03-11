@@ -18,6 +18,7 @@ $this->resources = array(
         'resources/jquery-ui-1.11.3.custom/jquery-ui.structure.css',
         'resources/jquery-ui-1.11.3.custom/jquery-ui.theme.css',
         'resources/tablesorter/chili/style.css',
+        'resources/percentcolumns.css',
     ),
     'js' => array(
         'resources/jquery/jquery.js',

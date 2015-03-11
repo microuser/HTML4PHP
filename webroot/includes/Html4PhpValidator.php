@@ -1,5 +1,7 @@
 <?php
 
+include_once('Html4PhpValidatorData.php');
+
 /**
  * Description of Html4PHpValidator
  * @version 2015-01-12
@@ -17,17 +19,28 @@
 class Html4PhpValidator {
 
     public $validatorData = null;
+    private $isValid = true;
+    private $classData = array();
 
     public function __construct() {
-
         include('Html4PhpValidatorData.php');
-        $this->validatorData = $validatorData;
+        $this->validatorData = $validatorData; //this is set in the above include
+        return $this;
+    }
+
+    public function getIsValid() {
+        return $this->isValid;
     }
 
     public function isMatchWithRefArray($type, $subject, &$matches) {
         if (isset($this->validatorData[$type])) {
-            return preg_match('/' . $this->validatorData[$type] . '/', $subject, $matches);
+            $ret = preg_match('/' . $this->validatorData[$type] . '/', $subject, $matches);
+            if ($ret === false) {
+                $this->isValid = $ret;
+            }
+            return $ret;
         } else {
+            $this->isValid = false;
             return false;
         }
         echo "Type does not match entry.";
@@ -37,9 +50,49 @@ class Html4PhpValidator {
         if (isset($this->validatorData[$type])) {
             return preg_match('/' . $this->validatorData[$type] . '/', $subject);
         } else {
+            $this->isValid = false;
             return false;
         }
         echo "Type does not match entry.";
+    }
+
+    public function validate($type, $subject) {
+        if ($this->isMatch($type, $subject)) {
+            return $subject;
+        }
+        $this->isValid = false;
+        return null;
+    }
+
+    public function validateRequest(array $RequestNameTypeKeyPair) {
+        foreach ($RequestNameTypeKeyPair as $name => $type) {
+            if (isset($_REQUEST[$name])) {
+                //$this->__set($name,$this->validate($type, $_REQUEST[$name]));
+                $this->{$name} = $this->validate($type, $_REQUEST[$name]);
+            }
+        }
+    }
+
+    public function clearIsValid() {
+        $this->isValid = true;
+    }
+
+    public function __set($name, $value) {
+        $this->classData[$name] = $value;
+    }
+
+    public function __get($name) {
+        if (array_key_exists($name, $this->classData)) {
+            return $this->classData[$name];
+        }
+        //$trace = debug_backtrace();
+        //trigger_error(
+                //'Undefined property via __get(): ' . $name
+                //. ' in ' . $trace[0]['file']
+                // . ' on line ' . $trace[0]['line'], E_USER_NOTICE
+        //        );
+                
+        return null;
     }
 
 }

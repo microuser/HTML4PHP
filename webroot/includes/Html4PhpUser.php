@@ -201,6 +201,7 @@ class Html4PhpUser extends Html4PhpDatabase {
      */
     public function loginWithUsernamePassword($username, $password) {
         try {
+            
             $this->statementPrepare("SELECT * FROM user WHERE username=:username LIMIT 1");
             $this->statementBindParam(":username", $username);
             $this->statementExecute();
