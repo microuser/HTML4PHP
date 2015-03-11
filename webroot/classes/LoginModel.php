@@ -20,7 +20,8 @@ class LoginModel extends Html4PhpSite {
     public function makeCreateUserForm(){
         $form = new Html4PhpForm();
         $form-> startForm("Create");
-        $form->addFormInputAlphanumeric("Username", "username");
+        $form->addFormInputCustomRegexp("Username", "username", '', '', '0', 5000, 'Error', 'custom', $form->validatorData['alphanumeric']);
+        //$form->addFormInputAlphanumeric("Username", "username");
         $form->addFormInputEmail("Email", "email");
         $form->addFormInputPasswordAndConfirmation("Password","password");
         $form->addFormSubmitButton("","Create User");
@@ -43,7 +44,7 @@ class LoginModel extends Html4PhpSite {
         return $form->generateForm("Login");
     }
 
-    private function loginWithRequest() {
+    protected function loginWithRequest() {
         $v = new Html4PhpValidator();
         $v->validateRequest(
                 array(
@@ -55,6 +56,23 @@ class LoginModel extends Html4PhpSite {
             return $this->loginWithUsernamePassword($v->username, $v->password);
         }
         return null;
+    }
+    
+    protected function createUserWithRequest(){
+        $v = new Html4PhpValidator();
+        $v->validateRequest(
+                array(
+                    "username" => "alphanumeric",
+                    "email" => "email",
+                    "password" => "passwordSpecialCharLength8OrMore"
+                    )
+                );
+        if($v->getIsValid()){
+            $this->addDiv("Is Valid");
+            return $this->createUser($v->username, $v->email, $v->password);
+        }
+        return null;
+        
     }
 
 }

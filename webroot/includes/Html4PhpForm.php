@@ -1,5 +1,7 @@
 <?php
+
 include_once('Html4PhpValidator.php');
+
 /**
  * Html4Form creates a valid HTML form. Begin with using startForm(), add what you want, generate with generateForm();
  *
@@ -12,7 +14,7 @@ include_once('Html4PhpValidator.php');
  * @license https://github.com/microuser/HTML4PHP/blob/master/LICENSE MIT OR GPL
  * <pre>
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: The above copyright notice, this permission notice, and the public RSA key shall be included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
------BEGIN RSA PUBLIC KEY----- ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDfpROYHVyYHe2yok8Ut5OEmNzNriV9QGdzzPm1vFJSf8Wp9iBY74xf5oYdMmUOOfLlZfcrXP6Dc3VXOlTU7P46t14s9CcoGR6As2EamV7q9sAh4Nkr6xZb4kNdy9Bd4SxY/I3kxEbTpbpPq2T5B68xJWVjf83SQI43eyjO2Hv3iA8iEyifeyAGNVX46X3uuCsBftXF5Ng1GCCp6fMeCXeY0p3qmOg7m6SMGAXY97hKakNHPN2+vDP2fCOfefFmZihP/0mQNNLu1VNfI3MKonyfiHI4k1WAbFP2ozWSGmzv3dhej3wguYmRYKsgkK3ay5QoZQSLDHnZXtkuO9rJbAuz -----END RSA PUBLIC KEY-----
+  -----BEGIN RSA PUBLIC KEY----- ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDfpROYHVyYHe2yok8Ut5OEmNzNriV9QGdzzPm1vFJSf8Wp9iBY74xf5oYdMmUOOfLlZfcrXP6Dc3VXOlTU7P46t14s9CcoGR6As2EamV7q9sAh4Nkr6xZb4kNdy9Bd4SxY/I3kxEbTpbpPq2T5B68xJWVjf83SQI43eyjO2Hv3iA8iEyifeyAGNVX46X3uuCsBftXF5Ng1GCCp6fMeCXeY0p3qmOg7m6SMGAXY97hKakNHPN2+vDP2fCOfefFmZihP/0mQNNLu1VNfI3MKonyfiHI4k1WAbFP2ozWSGmzv3dhej3wguYmRYKsgkK3ay5QoZQSLDHnZXtkuO9rJbAuz -----END RSA PUBLIC KEY-----
  * </pre>
  */
 class Html4PhpForm {
@@ -24,16 +26,19 @@ class Html4PhpForm {
     private $formBody = array();
     private $formPasswordMeterCode = array();
     private $formCode = array();
+    public $validatorData = array();
 
     /**
      * 
      * @param string $title
      */
     public function __construct($title = '') {
-        ////$this->addDebug(DEBUG_FUNCTION_TRACE);
+        include 'Html4PhpValidatorData.php';
+        if (is_array($validatorData)) {
+            $this->validatorData = $validatorData;
+        }
     }
 
-    
     /**
      * startForm($name = '', $action = '#', $method = 'post') should be the first function called for an HTML4Form
      * @param type $name
@@ -112,34 +117,36 @@ class Html4PhpForm {
         }
         $this->addForm($title, 'input', $tags);
     }
-/**
- * addFormInputAlphanumericAllowEmpty($title = '', $name = '', $value = '', $placeholder = '', $minLength = null, $maxLength = null, $errorMsg = '', $dataValidation = 'length alphanumeric', $dataValidationAllowing = '')
- * @param type $title
- * @param type $name
- * @param type $value
- * @param type $placeholder
- * @param type $minLength
- * @param type $maxLength
- * @param type $errorMsg
- * @param type $dataValidation
- * @param type $dataValidationAllowing
- */
+
+    /**
+     * addFormInputAlphanumericAllowEmpty($title = '', $name = '', $value = '', $placeholder = '', $minLength = null, $maxLength = null, $errorMsg = '', $dataValidation = 'length alphanumeric', $dataValidationAllowing = '')
+     * @param type $title
+     * @param type $name
+     * @param type $value
+     * @param type $placeholder
+     * @param type $minLength
+     * @param type $maxLength
+     * @param type $errorMsg
+     * @param type $dataValidation
+     * @param type $dataValidationAllowing
+     */
     public function addFormInputAlphanumericAllowEmpty($title = '', $name = '', $value = '', $placeholder = '', $minLength = null, $maxLength = null, $errorMsg = '', $dataValidation = 'length alphanumeric', $dataValidationAllowing = '') {
         //$this->addDebug(DEBUG_FUNCTION_TRACE, '$title=' . $title . ', $name=' . $name . ', $placeholder=' . $placeholder . ', $minLength=' . $minLength . ', $maxLength=' . $maxLength . ', $errorMsg=' . $errorMsg . ', $dataValidation=' . $dataValidation . ', $dataValidationRegexp=' . $dataValidationRegexp);
         $this->addFormInputCustomRegexp($title, $name, $value, $placeholder, $minLength, $maxLength, $errorMsg, $dataValidation, '^([a-zA-Z0-9]*+)$');
     }
-/**
- * public function addFormInputCustomRegexp($title = '', $name = '', $value = '', $placeholder = '', $minLength = null, $maxLength = null, $errorMsg = '', $dataValidation = 'length custom', $dataValidationRegexp = '^([a-zA-Z0-9.,]+)$') {
- * @param type $title
- * @param type $name
- * @param type $value
- * @param type $placeholder
- * @param int $minLength
- * @param int $maxLength
- * @param type $errorMsg
- * @param type $dataValidation
- * @param type $dataValidationRegexp
- */
+
+    /**
+     * public function addFormInputCustomRegexp($title = '', $name = '', $value = '', $placeholder = '', $minLength = null, $maxLength = null, $errorMsg = '', $dataValidation = 'length custom', $dataValidationRegexp = '^([a-zA-Z0-9.,]+)$') {
+     * @param type $title
+     * @param type $name
+     * @param type $value
+     * @param type $placeholder
+     * @param int $minLength
+     * @param int $maxLength
+     * @param type $errorMsg
+     * @param type $dataValidation
+     * @param type $dataValidationRegexp
+     */
     public function addFormInputCustomRegexp($title = '', $name = '', $value = '', $placeholder = '', $minLength = null, $maxLength = null, $errorMsg = '', $dataValidation = 'length custom', $dataValidationRegexp = '^([a-zA-Z0-9.,]+)$') {
         //$this->addDebug(DEBUG_FUNCTION_TRACE, '$title=' . $title . ', $name=' . $name . ', $placeholder=' . $placeholder . ', $minLength=' . $minLength . ', $maxLength=' . $maxLength . ', $errorMsg=' . $errorMsg . ', $dataValidation=' . $dataValidation . ', $dataValidationRegexp=' . $dataValidationRegexp);
         $tags[] = 'name="' . $name . '"';
@@ -228,19 +235,20 @@ class Html4PhpForm {
         }
         $this->addForm($title, 'input', $tags);
     }
-/**
- * public function addFormInputNumber($title = '', $name = '', $value = '', $placeholder = '', $float = FALSE, $negative = TRUE, $range = array(), $dataValidationAllowing = '', $dataValidation = 'number', $errorMsg = '') {
- * @param type $title
- * @param type $name
- * @param type $value
- * @param type $placeholder
- * @param type $float
- * @param type $negative
- * @param type $range
- * @param type $dataValidationAllowing
- * @param type $dataValidation
- * @param type $errorMsg
- */
+
+    /**
+     * public function addFormInputNumber($title = '', $name = '', $value = '', $placeholder = '', $float = FALSE, $negative = TRUE, $range = array(), $dataValidationAllowing = '', $dataValidation = 'number', $errorMsg = '') {
+     * @param type $title
+     * @param type $name
+     * @param type $value
+     * @param type $placeholder
+     * @param type $float
+     * @param type $negative
+     * @param type $range
+     * @param type $dataValidationAllowing
+     * @param type $dataValidation
+     * @param type $errorMsg
+     */
     public function addFormInputNumber($title = '', $name = '', $value = '', $placeholder = '', $float = FALSE, $negative = TRUE, $range = array(), $dataValidationAllowing = '', $dataValidation = 'number', $errorMsg = '') {
         if ($float === TRUE) {
             if ($dataValidationAllowing != '') {
@@ -285,11 +293,11 @@ class Html4PhpForm {
         if ($value !== '' || $value !== null) {
             $tags[] = 'value="' . $value . '"';
         }
-        
+
         if ($name !== '' || $name !== null) {
             $tags[] = 'name="' . $name . '"';
         }
-        
+
         $this->addForm($title, 'input', $tags);
     }
 
@@ -654,4 +662,5 @@ var optionalConfig = {
         $out .= '</form></div>' . $this->newLine;
         return $out;
     }
+
 }

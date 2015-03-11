@@ -44,10 +44,12 @@ class Html4PhpUser extends Html4PhpDatabase {
                 $status = $this->statementExecute();
                 $this->errors[] = $this->getPdo()->errorCode();
                 $this->errors[] = "User created";
+                return true;
             } else {
                 $this->errors[] = "User not created.";
                 $this->resetUser();
                 $status = false;
+                return false;
             }
         } catch (Exception $ex) {
             $this->errors[] = "User not created." . $ex->getMessage();
@@ -201,7 +203,6 @@ class Html4PhpUser extends Html4PhpDatabase {
      */
     public function loginWithUsernamePassword($username, $password) {
         try {
-            
             $this->statementPrepare("SELECT * FROM user WHERE username=:username LIMIT 1");
             $this->statementBindParam(":username", $username);
             $this->statementExecute();

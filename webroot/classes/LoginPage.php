@@ -13,7 +13,7 @@ class LoginPage extends LoginModel {
         parent::__construct();
     }
 
-    public function addLoginPage() {
+    public function addLoginForm() {
         if (($this->loginWithSessionCookieToken() || $this->loginWithRequest())) {
             //Your logged in
             $this->add($this->makeLogoutForm());
@@ -21,13 +21,21 @@ class LoginPage extends LoginModel {
             $this->add($this->makeLoginForm());
         }
     }
-    
-    public function addLogoutPage(){
+
+    public function addLogoutForm() {
         $this->add($this->makeLogoutForm());
     }
-    
-    public function addCreatePage(){
-        $this->add($this->makeCreateUserForm());
+
+    public function addCreateUserForm() {
+        if ($this->createUserWithRequest()) {
+            $this->add("User Created. Check Email.");
+        } else {
+            $this->add($this->makeCreateUserForm());
+        }
+    }
+
+    public function __toString() {
+        return $this->generatePage();
     }
 
 }

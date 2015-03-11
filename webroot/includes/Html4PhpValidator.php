@@ -56,8 +56,15 @@ class Html4PhpValidator {
         echo "Type does not match entry.";
     }
 
-    public function validate($type, $subject) {
+    /**
+     * Returns the subject if it passes validation of the type, If it does not pass, set to null.
+     * @param type $type
+     * @param type $subject
+     * @return type
+     */
+    public function validateAndReturn($type, $subject) {
         if ($this->isMatch($type, $subject)) {
+            echo "<br>".$subject ." is Valid";
             return $subject;
         }
         $this->isValid = false;
@@ -65,12 +72,16 @@ class Html4PhpValidator {
     }
 
     public function validateRequest(array $RequestNameTypeKeyPair) {
+        $this->clearIsValid();
         foreach ($RequestNameTypeKeyPair as $name => $type) {
             if (isset($_REQUEST[$name])) {
                 //$this->__set($name,$this->validate($type, $_REQUEST[$name]));
-                $this->{$name} = $this->validate($type, $_REQUEST[$name]);
+                $this->{$name} = $this->validateAndReturn($type, $_REQUEST[$name]);
+            }else {
+                $this->isValid = false;
             }
         }
+        return $this->isValid;
     }
 
     public function clearIsValid() {
@@ -94,5 +105,7 @@ class Html4PhpValidator {
                 
         return null;
     }
+    
+    
 
 }
