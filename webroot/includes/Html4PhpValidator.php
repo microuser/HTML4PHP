@@ -28,6 +28,41 @@ class Html4PhpValidator {
         return $this;
     }
 
+    public function getRules($dataType) {
+        if (isset($this->validatorData[$dataType]) && is_array($this->validatorData[$dataType])) {
+            return $this->validatorData[$dataType];
+        }
+        return null;
+    }
+
+    public function getRuleRegex($dataType) {
+        if (isset($this->getRules($dataType)['regex'])) {
+            return $this->getRules($dataType)['regex'];
+        }
+        return null;
+    }
+
+    public function getRuleMinLength($dataType) {
+        if (isset($this->getRules($dataType)['minLength'])) {
+            return $this->getRules($dataType)['minLength'];
+        }
+        return null;
+    }
+
+    public function getRuleMaxLength($dataType) {
+        if (isset($this->getRules($dataType)['maxLength'])) {
+            return $this->getRules($dataType)['maxLength'];
+        }
+        return null;
+    }
+
+    public function getRuleErrorMsg($dataType) {
+        if (isset($this->getRules($dataType)['errorMsg'])) {
+            return $this->getRules($dataType)['errorMsg'];
+        }
+        return null;
+    }
+
     public function getIsValid() {
         return $this->isValid;
     }
@@ -46,9 +81,12 @@ class Html4PhpValidator {
         echo "Type does not match entry.";
     }
 
-    public function isMatch($type, $subject) {
-        if (isset($this->validatorData[$type])) {
-            return preg_match('/' . $this->validatorData[$type] . '/', $subject);
+    public function isMatch($dataType, $subject) {
+        if (isset($this->validatorData[$dataType]['regex'])) {
+            return 
+                ($this->getRuleMinLength($dataType) <= count($subject)) 
+                && ($this->getRuleMaxLength($dataType) >= count($subject)) 
+                && preg_match('/' . $this->getRuleRegex($dataType) . '/', $subject);
         } else {
             $this->isValid = false;
             return false;
@@ -64,7 +102,7 @@ class Html4PhpValidator {
      */
     public function validateAndReturn($type, $subject) {
         if ($this->isMatch($type, $subject)) {
-            echo "<br>".$subject ." is Valid";
+            echo "<br>" . $subject . " is Valid";
             return $subject;
         }
         $this->isValid = false;
@@ -77,7 +115,7 @@ class Html4PhpValidator {
             if (isset($_REQUEST[$name])) {
                 //$this->__set($name,$this->validate($type, $_REQUEST[$name]));
                 $this->{$name} = $this->validateAndReturn($type, $_REQUEST[$name]);
-            }else {
+            } else {
                 $this->isValid = false;
             }
         }
@@ -98,14 +136,12 @@ class Html4PhpValidator {
         }
         //$trace = debug_backtrace();
         //trigger_error(
-                //'Undefined property via __get(): ' . $name
-                //. ' in ' . $trace[0]['file']
-                // . ' on line ' . $trace[0]['line'], E_USER_NOTICE
+        //'Undefined property via __get(): ' . $name
+        //. ' in ' . $trace[0]['file']
+        // . ' on line ' . $trace[0]['line'], E_USER_NOTICE
         //        );
-                
+
         return null;
     }
-    
-    
 
 }

@@ -26,17 +26,42 @@ class Html4PhpForm {
     private $formBody = array();
     private $formPasswordMeterCode = array();
     private $formCode = array();
-    public $validatorData = array();
+    private $validator;
 
     /**
      * 
      * @param string $title
      */
     public function __construct($title = '') {
-        include 'Html4PhpValidatorData.php';
-        if (is_array($validatorData)) {
-            $this->validatorData = $validatorData;
-        }
+//include 'Html4PhpValidatorData.php';
+//if (is_array($validatorData)) {
+//    $this->validatorData = $validatorData;
+// }
+        $this->validator = new Html4PhpValidator();
+    }
+
+    public function getValidator() {
+        return $this->validator;
+    }
+
+    public function getRules($dataType) {
+        return $this->validator->getRules($dataType);
+    }
+
+    public function getRuleRegex($dataType) {
+        return $this->validator->getRuleRegex($dataType);
+    }
+
+    public function getRuleMinLength($dataType) {
+        return $this->validator->getRuleMinLength($dataType);
+    }
+
+    public function getRuleMaxLength($dataType) {
+        return $this->validator->getRuleMaxLength($dataType);
+    }
+
+    public function getRuleErrorMsg($dataType) {
+        return $this->validator->getRuleErrorMsg($dataType);
     }
 
     /**
@@ -46,9 +71,9 @@ class Html4PhpForm {
      * @param type $method
      */
     public function startForm($name = '', $action = '#', $method = 'post') {
-        //$this->addDebug(DEBUG_FUNCTION_TRACE, ', $name=' . $name . ', $action=' . $action . ', $method=' . $method);
+//$this->addDebug(DEBUG_FUNCTION_TRACE, ', $name=' . $name . ', $action=' . $action . ', $method=' . $method);
         if ($name == '') {
-            //if no name is provided, then make one up.
+//if no name is provided, then make one up.
             $this->name = 'form' . microtime(true) * 10000 % 1000000 . rand(0, 100000);
         } else {
             $this->name = $name;
@@ -61,7 +86,7 @@ class Html4PhpForm {
      * Clears date from Html4Form
      */
     public function resetForm() {
-        //$this->addDebug(DEBUG_FUNCTION_TRACE);
+//$this->addDebug(DEBUG_FUNCTION_TRACE);
         $this->name = '';
         $this->formBody = array();
         $this->formPasswordMeterCode = array();
@@ -73,7 +98,7 @@ class Html4PhpForm {
      * @param type $code
      */
     private function addCode($code) {
-        //$this->addDebug(DEBUG_FUNCTION_TRACE, '$code=' . $code);
+//$this->addDebug(DEBUG_FUNCTION_TRACE, '$code=' . $code);
         $this->formCode[] = $code;
     }
 
@@ -90,7 +115,7 @@ class Html4PhpForm {
      * @param type $dataValidation
      */
     public function addFormInputAlphanumeric($title = '', $name = '', $value = '', $placeholder = '', $minLength = null, $maxLength = null, $errorMsg = '', $dataValidation = 'length alphanumeric', $dataValidationAllowing = '') {
-        //$this->addDebug(DEBUG_FUNCTION_TRACE, '$title=' . $title . ', $name=' . $name . ', $placeholder=' . $placeholder . ', $minLength=' . $minLength . ', $maxLength=' . $maxLength . ', $errorMsg=' . $errorMsg . ', $dataValidation=' . $dataValidation);
+//$this->addDebug(DEBUG_FUNCTION_TRACE, '$title=' . $title . ', $name=' . $name . ', $placeholder=' . $placeholder . ', $minLength=' . $minLength . ', $maxLength=' . $maxLength . ', $errorMsg=' . $errorMsg . ', $dataValidation=' . $dataValidation);
         $tags[] = 'name="' . $name . '"';
         if ($dataValidation != '') {
             $tags[] = 'data-validation="' . $dataValidation . '"';
@@ -131,8 +156,61 @@ class Html4PhpForm {
      * @param type $dataValidationAllowing
      */
     public function addFormInputAlphanumericAllowEmpty($title = '', $name = '', $value = '', $placeholder = '', $minLength = null, $maxLength = null, $errorMsg = '', $dataValidation = 'length alphanumeric', $dataValidationAllowing = '') {
-        //$this->addDebug(DEBUG_FUNCTION_TRACE, '$title=' . $title . ', $name=' . $name . ', $placeholder=' . $placeholder . ', $minLength=' . $minLength . ', $maxLength=' . $maxLength . ', $errorMsg=' . $errorMsg . ', $dataValidation=' . $dataValidation . ', $dataValidationRegexp=' . $dataValidationRegexp);
+//$this->addDebug(DEBUG_FUNCTION_TRACE, '$title=' . $title . ', $name=' . $name . ', $placeholder=' . $placeholder . ', $minLength=' . $minLength . ', $maxLength=' . $maxLength . ', $errorMsg=' . $errorMsg . ', $dataValidation=' . $dataValidation . ', $dataValidationRegexp=' . $dataValidationRegexp);
         $this->addFormInputCustomRegexp($title, $name, $value, $placeholder, $minLength, $maxLength, $errorMsg, $dataValidation, '^([a-zA-Z0-9]*+)$');
+    }
+
+    /**
+     * 
+     * @param type $title
+     * @param type $name
+     * @param type $dataType
+     * @param type $value
+     * @param type $placeholder
+     * @param type $errorMsg
+     * @param type $extraTag
+     */
+    public function addFormInputWithDataType($title = '', $name = '', $dataType = 'alphanumeric', $value = '', $placeholder = '',  $errorMsg = '', $extraTag = '') {
+        if($errorMsg == null || $errorMsg == ''){
+            $errorMsg = $this->getRuleErrorMsg($dataType);
+        }
+        
+        $this->addFormInputCustomRegexp(
+                $title
+                , $name
+                , $value
+                , $placeholder
+                , $this->getRuleMinLength($dataType)
+                , $this->getRuleMaxLength($dataType)
+                , $errorMsg
+                , 'length custom'
+                , $this->getRuleRegex($dataType)
+                );
+
+    }
+
+    /**
+     * addFormInputPasswordConfirmationWithDataType($title = '', $name = '', $dataType = 'password', $errorMsg = '', $extraTag = '') {
+     * @param type $title
+     * @param type $name
+     * @param type $dataType
+     * @param type $errorMsg
+     * @param type $extraTag
+     */
+    public function addFormInputPasswordConfirmationWithDataType($title = '', $name = '', $dataType = 'password', $errorMsg = '', $extraTag = '') {
+        if($errorMsg == null || $errorMsg == ''){
+            $errorMsg = $this->getRuleRegex($dataType);
+        }
+        $this->addFormInputPasswordAndConfirmation(
+        $title
+        , $name
+        , $this->getRuleErrorMsg($dataType)
+        , 'confirmation'
+        , 0  //password strength
+        , $errorMsg
+        , $this->getRuleMinLength($dataType)
+        , $this->getRuleMaxLength($dataType)
+        , $extraTag);
     }
 
     /**
@@ -147,8 +225,8 @@ class Html4PhpForm {
      * @param type $dataValidation
      * @param type $dataValidationRegexp
      */
-    public function addFormInputCustomRegexp($title = '', $name = '', $value = '', $placeholder = '', $minLength = null, $maxLength = null, $errorMsg = '', $dataValidation = 'length custom', $dataValidationRegexp = '^([a-zA-Z0-9.,]+)$') {
-        //$this->addDebug(DEBUG_FUNCTION_TRACE, '$title=' . $title . ', $name=' . $name . ', $placeholder=' . $placeholder . ', $minLength=' . $minLength . ', $maxLength=' . $maxLength . ', $errorMsg=' . $errorMsg . ', $dataValidation=' . $dataValidation . ', $dataValidationRegexp=' . $dataValidationRegexp);
+    public function addFormInputCustomRegexp($title = '', $name = '', $value = '', $placeholder = '', $minLength = null, $maxLength = null, $errorMsg = '', $dataValidation = 'length custom', $dataValidationRegexp = '^([a-zA-Z0-9.,]+)$', $extraTag = '') {
+//$this->addDebug(DEBUG_FUNCTION_TRACE, '$title=' . $title . ', $name=' . $name . ', $placeholder=' . $placeholder . ', $minLength=' . $minLength . ', $maxLength=' . $maxLength . ', $errorMsg=' . $errorMsg . ', $dataValidation=' . $dataValidation . ', $dataValidationRegexp=' . $dataValidationRegexp);
         $tags[] = 'name="' . $name . '"';
         if ($dataValidation != '') {
             $tags[] = 'data-validation="' . $dataValidation . '"';
@@ -174,6 +252,7 @@ class Html4PhpForm {
         if (!$value == '' || !$value == null) {
             $tags[] = 'value="' . $value . '"';
         }
+        $tags[] = $extraTag;
         $this->addForm($title, 'input', $tags);
     }
 
@@ -209,7 +288,7 @@ class Html4PhpForm {
      * @param type $dataValidation
      */
     public function addFormInputEmail($title = '', $name = '', $value = '', $placeholder = '', $minLength = null, $maxLength = null, $errorMsg = '', $dataValidation = 'length email') {
-        //$this->addDebug(DEBUG_FUNCTION_TRACE, '$title=' . $title . ', $name=' . $name . ', $placeholder=' . $placeholder . ', $minLength=' . $minLength . ', $maxLength=' . $maxLength . ', $errorMsg=' . $errorMsg . ', $dataValidation=' . $dataValidation);
+//$this->addDebug(DEBUG_FUNCTION_TRACE, '$title=' . $title . ', $name=' . $name . ', $placeholder=' . $placeholder . ', $minLength=' . $minLength . ', $maxLength=' . $maxLength . ', $errorMsg=' . $errorMsg . ', $dataValidation=' . $dataValidation);
         $tags[] = 'name="' . $name . '"';
         if ($dataValidation != '') {
             $tags[] = 'data-validation="' . $dataValidation . '"';
@@ -303,31 +382,55 @@ class Html4PhpForm {
 
     /**
      * Add a label and an input field which validates as password with strength
-     * addFormInputPassword($title = '', $name = '', $passStrength = '', $errorMsg = '', $dataValidation = 'strength') {
+     * addFormInputPassword($title, $name, $passStrength, $errorMsg, $regexp, $minLength, $maxLength)
      * @param type $title
      * @param type $name
      * @param int $passStrength
-     * @param type $errorMsg
-     * @param type $dataValidation
+     * @param string $errorMsg
+     * @param string $regexp
+     * @param int $minLength
+     * @param int $maxLength
+     * @param string $dataValidation
      */
-    public function addFormInputPassword($title = '', $name = '', $passStrength = '', $errorMsg = '', $dataValidation = 'strength') {
-        //$this->addDebug(DEBUG_FUNCTION_TRACE, '$title=' . $title . ', $name=' . $name);
+    public function addFormInputPassword($title = '', $name = '', $passStrength = '1', $errorMsg = '', $regexp = '', $minLength = '', $maxLength = '', $dataValidation = 'strength') {
+//$this->addDebug(DEBUG_FUNCTION_TRACE, '$title=' . $title . ', $name=' . $name);
+        //If regexp was given
+        if ($regexp != null && $regexp != '') {
+            $dataValidation .= ' custom';
+            $tags[] = 'data-validation-regexp="' . $regexp . '"';
+        }
+
+        //Add rule for length, if one of them was given
+        if (count($minLength) > 0 || count($maxLength) > 0) {
+            $dataValidation .= ' length';
+
+            //If its the one that wasnt given, then set it to its default
+            if ($minLength == null || $minLength == '' || !is_numeric($minLength)) {
+                $minLength = '0';
+            }
+            if ($minLength == null || $minLength == '' || !is_numeric($minLength)) {
+                $minLength = '5000';
+            }
+
+            $tags[] = 'data-validation-length="' . $minLength . '-' . $maxLength . '"';
+        }
+
         $tags[] = 'name="' . $name . '"';
         if ($dataValidation != '') {
             $tags[] = 'data-validation="' . $dataValidation . '"';
         }
 
-        if ($passStrength == '' || !is_numeric($passStrength)) {
+        if ($passStrength == null || $passStrength == '' || !is_numeric($passStrength)) {
             $passStrength = 1;
         }
         $tags[] = 'data-validation-strength="' . $passStrength . '"';
-
 
         if ($errorMsg == '' || $errorMsg == null) {            //If we construct an error message
             $tags[] = 'data-validation-error-msg="' . $title . ' has to be a somewhat strong password"';
         } else {            //If we want an custom error message
             $tags[] = 'data-validation-error-msg="' . $errorMsg . '"';
         }        //If we want a default value
+
         $tags[] = 'type="password"';
         $tags[] = '><div class="password-meter-bg"></div'; //left trailing closing bracket open on purpose. Must be last tag
         $this->formPasswordMeterCode[] = '$(\'input[name="' . $name . '"]\').displayPasswordStrength(optionalConfig);';
@@ -336,14 +439,21 @@ class Html4PhpForm {
 
     /**
      * Add a label and an input feild for validation of the previously entered password field
+     * addFormInputPasswordAndConfirmation($title = '', $name = '', $errorMsg = '', $dataValidation = 'confirmation', $passStrength = '1', $regexp = '', $minLength = '', $maxLength = '', $extraTag = '')
      * @param type $title
      * @param type $name
      * @param type $errorMsg
      * @param type $dataValidation
+     * @param type $passStrength
+     * @param type $regexp
+     * @param type $minLength
+     * @param type $maxLength
+     * @param type $extraTag
      */
-    public function addFormInputPasswordAndConfirmation($title = '', $name = '', $errorMsg = '', $dataValidation = 'confirmation') {
+    public function addFormInputPasswordAndConfirmation($title = '', $name = '', $errorMsg = '', $dataValidation = 'confirmation', $passStrength = '1', $regexp = '', $minLength = '', $maxLength = '', $extraTag = '') {
         //$this->addDebug(DEBUG_FUNCTION_TRACE, '$title=' . $title . ', $name=' . $name . ', $errorMsg=' . $errorMsg . ', $dataValidation=' . $dataValidation);
-        $this->addFormInputPassword($title, $name . "_confirmation");
+        //$this->addFormInputPassword($title, $name . "_confirmation");
+        $this->addFormInputPassword($title, $name . "_confirmation", $passStrength, $errorMsg, $regexp, $minLength, $maxLength, 'strength');
 
         $tags[] = 'name="' . $name . '"';
         if ($dataValidation != '') {
@@ -356,6 +466,7 @@ class Html4PhpForm {
             $tags[] = 'data-validation-error-msg="' . $errorMsg . '"';
         }        //If we want a default value
         $tags[] = 'type="password"';
+        $tags[] = $extraTag;
         $this->addForm("Repeat " . $title, 'input', $tags);
     }
 
@@ -371,7 +482,7 @@ class Html4PhpForm {
      * @param type $dataValidationFormat
      */
     public function addFormInputDate($title = '', $name = '', $value = '', $placeholder = '', $helpMsg = 'yyyy-mm-dd (Year-Month-Day)', $errorMsg = '', $dataValidation = 'date', $dataValidationFormat = 'yyyy-mm-dd') {
-        //$this->addDebug(DEBUG_FUNCTION_TRACE, '$title=' . $title . ', $name=' . $name . ', $value=' . $value . ', $placeholder=' . $placeholder . ', $helpMsg=' . $helpMsg . ', $errorMsg=' . $errorMsg . ', $dataValidation=' . $dataValidation . ', $dataValidationFormat=' . $dataValidationFormat);
+//$this->addDebug(DEBUG_FUNCTION_TRACE, '$title=' . $title . ', $name=' . $name . ', $value=' . $value . ', $placeholder=' . $placeholder . ', $helpMsg=' . $helpMsg . ', $errorMsg=' . $errorMsg . ', $dataValidation=' . $dataValidation . ', $dataValidationFormat=' . $dataValidationFormat);
         $tags[] = 'name="' . $name . '"';
         if ($dataValidation != '') {
             $tags[] = 'data-validation="' . $dataValidation . '"';
@@ -455,7 +566,7 @@ class Html4PhpForm {
      * @param type $dataValidation
      */
     public function addFormTextArea($title = '', $name = '', $maxLength = 250, $value = '', $dataValidation = 'presentation length', $charactersPerLine = 83, $height = '') {
-        //$this->addDebug(DEBUG_FUNCTION_TRACE, '$title=' . $title . ', $name=' . $name . ', $maxLength=' . $maxLenth . ', $height=' . $height . ', $value=' . $value . ', $dataValidation=' . $dataValidation);
+//$this->addDebug(DEBUG_FUNCTION_TRACE, '$title=' . $title . ', $name=' . $name . ', $maxLength=' . $maxLenth . ', $height=' . $height . ', $value=' . $value . ', $dataValidation=' . $dataValidation);
         if ($height == '') {
             $height = ceil($maxLength / $charactersPerLine + 0.5);
         }
@@ -469,7 +580,7 @@ class Html4PhpForm {
                 . '$(\'textarea[name="' . $name . '"]\').parent().css("height","' . ($height) . 'em");' . $this->newLine
                 . '$(\'textarea[name="' . $name . '"]\').css("height","' . $height . 'em");'
                 . '</script>' . $this->newLine;
-        //$afterElement .= '<div style="clear:both;"></div>';
+//$afterElement .= '<div style="clear:both;"></div>';
         $this->addForm($title, 'textarea', $tags, $afterElement, $value);
     }
 
@@ -481,7 +592,7 @@ class Html4PhpForm {
      * @param type $maxSize
      */
     public function addFormFileUpload($title = '', $name = '', $mimeTypes = 'jpg, png, gif', $maxSize = '2048kb') {
-        //$this->addDebug(DEBUG_FUNCTION_TRACE, '$title=' . $title . ', $name=' . $name . ', $mimeTypes=' . $mimeTypes . ', $maxSize=' . $maxSize);
+//$this->addDebug(DEBUG_FUNCTION_TRACE, '$title=' . $title . ', $name=' . $name . ', $mimeTypes=' . $mimeTypes . ', $maxSize=' . $maxSize);
         $tags[] = 'name="' . $name . '"';
         $tags[] = 'type="file"';
 
@@ -510,7 +621,7 @@ class Html4PhpForm {
      * @param type $value
      */
     public function addFormSubmitButton($title = '', $name = '', $value = 'Submit') {
-        //$this->addDebug(DEBUG_FUNCTION_TRACE, '$title=' . $title . ', $name=' . $name . ', $value=' . $value);
+//$this->addDebug(DEBUG_FUNCTION_TRACE, '$title=' . $title . ', $name=' . $name . ', $value=' . $value);
         $tags[] = 'name="' . $name . '"';
         $tags[] = 'value="' . $value . '"';
         $tags[] = 'type="submit"';
@@ -525,7 +636,7 @@ class Html4PhpForm {
      * @param type $values
      */
     public function addFormCheckboxes($title = '', $name = '', $values = array()) {
-        //$this->addDebug(DEBUG_FUNCTION_TRACE, '$title=' . $title . ', $name=' . $name . '[], $values=' . print_r($values, 1));
+//$this->addDebug(DEBUG_FUNCTION_TRACE, '$title=' . $title . ', $name=' . $name . '[], $values=' . print_r($values, 1));
         foreach ($values as $label => $checkbox) {
             if ($checkbox == TRUE) {
                 $checked = 'checked="true"';
@@ -542,7 +653,7 @@ class Html4PhpForm {
         }
         $insideElements[] = '</div><!-- end CheckboxGroup -->' . $this->newLine;
         $this->addForm($title, "div", array('class="checkBoxGroup"'), '', $insideElements);
-        //Unifinishsed
+//Unifinishsed
     }
 
     /**
@@ -552,7 +663,7 @@ class Html4PhpForm {
      * @param type $values
      */
     public function addFormRadioButtons($title = '', $name = '', $values = array()) {
-        //$this->addDebug(DEBUG_FUNCTION_TRACE, '$title=' . $title . ', $name=' . $name . ', $values=' . print_r($values, 1));
+//$this->addDebug(DEBUG_FUNCTION_TRACE, '$title=' . $title . ', $name=' . $name . ', $values=' . print_r($values, 1));
         foreach ($values as $label => $checkbox) {
             if ($checkbox == TRUE) {
                 $checked = 'checked="true"';
@@ -569,7 +680,7 @@ class Html4PhpForm {
         }
         $insideElements[] = '</div><!-- end CheckboxGroup -->' . $this->newLine;
         $this->addForm($title, "div", array('class="checkBoxGroup"'), '', $insideElements);
-        //Unifinishsed
+//Unifinishsed
     }
 
     /**
@@ -582,7 +693,7 @@ class Html4PhpForm {
      * @param array $insideElements
      */
     private function addForm($title, $controlElement, Array $tags, $afterElement = '', $insideElements = array()) {
-        //$this->addDebug(DEBUG_FUNCTION_TRACE, '$title=' . $title . ', $controlElement=' . $controlElement . ', $tags=' . print_r($tags, 1) . ', $afterElement=' . $afterElement);
+//$this->addDebug(DEBUG_FUNCTION_TRACE, '$title=' . $title . ', $controlElement=' . $controlElement . ', $tags=' . print_r($tags, 1) . ', $afterElement=' . $afterElement);
         $out = '<div class="controlGroup">' . $this->newLine
                 . '<label class="controlLabel">' . $this->newLine
                 . $title . $this->newLine
@@ -597,12 +708,12 @@ class Html4PhpForm {
         if (!empty($insideElements)) {
             $ieout = '';
             if (is_array($insideElements)) {
-                // as array
+// as array
                 foreach ($insideElements as $ie) {
                     $ieout .= $ie;
                 }$out .= $ieout;
             } else {
-                // as string
+// as string
                 $out .= $insideElements;
             }
         }
@@ -625,7 +736,7 @@ class Html4PhpForm {
      * @param type $title
      */
     public function generateForm($title) {
-        //$this->addDebug(DEBUG_FUNCTION_TRACE, '$title=' . $title);
+//$this->addDebug(DEBUG_FUNCTION_TRACE, '$title=' . $title);
         $out = '<div class="formTitle">' . $title . '</div><!--end formTitle--><div><form name="' . $this->name . '" action="' . $this->action . '" method="' . $this->method . '">' . $this->newLine;
         $code = '';
         foreach ($this->formCode as $codeItem) {

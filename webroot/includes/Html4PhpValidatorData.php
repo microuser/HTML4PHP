@@ -15,20 +15,100 @@
  * </pre>
  */
 $validatorData = array(
-    'password' => '(?=.*[a-z]+.*)(?=.*[A-Z]+.*)(?=.*[0-9]+.*)',
-    'passwordLength8OrMore' => '(?=.*[a-z]+.*)(?=.*[A-Z]+.*)(?=.*[0-9]+.*)(?=.{8,})',
-    'passwordSpecialCharLength8OrMore' => '(?=.*[`~!@#$%^&*()\-_+=\[\]\{\}\\\\|;:\'\",.<>\/? ]+.*)(?=.*[a-z]+.*)(?=.*[A-Z]+.*)(?=.*[0-9]+.*)(?=.{8,})',
-    'numbersInteger' => '^[0-9]+$',
-    'numbersIntegerAllowNegative' => '^-?[0-9]+$',
-    'numbersWithDecimals' => '^[0-9]*(\\.[0-9]+)?$',
-    'numbersDecimalsAllowNegative' => '^(-?[0-9]*\.?[0-9]+)$',
-    'numbersWithDecimalsAndCommas' => '^[0-9]{0,3}(,[0-9]{3})*(\.[0-9]*)?$',
-    'numbersWithDecimalsAndCommasAllowNegative' => '^-?[0-9]{0,3}(,[0-9]{3})*(\.[0-9]*)?$',
-    'numbersScientific' => '^-?[0-9]+e?-?[0-9]+$',
-    'alpha' => '[a-zA-Z]',
-    'alpha' => '^(([0-9]{3,6})|([0-9]{9}))$',
-    'alphanumeric' => '[a-zA-Z0-9]',
-    'specialChar' => '^[`~!@#$%^&*()\-_+=\[\]\{\}\\\\|;:\'\",.<>\/? ]+$',
-    'numbers' => '^-?([0-9]{0,3}(,[0-9]{3})*(\\.[0-9]+)?|[0-9]+(\\.[0-9]+)?(e-?[0-9]+)?)$',
-    'email' => '^[.]+@[.]+\.[.]+&', //This could be better
+    'password' => array(
+        'regex'=> '(?=.*[a-z]+.*)(?=.*[A-Z]+.*)(?=.*[0-9]+.*)',
+        'minLength'=>'8',
+        'maxLength' =>'512',
+        'errorMsg' => 'must contain: 1 lowercase, 1 uppercase, 1 number, with length 8 or more'
+    ),
+    'passwordLength8OrMore' => array(
+        'regex' => '(?=.*[a-z]+.*)(?=.*[A-Z]+.*)(?=.*[0-9]+.*)(?=.{8,})',
+        'minLength' => '8',
+        'maxLength' => '512',
+        'errorMsg' => 'Must be at least 8 characters containing: lowercase, uppercase, number'
+    ),
+    'passwordSpecialCharLength8OrMore' => array(
+        'regex' => '(?=.*[`~!@#$%^&*()\-_+=\[\]\{\}\\\\|;:\'\",.<>\/? ]+.*)(?=.*[a-z]+.*)(?=.*[A-Z]+.*)(?=.*[0-9]+.*)(?=.{8,})',
+        'minLength' => '8',
+        'maxLength' => '512',
+        'errorMsg' => 'Must be at least 8 characters containing: special-character, lowercase, uppercase, number',
+        ),
+    'numbersInteger' => array(
+        'regex' => '^[0-9]+$',
+        'minLength' => '0',
+        'maxLength' => '10',
+        'errorMsg' => 'Must be a positive whole number, max length of 10',
+        ),
+    'numbersIntegerAllowNegative' => array(
+        'regex' => '^-?[0-9]+$',
+        'minLength' => '0',
+        'maxLength' => '11',
+        'errorMsg' => 'Must be a whole number, max length of 11',
+        ),
+    'numbersWithDecimals' => array(
+        'regex' => '^[0-9]*(\\.[0-9]+)?$',
+        'minLength' => '0',
+        'maxLength' => '512',
+        'errorMsg' => 'Must be a positive number, can contain decimal point',
+        ),
+    'numbersDecimalsAllowNegative' => array(
+        'regex' => '^(-?[0-9]*\.?[0-9]+)$',
+        'minLength' => '0',
+        'maxLength' => '512',
+        'errorMsg' => 'Must be a number, can contain a decimal point or negative sign',
+        ),
+    'numbersWithDecimalsAndCommas' => array(
+        'regex' => '^[0-9]{0,3}(,[0-9]{3})*(\.[0-9]*)?$',
+        'minLength' => '',
+        'maxLength' => '',
+        'errorMsg' => '',
+        ),
+    'numbersWithDecimalsAndCommasAllowNegative' => array(
+        'regex' => '^-?[0-9]{0,3}(,[0-9]{3})*(\.[0-9]*)?$',
+        'minLength' => '',
+        'maxLength' => '',
+        'errorMsg' => '',
+        ),
+    'numbersScientific' => array(
+        'regex' => '^-?[0-9]+e?-?[0-9]+$',
+        'minLength' => '',
+        'maxLength' => '',
+        'errorMsg' => '',
+        ),
+    'alpha' => array(
+        'regex' => '[a-zA-Z]+',
+        'minLength' => '',
+        'maxLength' => '',
+        'errorMsg' => '',
+        ),
+    'alphanumeric' => array(
+        'regex' => '[a-zA-Z0-9]+',
+        'minLength' => '',
+        'maxLength' => '',
+        'errorMsg' => '',
+        ),
+    'specialChar' => array(
+        'regex' => '^[`~!@#$%^&*()\-_+=\[\]\{\}\\\\|;:\'\",.<>\/? ]+$',
+        'minLength' => '',
+        'maxLength' => '',
+        'errorMsg' => '',
+        ),
+    'numbers' => array(
+        'regex' => '^-?([0-9]{0,3}(,[0-9]{3})*(\\.[0-9]+)?|[0-9]+(\\.[0-9]+)?(e-?[0-9]+)?)$',
+        'minLength' => '',
+        'maxLength' => '',
+        'errorMsg' => '',
+        ),
+    'email' => array(
+        'regex' => '.+@.+\\..+', //This could be better
+        'minLength' => '0',
+        'maxLength' => '512',
+        'errorMsg' => 'Emails have an ampersat and a dot',
+        ),
+    'username' => array(
+        'regex' => '[a-zA-Z0-9]+',
+        'maxLength' => '512',
+        'minLength' => '2',
+        'errorMsg' => 'Must be uppercase, lowercase, or number, two or more characters'
+    )
 );

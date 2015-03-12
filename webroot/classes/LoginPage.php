@@ -26,8 +26,9 @@ class LoginPage extends LoginModel {
         $this->add($this->makeLogoutForm());
     }
 
+    
     public function addCreateUserForm() {
-        if ($this->createUserWithRequest()) {
+        if ($this->requestCreateUser()) {
             $this->add("User Created. Check Email.");
         } else {
             $this->add($this->makeCreateUserForm());

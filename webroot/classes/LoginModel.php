@@ -20,10 +20,9 @@ class LoginModel extends Html4PhpSite {
     public function makeCreateUserForm(){
         $form = new Html4PhpForm();
         $form-> startForm("Create");
-        $form->addFormInputCustomRegexp("Username", "username", '', '', '0', 5000, 'Error', 'custom', $form->validatorData['alphanumeric']);
-        //$form->addFormInputAlphanumeric("Username", "username");
-        $form->addFormInputEmail("Email", "email");
-        $form->addFormInputPasswordAndConfirmation("Password","password");
+        $form->addFormInputWithDataType("Username", "username", "username");
+        $form->addFormInputWithDataType("Email","email","email");
+        $form->addFormInputPasswordConfirmationWithDataType("Password","password","password");
         $form->addFormSubmitButton("","Create User");
         return $form->generateForm("Create User");
     }
@@ -39,7 +38,8 @@ class LoginModel extends Html4PhpSite {
         $form = new Html4PhpForm("Login");
         $form->startForm("login");
         $form->addFormInputAlphanumeric("Username", "username");
-        $form->addFormInputPassword("Password", 'password');
+        //$form->addFormInputPassword("Password", 'password');
+        $form->addFormInputPasswordConfirmationWithDataType("Password","password","password");
         $form->addFormSubmitButton("");
         return $form->generateForm("Login");
     }
@@ -58,13 +58,14 @@ class LoginModel extends Html4PhpSite {
         return null;
     }
     
-    protected function createUserWithRequest(){
+    
+    protected function requestCreateUser(){
         $v = new Html4PhpValidator();
         $v->validateRequest(
                 array(
-                    "username" => "alphanumeric",
+                    "username" => "username",
                     "email" => "email",
-                    "password" => "passwordSpecialCharLength8OrMore"
+                    "password" => "password"
                     )
                 );
         if($v->getIsValid()){

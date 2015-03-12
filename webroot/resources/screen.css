@@ -462,15 +462,15 @@
     }
 
     form div.controlGroup div.has-success input{
-        background:#eeffee ;
+        background:#003300 ;
         border-color: #009900;
     }
 
     form div.controlGroup div.has-error input{
-        background:#ffeeee;
+        background:#330000;
     }
     form div.controlGroup div.has-error span{
-        color:#660000;
+        color:#FFCCCC;
         float:left;
     }
 
