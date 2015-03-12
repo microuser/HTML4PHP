@@ -14,9 +14,6 @@ class LoginModel extends Html4PhpSite {
         parent::__construct($title);
     }
 
-
-
-    
     public function makeCreateUserForm(){
         $form = new Html4PhpForm();
         $form-> startForm("Create");
@@ -26,7 +23,25 @@ class LoginModel extends Html4PhpSite {
         $form->addFormSubmitButton("","Create User");
         return $form->generateForm("Create User");
     }
-
+    
+    protected function requestCreateUser(){
+        $v = new Html4PhpValidator();
+        $v->validateRequest(
+                array(
+                    "username" => "username",
+                    "email"    => "email",
+                    "password" => "password"
+                    )
+                );
+        if($v->getIsValid()){
+            $this->addDiv("Is Valid");
+            return $this->createUser($v->username, $v->email, $v->password);
+        }
+        return null;
+    }
+    
+    
+    
     public function makeLogoutForm(){
         $form = new Html4PhpForm("Logout");
         $form->startForm("logout");
@@ -59,21 +74,6 @@ class LoginModel extends Html4PhpSite {
     }
     
     
-    protected function requestCreateUser(){
-        $v = new Html4PhpValidator();
-        $v->validateRequest(
-                array(
-                    "username" => "username",
-                    "email" => "email",
-                    "password" => "password"
-                    )
-                );
-        if($v->getIsValid()){
-            $this->addDiv("Is Valid");
-            return $this->createUser($v->username, $v->email, $v->password);
-        }
-        return null;
-        
-    }
+
 
 }

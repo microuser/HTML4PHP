@@ -401,7 +401,7 @@ class Html4PhpForm {
         }
 
         //Add rule for length, if one of them was given
-        if (count($minLength) > 0 || count($maxLength) > 0) {
+        if (strlen($minLength) > 0 || strlen($maxLength) > 0) {
             $dataValidation .= ' length';
 
             //If its the one that wasnt given, then set it to its default
