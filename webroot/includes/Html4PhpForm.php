@@ -212,6 +212,19 @@ class Html4PhpForm {
         , $this->getRuleMaxLength($dataType)
         , $extraTag);
     }
+    
+    public function addFormInputPasswordWithDataType($title = 'Password', $name = 'password', $dataType = 'password', $errorMsg = '', $extraTag = ''){
+        $this->addFormInputPassword(
+                $title
+                , $name
+                , 0
+                , $this->getRuleErrorMsg($dataType)
+                , $this->getRuleRegex($dataType)
+                , $this->getRuleMinLength($dataType)
+                , $this->getRuleMaxLength($dataType)
+                , 'strength');
+
+    }
 
     /**
      * public function addFormInputCustomRegexp($title = '', $name = '', $value = '', $placeholder = '', $minLength = null, $maxLength = null, $errorMsg = '', $dataValidation = 'length custom', $dataValidationRegexp = '^([a-zA-Z0-9.,]+)$') {

@@ -30,6 +30,16 @@ class LoginPage extends LoginModel {
     public function addCreateUserForm() {
         if ($this->requestCreateUser()) {
             $this->add("User Created. Check Email.");
+            if(count($this->messages) > 0){
+                foreach($this->messages as $message){
+                    $this->addDiv($message, "info");
+                }
+            }
+            if(count($this->errors) > 0){
+                foreach($this->errors as $errors){
+                    $this->addDiv($errors, "warning");
+                }
+            }
         } else {
             $this->add($this->makeCreateUserForm());
         }

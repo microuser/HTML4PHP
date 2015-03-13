@@ -1,6 +1,7 @@
 <?php
 
 include_once "Html4PhpDatabase.php";
+include_once "Html4PhpValidator.php";
 
 /**
  * Description of Html4User
@@ -26,29 +27,35 @@ class Html4PhpUser extends Html4PhpDatabase {
     private $token = null;
     public $errors = array();
     public $messages = array();
+    private $validator = null;
 
     public function __construct($title) {
         $this->addDebug(DEBUG_FUNCTION_TRACE);
         parent::__construct($title);
+        $this->validator = new Html4PhpValidator();
         session_start();
     }
 
     public function createUser($username, $email, $password) {
         $this->addDebug(DEBUG_FUNCTION_TRACE, '$username=' . $username . ', $password=Hidden' . ', $email=' . $email);
         try {
+            xdebug_break();
             if ($this->setUsername($username) && $this->setEmail($email) && $this->setPasshashFromPassword($password)) {
-                $this->statementPrepare('INSERT INTO user (username, email, passhash) VALUES (:username, :email, :passhash)');
+                $this->statementPrepare('INSERT INTO `user` (username, email, passhash) VALUES (:username, :email, :passhash)');
                 $this->statementBindParam(":username", $this->username);
                 $this->statementBindParam(":email", $this->email);
                 $this->statementBindParam(":passhash", $this->passhash);
                 $status = $this->statementExecute();
                 $this->errors[] = $this->getPdo()->errorCode();
-                $this->errors[] = "User created";
+                $this->messages[] = "User created";
+                echo "User Created";
+                xdebug_break();
                 return true;
             } else {
                 $this->errors[] = "User not created.";
                 $this->resetUser();
                 $status = false;
+                xdebug_break();
                 return false;
             }
         } catch (Exception $ex) {
@@ -57,9 +64,11 @@ class Html4PhpUser extends Html4PhpDatabase {
             if ($ex->getCode() == 23000) {
                 $this->addDebug(DEBUG_VERBOSE, "<br/>Username is taken<br/>");
                 $this->addDebug(DEBUG_VERBOSE, "PDO Exception Code:" . $ex->getCode());
+                xdebug_break();
                 return FALSE;
             }
             $this->addDebug(DEBUG_ERROR_LOG, $ex->getMessage());
+            xdebug_break();
         }
 //Insertion was good
 //$this->addDebug(DEBUG_VERBOSE, "createUser: Status was:" . $status);
@@ -81,8 +90,7 @@ class Html4PhpUser extends Html4PhpDatabase {
         return $username = $this->statementFetchAssoc()['username'];
     }
 
-    
-        /**
+    /**
      * select the email from the user table matching the username.
      * @return string
      */
@@ -99,10 +107,8 @@ class Html4PhpUser extends Html4PhpDatabase {
         }
         return false;
     }
-    
-    
-    
-        /**
+
+    /**
      * Get the number of users in the user table
      * @return type
      */
@@ -116,8 +122,7 @@ class Html4PhpUser extends Html4PhpDatabase {
             $this->addDebug(DEBUG_ERROR, "Exception getting user count from user table. " . $ex->getMessage());
         }
     }
-    
-    
+
     /**
      * Perform login with Email and password. Select details from user table matching email. Pass userDetails to loginWithUserDetailsAndPassword
      * @param type $email
@@ -142,9 +147,7 @@ class Html4PhpUser extends Html4PhpDatabase {
         $this->errors[] = 'Error on login with email and password.';
         return false;
     }
-    
-    
-    
+
     /**
      * Perform login using existing token by matching information in $_SESSION and $_COOKIE. Call selectAndSetUserClassDetilasWithUseridAndToken with information from $_SESSION. If valid, then set $this->loggedin = true;
      * @return boolean
@@ -166,9 +169,10 @@ class Html4PhpUser extends Html4PhpDatabase {
         }
         return false;
     }
-    
+
     /**
-     * If the parameters $password matches the password hash in userDetails, then call $this->makeTokenAndUpdateUserId.  
+     * If the parameters $password matches the password hash in userDetails,
+     *  then call $this->makeTokenAndUpdateUserId.  
      * @param type $userDetails
      * @param type $password
      * @return boolean
@@ -180,10 +184,10 @@ class Html4PhpUser extends Html4PhpDatabase {
                 $userDetails['passhash'] == password_verify($password, $userDetails['passhash'])
         ) {
 
-            if ($this->makeTokenAndUpdateUserId($userDetails['userid'])) {
+            if ($this->makeTokenAndUpdateUserId($userDetails['id'])) {
                 $this->loggedin = true;
                 $this->messages[] = 'Login Success.';
-                $this->addDebug(DEBUG_VERBOSE, "Login Success using password for userid=" . $userDetails['userid']);
+                $this->addDebug(DEBUG_VERBOSE, "Login Success using password for userid=" . $userDetails['id']);
                 return true;
             }
         } else {
@@ -193,10 +197,11 @@ class Html4PhpUser extends Html4PhpDatabase {
         }
     }
 
-    
-    
     /**
-     * Perform login with username and password. Select user details from user table matching username. Pass data to loginWithUserDetailsAndPassword(). If sucess, set $this->loggedin = true.
+     * Perform login with username and password. 
+     * Select user details from user table matching username.
+     *  Pass data to loginWithUserDetailsAndPassword().
+     *  If sucess, set $this->loggedin = true.
      * @param string $username
      * @param string $password
      * @return boolean
@@ -219,8 +224,7 @@ class Html4PhpUser extends Html4PhpDatabase {
         $this->error[] = "Error on login with username and password";
         return false;
     }
-    
-    
+
     /**
      * Makes a new token, and updates the $_COOKIE,  $_SESSION, and user table using $userId parameters if not null, if null then use $this->userId. Return true if inserted.
      * @param int $userId
@@ -232,7 +236,7 @@ class Html4PhpUser extends Html4PhpDatabase {
         }
         try {
             $this->token = md5(rand());
-            $this->statementPrepare("UPDATE user SET token=:token WHERE userid=:userId");
+            $this->statementPrepare("UPDATE `user` SET token=:token WHERE userid=:userId");
             $this->statementBindParam(":token", $this->token);
             $this->statementBindParam(":userId", $this->userId);
             $this->statementExecute();
@@ -285,7 +289,6 @@ class Html4PhpUser extends Html4PhpDatabase {
         return false;
     }
 
-    
     /**
      * Send an email through a simple instiation of Html4PhpEmail.
      * @param type $toName
@@ -300,16 +303,8 @@ class Html4PhpUser extends Html4PhpDatabase {
         $email->sendEmail($toName, $toEmail, $subject, $messageHtml);
     }
 
-    
-    
-    
-    
-    
-    
     //////////////////////////////////////////////////////////////////////////////////////////////////
 
-    
-    
     /**
      * Sets the Html4PhpUser details into the private members. If all elements exist in $userDetails then return true.
      * @param array $userDetails
@@ -333,9 +328,6 @@ class Html4PhpUser extends Html4PhpDatabase {
         return false;
     }
 
-
-
-
     /**
      * Set the username to the Html4PHPUser class only if its valid. Return true on success.
      * Valid if length 1-128 and english letters and numbers
@@ -343,51 +335,15 @@ class Html4PhpUser extends Html4PhpDatabase {
      * @return boolean
      */
     private function setUsername($username) {
-        if (strlen($username) <= 128 && strlen($username) > 1) {
-            if (preg_match('/^[a-zA-Z0-9]+$/', $username)) {
-                $this->username = $username;
-                return true;
-            } else {
-                $this->errors[] = "The username needs to only contain english letters or numbers";
-            }
+        if ($this->validator->isMatch("username", $username)) {
+            $this->username = $username;
+             xdebug_break();
+            return true;
         } else {
-            $this->errors[] = "The username needs to have length from 1 to 128)";
+            xdebug_break();
+            $this->errors[] = 'Username: ' . $this->validator->getRuleErrorMsg("username");
+            return false;
         }
-        return false;
-    }
-
-    /**
-     * The password can be any character, but needs to have at least one UPPERCASE, one lowercase, and a number with a length of at least 8. Return true on success.
-     * @param string $password
-     * @return boolean
-     */
-    private function validateRulesPassword($password) {
-        if (strlen($password) >= 8) {
-            /* //This dones't allow special chars, 
-              if (preg_match('/^'
-              . '([a-z]+[A-Z]+[0-9]+)+|'
-              . '([a-z]+[0-9]+[A-Z]+)+|'
-              . '([0-9]+[a-z]+[A-Z]+)+|'
-              . '([0-9]+[A-Z]+[a-z]+)+|'
-              . '([A-Z]+[a-z]+[0-9]+)+|'
-              . '([A-Z]+[0-9]+[a-z]+)+$/', $password)) {
-             */
-//This allows for special characters
-            if (preg_match('/^'
-                            . '(.*[a-z]+.*[A-Z]+.*[0-9]+.*)+|'
-                            . '(.*[a-z]+.*[0-9]+.*[A-Z]+.*)+|'
-                            . '(.*[0-9]+.*[a-z]+.*[A-Z]+.*)+|'
-                            . '(.*[0-9]+.*[A-Z]+.*[a-z]+.*)+|'
-                            . '(.*[A-Z]+.*[a-z]+.*[0-9]+.*)+|'
-                            . '(.*[A-Z]+.*[0-9]+.*[a-z]+.*)+$/', $password)) {
-                return true;
-            } else {
-                $this->errors[] = "The password needs to have at least one UPPERCASE, one lowercase, and a number.";
-            }
-        } else {
-            $this->errors[] = "The passwords is needs a length of 8 or more.";
-        }
-        return false;
     }
 
     /**
@@ -396,10 +352,13 @@ class Html4PhpUser extends Html4PhpDatabase {
      * @return boolean
      */
     private function setEmail($email) {
-        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        if ($this->validator->isMatch("email", $email)) {
             $this->email = $email;
+             xdebug_break();
             return true;
         } else {
+            xdebug_break();
+            $this->errors[] = 'Eamil: ' . $this->validator->getRuleErrorMsg("email");
             return false;
         }
     }
@@ -410,16 +369,17 @@ class Html4PhpUser extends Html4PhpDatabase {
      * @return boolean
      */
     private function setPasshashFromPassword($password) {
-        if ($this->validateRulesPassword($password)) {
+
+        if ($this->validator->isMatch("password", $password)) {
             $this->passhash = password_hash($password, PASSWORD_BCRYPT);
+            xdebug_break();
             return true;
+        } else {
+            xdebug_break();
+            $this->errors[] = 'Password: ' . $this->validator->getRuleErrorMsg("password");
+            return false;
         }
         return false;
     }
-
-
-
-
-
 
 }

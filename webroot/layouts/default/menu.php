@@ -32,6 +32,7 @@ $this->menu = array(
         '/tests/index.php',
         array(
             'Config' => '/tests/config.php',
+            'Database' => '/tests/database.php',
             'Form' => '/tests/form.php',
             'Page' => '/tests/page.php',
             'Site' => '/tests/site.php',

@@ -78,26 +78,21 @@ class Html4PhpValidator {
             $this->isValid = false;
             return false;
         }
-        echo "Type does not match entry.";
     }
 
     public function isMatch($dataType, $subject) {
         if (isset($this->validatorData[$dataType])) {
             /*
-            $isMin = strlen($subject) >= $this->getRuleMinLength($dataType) ;
-            $isMax = strlen($subject) <= $this->getRuleMaxLength($dataType) ;
-            $isValid = preg_match('/' . $this->getRuleRegex($dataType) . '/', $subject);
-            xdebug_break();
-            return $isMin && $isMax && $isValid;        
+              $isMin = strlen($subject) >= $this->getRuleMinLength($dataType) ;
+              $isMax = strlen($subject) <= $this->getRuleMaxLength($dataType) ;
+              $isValid = preg_match('/' . $this->getRuleRegex($dataType) . '/', $subject);
+              xdebug_break();
+              return $isMin && $isMax && $isValid;
              * 
              */
-                    
-            return ($this->getRuleMinLength($dataType) <= strlen($subject)) 
-            && ($this->getRuleMaxLength($dataType) >= strlen($subject)) 
-            && preg_match('/' . $this->getRuleRegex($dataType) . '/', $subject);
-            
+
+            return ($this->getRuleMinLength($dataType) <= strlen($subject)) && ($this->getRuleMaxLength($dataType) >= strlen($subject)) && preg_match('/' . $this->getRuleRegex($dataType) . '/', $subject);
         } else {
-            echo $subject . "Is Not A datatype";
             $this->isValid = false;
             return null;
         }
@@ -111,27 +106,18 @@ class Html4PhpValidator {
      */
     public function validateAndReturn($type, $subject) {
         if ($this->isMatch($type, $subject)) {
-            echo "<br>" . $subject . " is Valid";
-            xdebug_break();
             return $subject;
         }
-        echo "<br>" . $subject . " is not Valid";
         $this->isValid = false;
         return null;
     }
 
     public function validateRequest(array $RequestNameTypeKeyPair) {
         $this->clearIsValid();
-        echo "<p>Validate Request</p>";
-        echo "<br/><pre>".print_r($_REQUEST,1)."</pre>";
         foreach ($RequestNameTypeKeyPair as $name => $type) {
-            //echo $name;
-            xdebug_break();
             if (isset($_REQUEST[$name])) {
-                //$this->__set($name,$this->validate($type, $_REQUEST[$name]));
                 $this->{$name} = $this->validateAndReturn($type, $_REQUEST[$name]);
             } else {
-                echo "<br/>".$name . ":name is not set in validateRequest";
                 $this->isValid = false;
             }
         }
