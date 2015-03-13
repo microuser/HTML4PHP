@@ -291,7 +291,7 @@ class Html4PhpPage extends Html4PhpUser {
             $theadArray = array($theadArray);
         }
 
-        $isValidArray = is_array($tbodyArray) && is_array($tbodyArray[0]);
+        $isValidArray = is_array($tbodyArray) && isset($tbodyArray[0]) && is_array($tbodyArray[0]);
 
         //If its not a valid array, look at the theadarray, find if its susposed to be vertical list to make it valid
         if (sizeof($theadArray) === 1 && is_array($tbodyArray) && !is_array($tbodyArray[0])) {
