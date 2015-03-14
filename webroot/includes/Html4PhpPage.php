@@ -454,4 +454,23 @@ class Html4PhpPage extends Html4PhpUser {
         $out = $this->makeTable($title, $theadArray, $tbodyArray, $tfootArray, $tableClass, $tableId);
         $this->appendBody($out);
     }
+    
+        /**
+     * Provide a common way to feed arrays into an sortable styled table. Parameters of $title, and $tbodyArray are required.
+     * @param type $title
+     * @param type $theadArray
+     * @param type $tbodyArray
+     * @param type $tfootArray
+     * @param type $tableClass
+     * @param string $tableId
+     */
+    public function addTableKeyValue($title = null, $theadArray = null, $tbodyArray = null, $tfootArray = null, $tableClass = 'tablesorter', $tableId = null) {
+        $keyValue = array();
+        foreach($tbodyArray as $key=>$value){
+            echo $key.print_r($value,1);
+            $keyValue[] = array($key, $value);
+        }
+        $out = $this->makeTable($title, $theadArray, $keyValue, $tfootArray, $tableClass, $tableId);
+        $this->appendBody($out);
+    }
 }
