@@ -105,9 +105,13 @@ class Html4PhpDatabase extends Html4PhpConfig {
      */
     public function statementExecute() {
         $this->addDebug(DEBUG_FUNCTION_TRACE);
-        $this->statement->execute();
+        return $this->statement->execute();
     }
 
+    public function statementRowCount(){
+        $this->statement->rowCount();
+    }
+    
     /**
      * PDO Execute and fetch one row into array
      * @return Array 

@@ -44,7 +44,7 @@ class LoginModel extends Html4PhpSite {
     public function makeLogoutForm(){
         $form = new Html4PhpForm("Logout");
         $form->startForm("logout");
-        $form->addFormSubmitButton("", "Logout");
+        $form->addFormSubmitButton("Logout", "Logout");
         return $form->generateForm("Logout");
     }
     
