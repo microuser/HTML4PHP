@@ -1,5 +1,7 @@
 <?php
 
+include_once('Html4PhpValidatorData.php');
+
 /**
  * Description of Html4PHpValidator
  * @version 2015-01-12
@@ -17,29 +19,131 @@
 class Html4PhpValidator {
 
     public $validatorData = null;
+    private $isValid = true;
+    private $classData = array();
 
     public function __construct() {
-
         include('Html4PhpValidatorData.php');
-        $this->validatorData = $validatorData;
+        $this->validatorData = $validatorData; //this is set in the above include
+        return $this;
+    }
+
+    public function getRules($dataType) {
+        if (isset($this->validatorData[$dataType]) && is_array($this->validatorData[$dataType])) {
+            return $this->validatorData[$dataType];
+        }
+        return null;
+    }
+
+    public function getRuleRegex($dataType) {
+        if (isset($this->getRules($dataType)['regex'])) {
+            return $this->getRules($dataType)['regex'];
+        }
+        return null;
+    }
+
+    public function getRuleMinLength($dataType) {
+        if (isset($this->getRules($dataType)['minLength'])) {
+            return $this->getRules($dataType)['minLength'];
+        }
+        return null;
+    }
+
+    public function getRuleMaxLength($dataType) {
+        if (isset($this->getRules($dataType)['maxLength'])) {
+            return $this->getRules($dataType)['maxLength'];
+        }
+        return null;
+    }
+
+    public function getRuleErrorMsg($dataType) {
+        if (isset($this->getRules($dataType)['errorMsg'])) {
+            return $this->getRules($dataType)['errorMsg'];
+        }
+        return null;
+    }
+
+    public function getIsValid() {
+        return $this->isValid;
     }
 
     public function isMatchWithRefArray($type, $subject, &$matches) {
-        if (isset($this->validatorData[$type])) {
-            return preg_match('/' . $this->validatorData[$type] . '/', $subject, $matches);
+        if (isset($this->validatorData[$type]['regex'])) {
+            $ret = preg_match('/' . $this->validatorData[$type]['regex'] . '/', $subject, $matches);
+            if ($ret === false) {
+                $this->isValid = $ret;
+            }
+            return $ret;
         } else {
+            $this->isValid = false;
             return false;
         }
-        echo "Type does not match entry.";
     }
 
-    public function isMatch($type, $subject) {
-        if (isset($this->validatorData[$type])) {
-            return preg_match('/' . $this->validatorData[$type] . '/', $subject);
+    public function isMatch($dataType, $subject) {
+        if (isset($this->validatorData[$dataType])) {
+            /*
+              $isMin = strlen($subject) >= $this->getRuleMinLength($dataType) ;
+              $isMax = strlen($subject) <= $this->getRuleMaxLength($dataType) ;
+              $isValid = preg_match('/' . $this->getRuleRegex($dataType) . '/', $subject);
+              xdebug_break();
+              return $isMin && $isMax && $isValid;
+             * 
+             */
+
+            return ($this->getRuleMinLength($dataType) <= strlen($subject)) && ($this->getRuleMaxLength($dataType) >= strlen($subject)) && preg_match('/' . $this->getRuleRegex($dataType) . '/', $subject);
         } else {
-            return false;
+            $this->isValid = false;
+            return null;
         }
-        echo "Type does not match entry.";
+    }
+
+    /**
+     * Returns the subject if it passes validation of the type, If it does not pass, set to null.
+     * @param type $type
+     * @param type $subject
+     * @return type
+     */
+    public function validateAndReturn($type, $subject) {
+        if ($this->isMatch($type, $subject)) {
+            return $subject;
+        }
+        $this->isValid = false;
+        return null;
+    }
+
+    public function validateRequest(array $RequestNameTypeKeyPair) {
+        $this->clearIsValid();
+        foreach ($RequestNameTypeKeyPair as $name => $type) {
+            if (isset($_REQUEST[$name])) {
+                $this->{$name} = $this->validateAndReturn($type, $_REQUEST[$name]);
+            } else {
+                $this->isValid = false;
+            }
+        }
+        return $this->isValid;
+    }
+
+    public function clearIsValid() {
+        $this->isValid = true;
+    }
+
+    public function __set($name, $value) {
+        $this->classData[$name] = $value;
+    }
+
+    public function __get($name) {
+        if (array_key_exists($name, $this->classData)) {
+            return $this->classData[$name];
+        }
+        //$trace = debug_backtrace();
+        //trigger_error(
+        //'Undefined property via __get(): ' . $name
+        //. ' in ' . $trace[0]['file']
+        // . ' on line ' . $trace[0]['line'], E_USER_NOTICE
+        //        );
+
+        return null;
     }
 
 }

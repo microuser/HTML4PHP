@@ -1,4 +1,5 @@
 <?php
+
 /*
  * @version 2015-01-04
  * @category PHP Framework
@@ -7,14 +8,16 @@
  * @link https://github.com/microuser/HTML4PHP 
  * @license https://github.com/microuser/HTML4PHP/blob/master/LICENSE MIT
  */
+
 $this->menu = array(
     'Home' => array(
         '/index.php',
         array(
-            //'subitem1.1' => 'link1.1.html',
-            //'subitem1.2' => 'link1.2.html',
-            //'subitem1.3' => 'link1.3.html',
+        //'subitem1.1' => 'link1.1.html',
+        //'subitem1.2' => 'link1.2.html',
+        //'subitem1.3' => 'link1.3.html',
         )
+        
     ),
     'Sample' => array(
         '/sample/index.php',
@@ -29,6 +32,7 @@ $this->menu = array(
         '/tests/index.php',
         array(
             'Config' => '/tests/config.php',
+            'Database' => '/tests/database.php',
             'Form' => '/tests/form.php',
             'Page' => '/tests/page.php',
             'Site' => '/tests/site.php',
@@ -39,11 +43,17 @@ $this->menu = array(
         '/jqueryui/index.php',
         array(
             'Tabs' => '/jqueryui/tabs.php',
-            //'Form' => '/tests/form.php',
-            //'Page' => '/tests/page.php',
-            //'Site' => '/tests/site.php',
-            //'Validator' => '/tests/validator.php',
+        //'Form' => '/tests/form.php',
+        //'Page' => '/tests/page.php',
+        //'Site' => '/tests/site.php',
+        //'Validator' => '/tests/validator.php',
         )
     ),
-    
+    'Contactodex' => array(
+        '/contactodex/index.php',
+        array('Contactodex' => '/contactodex/index.php')
+    )
 );
+
+
+

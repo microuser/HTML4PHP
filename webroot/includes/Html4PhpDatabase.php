@@ -105,9 +105,13 @@ class Html4PhpDatabase extends Html4PhpConfig {
      */
     public function statementExecute() {
         $this->addDebug(DEBUG_FUNCTION_TRACE);
-        $this->statement->execute();
+        return $this->statement->execute();
     }
 
+    public function statementRowCount(){
+        $this->statement->rowCount();
+    }
+    
     /**
      * PDO Execute and fetch one row into array
      * @return Array 
@@ -127,12 +131,26 @@ class Html4PhpDatabase extends Html4PhpConfig {
     }
 
     /**
-     * PDO Execute and return all rows into an array of an array
+     * PDO return all rows into an array of an array
      * @return type
      */
     public function statementFetchAssocs() {
         $this->addDebug(DEBUG_FUNCTION_TRACE);
         return $this->statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+    
+    /**
+     * PDO return all rows into an array of an array with a number in front of it to preserve original ordering.
+     * @return type
+     */
+    public function statementFetchEnumeratedAssocs(){
+        $ret = array();
+        foreach($this->statementFetchAssocs() as $key => $row){
+            array_unshift($row, $key);
+            $ret[] = $row;
+        }
+        return $ret;
     }
 
     /**

@@ -107,7 +107,6 @@ class Html4PhpDebug {
      * @return string
      */
     public function getDebugHtml() {
-
         self::addDebug(DEBUG_FUNCTION_TRACE);
         if (DEBUG & DEBUG_ECHO) {
             $out = "<div>";

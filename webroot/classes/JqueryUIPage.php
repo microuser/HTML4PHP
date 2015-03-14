@@ -10,12 +10,11 @@ class JqueryUIPage extends JqueryUIModel {
     
     public function __contruct($title = "JqueryUI Page"){
         parent::__construct($title);
-        
     }
     
     public function generateJqueryUIPage(){
         $this->add($this->makeTabs());
-        $this->add($this->makeButtons());
+        $this->add($this->make12ColumnDivs());
         return $this->generatePage();
     }
 

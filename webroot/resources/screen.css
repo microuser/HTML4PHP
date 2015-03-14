@@ -462,15 +462,15 @@
     }
 
     form div.controlGroup div.has-success input{
-        background:#eeffee ;
+        background:#003300 ;
         border-color: #009900;
     }
 
     form div.controlGroup div.has-error input{
-        background:#ffeeee;
+        background:#330000;
     }
     form div.controlGroup div.has-error span{
-        color:#660000;
+        color:#FFCCCC;
         float:left;
     }
 
@@ -645,30 +645,126 @@
     .info:active{
         background: #757058 !important;
     }
-    
+
 
     .danger{
         background:firebrick !important;
     }
-    
-    .col-1{
-        width:8%;
+
+    .row{
+        overflow: hidden;
     }
+
+    div.col-1,
+    div.col-2,
+    div.col-3,
+    div.col-4,
+    div.col-5,
+    div.col-6,
+    div.col-7,
+    div.col-8,
+    div.col-9,
+    div.col-10,
+    div.col-11,
+    div.col-12{
+        margin-top: 1px;
+        margin-bottom: 1px;
+        margin-left: 4px;
+        margin-right: 4px;
+        padding:0px;
+        min-height:35px;
+        border-radius: 6px 6px 6px 6px;   
+        padding: 0px 16px 0px 0px;
+        display:inline-block;
+        vertical-align: bottom;
+    }
+
+    div.col-1:first-child,
+    div.col-2:first-child,
+    div.col-3:first-child,
+    div.col-4:first-child,
+    div.col-5:first-child,
+    div.col-6:first-child,
+    div.col-7:first-child,
+    div.col-8:first-child,
+    div.col-9:first-child,
+    div.col-10:first-child,
+    div.col-11:first-child,
+    div.col-12:first-child{
+        margin-left: 0px;
+        padding-left: 0px;
+    }
+    div.col-1:last-child,
+    div.col-2:last-child,
+    div.col-3:last-child,
+    div.col-4:last-child,
+    div.col-5:last-child,
+    div.col-6:last-child,
+    div.col-7:last-child,
+    div.col-8:last-child,
+    div.col-9:last-child,
+    div.col-10:last-child,
+    div.col-11:last-child,
+    div.col-12:last-child{
+        margin-right:0px;
+        padding-right:0px;
+    }
+
+    .col-1{
+        width:54.5px;
+    }
+
+    button.col-1{
+        width:70.5px;
+    }
+
+    div.col-1 *{
+        margin: 0px 0px 0px 0px;
+        vertical-align: middle;
+    }
+
     .col-2{
-        width:16%;
+        width:15.9%;
+        width:148px;
     }
     .col-3{
         width:24.9%;
+        width:223.5px;
     }
     .col-4{
         width:33.2%;
+        width:303px;
     }
     .col-5{
         width:41.5%;
+        width:364px;
     }
     .col-6{
         width:49.8%;
+        width:458px;
+        width:470px;
+    }
+
+    .rainbow{
+        background: -moz-linear-gradient(top, #ff0800 0%, #dd8406 17%, #e2d51b 35%, #2ac932 55%, #2342ce 70%, #7f0a68 100%); /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ff0800), color-stop(17%,#dd8406), color-stop(35%,#e2d51b), color-stop(55%,#2ac932), color-stop(70%,#2342ce), color-stop(100%,#7f0a68)); /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(top, #ff0800 0%,#dd8406 17%,#e2d51b 35%,#2ac932 55%,#2342ce 70%,#7f0a68 100%); /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(top, #ff0800 0%,#dd8406 17%,#e2d51b 35%,#2ac932 55%,#2342ce 70%,#7f0a68 100%); /* Opera 11.10+ */
+        background: -ms-linear-gradient(top, #ff0800 0%,#dd8406 17%,#e2d51b 35%,#2ac932 55%,#2342ce 70%,#7f0a68 100%); /* IE10+ */
+        background: linear-gradient(to bottom, #ff0800 0%,#dd8406 17%,#e2d51b 35%,#2ac932 55%,#2342ce 70%,#7f0a68 100%); /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff0800', endColorstr='#7f0a68',GradientType=0 ); /* IE6-9 */
+    }
+
+    div.rainbow{
+        display: inline-block;
+    }
+
+    
+    div.ui-tabs,
+    div.ui-tabs div{
+        
+        
+        
     }
     
-
 }

@@ -1,6 +1,7 @@
 <?php
 
 include_once "Html4PhpDatabase.php";
+include_once "Html4PhpValidator.php";
 
 /**
  * Description of Html4User
@@ -26,175 +27,27 @@ class Html4PhpUser extends Html4PhpDatabase {
     private $token = null;
     public $errors = array();
     public $messages = array();
+    private $validator = null;
 
+    /**
+     * Ways to login:
+     *  1) With Token
+     *  2) With Username
+     * @param type $title
+     */
     public function __construct($title) {
         $this->addDebug(DEBUG_FUNCTION_TRACE);
         parent::__construct($title);
+        $this->validator = new Html4PhpValidator();
         session_start();
+        xdebug_break();
     }
 
-    public function createUser($username, $email, $password) {
-        $this->addDebug(DEBUG_FUNCTION_TRACE, '$username=' . $username . ', $password=Hidden' . ', $email=' . $email);
-        try {
-            if ($this->setUsername($username) && $this->setEmail($email) && $this->setPasshashFromPassword($password)) {
-                $this->statementPrepare('INSERT INTO user (username, email, passhash) VALUES (:username, :email, :passhash)');
-                $this->statementBindParam(":username", $this->username);
-                $this->statementBindParam(":email", $this->email);
-                $this->statementBindParam(":passhash", $this->passhash);
-                $status = $this->statementExecute();
-                $this->errors[] = $this->getPdo()->errorCode();
-                $this->errors[] = "User created";
-            } else {
-                $this->errors[] = "User not created.";
-                $this->resetUser();
-                $status = false;
-            }
-        } catch (Exception $ex) {
-            $this->errors[] = "User not created." . $ex->getMessage();
-            $this->resetUser();
-            if ($ex->getCode() == 23000) {
-                $this->addDebug(DEBUG_VERBOSE, "<br/>Username is taken<br/>");
-                $this->addDebug(DEBUG_VERBOSE, "PDO Exception Code:" . $ex->getCode());
-                return FALSE;
-            }
-            $this->addDebug(DEBUG_ERROR_LOG, $ex->getMessage());
-        }
-//Insertion was good
-//$this->addDebug(DEBUG_VERBOSE, "createUser: Status was:" . $status);
-//if ($status == null) {
-//    //$pdo = new PDO();
-//    //$statement = new PDOStatement();
-//    //$statement->errorCode();
-//    $this->addDebug(DEBUG_VERBOSE, "<br/>status is null. Message is:<pre>" . print_r($this->getStatementErrorCode(), 1) . "</pre>");
-//    $this->addDebug(DEBUG_VERBOSE, "Inserted Username:" . $username);
-//    $this->add($this->sendEmail($username, $email, "Account Created.", "A username=" . $username . "  was created at " . date(DATE_RFC2822) . ""));
-//    $this->add("<br/>");
-//}
-    }
-
-    public function findUsernameWithEmail($email) {
-        $this->statementPrepare("SELECT username FROM user where email=:email");
-        $this->statementBindParam(":email", $email);
-        $this->statementExecute();
-        return $username = $this->statementFetchAssoc()['username'];
-    }
-
-    
-        /**
-     * select the email from the user table matching the username.
-     * @return string
-     */
-    public function getEmailWithUsername($username) {
-        try {
-            $this->addDebug(DEBUG_FUNCTION_TRACE);
-            $this->statementPrepare('select email from users where username=:username');
-            $this->statementBindParam(":username", $username);
-            $this->statementExecute();
-            $email = $this->statementFetchAssoc()['email'];
-            return $email;
-        } catch (Exception $ex) {
-            $this->addDebug(DEBUG_ERROR, "Exception getting email from user table with username. " . $ex->getMessage());
-        }
-        return false;
-    }
-    
-    
-    
-        /**
-     * Get the number of users in the user table
-     * @return type
-     */
-    public function getUserCount() {
-        try {
-            $this->addDebug(DEBUG_FUNCTION_TRACE);
-            $this->statementPrepare("select count(*) from user");
-            $this->statementExecute();
-            return $this->statementFetchAssoc();
-        } catch (Exception $ex) {
-            $this->addDebug(DEBUG_ERROR, "Exception getting user count from user table. " . $ex->getMessage());
-        }
-    }
-    
-    
     /**
-     * Perform login with Email and password. Select details from user table matching email. Pass userDetails to loginWithUserDetailsAndPassword
-     * @param type $email
-     * @param type $password
-     */
-    public function loginWithEmailPassword($email, $password) {
-        try {
-            $this->statementPrepare("SELECT * FROM user WHERE email=:email limit 1");
-            $this->statementBindParam(":email", $email);
-            $this->statementExecute();
-            $userDetails = $this->statementFetchAssoc();
-            $this->loginWithUserDetailsAndPassword($userDetails, $password);
-            if ($this->makeTokenAndUpdateUserId($userDetails['userid'])) {
-                $this->loggedin = true;
-                $this->messages[] = 'Login Success.';
-                $this->addDebug(DEBUG_VERBOSE, "User details retrieved by email" . $this->email);
-                return true;
-            }
-        } catch (Exception $ex) {
-            $this->addDebug(DEBUG_ERROR, "Exception while selecting from user table with email." . $ex->getMessage());
-        }
-        $this->errors[] = 'Error on login with email and password.';
-        return false;
-    }
-    
-    
-    
-    /**
-     * Perform login using existing token by matching information in $_SESSION and $_COOKIE. Call selectAndSetUserClassDetilasWithUseridAndToken with information from $_SESSION. If valid, then set $this->loggedin = true;
-     * @return boolean
-     */
-    public function loginWithSessionCookieToken() {
-        if (isset($_SEESION['token']) &&
-                isset($_COOKIE['token']) &&
-                isset($_SESSION['userid']) &&
-                $_SESSION['token'] == $_COOKIE['token']) {
-            if ($this->selectAndSetUserClassDetailsWithUserIdAndToken($_SESSION['token'], $_SESSION['userid'])) {
-                $this->loggedin = true;
-                $this->addDebug(DEBUG_VERBOSE, "Login Sucess using Session Token and Cookie Token matched.");
-                return true;
-            }
-        } else {
-            $this->errors[] = "Login Denied";
-            $this->loggedin = false;
-            $this->addDebug(DEBUG_ERROR, "Session token/userid, or cookie token not set, or not matched. Login Denied");
-        }
-        return false;
-    }
-    
-    /**
-     * If the parameters $password matches the password hash in userDetails, then call $this->makeTokenAndUpdateUserId.  
-     * @param type $userDetails
-     * @param type $password
-     * @return boolean
-     */
-    private function loginWithUserDetailsAndPassword($userDetails, $password) {
-        if (
-                is_array($userDetails) &&
-                isset($userDetails['passhash']) &&
-                $userDetails['passhash'] == password_verify($password, $userDetails['passhash'])
-        ) {
-
-            if ($this->makeTokenAndUpdateUserId($userDetails['userid'])) {
-                $this->loggedin = true;
-                $this->messages[] = 'Login Success.';
-                $this->addDebug(DEBUG_VERBOSE, "Login Success using password for userid=" . $userDetails['userid']);
-                return true;
-            }
-        } else {
-            $this->errors[] = "No Entry or Password Denied.";
-            $this->addDebug(DEBUG_ERROR, "No Entry or Password Denied");
-            return false;
-        }
-    }
-
-    
-    
-    /**
-     * Perform login with username and password. Select user details from user table matching username. Pass data to loginWithUserDetailsAndPassword(). If sucess, set $this->loggedin = true.
+     * Perform login with username and password. 
+     * Select user details from user table matching username.
+     *  Pass data to loginWithUserDetailsAndPassword().
+     *  If sucess, set $this->loggedin = true.
      * @param string $username
      * @param string $password
      * @return boolean
@@ -204,110 +57,16 @@ class Html4PhpUser extends Html4PhpDatabase {
             $this->statementPrepare("SELECT * FROM user WHERE username=:username LIMIT 1");
             $this->statementBindParam(":username", $username);
             $this->statementExecute();
-            $this->loginWithUserDetailsAndPassword($this->statementFetchAssoc(), $password);
-            if ($this->makeTokenAndUpdateUserId()) {
-                $this->loggedin = true;
-                $this->messages[] = 'Login Success.';
-                $this->addDebug(DEBUG_VERBOSE, "Login Sucess with Password and Username=" . $username);
-                return true;
-            }
+            return $this->loginWithUserDetailsAndPassword($this->statementFetchAssoc(), $password);
         } catch (Exception $ex) {
             $this->addDebug(DEBUG_ERROR, "Expection selcting from user table with username=" . $username . ". " . $ex->getMessage());
+            xdebug_break();
         }
         $this->error[] = "Error on login with username and password";
-        return false;
-    }
-    
-    
-    /**
-     * Makes a new token, and updates the $_COOKIE,  $_SESSION, and user table using $userId parameters if not null, if null then use $this->userId. Return true if inserted.
-     * @param int $userId
-     * @return boolean
-     */
-    private function makeTokenAndUpdateUserId($userId = null) {
-        if ($userId === null) {
-            $userId = $this->userId;
-        }
-        try {
-            $this->token = md5(rand());
-            $this->statementPrepare("UPDATE user SET token=:token WHERE userid=:userId");
-            $this->statementBindParam(":token", $this->token);
-            $this->statementBindParam(":userId", $this->userId);
-            $this->statementExecute();
-            if ($this->getPdo()->lastInsertId() > 0) {
-                $_COOKIE['token'] = $this->token;
-                $_SESSION['token'] = $this->token;
-                $_SESSION['userid'] = $this->userId;
-                $this->addDebug(DEBUG_VERBOSE, "Updated user token for userid=" . $this->userId);
-                return true;
-            }
-        } catch (Exception $ex) {
-            $this->addDebug(DEBUG_ERROR, "Exception while attempting update user token for userid=" . $this->userId . ". " . $ex->getMessage());
-        }
-        $this->errors[] = "Unable to update user token.";
-        $this->addDebug(DEBUG_ERROR, "Unable to update user token for userid=" . $this->userId);
+        xdebug_break();
         return false;
     }
 
-    /**
-     * Clears private members in Html4PhpUser class. 
-     */
-    private function resetUser() {
-        $this->username = null;
-        $this->userId = null;
-        $this->email = null;
-        $this->passhash = null;
-        $this->loggedin = false;
-        $this->token = null;
-    }
-
-    /**
-     * Select user details from user table using token and userid. On sucess, call setUserClassDetails. Return true upon sucess
-     * @param string $token
-     * @param int $userId
-     */
-    private function selectAndSetUserClassDetailsWithUserIdAndToken($token, $userId) {
-        try {
-            $this->statementPrepare("SELECT * FROM user WHERE token=:token AND userid=:userId");
-            $this->statementBindParam(":token", $token);
-            $this->statementBindParam(":userId", $userId);
-            $this->statementExecute();
-            $userDetails = $this->statementFetchAssoc();
-            if (is_array($userDetails)) {
-                $this->addDebug(DEBUG_VERBOSE, "userDetailed selected with token and userid=" . $userId);
-                return $this->setUserClassDetails($userDetails);
-            }
-        } catch (Exception $ex) {
-            $this->addDebug(DEBUG_ERROR, "Excpetion while selecting from user table with token and userid." . $ex->getMessage());
-        }
-        return false;
-    }
-
-    
-    /**
-     * Send an email through a simple instiation of Html4PhpEmail.
-     * @param type $toName
-     * @param type $toEmail
-     * @param type $subject
-     * @param type $messageHtml
-     */
-    public function sendEmail($toName, $toEmail, $subject, $messageHtml) {
-        $this->addDebug(DEBUG_FUNCTION_TRACE, '$toName=' . $toName . ', $toEmail=' . $toEmail . ', $subject=' . $subject . ', $messageHtml=' . $messageHtml);
-        include_once('Html4PhpEmail.php');
-        $email = new Html4PhpEmail();
-        $email->sendEmail($toName, $toEmail, $subject, $messageHtml);
-    }
-
-    
-    
-    
-    
-    
-    
-    //////////////////////////////////////////////////////////////////////////////////////////////////
-
-    
-    
     /**
      * Sets the Html4PhpUser details into the private members. If all elements exist in $userDetails then return true.
      * @param array $userDetails
@@ -325,14 +84,13 @@ class Html4PhpUser extends Html4PhpDatabase {
             $this->passhash = $userDetails['passhash'];
             //$_SESSION['userid'] = $userDetails['userid'];
             $this->addDebug(DEBUG_VERBOSE, "UserDetails are now set in Html4PhpUser private member variables");
+            xdebug_break();
             return true;
         }
         $this->addDebug(DEBUG_ERROR, "UserDetails lack information");
+        xdebug_break();
         return false;
     }
-
-
-
 
     /**
      * Set the username to the Html4PHPUser class only if its valid. Return true on success.
@@ -341,51 +99,15 @@ class Html4PhpUser extends Html4PhpDatabase {
      * @return boolean
      */
     private function setUsername($username) {
-        if (strlen($username) <= 128 && strlen($username) > 1) {
-            if (preg_match('/^[a-zA-Z0-9]+$/', $username)) {
-                $this->username = $username;
-                return true;
-            } else {
-                $this->errors[] = "The username needs to only contain english letters or numbers";
-            }
+        if ($this->validator->isMatch("username", $username)) {
+            $this->username = $username;
+            xdebug_break();
+            return true;
         } else {
-            $this->errors[] = "The username needs to have length from 1 to 128)";
+            xdebug_break();
+            $this->errors[] = 'Username: ' . $this->validator->getRuleErrorMsg("username");
+            return false;
         }
-        return false;
-    }
-
-    /**
-     * The password can be any character, but needs to have at least one UPPERCASE, one lowercase, and a number with a length of at least 8. Return true on success.
-     * @param string $password
-     * @return boolean
-     */
-    private function validateRulesPassword($password) {
-        if (strlen($password) >= 8) {
-            /* //This dones't allow special chars, 
-              if (preg_match('/^'
-              . '([a-z]+[A-Z]+[0-9]+)+|'
-              . '([a-z]+[0-9]+[A-Z]+)+|'
-              . '([0-9]+[a-z]+[A-Z]+)+|'
-              . '([0-9]+[A-Z]+[a-z]+)+|'
-              . '([A-Z]+[a-z]+[0-9]+)+|'
-              . '([A-Z]+[0-9]+[a-z]+)+$/', $password)) {
-             */
-//This allows for special characters
-            if (preg_match('/^'
-                            . '(.*[a-z]+.*[A-Z]+.*[0-9]+.*)+|'
-                            . '(.*[a-z]+.*[0-9]+.*[A-Z]+.*)+|'
-                            . '(.*[0-9]+.*[a-z]+.*[A-Z]+.*)+|'
-                            . '(.*[0-9]+.*[A-Z]+.*[a-z]+.*)+|'
-                            . '(.*[A-Z]+.*[a-z]+.*[0-9]+.*)+|'
-                            . '(.*[A-Z]+.*[0-9]+.*[a-z]+.*)+$/', $password)) {
-                return true;
-            } else {
-                $this->errors[] = "The password needs to have at least one UPPERCASE, one lowercase, and a number.";
-            }
-        } else {
-            $this->errors[] = "The passwords is needs a length of 8 or more.";
-        }
-        return false;
     }
 
     /**
@@ -394,10 +116,13 @@ class Html4PhpUser extends Html4PhpDatabase {
      * @return boolean
      */
     private function setEmail($email) {
-        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        if ($this->validator->isMatch("email", $email)) {
             $this->email = $email;
+            xdebug_break();
             return true;
         } else {
+            xdebug_break();
+            $this->errors[] = 'Eamil: ' . $this->validator->getRuleErrorMsg("email");
             return false;
         }
     }
@@ -408,16 +133,259 @@ class Html4PhpUser extends Html4PhpDatabase {
      * @return boolean
      */
     private function setPasshashFromPassword($password) {
-        if ($this->validateRulesPassword($password)) {
+        if ($this->validator->isMatch("password", $password)) {
             $this->passhash = password_hash($password, PASSWORD_BCRYPT);
+            xdebug_break();
             return true;
+        } else {
+            xdebug_break();
+            $this->errors[] = 'Password: ' . $this->validator->getRuleErrorMsg("password");
+            return false;
         }
         return false;
     }
 
+    /**
+     * Makes a new token, and updates the $_COOKIE,  $_SESSION, and user table using $userId parameters if not null, if null then use $this->userId. Return true if inserted.
+     * @param int $userId
+     * @return boolean
+     */
+    private function updateTokenWithUserId($userId = null) {
+        if ($userId === null) {
+            $userId = $this->userId;
+        }
+        try {
+            $this->token = md5(rand());
+            $this->statementPrepare("UPDATE `user` SET token=:token WHERE userid=:userId");
+            $this->statementBindParam(":token", $this->token);
+            $this->statementBindParam(":userId", $this->userId);
+            $success = $this->statementExecute();
+            $this->messages[] = $this->statementRowCount(); //.$this->getPdo()->lastInsertId(). $this->getPdo()->errorInfo();
+            xdebug_break();
+            if ($success) {//$this->getPdo()->lastInsertId() > 0) {
+                xdebug_break();
+                setcookie('token', $this->token, time() + 86400); //Cookie Expires 1 day
+                $_COOKIE['token'] = $this->token;
+                $_SESSION['token'] = $this->token;
+                $_SESSION['userid'] = $this->userId;
+                $this->addDebug(DEBUG_VERBOSE, "Updated user token for userid=" . $this->userId);
+                xdebug_break();
+                return true;
+            }
+        } catch (Exception $ex) {
+            $this->addDebug(DEBUG_ERROR, "Exception while attempting update user token for userid=" . $this->userId . ". " . $ex->getMessage());
+            xdebug_break();
+        }
+        $this->errors[] = "Unable to update user token.";
+        $this->addDebug(DEBUG_ERROR, "Unable to update user token for userid=" . $this->userId);
+        xdebug_break();
+        return false;
+    }
 
+    /**
+     * If the parameters $password matches the password hash in userDetails,
+     *  then call $this->makeTokenAndUpdateUserId.  
+     * @param type $userDetails
+     * @param type $password
+     * @return boolean
+     */
+    private function loginWithUserDetailsAndPassword($userDetails, $password) {
+        xdebug_break();
+        if (
+                is_array($userDetails) &&
+                isset($userDetails['passhash']) &&
+                $userDetails['passhash'] == password_verify($password, $userDetails['passhash'])
+        ) {
 
+            if ($this->updateTokenWithUserId($userDetails['userid'])) {
+                $this->loggedin = true;
+                $this->messages[] = 'Login Success.';
+                $this->addDebug(DEBUG_VERBOSE, "Login Success using password for userid=" . $userDetails['userid']);
+                xdebug_break();
+                return true;
+            }
+        } else {
+            $this->errors[] = "No Entry or Password Denied.";
+            $this->addDebug(DEBUG_ERROR, "No Entry or Password Denied");
+            xdebug_break();
+            return false;
+        }
+    }
 
+    /**
+     * Perform login using existing token by matching information in $_SESSION and $_COOKIE. Call selectAndSetUserClassDetilasWithUseridAndToken with information from $_SESSION. If valid, then set $this->loggedin = true;
+     * @return boolean
+     */
+    public function loginWithSessionCookieToken() {
+        if (isset($_SEESION['token']) &&
+                isset($_COOKIE['token']) &&
+                isset($_SESSION['userid']) &&
+                $_SESSION['token'] == $_COOKIE['token']) {
+            if ($this->selectAndSetUserClassDetailsWithUserIdAndToken($_SESSION['token'], $_SESSION['userid'])) {
+                $this->loggedin = true;
+                $this->addDebug(DEBUG_VERBOSE, "Login Sucess using Session Token and Cookie Token matched.");
+                xdebug_break();
+                return true;
+            }
+        } else {
+            $this->errors[] = "Login Denied";
+            $this->loggedin = false;
+            $this->addDebug(DEBUG_ERROR, "Session token/userid, or cookie token not set, or not matched. Login Denied");
+            xdebug_break();
+        }
+        xdebug_break();
+        return false;
+    }
 
+    /**
+     * CreateUser
+     * @param type $username
+     * @param type $email
+     * @param type $password
+     * @return boolean
+     */
+    public function createUser($username, $email, $password) {
+        $this->addDebug(DEBUG_FUNCTION_TRACE, '$username=' . $username . ', $password=Hidden' . ', $email=' . $email);
+        try {
+            xdebug_break();
+            if ($this->setUsername($username) && $this->setEmail($email) && $this->setPasshashFromPassword($password)) {
+                try {
+                    $this->statementPrepare('INSERT INTO `user` (username, email, passhash, timecreated) VALUES (:username, :email, :passhash, now())');
+                    $this->statementBindParam(":username", $this->username);
+                    $this->statementBindParam(":email", $this->email);
+                    $this->statementBindParam(":passhash", $this->passhash);
+                    $status = $this->statementExecute();
+                    $this->errors[] = $this->getPdo()->lastInsertId();
+                    $this->errors[] = $this->getPdo()->errorCode();
+                    $this->errors[] = print_r($this->getPdo()->errorInfo(), 1);
+                    $this->messages[] = "User created";
+                    echo "User Created";
+                    xdebug_break();
+                } catch (Exception $e) {
+                    echo '<pre>' . $e . '</pre>';
+                }
+                return true;
+            } else {
+                $this->errors[] = "User not created.";
+                $this->resetUser();
+                $status = false;
+                xdebug_break();
+                return false;
+            }
+        } catch (Exception $ex) {
+            $this->errors[] = "User not created." . $ex->getMessage();
+            $this->resetUser();
+            if ($ex->getCode() == 23000) {
+                $this->addDebug(DEBUG_VERBOSE, "<br/>Username is taken<br/>");
+                $this->addDebug(DEBUG_VERBOSE, "PDO Exception Code:" . $ex->getCode());
+                xdebug_break();
+                return FALSE;
+            }
+            $this->addDebug(DEBUG_ERROR_LOG, $ex->getMessage());
+            xdebug_break();
+        }
+    }
+
+    /**
+     * Send an email through a simple instiation of Html4PhpEmail.
+     * @param type $toName
+     * @param type $toEmail
+     * @param type $subject
+     * @param type $messageHtml
+     */
+    public function sendEmail($toName, $toEmail, $subject, $messageHtml) {
+        $this->addDebug(DEBUG_FUNCTION_TRACE, '$toName=' . $toName . ', $toEmail=' . $toEmail . ', $subject=' . $subject . ', $messageHtml=' . $messageHtml);
+        include_once('Html4PhpEmail.php');
+        $email = new Html4PhpEmail();
+        $email->sendEmail($toName, $toEmail, $subject, $messageHtml);
+    }
+
+    /*
+      public function findUsernameWithEmail($email) {
+      $this->statementPrepare("SELECT username FROM user where email=:email");
+      $this->statementBindParam(":email", $email);
+      $this->statementExecute();
+      return $username = $this->statementFetchAssoc()['username'];
+      }
+     * 
+     */
+
+    /**
+     * select the email from the user table matching the username.
+     * @return string
+     */
+    /*
+      public function getEmailWithUsername($username) {
+      try {
+      $this->addDebug(DEBUG_FUNCTION_TRACE);
+      $this->statementPrepare('select email from users where username=:username');
+      $this->statementBindParam(":username", $username);
+      $this->statementExecute();
+      $email = $this->statementFetchAssoc()['email'];
+      return $email;
+      } catch (Exception $ex) {
+      $this->addDebug(DEBUG_ERROR, "Exception getting email from user table with username. " . $ex->getMessage());
+      }
+      return false;
+      }
+     * 
+     */
+
+    /**
+     * Get the number of users in the user table
+     * @return type
+     */
+    /*
+      public function getUserCount() {
+      try {
+      $this->addDebug(DEBUG_FUNCTION_TRACE);
+      $this->statementPrepare("select count(*) from user");
+      $this->statementExecute();
+      return $this->statementFetchAssoc();
+      } catch (Exception $ex) {
+      $this->addDebug(DEBUG_ERROR, "Exception getting user count from user table. " . $ex->getMessage());
+      }
+      }
+     */
+
+    /**
+     * Perform login with Email and password. Select details from user table matching email. Pass userDetails to loginWithUserDetailsAndPassword
+     * @param type $email
+     * @param type $password
+     */
+    /*
+      public function loginWithEmailPassword($email, $password) {
+      try {
+      $this->statementPrepare("SELECT * FROM user WHERE email=:email limit 1");
+      $this->statementBindParam(":email", $email);
+      $this->statementExecute();
+      $userDetails = $this->statementFetchAssoc();
+      $this->loginWithUserDetailsAndPassword($userDetails, $password);
+      if ($this->makeTokenAndUpdateUserId($userDetails['userid'])) {
+      $this->loggedin = true;
+      $this->messages[] = 'Login Success.';
+      $this->addDebug(DEBUG_VERBOSE, "User details retrieved by email" . $this->email);
+      return true;
+      }
+      } catch (Exception $ex) {
+      $this->addDebug(DEBUG_ERROR, "Exception while selecting from user table with email." . $ex->getMessage());
+      }
+      $this->errors[] = 'Error on login with email and password.';
+      return false;
+      }
+     * 
+     */
+
+    /**
+     * Clears private members in Html4PhpUser class. 
+     */
+    private function resetUser() {
+        $this->username = null;
+        $this->userId = null;
+        $this->email = null;
+        $this->passhash = null;
+        $this->loggedin = false;
+        $this->token = null;
+    }
 
 }
