@@ -69,16 +69,13 @@ class Html4PhpSite extends Html4PhpPage {
     }
 
     private function generateLoginTopNavSmall() {
+        xdebug_break();
         if (
-        //isset($_SESSION['PHPSESSIONID']) &&
-        //isset($_SESSION['LOGIN_TOKEN']) &&
-        //$this->verifyLoginToken($_SESSION['PHPSESSIONID'], $_SESSION['LOGIN_TOKEN'])
-                //$this->loginWithSessionCookieToken()
-                $this->getIsLoggedIn()
+            $this->getIsLoggedIn()
         ) {
             $this->layoutTopNavSmall("<a href=\"/login/logout.php\">Logout</a>");
         } else {
-            $this->layoutTopNavSmall("<a href=\"/login/login.php\">Login</a>");
+            $this->layoutTopNavSmall("<a href=\"/login/index.php\">Login</a>");
         }
     }
 

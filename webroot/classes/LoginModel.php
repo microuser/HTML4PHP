@@ -72,6 +72,20 @@ class LoginModel extends Html4PhpSite {
         return null;
     }
     
+    protected function logoutWithRequest(){
+        xdebug_break();
+        if(isset($_REQUEST['Logout'])){
+            xdebug_break();
+            setcookie('token', null, time()-3600);
+            unset($_COOKIE['token']);
+            unset($_SESSION['token']);
+            setcookie('loggedin', '0', time() -3600);
+            unset($_SESSION['userid']);
+            return true;
+        }
+        return false;
+    }
+    
     
 
 

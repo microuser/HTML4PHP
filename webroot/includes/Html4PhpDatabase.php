@@ -46,9 +46,15 @@ class Html4PhpDatabase extends Html4PhpConfig {
      * Construct the Html4Database. Connect to local instance if DEV environment. Connect to Production database if server name matches production domain.
      * @param String $title
      */
-    public function __construct($title) {
+    public function __construct(&$title) {
         $this->addDebug(DEBUG_FUNCTION_TRACE);
-        parent::__construct($title);
+        
+        if(is_string($title)){
+            parent::__construct($title);
+        }else {
+            parent::__construct($title);
+        }
+        
 
 
         try {
