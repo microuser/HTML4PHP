@@ -15,14 +15,14 @@ class LoginPage extends LoginModel {
     }
 
     public function addLoginForm() {
-        if ((!$this->logoutWithRequest() || $this->getIsLoggedIn() || $this->loginWithRequest())) {
+       if ($this->getIsLoggedIn()) {
             //Your logged in
             $this->add($this->makeLogoutForm());
         } else {
             $this->add($this->makeLoginForm());
         }
         
-        $this->add((new TestUserModel($this))->makeUserInfo());
+        //$this->add((new TestUserModel($this))->makeUserInfo());
         
     }
 

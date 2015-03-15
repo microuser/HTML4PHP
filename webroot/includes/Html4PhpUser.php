@@ -19,7 +19,7 @@ include_once "Html4PhpValidator.php";
  */
 class Html4PhpUser extends Html4PhpDatabase {
 
-    private $loggedin = false;
+    public $loggedin = false;
     private $username = null;
     private $userId = null;
     private $email = null;
@@ -35,20 +35,69 @@ class Html4PhpUser extends Html4PhpDatabase {
      *  2) With Username
      * @param type $title
      */
-    public function __construct(&$title) {
+    public function __construct($title) {
 
         if (is_string($title)) {
             parent::__construct($title);
-            session_start();
-            $this->loginWithSessionCookieToken();
             $this->validator = new Html4PhpValidator();
-            xdebug_break();
-
-            xdebug_break();
+            session_start();
+            $this->loginSequence();
         } else {
             parent::__construct($title);
         }
         $this->addDebug(DEBUG_FUNCTION_TRACE);
+    }
+
+    private function loginSequence() {
+        //First try common case of logging in with session token
+        //If that suceedes, then try to logout
+        //else, try to login.
+        if ($this->loginWithSessionCookieToken()) {
+            if ($this->RequestLogout()) {
+                $this->messages[] = 'Logout Success';
+            }
+        } else {
+            if ($this->RequestLogin()) {
+                    $this->messages[] = "Login Success";
+            }
+        }
+    }
+
+    public function requestLogout() {
+        if (isset($_REQUEST['Logout']) && $_REQUEST['Logout'] == 'Submit') {
+            return $this->logout();
+        }
+        return false;
+    }
+
+    protected function requestCreateUser() {
+        $v = new Html4PhpValidator();
+        $v->validateRequest(
+                array(
+                    "username" => "username",
+                    "email" => "email",
+                    "password" => "password"
+                )
+        );
+        if ($v->getIsValid()) {
+            $v->clearIsValid();
+            return $this->createUser($v->username, $v->email, $v->password);
+        }
+        return null;
+    }
+
+    public function requestLogin() {
+        $this->validator->validateRequest(
+                array(
+                    "username" => "username",
+                    "password" => "password"
+                )
+        );
+        if ($this->validator->getIsValid()) {
+            $this->validator->clearIsValid();
+            return $this->loginWithUsernamePassword($this->validator->username, $this->validator->password);
+        }
+        return null;
     }
 
     /**
@@ -68,10 +117,8 @@ class Html4PhpUser extends Html4PhpDatabase {
             return $this->loginWithUserDetailsAndPassword($this->statementFetchAssoc(), $password);
         } catch (Exception $ex) {
             $this->addDebug(DEBUG_ERROR, "Expection selcting from user table with username=" . $username . ". " . $ex->getMessage());
-            xdebug_break();
         }
         $this->error[] = "Error on login with username and password";
-        xdebug_break();
         return false;
     }
 
@@ -90,13 +137,10 @@ class Html4PhpUser extends Html4PhpDatabase {
             $this->userId = $userDetails['userid'];
             $this->username = $userDetails['username'];
             $this->passhash = $userDetails['passhash'];
-            //$_SESSION['userid'] = $userDetails['userid'];
             $this->addDebug(DEBUG_VERBOSE, "UserDetails are now set in Html4PhpUser private member variables");
-            xdebug_break();
             return true;
         }
         $this->addDebug(DEBUG_ERROR, "UserDetails lack information");
-        xdebug_break();
         return false;
     }
 
@@ -109,10 +153,8 @@ class Html4PhpUser extends Html4PhpDatabase {
     private function setUsername($username) {
         if ($this->validator->isMatch("username", $username)) {
             $this->username = $username;
-            xdebug_break();
             return true;
         } else {
-            xdebug_break();
             $this->errors[] = 'Username: ' . $this->validator->getRuleErrorMsg("username");
             return false;
         }
@@ -126,10 +168,8 @@ class Html4PhpUser extends Html4PhpDatabase {
     private function setEmail($email) {
         if ($this->validator->isMatch("email", $email)) {
             $this->email = $email;
-            xdebug_break();
             return true;
         } else {
-            xdebug_break();
             $this->errors[] = 'Eamil: ' . $this->validator->getRuleErrorMsg("email");
             return false;
         }
@@ -143,10 +183,8 @@ class Html4PhpUser extends Html4PhpDatabase {
     private function setPasshashFromPassword($password) {
         if ($this->validator->isMatch("password", $password)) {
             $this->passhash = password_hash($password, PASSWORD_BCRYPT);
-            xdebug_break();
             return true;
         } else {
-            xdebug_break();
             $this->errors[] = 'Password: ' . $this->validator->getRuleErrorMsg("password");
             return false;
         }
@@ -169,24 +207,19 @@ class Html4PhpUser extends Html4PhpDatabase {
             $this->statementBindParam(":userId", $this->userId);
             $success = $this->statementExecute();
             $this->messages[] = $this->statementRowCount(); //.$this->getPdo()->lastInsertId(). $this->getPdo()->errorInfo();
-            xdebug_break();
             if ($success) {//$this->getPdo()->lastInsertId() > 0) {
-                xdebug_break();
-                setcookie('token', $this->token); //Cookie Expires end of session
+                setcookie('token', $this->token, time() + 3600 * 24, '/'); //Cookie Expires end of session
                 $_COOKIE['token'] = $this->token;
                 $_SESSION['token'] = $this->token;
                 $_SESSION['userid'] = $this->userId;
                 $this->addDebug(DEBUG_VERBOSE, "Updated user token for userid=" . $this->userId);
-                xdebug_break();
                 return true;
             }
         } catch (Exception $ex) {
             $this->addDebug(DEBUG_ERROR, "Exception while attempting update user token for userid=" . $this->userId . ". " . $ex->getMessage());
-            xdebug_break();
         }
         $this->errors[] = "Unable to update user token.";
         $this->addDebug(DEBUG_ERROR, "Unable to update user token for userid=" . $this->userId);
-        xdebug_break();
         return false;
     }
 
@@ -198,7 +231,6 @@ class Html4PhpUser extends Html4PhpDatabase {
      * @return boolean
      */
     private function loginWithUserDetailsAndPassword($userDetails, $password) {
-        xdebug_break();
         if (
                 is_array($userDetails) &&
                 isset($userDetails['passhash']) &&
@@ -207,16 +239,12 @@ class Html4PhpUser extends Html4PhpDatabase {
 
             if ($this->updateTokenWithUserId($userDetails['userid'])) {
                 $this->loggedin = true;
-                setcookie("loggedin", "1");
-                $this->messages[] = 'Login Success.';
                 $this->addDebug(DEBUG_VERBOSE, "Login Success using password for userid=" . $userDetails['userid']);
-                xdebug_break();
                 return true;
             }
         } else {
             $this->errors[] = "No Entry or Password Denied.";
             $this->addDebug(DEBUG_ERROR, "No Entry or Password Denied");
-            xdebug_break();
             return false;
         }
     }
@@ -227,30 +255,30 @@ class Html4PhpUser extends Html4PhpDatabase {
      */
     public function loginWithSessionCookieToken() {
         xdebug_break();
-        if (isset($_SESSION['token']) &&
-                isset($_COOKIE['token']) &&
-                isset($_SESSION['userid']) &&
-                $_SESSION['token'] == $_COOKIE['token'] &&
-                !isset($_REQUEST['Logout']) &&
-                !$_REQUEST['Logout'] == 'Submit'
-                ) {
-            xdebug_break();
-            if ($this->selectAndSetUserClassDetailsWithUserIdAndToken($_SESSION['token'], $_SESSION['userid'])) {
-                $this->loggedin = true;
-                $this->addDebug(DEBUG_VERBOSE, "Login Sucess using Session Token and Cookie Token matched.");
+        if ($this->getConfig('login', 'securityLevel' == 0)) {
+            if (isset($_SESSION['token']) &&
+                    isset($_COOKIE['token']) &&
+                    isset($_SESSION['userid']) &&
+                    $_SESSION['token'] == $_COOKIE['token'] &&
+                    !(isset($_REQUEST['Logout']) && $_REQUEST['Logout'] == 'Submit')
+            ) {
                 xdebug_break();
-                return true;
+                if ($this->selectAndSetUserClassDetailsWithUserIdAndToken($_SESSION['token'], $_SESSION['userid'])) {
+                    xdebug_break();
+                    $this->loggedin = true;
+                    $this->addDebug(DEBUG_VERBOSE, "Login Sucess using Session Token and Cookie Token matched.");
+                    return true;
+                }
+            } else {
+                if (isset($_REQUEST['Logout']) && $_REQUEST['Logout'] == 'Submit') {
+                    $this->logout();
+                }
+                $this->loggedin = false;
+                $this->addDebug(DEBUG_ERROR, "Session token/userid, or cookie token not set, or not matched. Login Denied");
+                xdebug_break();
+                return false;
             }
-            xdebug_break();
-        } else {
-            $this->logout();
-        return false;
-            $this->errors[] = "Login Denied";
-            $this->loggedin = false;
-            $this->addDebug(DEBUG_ERROR, "Session token/userid, or cookie token not set, or not matched. Login Denied");
-            xdebug_break();
         }
-        xdebug_break();
         return false;
     }
 
@@ -264,7 +292,6 @@ class Html4PhpUser extends Html4PhpDatabase {
     public function createUser($username, $email, $password) {
         $this->addDebug(DEBUG_FUNCTION_TRACE, '$username=' . $username . ', $password=Hidden' . ', $email=' . $email);
         try {
-            xdebug_break();
             if ($this->setUsername($username) && $this->setEmail($email) && $this->setPasshashFromPassword($password)) {
                 try {
                     $this->statementPrepare('INSERT INTO `user` (username, email, passhash, timecreated) VALUES (:username, :email, :passhash, now())');
@@ -276,17 +303,15 @@ class Html4PhpUser extends Html4PhpDatabase {
                     $this->errors[] = $this->getPdo()->errorCode();
                     $this->errors[] = print_r($this->getPdo()->errorInfo(), 1);
                     $this->messages[] = "User created";
-                    echo "User Created";
-                    xdebug_break();
                 } catch (Exception $e) {
-                    echo '<pre>' . $e . '</pre>';
+                    //echo '<pre>' . $e . '</pre>';
+                    $this->errors[] = "A major error occured.";
                 }
                 return true;
             } else {
                 $this->errors[] = "User not created.";
                 $this->resetUser();
                 $status = false;
-                xdebug_break();
                 return false;
             }
         } catch (Exception $ex) {
@@ -295,11 +320,9 @@ class Html4PhpUser extends Html4PhpDatabase {
             if ($ex->getCode() == 23000) {
                 $this->addDebug(DEBUG_VERBOSE, "<br/>Username is taken<br/>");
                 $this->addDebug(DEBUG_VERBOSE, "PDO Exception Code:" . $ex->getCode());
-                xdebug_break();
                 return FALSE;
             }
             $this->addDebug(DEBUG_ERROR_LOG, $ex->getMessage());
-            xdebug_break();
         }
     }
 
@@ -326,9 +349,8 @@ class Html4PhpUser extends Html4PhpDatabase {
         $this->userId = $userDetails['userid'];
         $this->email = $userDetails['email'];
         $this->passhash = $userDetails['passhash'];
-        $this->loggedin = true;
         $this->token = $userDetails['token'];
-        $_SESSION['timeupdated'] = $userDetails['timeupdated'];
+        $this->loggedin = true;
         xdebug_break();
         return true;
     }
@@ -433,21 +455,20 @@ class Html4PhpUser extends Html4PhpDatabase {
     public function getEmail() {
         return $this->email;
     }
-    
-    public function logout(){
-        //xdebug_break();
-        //if(isset($_REQUEST['Logout'])){
-        try{
-            xdebug_break();
-            setcookie('token', null, time()-3600);
+
+    public function logout() {
+        try {
+            $this->loggedin = false;
+            setcookie('token', null, time() - 3600, '/');
             unset($_COOKIE['token']);
             unset($_SESSION['token']);
-            setcookie('loggedin', '0', time() -3600);
+            setcookie('loggedin', '0', time() - 3600, '/');
             unset($_SESSION['userid']);
+            unset($_SESSION['timeupdated']);
+            xdebug_break();
             return true;
-        } catch(Exception $e){
-        //}
-        return false;
+        } catch (Exception $e) {
+            return false;
         }
     }
 

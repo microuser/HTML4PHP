@@ -24,67 +24,27 @@ class LoginModel extends Html4PhpSite {
         return $form->generateForm("Create User");
     }
     
-    protected function requestCreateUser(){
-        $v = new Html4PhpValidator();
-        $v->validateRequest(
-                array(
-                    "username" => "username",
-                    "email"    => "email",
-                    "password" => "password"
-                    )
-                );
-        if($v->getIsValid()){
-            return $this->createUser($v->username, $v->email, $v->password);
-        }
-        return null;
-    }
-    
+      
     
     
     public function makeLogoutForm(){
+        
         $form = new Html4PhpForm("Logout");
-        $form->startForm("logout");
+        $form->startForm("logout",$this->getConfig('server', 'relativeUrl'));
         $form->addFormSubmitButton("Logout", "Logout");
         return $form->generateForm("Logout");
     }
     
     public function makeLoginForm() {
         $form = new Html4PhpForm("Login");
-        $form->startForm("login");
+        $form->startForm("login",$this->getConfig('server', 'relativeUrl'));
         $form->addFormInputWithDataType("Username","username","username");
         $form->addFormInputPasswordWithDataType("Password","password","password");
         $form->addFormSubmitButton("");
         return $form->generateForm("Login");
     }
 
-    protected function loginWithRequest() {
-        $v = new Html4PhpValidator();
-        xdebug_break();
-        $v->validateRequest(
-                array(
-                    "username" => "username",
-                    "password" => "password"
-                )
-        );
-        if ($v->getIsValid()) {
-            return $this->loginWithUsernamePassword($v->username, $v->password);
-        }
-        return null;
-    }
-    
-    protected function logoutWithRequest(){
-        xdebug_break();
-        if(isset($_REQUEST['Logout'])){
-            xdebug_break();
-            setcookie('token', null, time()-3600);
-            unset($_COOKIE['token']);
-            unset($_SESSION['token']);
-            setcookie('loggedin', '0', time() -3600);
-            unset($_SESSION['userid']);
-            return true;
-        }
-        return false;
-    }
+
     
     
 

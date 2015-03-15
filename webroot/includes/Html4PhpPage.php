@@ -34,9 +34,18 @@ class Html4PhpPage extends Html4PhpUser {
      */
     public function __construct($title) {
         $this->addDebug();
-
         parent::__construct($title);
         $this->title = $title;
+        $this->addMessagesAndErrors();
+    }
+    
+    private function addMessagesAndErrors(){
+        foreach($this->messages as $message){
+            $this->addDiv($message, "info");
+        }
+        foreach($this->errors as $error){
+            $this->addDiv($error, "warning");
+        }
     }
 
     /**
