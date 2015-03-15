@@ -22,7 +22,11 @@ class Html4PhpConfig extends Html4PhpDebug {
     /**
      * Contains Configuration data for HTML4PHP Framework
      */
-    public function __construct($title) {
+    public function __construct(&$title) {
+        if(!is_string($title)){
+            //Merge the two $this objects.
+            $title = (object) array_merge((array) $title, (array) $this);
+        }
 
         $productionConfig = $stagingConfig = $developmentConfig = array(array());
         include('Html4PhpConfigData.php');

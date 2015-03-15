@@ -1,4 +1,7 @@
 <?php
 include_once($_SERVER['DOCUMENT_ROOT'].'/classes/LoginPage.php');
-$page = new LoginPage("Logout");
-echo $page->generatePage();
+$_REQUEST['Logout'] = 'Submit';
+$page = new Html4PhpUser("Logout");
+header("location:".$page->getConfig('server','relativeUrl')."index.php");
+//$page->addLoginForm();
+//echo $page;

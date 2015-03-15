@@ -48,7 +48,13 @@ class Html4PhpDatabase extends Html4PhpConfig {
      */
     public function __construct($title) {
         $this->addDebug(DEBUG_FUNCTION_TRACE);
-        parent::__construct($title);
+        
+        if(is_string($title)){
+            parent::__construct($title);
+        }else {
+            parent::__construct($title);
+        }
+        
 
 
         try {
@@ -68,6 +74,8 @@ class Html4PhpDatabase extends Html4PhpConfig {
             echo "\nNo Database Connection";
             die();
         }
+        
+        //return $this;
     }
 
     /**

@@ -36,6 +36,7 @@ $this->menu = array(
             'Form' => '/tests/form.php',
             'Page' => '/tests/page.php',
             'Site' => '/tests/site.php',
+            'User' => '/tests/user.php',
             'Validator' => '/tests/validator.php',
         )
     ),

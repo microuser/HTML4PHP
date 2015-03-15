@@ -1,6 +1,7 @@
 <?php
 
 include_once 'Html4PhpPage.php';
+include_once 'Html4PhpValidator.php';
 
 /**
  * @version 2015-01-12
@@ -26,6 +27,7 @@ class Html4PhpSite extends Html4PhpPage {
 
     public function __construct($title) {
         parent::__construct($title);
+        $this->validator = new Html4PhpValidator();
         $this->titleName = $title;
 
         include_once($this->getConfig('server', 'documentRoot') . 'layouts/' . $this->getConfig('site', 'layout') . '/resources.php');
@@ -43,7 +45,7 @@ class Html4PhpSite extends Html4PhpPage {
     }
 
     public function constructLayout() {
-
+        xdebug_break();
 
         $relativeUrl = $this->getConfig('server', 'relativeUrl');
         if (isset($this->resources['js'])) {
@@ -69,15 +71,13 @@ class Html4PhpSite extends Html4PhpPage {
     }
 
     private function generateLoginTopNavSmall() {
+
         if (
-        //isset($_SESSION['PHPSESSIONID']) &&
-        //isset($_SESSION['LOGIN_TOKEN']) &&
-        //$this->verifyLoginToken($_SESSION['PHPSESSIONID'], $_SESSION['LOGIN_TOKEN'])
-                $this->loginWithSessionCookieToken()
+                $this->getIsLoggedIn()
         ) {
             $this->layoutTopNavSmall("<a href=\"/login/logout.php\">Logout</a>");
         } else {
-            $this->layoutTopNavSmall("<a href=\"/login/\">Login</a>");
+            $this->layoutTopNavSmall("<a href=\"/login/index.php\">Login</a>");
         }
     }
 
@@ -97,7 +97,7 @@ class Html4PhpSite extends Html4PhpPage {
         $selectedSubItemName = 'Home';
         $itemMenu = array();
         $subItemMenu = array('Home' => '/index.php');
-        if (isset($this->isLoggedIn) && $this->isLoggedIn) {
+        if ($this->getIsLoggedIn()) {
             $loginMenu = array("Logout" => "/login/logout.php");
         } else {
             $loginMenu = array("Login" => "/login/index.php", "Register" => "/login/create.php");
@@ -116,6 +116,7 @@ class Html4PhpSite extends Html4PhpPage {
             }
             //Find selected in list
             foreach ($subItems[1] as $subItemName => $subItemLink) {
+                $subItemLink = explode("?", $subItemLink, 2)[0]; //Everything before the GET variables
                 if ($subItemLink === $self) {
                     $selectedItemName = $itemName;
                     $selectedSubItemName = $subItemName;

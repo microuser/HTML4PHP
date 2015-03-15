@@ -18,8 +18,7 @@ $developmentConfig = array(
         'dbName' => 'dbname',
         'dbUser' => 'root',
         'dbPass' => '123456'
-    )
-    ,
+    ),
     'email' => array(
         'smtpDebug' => 2,
         'smtpHost' => 'localhost',
@@ -44,6 +43,10 @@ $developmentConfig = array(
     ),
     'environment' => array(
         'debugLevel' => 0
+    ),
+    'login' => array(
+        'securityLevel' => '0',
+        'returnToPage' => true,
     ),
 );
 //--------------------------------------------------------------------
@@ -65,8 +68,7 @@ $stagingConfig = array(
         'dbName' => 'dbname',
         'dbUser' => 'dbuser',
         'dbPass' => 'password'
-    )
-    ,
+    ),
     'email' => array(
         'smtpDebug' => 2,
         'smtpHost' => 'localhost',
@@ -92,6 +94,9 @@ $stagingConfig = array(
     'environment' => array(
         'debugLevel' => 0
     ),
+    'login' => array(
+        'securityLevel' => 0,
+    ),
 );
 
 //--------------------------------------------------------------------
@@ -110,8 +115,7 @@ $productionConfig = array(
         'dbName' => 'database_name',
         'dbUser' => 'username_database',
         'dbPass' => 'password'
-    )
-    ,
+    ),
     'email' => array(
         'smtpDebug' => 2,
         'smtpHost' => 'localhost',
@@ -129,6 +133,10 @@ $productionConfig = array(
     ),
     'environment' => array(
         'debugLevel' => 0
+    ),
+    'login' => array(
+        'securityLevel' => '0',
+        'returnToPage' => true,
     ),
 );
 

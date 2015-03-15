@@ -1,6 +1,7 @@
 <?php
 
 include_once('LoginModel.php');
+include_once($_SERVER['DOCUMENT_ROOT'].'/classes/TestUserModel.php');
 
 /**
  * Description of LoginPage
@@ -14,12 +15,15 @@ class LoginPage extends LoginModel {
     }
 
     public function addLoginForm() {
-        if (($this->loginWithSessionCookieToken() || $this->loginWithRequest())) {
+       if ($this->getIsLoggedIn()) {
             //Your logged in
             $this->add($this->makeLogoutForm());
         } else {
             $this->add($this->makeLoginForm());
         }
+        
+        //$this->add((new TestUserModel($this))->makeUserInfo());
+        
     }
 
     public function addLogoutForm() {
