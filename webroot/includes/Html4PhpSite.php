@@ -20,6 +20,7 @@ class Html4PhpSite extends Html4PhpPage {
 
     private $resources = array();
     private $menu = array();
+    private $menuTooltips = array();
     private $titleName;
     private $titleLink = 'index.php';
     private $topNav = '';
@@ -30,8 +31,10 @@ class Html4PhpSite extends Html4PhpPage {
         $this->validator = new Html4PhpValidator();
         $this->titleName = $title;
 
-        include_once($this->getConfig('server', 'documentRoot') . 'layouts/' . $this->getConfig('site', 'layout') . '/resources.php');
-        include_once($this->getConfig('server', 'documentRoot') . 'layouts/' . $this->getConfig('site', 'layout') . '/menu.php');
+        include($this->getConfig('server', 'documentRoot') . 'layouts/' . $this->getConfig('site', 'layout') . '/resources.php');
+        include($this->getConfig('server', 'documentRoot') . 'layouts/' . $this->getConfig('site', 'layout') . '/menu.php');
+        include($this->getConfig('server', 'documentRoot') . 'layouts/' . $this->getConfig('site', 'layout') . '/menuTooltips.php');
+        
 
         //TODO, call upon generate head.
         $this->constructLayout();
@@ -45,7 +48,6 @@ class Html4PhpSite extends Html4PhpPage {
     }
 
     public function constructLayout() {
-        xdebug_break();
 
         $relativeUrl = $this->getConfig('server', 'relativeUrl');
         if (isset($this->resources['js'])) {
@@ -106,6 +108,7 @@ class Html4PhpSite extends Html4PhpPage {
             $this->menu['Home'][1] = array_merge($this->menu['Home'][1], $loginMenu);
         }
 
+        //Menu Items are in menu.php
         foreach ($this->menu as $itemName => $subItems) {
             $itemLink = $subItems[0];
             $itemMenu[$itemName] = $itemLink;
@@ -124,10 +127,16 @@ class Html4PhpSite extends Html4PhpPage {
                 }
             }
         }
-
-        $this->layoutNavLevel1($itemMenu, $selectedItemName);
+        
+        
+        $this->layoutNavLevel1($itemMenu, $selectedItemName, $this->menuTooltips);
         if (isset($this->menu[$selectedItemName]) && isset($this->menu[$selectedItemName][1])) {
-            $this->layoutNavLevel2($this->menu[$selectedItemName][1], $selectedSubItemName);
+            if(isset($this->menuTooltips) && isset($this->menuTooltips[$selectedItemName]) && is_array($this->menuTooltips[$selectedItemName][1])){
+                $tooltips2 = $this->menuTooltips[$selectedItemName][1];
+            }else {
+                $tooltips2 = array();
+            }
+            $this->layoutNavLevel2($this->menu[$selectedItemName][1], $selectedSubItemName, $tooltips2);
         }
     }
 
@@ -153,19 +162,24 @@ class Html4PhpSite extends Html4PhpPage {
      * @param type $menuKeyValuePair
      * @param type $selectedName
      */
-    private function layoutNavLevel1($menuKeyValuePair, $selectedName) {
+    private function layoutNavLevel1($menuKeyValuePair, $selectedName, $tooltips = array()) {
         //Debug::add('$menuKeyValuePair=' . print_r($menuKeyValuePair, 1) . '$selectedName=' . $selectedName);
         $out = '<ul>' . $this->newLine;
 
         foreach ($menuKeyValuePair as $key => $value) {
+            if(isset($tooltips[$key]) && isset($tooltips[$key][0]) && is_string($tooltips[$key][0])){
+                $tooltip = ' title="'.$tooltips[$key][0].'"';
+            }else{
+                $tooltip = '';
+            }
             if ($selectedName == $key) {
-                $out .= '<li class="selected">' . $this->newLine .
+                $out .= '<li class="selected"'.$tooltip.'>' . $this->newLine .
                         '<a href="' . $value . '">' . $this->newLine
                         . $key . $this->newLine
                         . '</a>' . $this->newLine
                         . '</li>' . $this->newLine;
             } else {
-                $out .= '<li>' . $this->newLine
+                $out .= '<li'.$tooltip.'>' . $this->newLine
                         . '<a href="' . $value . '">' . $this->newLine
                         . $key . $this->newLine
                         . '</a>' . $this->newLine
@@ -178,15 +192,21 @@ class Html4PhpSite extends Html4PhpPage {
                 . $this->newLine . '</div><!-- endNavLevel1Content -->', 'navLevel1');
     }
 
-    private function layoutNavLevel2($menuKeyValuePair, $selectedName) {
+    private function layoutNavLevel2($menuKeyValuePair, $selectedName, $tooltips = array()) {
         //Debug::add('$menuKeyValuePair=' . print_r($menuKeyValuePair, 1) . '$selectedName=' . $selectedName);
         $out = '<ul>' . $this->newLine;
 
         foreach ($menuKeyValuePair as $key => $value) {
+            if(isset($tooltips) && isset($tooltips[$key])){
+                $tooltip = ' title="'.$tooltips[$key].'"';
+            }else{
+                $tooltip = '';
+            }
+            
             if ($selectedName == $key) {
-                $out .= '<li class="selected"><a href="' . $value . '">' . $key . '</a></li>' . $this->newLine;
+                $out .= '<li class="selected"'.$tooltip.'><a href="' . $value . '">' . $key . '</a></li>' . $this->newLine;
             } else {
-                $out .= '<li><a href="' . $value . '">' . $key . '</a></li>' . $this->newLine;
+                $out .= '<li'.$tooltip.'><a href="' . $value . '">' . $key . '</a></li>' . $this->newLine;
             }
         }
 

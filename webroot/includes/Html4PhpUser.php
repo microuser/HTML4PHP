@@ -254,7 +254,6 @@ class Html4PhpUser extends Html4PhpDatabase {
      * @return boolean
      */
     public function loginWithSessionCookieToken() {
-        xdebug_break();
         if ($this->getConfig('login', 'securityLevel' == 0)) {
             if (isset($_SESSION['token']) &&
                     isset($_COOKIE['token']) &&
@@ -275,7 +274,6 @@ class Html4PhpUser extends Html4PhpDatabase {
                 }
                 $this->loggedin = false;
                 $this->addDebug(DEBUG_ERROR, "Session token/userid, or cookie token not set, or not matched. Login Denied");
-                xdebug_break();
                 return false;
             }
         }
@@ -444,7 +442,6 @@ class Html4PhpUser extends Html4PhpDatabase {
     }
 
     public function getIsLoggedIn() {
-        xdebug_break();
         return $this->loggedin;
     }
 
