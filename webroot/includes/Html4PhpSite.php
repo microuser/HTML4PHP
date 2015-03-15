@@ -73,11 +73,12 @@ class Html4PhpSite extends Html4PhpPage {
         //isset($_SESSION['PHPSESSIONID']) &&
         //isset($_SESSION['LOGIN_TOKEN']) &&
         //$this->verifyLoginToken($_SESSION['PHPSESSIONID'], $_SESSION['LOGIN_TOKEN'])
-                $this->loginWithSessionCookieToken()
+                //$this->loginWithSessionCookieToken()
+                $this->getIsLoggedIn()
         ) {
             $this->layoutTopNavSmall("<a href=\"/login/logout.php\">Logout</a>");
         } else {
-            $this->layoutTopNavSmall("<a href=\"/login/\">Login</a>");
+            $this->layoutTopNavSmall("<a href=\"/login/login.php\">Login</a>");
         }
     }
 

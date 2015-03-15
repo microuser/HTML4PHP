@@ -38,6 +38,7 @@ class Html4PhpUser extends Html4PhpDatabase {
     public function __construct($title) {
         $this->addDebug(DEBUG_FUNCTION_TRACE);
         parent::__construct($title);
+        $this->loginWithSessionCookieToken();
         $this->validator = new Html4PhpValidator();
         session_start();
         xdebug_break();
@@ -151,8 +152,8 @@ class Html4PhpUser extends Html4PhpDatabase {
      * @return boolean
      */
     private function updateTokenWithUserId($userId = null) {
-        if ($userId === null) {
-            $userId = $this->userId;
+        if ($userId !== null) {
+             $this->userId = $userId;
         }
         try {
             $this->token = md5(rand());
@@ -164,7 +165,7 @@ class Html4PhpUser extends Html4PhpDatabase {
             xdebug_break();
             if ($success) {//$this->getPdo()->lastInsertId() > 0) {
                 xdebug_break();
-                setcookie('token', $this->token, time() + 86400); //Cookie Expires 1 day
+                setcookie('token', $this->token); //Cookie Expires end of session
                 $_COOKIE['token'] = $this->token;
                 $_SESSION['token'] = $this->token;
                 $_SESSION['userid'] = $this->userId;
@@ -217,16 +218,19 @@ class Html4PhpUser extends Html4PhpDatabase {
      * @return boolean
      */
     public function loginWithSessionCookieToken() {
-        if (isset($_SEESION['token']) &&
+        xdebug_break();
+        if (isset($_SESSION['token']) &&
                 isset($_COOKIE['token']) &&
                 isset($_SESSION['userid']) &&
                 $_SESSION['token'] == $_COOKIE['token']) {
+            xdebug_break();
             if ($this->selectAndSetUserClassDetailsWithUserIdAndToken($_SESSION['token'], $_SESSION['userid'])) {
                 $this->loggedin = true;
                 $this->addDebug(DEBUG_VERBOSE, "Login Sucess using Session Token and Cookie Token matched.");
                 xdebug_break();
                 return true;
             }
+            xdebug_break();
         } else {
             $this->errors[] = "Login Denied";
             $this->loggedin = false;
@@ -300,6 +304,19 @@ class Html4PhpUser extends Html4PhpDatabase {
         $email->sendEmail($toName, $toEmail, $subject, $messageHtml);
     }
 
+    public function selectAndSetUserClassDetailsWithUserIdAndToken($userId, $token){
+        $this->statementPrepare("SELECT * FROM `user` WHERE userID=:userid AND token=:token");
+        $this->statementBindParam("userid", $userId);
+        $this->statementBindParam("token", $token);
+        print_r($this->statementFetchAssoc());
+        $this->username = '';
+        $this->userId = '';
+        return true;
+        
+        
+        
+    }
+    
     /*
       public function findUsernameWithEmail($email) {
       $this->statementPrepare("SELECT username FROM user where email=:email");
@@ -386,6 +403,10 @@ class Html4PhpUser extends Html4PhpDatabase {
         $this->passhash = null;
         $this->loggedin = false;
         $this->token = null;
+    }
+    
+    public function getIsLoggedIn(){
+        $this->loggedin;
     }
 
 }

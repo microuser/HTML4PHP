@@ -1,6 +1,7 @@
 <?php
 
 include_once('LoginModel.php');
+include_once($_SERVER['DOCUMENT_ROOT'].'/classes/TestUserModel.php');
 
 /**
  * Description of LoginPage
@@ -20,6 +21,8 @@ class LoginPage extends LoginModel {
         } else {
             $this->add($this->makeLoginForm());
         }
+        
+        $this->add((new TestUserModel())->makeUserInfo());
     }
 
     public function addLogoutForm() {

@@ -27,28 +27,31 @@ class Html4PhpPage extends Html4PhpUser {
     private $css = array();
     private $javascript = array();
     private $javascriptFooter = array();
-/**
- * Html4PhpPage 
- * @param type $title
- */
+
+    /**
+     * Html4PhpPage 
+     * @param type $title
+     */
     public function __construct($title) {
         $this->addDebug();
 
         parent::__construct($title);
         $this->title = $title;
     }
-/**
- * Adds a script tagfor javascript in the header, provide a link to the $src parameter
- * @param type $src
- */
+
+    /**
+     * Adds a script tagfor javascript in the header, provide a link to the $src parameter
+     * @param type $src
+     */
     public function addJavascriptLink($src) {
         $this->addDebug(DEBUG_FUNCTION_TRACE, '$src=' . $src);
         $this->javascript[] = '<script type="text/javascript" src="' . $src . '"></script>' . $this->newLine;
     }
-/**
- * Add a script tag for javascript in the header, provide javascript code in the $code parameter
- * @param type $code
- */
+
+    /**
+     * Add a script tag for javascript in the header, provide javascript code in the $code parameter
+     * @param type $code
+     */
     public function addJavascriptCode($code) {
         $this->addDebug(DEBUG_FUNCTION_TRACE, '$code=' . $code);
         $this->javascript[] = '<script type="text/javascript">' . $code . '</script>' . $this->newLine;
@@ -80,10 +83,11 @@ class Html4PhpPage extends Html4PhpUser {
         $this->addDebug(DEBUG_FUNCTION_TRACE, '$html=' . $html);
         $this->head[] = $html;
     }
-/**
- * Append $html to the header of the page
- * @param type $html
- */
+
+    /**
+     * Append $html to the header of the page
+     * @param type $html
+     */
     public function appendHeader($html) {
         $this->addDebug(DEBUG_FUNCTION_TRACE, '$html=' . $html);
         $this->header[] = $html;
@@ -144,10 +148,11 @@ class Html4PhpPage extends Html4PhpUser {
         $out .= '<!-- End Generate Header-->';
         return $out;
     }
-/**
- * The footer of the page is the part of the document near the end below the body, which includes the closing </html> tag of the document set in the HEAD
- * @return string
- */
+
+    /**
+     * The footer of the page is the part of the document near the end below the body, which includes the closing </html> tag of the document set in the HEAD
+     * @return string
+     */
     public function generateFooter() {
         $this->addDebug(DEBUG_FUNCTION_TRACE);
         if (DEBUG & DEBUG_ECHO) {
@@ -225,13 +230,14 @@ class Html4PhpPage extends Html4PhpUser {
         $this->appendBody($html . $this->newLine);
         return $html;
     }
+
     /**
      * Return $html content wrapped in a div styped using $class or perhaps other tags using $extraTag optional parameter.
      * @param type $html
      * @param type $class
      * @param type $extraTag
      */
-    public function makeDiv($html, $class = '', $extraTag = ''){
+    public function makeDiv($html, $class = '', $extraTag = '') {
         $this->addDebug(DEBUG_FUNCTION_TRACE, '$html=' . $html . ', $class=' . $class . ', $extraTag=' . $extraTag);
         $out = "\n" . '<!-- beginAddDiv-->'
                 . "\n" . '<div';
@@ -246,7 +252,7 @@ class Html4PhpPage extends Html4PhpUser {
         $out .= '</div> <!-- endAddDiv-->' . $this->newLine;
         return $out;
     }
-    
+
     /**
      * Add $html content wrapped in a div styped using $class or perhaps other tags using $extraTag optional parameter.
      * @param type $html
@@ -313,6 +319,7 @@ class Html4PhpPage extends Html4PhpUser {
         }
         return $isValidArray;
     }
+
     /**
      * Provide a common way to feed arrays into an sortable styled table. Parameters of $title, and $tbodyArray are required.
      * @param type $title
@@ -321,9 +328,16 @@ class Html4PhpPage extends Html4PhpUser {
      * @param type $tfootArray
      * @param type $tableClass
      * @param string $tableId
+     * @param string $columnWidthsArray
      */
-    public function makeTable($title = null, $theadArray = null, $tbodyArray = null, $tfootArray = null, $tableClass = 'tablesorter', $tableId = null) {
+    public function makeTable($title = null, $theadArray = null, $tbodyArray = null, $tfootArray = null, $tableClass = '', $tableId = null, $columnWidthsArray = null) {
         $this->addDebug(DEBUG_FUNCTION_TRACE, '$title=' . $title . ', $treadArray=' . print_r($theadArray, 1) . ', $tbodyArray=' . print_r($tbodyArray, 1) . ', $tfootArray=' . print_r($tfootArray, 1) . ', $tableClass=' . $tableClass . ', $tableId=' . $tableId);
+        if($tableClass == '' || $tableClass == null){
+            $tableClass .= 'tablesorter';
+        }else {
+            $tableClass .= ' tablesorter';
+        }
+        
         //Consider allowing styling/javascript using the following pattern
         //$a = array();
         //$a['1,x'] = 'onclick="alert(\'YouClickedRow\');"';
@@ -373,8 +387,18 @@ class Html4PhpPage extends Html4PhpUser {
         if ($theadArray != null && is_array($theadArray)) {
             $theadHtml = '<thead>';
             $theadHtml .= '<tr>';
+            $columnIterator = 0;
             foreach ($theadArray as $theadCell) {
-                $theadHtml .= '<th>' . $theadCell . '</th>';
+                if (is_array($columnWidthsArray) && isset($columnWidthsArray[$columnIterator])) {
+                    //If the percent is missing, add percent sign
+                    if(is_numeric($columnWidthsArray[$columnIterator])){
+                        $columnWidthsArray[$columnIterator] = $columnWidthsArray[$columnIterator]."%";
+                    }
+                    $theadHtml .= '<th style="width:'.$columnWidthsArray[$columnIterator].'">' . $theadCell . '</th>';
+                } else {
+                    $theadHtml .= '<th>' . $theadCell . '</th>';
+                }
+                $columnIterator += 1;
             }
             $theadHtml .= '</tr>';
             $theadHtml .= '</thead>';
@@ -438,9 +462,8 @@ class Html4PhpPage extends Html4PhpUser {
 
         $out .= '</div>';
         return $out;
-        
-        
-    }   
+    }
+
     /**
      * Provide a common way to feed arrays into an sortable styled table. Parameters of $title, and $tbodyArray are required.
      * @param type $title
@@ -449,13 +472,14 @@ class Html4PhpPage extends Html4PhpUser {
      * @param type $tfootArray
      * @param type $tableClass
      * @param string $tableId
+     * @param type $$columnWidthsArray
      */
-    public function addTable($title = null, $theadArray = null, $tbodyArray = null, $tfootArray = null, $tableClass = 'tablesorter', $tableId = null) {
-        $out = $this->makeTable($title, $theadArray, $tbodyArray, $tfootArray, $tableClass, $tableId);
+    public function addTable($title = null, $theadArray = null, $tbodyArray = null, $tfootArray = null, $tableClass = '', $tableId = null, $columnWidthsArray = null) {
+        $out = $this->makeTable($title, $theadArray, $tbodyArray, $tfootArray, $tableClass, $tableId, $columnWidthsArray);
         $this->appendBody($out);
     }
-    
-        /**
+
+    /**
      * Provide a common way to feed arrays into an sortable styled table. Parameters of $title, and $tbodyArray are required.
      * @param type $title
      * @param type $theadArray
@@ -463,14 +487,20 @@ class Html4PhpPage extends Html4PhpUser {
      * @param type $tfootArray
      * @param type $tableClass
      * @param string $tableId
+     * @param type $columnWidthsArray
      */
-    public function addTableKeyValue($title = null, $theadArray = null, $tbodyArray = null, $tfootArray = null, $tableClass = 'tablesorter', $tableId = null) {
-        $keyValue = array();
-        foreach($tbodyArray as $key=>$value){
-            echo $key.print_r($value,1);
-            $keyValue[] = array($key, $value);
-        }
-        $out = $this->makeTable($title, $theadArray, $keyValue, $tfootArray, $tableClass, $tableId);
+    public function addTableKeyValue($title = null, $theadArray = null, $tbodyArray = null, $tfootArray = null, $tableClass = '', $tableId = null, $columnWidthsArray = null) {
+        $out =  $this->makeTableKeyValue($title, $theadArray, $tbodyArray, $tfootArray, $tableClass, $tableId, $columnWidthsArray);
         $this->appendBody($out);
     }
+    
+    public function makeTableKeyValue($title = null, $theadArray = null, $tbodyArray = null, $tfootArray = null, $tableClass = '', $tableId = null, $columnWidthsArray = null){
+        $keyValue = array();
+        foreach ($tbodyArray as $key => $value) {
+            $keyValue[] = array($key, $value);
+        }
+        return $this->makeTable($title, $theadArray, $keyValue, $tfootArray, $tableClass, $tableId, $columnWidthsArray);
+        
+    }
+
 }

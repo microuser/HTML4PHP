@@ -68,6 +68,8 @@ class Html4PhpDatabase extends Html4PhpConfig {
             echo "\nNo Database Connection";
             die();
         }
+        
+        //return $this;
     }
 
     /**
