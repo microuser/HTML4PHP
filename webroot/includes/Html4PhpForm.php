@@ -642,6 +642,20 @@ class Html4PhpForm {
         $this->addForm($title, 'input', $tags);
     }
 
+/**
+ * Adds a way to place hidden values into the form.
+ * @param type $title
+ * @param type $name
+ * @param type $value
+ */    
+    public function addFormInputHidden($title = '', $name = '', $value = ''){
+        $tags = array();
+        $tags[] = 'name="'.$name.'"';
+        $tags[] = 'value="'.$value.'"';
+        $tags[] = 'type="hidden"';
+        $this->addForm($title, 'input', $tags);
+    }
+    
     /**
      * 
      * @param type $title

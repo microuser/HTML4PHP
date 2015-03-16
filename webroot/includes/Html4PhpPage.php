@@ -511,5 +511,9 @@ class Html4PhpPage extends Html4PhpUser {
         return $this->makeTable($title, $theadArray, $keyValue, $tfootArray, $tableClass, $tableId, $columnWidthsArray);
         
     }
+    
+    public function __toString(){
+        return $this->generatePage();
+    }
 
 }

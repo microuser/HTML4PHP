@@ -63,6 +63,10 @@ class Html4PhpValidator {
         return null;
     }
 
+    public function isValid(){
+        return $this->isValid;
+    }
+    
     public function getIsValid() {
         return $this->isValid;
     }
@@ -116,7 +120,7 @@ class Html4PhpValidator {
         $this->clearIsValid();
         foreach ($RequestNameTypeKeyPair as $name => $type) {
             if (isset($_REQUEST[$name])) {
-                $this->{$name} = $this->validateAndReturn($type, $_REQUEST[$name]);
+                $this->{$name} = htmlentities($this->validateAndReturn($type, $_REQUEST[$name]));
             } else {
                 $this->isValid = false;
             }

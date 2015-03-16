@@ -452,6 +452,10 @@ class Html4PhpUser extends Html4PhpDatabase {
     public function getEmail() {
         return $this->email;
     }
+    
+    public function getUserId(){
+        return $this->userId;
+    }
 
     public function logout() {
         try {

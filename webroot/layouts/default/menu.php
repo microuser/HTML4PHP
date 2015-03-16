@@ -52,7 +52,9 @@ $this->menu = array(
     ),
     'Contactodex' => array(
         '/contactodex/index.php',
-        array('Contactodex' => '/contactodex/index.php')
+        array('Contactodex' => '/contactodex/index.php',
+            'Create Contact' => '/contactodex/create.php',
+            )
     )
 );
 

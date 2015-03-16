@@ -112,4 +112,10 @@ $validatorData = array(
         'maxLength' => '512',
         'errorMsg' => 'must contain: 1 lowercase, 1 uppercase, 1 number, with length 8 or more'
     ),
+    'text' => array(
+        'regex' => '.*',
+        'minLength' => '0',
+        'maxLength' => '5000',
+        'errorMsg' => 'Practally anything'
+    ),
 );
