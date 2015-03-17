@@ -34,7 +34,7 @@ class Html4PhpSite extends Html4PhpPage {
         include($this->getConfig('server', 'documentRoot') . 'layouts/' . $this->getConfig('site', 'layout') . '/resources.php');
         include($this->getConfig('server', 'documentRoot') . 'layouts/' . $this->getConfig('site', 'layout') . '/menu.php');
         include($this->getConfig('server', 'documentRoot') . 'layouts/' . $this->getConfig('site', 'layout') . '/menuTooltips.php');
-        
+
 
         //TODO, call upon generate head.
         $this->constructLayout();
@@ -108,7 +108,7 @@ class Html4PhpSite extends Html4PhpPage {
             $this->menu['Home'][1] = array_merge($this->menu['Home'][1], $loginMenu);
         }
 
-        //Menu Items are in menu.php
+        //Menu Items are in layout/default/menu.php
         foreach ($this->menu as $itemName => $subItems) {
             $itemLink = $subItems[0];
             $itemMenu[$itemName] = $itemLink;
@@ -126,14 +126,24 @@ class Html4PhpSite extends Html4PhpPage {
                     $subItemMenu = $subItems[1];
                 }
             }
+
+            if ($selectedItemName === '' && isset($subItems[2])) {
+                foreach ($subItems[2] as $hiddenSubItemLink) {
+                    if ($hiddenSubItemLink === $self) {
+                        $selectedItemName = $itemName;
+                        $selectedSubItemName = $subItemName;
+                        $subItemMenu = $subItems[1];
+                    }
+                }
+            }
         }
-        
-        
+
+
         $this->layoutNavLevel1($itemMenu, $selectedItemName, $this->menuTooltips);
         if (isset($this->menu[$selectedItemName]) && isset($this->menu[$selectedItemName][1])) {
-            if(isset($this->menuTooltips) && isset($this->menuTooltips[$selectedItemName]) && is_array($this->menuTooltips[$selectedItemName][1])){
+            if (isset($this->menuTooltips) && isset($this->menuTooltips[$selectedItemName]) && is_array($this->menuTooltips[$selectedItemName][1])) {
                 $tooltips2 = $this->menuTooltips[$selectedItemName][1];
-            }else {
+            } else {
                 $tooltips2 = array();
             }
             $this->layoutNavLevel2($this->menu[$selectedItemName][1], $selectedSubItemName, $tooltips2);
@@ -167,19 +177,19 @@ class Html4PhpSite extends Html4PhpPage {
         $out = '<ul>' . $this->newLine;
 
         foreach ($menuKeyValuePair as $key => $value) {
-            if(isset($tooltips[$key]) && isset($tooltips[$key][0]) && is_string($tooltips[$key][0])){
-                $tooltip = ' title="'.$tooltips[$key][0].'"';
-            }else{
+            if (isset($tooltips[$key]) && isset($tooltips[$key][0]) && is_string($tooltips[$key][0])) {
+                $tooltip = ' title="' . $tooltips[$key][0] . '"';
+            } else {
                 $tooltip = '';
             }
             if ($selectedName == $key) {
-                $out .= '<li class="selected"'.$tooltip.'>' . $this->newLine .
+                $out .= '<li class="selected"' . $tooltip . '>' . $this->newLine .
                         '<a href="' . $value . '">' . $this->newLine
                         . $key . $this->newLine
                         . '</a>' . $this->newLine
                         . '</li>' . $this->newLine;
             } else {
-                $out .= '<li'.$tooltip.'>' . $this->newLine
+                $out .= '<li' . $tooltip . '>' . $this->newLine
                         . '<a href="' . $value . '">' . $this->newLine
                         . $key . $this->newLine
                         . '</a>' . $this->newLine
@@ -197,16 +207,16 @@ class Html4PhpSite extends Html4PhpPage {
         $out = '<ul>' . $this->newLine;
 
         foreach ($menuKeyValuePair as $key => $value) {
-            if(isset($tooltips) && isset($tooltips[$key])){
-                $tooltip = ' title="'.$tooltips[$key].'"';
-            }else{
+            if (isset($tooltips) && isset($tooltips[$key])) {
+                $tooltip = ' title="' . $tooltips[$key] . '"';
+            } else {
                 $tooltip = '';
             }
-            
+
             if ($selectedName == $key) {
-                $out .= '<li class="selected"'.$tooltip.'><a href="' . $value . '">' . $key . '</a></li>' . $this->newLine;
+                $out .= '<li class="selected"' . $tooltip . '><a href="' . $value . '">' . $key . '</a></li>' . $this->newLine;
             } else {
-                $out .= '<li'.$tooltip.'><a href="' . $value . '">' . $key . '</a></li>' . $this->newLine;
+                $out .= '<li' . $tooltip . '><a href="' . $value . '">' . $key . '</a></li>' . $this->newLine;
             }
         }
 

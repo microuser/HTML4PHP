@@ -7,7 +7,7 @@
 	<title>Class Html4PhpUser | HTML4PHP</title>
 
 	<script type="text/javascript" src="resources/combined.js?4216411405"></script>
-	<script type="text/javascript" src="elementlist.js?3332585013"></script>
+	<script type="text/javascript" src="elementlist.js?514687784"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -136,11 +136,19 @@
 		<h4>Indirect known subclasses</h4>
 			<a href="class-ConfigModel.html">ConfigModel</a>, 
 			<a href="class-ConfigPage.html">ConfigPage</a>, 
+			<a href="class-TestDatabasePage.html">TestDatabasePage</a>, 
+			<a href="class-TestUserModel.html">TestUserModel</a>, 
+			<a href="class-TestUserPage.html">TestUserPage</a>, 
+			<a href="class-ValidatorModel.html">ValidatorModel</a>, 
+			<a href="class-ValidatorPage.html">ValidatorPage</a>, 
+			<a href="class-ContactodexModel.html">ContactodexModel</a>, 
+			<a href="class-ContactodexPage.html">ContactodexPage</a>, 
 			<a href="class-Html4PhpSite.html">Html4PhpSite</a>, 
+			<a href="class-LoginModel.html">LoginModel</a>, 
+			<a href="class-LoginPage.html">LoginPage</a>, 
 			<a href="class-SampleModel.html">SampleModel</a>, 
 			<a href="class-SamplePage.html">SamplePage</a>, 
-			<a href="class-ValidatorModel.html">ValidatorModel</a>, 
-			<a href="class-ValidatorPage.html">ValidatorPage</a>
+			<a href="class-TestDatabaseModel.html">TestDatabaseModel</a>
 	</div>
 
 
@@ -170,7 +178,7 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 				2015-01-12<br />
 				<b>Link:</b>
 				<a href="https://github.com/microuser/HTML4PHP">https://github.com/microuser/HTML4PHP</a><br />
-		<b>Located at</b> <a href="source-class-Html4PhpUser.html#5-423" title="Go to source code">webroot/includes/Html4PhpUser.php</a><br />
+		<b>Located at</b> <a href="source-class-Html4PhpUser.html#6-474" title="Go to source code">webroot/includes/Html4PhpUser.php</a><br />
 	</div>
 
 
@@ -188,26 +196,26 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-Html4PhpUser.html#30-34" title="Go to source code">__construct</a>( <span>String <var>$title</var></span> )</code>
+		<code><a href="source-class-Html4PhpUser.html#32-49" title="Go to source code">__construct</a>( <span>type <var>$title</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Construct the Html4Database. Connect to local instance if DEV environment.
-Connect to Production database if server name matches production domain.</p>
+<p>Ways to login:<br />
+1) With Token<br />
+2) With Username</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Construct the Html4Database. Connect to local instance if DEV environment.
-Connect to Production database if server name matches production domain.</p>
+<p>Ways to login: 1) With Token 2) With Username</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$title</var></dt>
-					<dd><code>String</code><br>$title</dd>
+					<dd><code>type</code><br>$title</dd>
 				</dl></div>
 
 
@@ -219,7 +227,7 @@ Connect to Production database if server name matches production domain.</p>
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="createUser" id="_createUser">
+	<tr data-order="requestLogout" id="_requestLogout">
 
 		<td class="attributes"><code>
 			 public 
@@ -229,8 +237,8 @@ Connect to Production database if server name matches production domain.</p>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_createUser">#</a>
-		<code><a href="source-class-Html4PhpUser.html#36-73" title="Go to source code">createUser</a>( <span>mixed <var>$username</var></span>, <span>mixed <var>$email</var></span>, <span>mixed <var>$password</var></span> )</code>
+		<a class="anchor" href="#_requestLogout">#</a>
+		<code><a href="source-class-Html4PhpUser.html#66-71" title="Go to source code">requestLogout</a>( )</code>
 
 		<div class="description short">
 			
@@ -248,18 +256,18 @@ Connect to Production database if server name matches production domain.</p>
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="findUsernameWithEmail" id="_findUsernameWithEmail">
+	<tr data-order="requestCreateUser" id="_requestCreateUser">
 
 		<td class="attributes"><code>
-			 public 
+			 protected 
 			
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_findUsernameWithEmail">#</a>
-		<code><a href="source-class-Html4PhpUser.html#75-80" title="Go to source code">findUsernameWithEmail</a>( <span>mixed <var>$email</var></span> )</code>
+		<a class="anchor" href="#_requestCreateUser">#</a>
+		<code><a href="source-class-Html4PhpUser.html#73-87" title="Go to source code">requestCreateUser</a>( )</code>
 
 		<div class="description short">
 			
@@ -277,81 +285,7 @@ Connect to Production database if server name matches production domain.</p>
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="getEmailWithUsername" id="_getEmailWithUsername">
-
-		<td class="attributes"><code>
-			 public 
-			string
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getEmailWithUsername">#</a>
-		<code><a href="source-class-Html4PhpUser.html#83-99" title="Go to source code">getEmailWithUsername</a>( <span>mixed <var>$username</var></span> )</code>
-
-		<div class="description short">
-			
-<p>select the email from the user table matching the username.</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>select the email from the user table matching the username.</p>
-
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>string</code><br />
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getUserCount" id="_getUserCount">
-
-		<td class="attributes"><code>
-			 public 
-			type
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getUserCount">#</a>
-		<code><a href="source-class-Html4PhpUser.html#103-116" title="Go to source code">getUserCount</a>( )</code>
-
-		<div class="description short">
-			
-<p>Get the number of users in the user table</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Get the number of users in the user table</p>
-
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>type</code><br />
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="loginWithEmailPassword" id="_loginWithEmailPassword">
+	<tr data-order="requestLogin" id="_requestLogin">
 
 		<td class="attributes"><code>
 			 public 
@@ -361,72 +295,18 @@ Connect to Production database if server name matches production domain.</p>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_loginWithEmailPassword">#</a>
-		<code><a href="source-class-Html4PhpUser.html#119-142" title="Go to source code">loginWithEmailPassword</a>( <span>type <var>$email</var></span>, <span>type <var>$password</var></span> )</code>
+		<a class="anchor" href="#_requestLogin">#</a>
+		<code><a href="source-class-Html4PhpUser.html#89-101" title="Go to source code">requestLogin</a>( )</code>
 
 		<div class="description short">
 			
-<p>Perform login with Email and password. Select details from user table
-matching email. Pass userDetails to loginWithUserDetailsAndPassword</p>
-
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Perform login with Email and password. Select details from user table
-matching email. Pass userDetails to loginWithUserDetailsAndPassword</p>
 
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$email</var></dt>
-					<dd><code>type</code><br>$email</dd>
-					<dt><var>$password</var></dt>
-					<dd><code>type</code><br>$password</dd>
-				</dl></div>
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="loginWithSessionCookieToken" id="_loginWithSessionCookieToken">
-
-		<td class="attributes"><code>
-			 public 
-			boolean
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_loginWithSessionCookieToken">#</a>
-		<code><a href="source-class-Html4PhpUser.html#146-166" title="Go to source code">loginWithSessionCookieToken</a>( )</code>
-
-		<div class="description short">
-			
-<p>Perform login using existing token by matching information in $_SESSION and
-$_COOKIE. Call selectAndSetUserClassDetilasWithUseridAndToken with information
-from $_SESSION. If valid, then set $this-&gt;loggedin = true;</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Perform login using existing token by matching information in $_SESSION and
-$_COOKIE. Call selectAndSetUserClassDetilasWithUseridAndToken with information
-from $_SESSION. If valid, then set $this-&gt;loggedin = true;</p>
-
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>boolean</code><br />
-				</div>
 
 
 
@@ -445,13 +325,14 @@ from $_SESSION. If valid, then set $this-&gt;loggedin = true;</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_loginWithUsernamePassword">#</a>
-		<code><a href="source-class-Html4PhpUser.html#196-219" title="Go to source code">loginWithUsernamePassword</a>( <span>string <var>$username</var></span>, <span>string <var>$password</var></span> )</code>
+		<code><a href="source-class-Html4PhpUser.html#103-123" title="Go to source code">loginWithUsernamePassword</a>( <span>string <var>$username</var></span>, <span>string <var>$password</var></span> )</code>
 
 		<div class="description short">
 			
 <p>Perform login with username and password. Select user details from user table
-matching username. Pass data to loginWithUserDetailsAndPassword(). If sucess,
-set $this-&gt;loggedin = true.</p>
+matching username.<br />
+Pass data to loginWithUserDetailsAndPassword().<br />
+If sucess, set $this-&gt;loggedin = true.</p>
 
 		</div>
 
@@ -482,6 +363,93 @@ set $this-&gt;loggedin = true.</p>
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="loginWithSessionCookieToken" id="_loginWithSessionCookieToken">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_loginWithSessionCookieToken">#</a>
+		<code><a href="source-class-Html4PhpUser.html#252-279" title="Go to source code">loginWithSessionCookieToken</a>( )</code>
+
+		<div class="description short">
+			
+<p>Perform login using existing token by matching information in $_SESSION and
+$_COOKIE. Call selectAndSetUserClassDetilasWithUseridAndToken with information
+from $_SESSION. If valid, then set $this-&gt;loggedin = true;</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Perform login using existing token by matching information in $_SESSION and
+$_COOKIE. Call selectAndSetUserClassDetilasWithUseridAndToken with information
+from $_SESSION. If valid, then set $this-&gt;loggedin = true;</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="createUser" id="_createUser">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_createUser">#</a>
+		<code><a href="source-class-Html4PhpUser.html#281-323" title="Go to source code">createUser</a>( <span>type <var>$username</var></span>, <span>type <var>$email</var></span>, <span>type <var>$password</var></span> )</code>
+
+		<div class="description short">
+			
+<p>CreateUser</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>CreateUser</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$username</var></dt>
+					<dd><code>type</code><br>$username</dd>
+					<dt><var>$email</var></dt>
+					<dd><code>type</code><br>$email</dd>
+					<dt><var>$password</var></dt>
+					<dd><code>type</code><br>$password</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="sendEmail" id="_sendEmail">
 
 		<td class="attributes"><code>
@@ -493,7 +461,7 @@ set $this-&gt;loggedin = true.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_sendEmail">#</a>
-		<code><a href="source-class-Html4PhpUser.html#287-299" title="Go to source code">sendEmail</a>( <span>type <var>$toName</var></span>, <span>type <var>$toEmail</var></span>, <span>type <var>$subject</var></span>, <span>type <var>$messageHtml</var></span> )</code>
+		<code><a href="source-class-Html4PhpUser.html#325-337" title="Go to source code">sendEmail</a>( <span>type <var>$toName</var></span>, <span>type <var>$toEmail</var></span>, <span>type <var>$subject</var></span>, <span>type <var>$messageHtml</var></span> )</code>
 
 		<div class="description short">
 			
@@ -526,6 +494,180 @@ set $this-&gt;loggedin = true.</p>
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="selectAndSetUserClassDetailsWithUserIdAndToken" id="_selectAndSetUserClassDetailsWithUserIdAndToken">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_selectAndSetUserClassDetailsWithUserIdAndToken">#</a>
+		<code><a href="source-class-Html4PhpUser.html#339-352" title="Go to source code">selectAndSetUserClassDetailsWithUserIdAndToken</a>( <span>mixed <var>$userId</var></span>, <span>mixed <var>$token</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getIsLoggedIn" id="_getIsLoggedIn">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getIsLoggedIn">#</a>
+		<code><a href="source-class-Html4PhpUser.html#442-444" title="Go to source code">getIsLoggedIn</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getUsername" id="_getUsername">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getUsername">#</a>
+		<code><a href="source-class-Html4PhpUser.html#446-448" title="Go to source code">getUsername</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getEmail" id="_getEmail">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getEmail">#</a>
+		<code><a href="source-class-Html4PhpUser.html#450-452" title="Go to source code">getEmail</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getUserId" id="_getUserId">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getUserId">#</a>
+		<code><a href="source-class-Html4PhpUser.html#454-456" title="Go to source code">getUserId</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="logout" id="_logout">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_logout">#</a>
+		<code><a href="source-class-Html4PhpUser.html#458-472" title="Go to source code">logout</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	</table>
 
 	<table class="summary inherited">
@@ -542,9 +684,11 @@ set $this-&gt;loggedin = true.</p>
 			<a href="class-Html4PhpDatabase.html#_statementExecute">statementExecute()</a>, 
 			<a href="class-Html4PhpDatabase.html#_statementFetchAssoc">statementFetchAssoc()</a>, 
 			<a href="class-Html4PhpDatabase.html#_statementFetchAssocs">statementFetchAssocs()</a>, 
+			<a href="class-Html4PhpDatabase.html#_statementFetchEnumeratedAssocs">statementFetchEnumeratedAssocs()</a>, 
 			<a href="class-Html4PhpDatabase.html#_statementFetchObject">statementFetchObject()</a>, 
 			<a href="class-Html4PhpDatabase.html#_statementFetchObjects">statementFetchObjects()</a>, 
-			<a href="class-Html4PhpDatabase.html#_statementPrepare">statementPrepare()</a>
+			<a href="class-Html4PhpDatabase.html#_statementPrepare">statementPrepare()</a>, 
+			<a href="class-Html4PhpDatabase.html#_statementRowCount">statementRowCount()</a>
 		</code></td>
 	</tr>
 	</table>
@@ -579,6 +723,29 @@ set $this-&gt;loggedin = true.</p>
 
 	<table class="summary" id="properties">
 	<caption>Properties summary</caption>
+	<tr data-order="loggedin" id="$loggedin">
+		<td class="attributes"><code>
+			public  
+			boolean
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Html4PhpUser.html#22" title="Go to source code"><var>$loggedin</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">false</span></code></td>
+		<td class="description"><div>
+			<a href="#$loggedin" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
 	<tr data-order="errors" id="$errors">
 		<td class="attributes"><code>
 			public  
@@ -586,7 +753,7 @@ set $this-&gt;loggedin = true.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Html4PhpUser.html#27" title="Go to source code"><var>$errors</var></a>
+				<a href="source-class-Html4PhpUser.html#28" title="Go to source code"><var>$errors</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>
@@ -609,7 +776,7 @@ set $this-&gt;loggedin = true.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Html4PhpUser.html#28" title="Go to source code"><var>$messages</var></a>
+				<a href="source-class-Html4PhpUser.html#29" title="Go to source code"><var>$messages</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>

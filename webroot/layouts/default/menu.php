@@ -53,7 +53,14 @@ $this->menu = array(
     'Contactodex' => array(
         '/contactodex/index.php',
         array('Contactodex' => '/contactodex/index.php',
+            'List All Contacts' => '/contactodex/list.php',
             'Create Contact' => '/contactodex/create.php',
+            "View Contact" => '/contactodex/view.php',
+            "Search" => '/contactodex/search.php'
+            ),
+        array(
+            "Hidden1" => '/contactodex/admin.php',
+            
             )
     )
 );

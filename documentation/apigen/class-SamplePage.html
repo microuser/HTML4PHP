@@ -7,7 +7,7 @@
 	<title>Class SamplePage | HTML4PHP</title>
 
 	<script type="text/javascript" src="resources/combined.js?4216411405"></script>
-	<script type="text/javascript" src="elementlist.js?3332585013"></script>
+	<script type="text/javascript" src="elementlist.js?514687784"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -40,6 +40,8 @@
 			<ul>
 				<li><a href="class-ConfigModel.html">ConfigModel</a></li>
 				<li><a href="class-ConfigPage.html">ConfigPage</a></li>
+				<li><a href="class-ContactodexModel.html">ContactodexModel</a></li>
+				<li><a href="class-ContactodexPage.html">ContactodexPage</a></li>
 				<li><a href="class-Event.html">Event</a></li>
 				<li><a href="class-Html4PhpDebug.html">Html4PhpDebug</a></li>
 				<li><a href="class-Html4PhpUI_Accordion.html">Html4PhpUI_Accordion</a></li>
@@ -54,8 +56,14 @@
 				<li><a href="class-Html4PhpUI_Tooltip.html">Html4PhpUI_Tooltip</a></li>
 				<li><a href="class-JqueryUIModel.html">JqueryUIModel</a></li>
 				<li><a href="class-JqueryUIPage.html">JqueryUIPage</a></li>
+				<li><a href="class-LoginModel.html">LoginModel</a></li>
+				<li><a href="class-LoginPage.html">LoginPage</a></li>
 				<li><a href="class-SampleModel.html">SampleModel</a></li>
 				<li class="active"><a href="class-SamplePage.html">SamplePage</a></li>
+				<li><a href="class-TestDatabaseModel.html">TestDatabaseModel</a></li>
+				<li><a href="class-TestDatabasePage.html">TestDatabasePage</a></li>
+				<li><a href="class-TestUserModel.html">TestUserModel</a></li>
+				<li><a href="class-TestUserPage.html">TestUserPage</a></li>
 				<li><a href="class-ValidatorModel.html">ValidatorModel</a></li>
 				<li><a href="class-ValidatorPage.html">ValidatorPage</a></li>
 			</ul>
@@ -377,7 +385,8 @@ href="mailto:macro_user&#64;outlook.com">macro_user&#64;<!---->outlook.com</a><b
 	<caption>Methods inherited from <a href="class-Html4PhpSite.html#methods">Html4PhpSite</a></caption>
 	<tr>
 		<td><code>
-			<a href="class-Html4PhpSite.html#_constructLayout">constructLayout()</a>
+			<a href="class-Html4PhpSite.html#_constructLayout">constructLayout()</a>, 
+			<a href="class-Html4PhpSite.html#_getValidator">getValidator()</a>
 		</code></td>
 	</tr>
 	</table>
@@ -385,6 +394,7 @@ href="mailto:macro_user&#64;outlook.com">macro_user&#64;<!---->outlook.com</a><b
 	<caption>Methods inherited from <a href="class-Html4PhpPage.html#methods">Html4PhpPage</a></caption>
 	<tr>
 		<td><code>
+			<a href="class-Html4PhpPage.html#___toString">__toString()</a>, 
 			<a href="class-Html4PhpPage.html#_add">add()</a>, 
 			<a href="class-Html4PhpPage.html#_addCssLink">addCssLink()</a>, 
 			<a href="class-Html4PhpPage.html#_addDiv">addDiv()</a>, 
@@ -393,6 +403,7 @@ href="mailto:macro_user&#64;outlook.com">macro_user&#64;<!---->outlook.com</a><b
 			<a href="class-Html4PhpPage.html#_addJavascriptCodeFooter">addJavascriptCodeFooter()</a>, 
 			<a href="class-Html4PhpPage.html#_addJavascriptLink">addJavascriptLink()</a>, 
 			<a href="class-Html4PhpPage.html#_addTable">addTable()</a>, 
+			<a href="class-Html4PhpPage.html#_addTableKeyValue">addTableKeyValue()</a>, 
 			<a href="class-Html4PhpPage.html#_appendFooter">appendFooter()</a>, 
 			<a href="class-Html4PhpPage.html#_appendHead">appendHead()</a>, 
 			<a href="class-Html4PhpPage.html#_appendHeader">appendHeader()</a>, 
@@ -403,7 +414,8 @@ href="mailto:macro_user&#64;outlook.com">macro_user&#64;<!---->outlook.com</a><b
 			<a href="class-Html4PhpPage.html#_generateHeader">generateHeader()</a>, 
 			<a href="class-Html4PhpPage.html#_generatePage">generatePage()</a>, 
 			<a href="class-Html4PhpPage.html#_makeDiv">makeDiv()</a>, 
-			<a href="class-Html4PhpPage.html#_makeTable">makeTable()</a>
+			<a href="class-Html4PhpPage.html#_makeTable">makeTable()</a>, 
+			<a href="class-Html4PhpPage.html#_makeTableKeyValue">makeTableKeyValue()</a>
 		</code></td>
 	</tr>
 	</table>
@@ -412,12 +424,17 @@ href="mailto:macro_user&#64;outlook.com">macro_user&#64;<!---->outlook.com</a><b
 	<tr>
 		<td><code>
 			<a href="class-Html4PhpUser.html#_createUser">createUser()</a>, 
-			<a href="class-Html4PhpUser.html#_findUsernameWithEmail">findUsernameWithEmail()</a>, 
-			<a href="class-Html4PhpUser.html#_getEmailWithUsername">getEmailWithUsername()</a>, 
-			<a href="class-Html4PhpUser.html#_getUserCount">getUserCount()</a>, 
-			<a href="class-Html4PhpUser.html#_loginWithEmailPassword">loginWithEmailPassword()</a>, 
+			<a href="class-Html4PhpUser.html#_getEmail">getEmail()</a>, 
+			<a href="class-Html4PhpUser.html#_getIsLoggedIn">getIsLoggedIn()</a>, 
+			<a href="class-Html4PhpUser.html#_getUserId">getUserId()</a>, 
+			<a href="class-Html4PhpUser.html#_getUsername">getUsername()</a>, 
 			<a href="class-Html4PhpUser.html#_loginWithSessionCookieToken">loginWithSessionCookieToken()</a>, 
 			<a href="class-Html4PhpUser.html#_loginWithUsernamePassword">loginWithUsernamePassword()</a>, 
+			<a href="class-Html4PhpUser.html#_logout">logout()</a>, 
+			<a href="class-Html4PhpUser.html#_requestCreateUser">requestCreateUser()</a>, 
+			<a href="class-Html4PhpUser.html#_requestLogin">requestLogin()</a>, 
+			<a href="class-Html4PhpUser.html#_requestLogout">requestLogout()</a>, 
+			<a href="class-Html4PhpUser.html#_selectAndSetUserClassDetailsWithUserIdAndToken">selectAndSetUserClassDetailsWithUserIdAndToken()</a>, 
 			<a href="class-Html4PhpUser.html#_sendEmail">sendEmail()</a>
 		</code></td>
 	</tr>
@@ -436,9 +453,11 @@ href="mailto:macro_user&#64;outlook.com">macro_user&#64;<!---->outlook.com</a><b
 			<a href="class-Html4PhpDatabase.html#_statementExecute">statementExecute()</a>, 
 			<a href="class-Html4PhpDatabase.html#_statementFetchAssoc">statementFetchAssoc()</a>, 
 			<a href="class-Html4PhpDatabase.html#_statementFetchAssocs">statementFetchAssocs()</a>, 
+			<a href="class-Html4PhpDatabase.html#_statementFetchEnumeratedAssocs">statementFetchEnumeratedAssocs()</a>, 
 			<a href="class-Html4PhpDatabase.html#_statementFetchObject">statementFetchObject()</a>, 
 			<a href="class-Html4PhpDatabase.html#_statementFetchObjects">statementFetchObjects()</a>, 
-			<a href="class-Html4PhpDatabase.html#_statementPrepare">statementPrepare()</a>
+			<a href="class-Html4PhpDatabase.html#_statementPrepare">statementPrepare()</a>, 
+			<a href="class-Html4PhpDatabase.html#_statementRowCount">statementRowCount()</a>
 		</code></td>
 	</tr>
 	</table>
@@ -485,6 +504,7 @@ href="mailto:macro_user&#64;outlook.com">macro_user&#64;<!---->outlook.com</a><b
 	<tr>
 		<td><code>
 			<a href="class-Html4PhpUser.html#$errors"><var>$errors</var></a>, 
+			<a href="class-Html4PhpUser.html#$loggedin"><var>$loggedin</var></a>, 
 			<a href="class-Html4PhpUser.html#$messages"><var>$messages</var></a>
 		</code></td>
 	</tr>

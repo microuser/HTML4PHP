@@ -9,7 +9,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . '/includes/Html4PhpSite.php');
  */
 class TestUserModel extends Html4PhpSite {
 
-    public function __construct(&$title = null) {
+    public function __construct($title = null) {
         if (!is_string($title)) {
             include_once($_SERVER['DOCUMENT_ROOT'] . '/includes/Html4PhpDatabase.php');     
             Html4PhpDatabase::__construct($title);

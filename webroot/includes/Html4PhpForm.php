@@ -170,11 +170,11 @@ class Html4PhpForm {
      * @param type $errorMsg
      * @param type $extraTag
      */
-    public function addFormInputWithDataType($title = '', $name = '', $dataType = 'alphanumeric', $value = '', $placeholder = '',  $errorMsg = '', $extraTag = '') {
-        if($errorMsg == null || $errorMsg == ''){
+    public function addFormInputWithDataType($title = '', $name = '', $dataType = 'alphanumeric', $value = '', $placeholder = '', $errorMsg = '', $extraTag = '') {
+        if ($errorMsg == null || $errorMsg == '') {
             $errorMsg = $this->getRuleErrorMsg($dataType);
         }
-        
+
         $this->addFormInputCustomRegexp(
                 $title
                 , $name
@@ -185,8 +185,7 @@ class Html4PhpForm {
                 , $errorMsg
                 , 'length custom'
                 , $this->getRuleRegex($dataType)
-                );
-
+        );
     }
 
     /**
@@ -198,22 +197,22 @@ class Html4PhpForm {
      * @param type $extraTag
      */
     public function addFormInputPasswordConfirmationWithDataType($title = '', $name = '', $dataType = 'password', $errorMsg = '', $extraTag = '') {
-        if($errorMsg == null || $errorMsg == ''){
+        if ($errorMsg == null || $errorMsg == '') {
             $errorMsg = $this->getRuleRegex($dataType);
         }
         $this->addFormInputPasswordAndConfirmation(
-        $title
-        , $name
-        , $this->getRuleErrorMsg($dataType)
-        , 'confirmation'
-        , 0  //password strength
-        , $errorMsg
-        , $this->getRuleMinLength($dataType)
-        , $this->getRuleMaxLength($dataType)
-        , $extraTag);
+                $title
+                , $name
+                , $this->getRuleErrorMsg($dataType)
+                , 'confirmation'
+                , 0  //password strength
+                , $errorMsg
+                , $this->getRuleMinLength($dataType)
+                , $this->getRuleMaxLength($dataType)
+                , $extraTag);
     }
-    
-    public function addFormInputPasswordWithDataType($title = 'Password', $name = 'password', $dataType = 'password', $errorMsg = '', $extraTag = ''){
+
+    public function addFormInputPasswordWithDataType($title = 'Password', $name = 'password', $dataType = 'password', $errorMsg = '', $extraTag = '') {
         $this->addFormInputPassword(
                 $title
                 , $name
@@ -223,7 +222,6 @@ class Html4PhpForm {
                 , $this->getRuleMinLength($dataType)
                 , $this->getRuleMaxLength($dataType)
                 , 'strength');
-
     }
 
     /**
@@ -642,20 +640,21 @@ class Html4PhpForm {
         $this->addForm($title, 'input', $tags);
     }
 
-/**
- * Adds a way to place hidden values into the form.
- * @param type $title
- * @param type $name
- * @param type $value
- */    
-    public function addFormInputHidden($title = '', $name = '', $value = ''){
-        $tags = array();
-        $tags[] = 'name="'.$name.'"';
-        $tags[] = 'value="'.$value.'"';
-        $tags[] = 'type="hidden"';
-        $this->addForm($title, 'input', $tags);
+    /**
+     * Adds a way to place hidden values into the form.
+     * @param type $title
+     * @param type $name
+     * @param type $value
+     */
+    public function addFormInputHidden($name = '', $value = '') {
+        //$tags = array();
+        //$tags[] = 'name="'.$name.'"';
+        //$tags[] = 'value="'.$value.'"';
+        //$tags[] = 'type="hidden"';
+        //$this->addForm('', 'input', $tags);
+        return '<input type="hidden" name="' . $name . '" value="' . $value . '"/>';
     }
-    
+
     /**
      * 
      * @param type $title
