@@ -12,6 +12,7 @@ class TestDatabaseModel extends Html4PhpSite {
     
     public function __construct($title = 'TestDatabaseModel'){
         parent::__construct($title);
+        $this->createUserTable();
     }
     
     public function makeDescribeUserTable(){
@@ -58,6 +59,7 @@ class TestDatabaseModel extends Html4PhpSite {
             timecreated timestamp null default '0000-00-00 00:00:00',
             timeupdated timestamp default now() on update now()
             )");
+        $this->statementExecute();
     }
     
     

@@ -254,7 +254,6 @@ class Html4PhpUser extends Html4PhpDatabase {
      * @return boolean
      */
     public function loginWithSessionCookieToken() {
-        xdebug_break();
         if ($this->getConfig('login', 'securityLevel' == 0)) {
             if (isset($_SESSION['token']) &&
                     isset($_COOKIE['token']) &&
@@ -262,9 +261,7 @@ class Html4PhpUser extends Html4PhpDatabase {
                     $_SESSION['token'] == $_COOKIE['token'] &&
                     !(isset($_REQUEST['Logout']) && $_REQUEST['Logout'] == 'Submit')
             ) {
-                xdebug_break();
-                if ($this->selectAndSetUserClassDetailsWithUserIdAndToken($_SESSION['token'], $_SESSION['userid'])) {
-                    xdebug_break();
+                if ($this->selectAndSetUserClassDetailsWithUserIdAndToken($_SESSION['userid'],$_SESSION['token'])) {
                     $this->loggedin = true;
                     $this->addDebug(DEBUG_VERBOSE, "Login Sucess using Session Token and Cookie Token matched.");
                     return true;
@@ -275,7 +272,6 @@ class Html4PhpUser extends Html4PhpDatabase {
                 }
                 $this->loggedin = false;
                 $this->addDebug(DEBUG_ERROR, "Session token/userid, or cookie token not set, or not matched. Login Denied");
-                xdebug_break();
                 return false;
             }
         }
@@ -344,14 +340,14 @@ class Html4PhpUser extends Html4PhpDatabase {
         $this->statementPrepare("SELECT userid, username, email, token, passhash, timeupdated FROM `user` WHERE userID=:userid AND token=:token");
         $this->statementBindParam("userid", $userId);
         $this->statementBindParam("token", $token);
-        $userDetails = ($this->statementFetchAssoc());
+        $this->statementExecute();
+        $userDetails = $this->statementFetchAssoc();
         $this->username = $userDetails['username'];
         $this->userId = $userDetails['userid'];
         $this->email = $userDetails['email'];
         $this->passhash = $userDetails['passhash'];
         $this->token = $userDetails['token'];
         $this->loggedin = true;
-        xdebug_break();
         return true;
     }
 
@@ -444,7 +440,6 @@ class Html4PhpUser extends Html4PhpDatabase {
     }
 
     public function getIsLoggedIn() {
-        xdebug_break();
         return $this->loggedin;
     }
 
@@ -454,6 +449,10 @@ class Html4PhpUser extends Html4PhpDatabase {
 
     public function getEmail() {
         return $this->email;
+    }
+    
+    public function getUserId(){
+        return $this->userId;
     }
 
     public function logout() {

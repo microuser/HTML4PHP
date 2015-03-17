@@ -106,10 +106,23 @@ $validatorData = array(
         'maxLength' => '512',
         'errorMsg' => 'Emails have an ampersat and a dot',
     ),
+    'emailAllowEmpty' => array(
+        'regex' => '(.+@.+\\..+)?', //This could be better
+        'minLength' => '0',
+        'maxLength' => '512',
+        'errorMsg' => 'Emails have an ampersat and a dot',
+    ),
+    
     'password' => array(
         'regex' => '(?=.*[a-z]+.*)(?=.*[A-Z]+.*)(?=.*[0-9]+.*)',
         'minLength' => '8',
         'maxLength' => '512',
         'errorMsg' => 'must contain: 1 lowercase, 1 uppercase, 1 number, with length 8 or more'
+    ),
+    'text' => array(
+        'regex' => '.*',
+        'minLength' => '0',
+        'maxLength' => '5000',
+        'errorMsg' => 'Practally anything'
     ),
 );

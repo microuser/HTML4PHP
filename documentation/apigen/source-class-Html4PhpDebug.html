@@ -8,7 +8,7 @@
 	<title>File webroot/includes/Html4PhpDebug.php | HTML4PHP</title>
 
 	<script type="text/javascript" src="resources/combined.js?4216411405"></script>
-	<script type="text/javascript" src="elementlist.js?3332585013"></script>
+	<script type="text/javascript" src="elementlist.js?514687784"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -41,6 +41,8 @@
 			<ul>
 				<li><a href="class-ConfigModel.html">ConfigModel</a></li>
 				<li><a href="class-ConfigPage.html">ConfigPage</a></li>
+				<li><a href="class-ContactodexModel.html">ContactodexModel</a></li>
+				<li><a href="class-ContactodexPage.html">ContactodexPage</a></li>
 				<li><a href="class-Event.html">Event</a></li>
 				<li class="active"><a href="class-Html4PhpDebug.html">Html4PhpDebug</a></li>
 				<li><a href="class-Html4PhpUI_Accordion.html">Html4PhpUI_Accordion</a></li>
@@ -55,8 +57,14 @@
 				<li><a href="class-Html4PhpUI_Tooltip.html">Html4PhpUI_Tooltip</a></li>
 				<li><a href="class-JqueryUIModel.html">JqueryUIModel</a></li>
 				<li><a href="class-JqueryUIPage.html">JqueryUIPage</a></li>
+				<li><a href="class-LoginModel.html">LoginModel</a></li>
+				<li><a href="class-LoginPage.html">LoginPage</a></li>
 				<li><a href="class-SampleModel.html">SampleModel</a></li>
 				<li><a href="class-SamplePage.html">SamplePage</a></li>
+				<li><a href="class-TestDatabaseModel.html">TestDatabaseModel</a></li>
+				<li><a href="class-TestDatabasePage.html">TestDatabasePage</a></li>
+				<li><a href="class-TestUserModel.html">TestUserModel</a></li>
+				<li><a href="class-TestUserPage.html">TestUserPage</a></li>
 				<li><a href="class-ValidatorModel.html">ValidatorModel</a></li>
 				<li><a href="class-ValidatorPage.html">ValidatorPage</a></li>
 			</ul>
@@ -215,22 +223,21 @@
 </span></span><span id="107" class="l"><a class="l" href="#107">107: </a><span class="php-comment">     * @return string
 </span></span><span id="108" class="l"><a class="l" href="#108">108: </a><span class="php-comment">     */</span>
 </span><span id="109" class="l"><a class="l" href="#109">109: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getDebugHtml" href="#_getDebugHtml">getDebugHtml</a>() {
-</span><span id="110" class="l"><a class="l" href="#110">110: </a>
-</span><span id="111" class="l"><a class="l" href="#111">111: </a>        self::addDebug(DEBUG_FUNCTION_TRACE);
-</span><span id="112" class="l"><a class="l" href="#112">112: </a>        <span class="php-keyword1">if</span> (DEBUG &amp; DEBUG_ECHO) {
-</span><span id="113" class="l"><a class="l" href="#113">113: </a>            <span class="php-var">$out</span> = <span class="php-quote">&quot;&lt;div&gt;&quot;</span>;
-</span><span id="114" class="l"><a class="l" href="#114">114: </a>            <span class="php-keyword1">foreach</span> (<span class="php-var">$this</span>-&gt;debugLog <span class="php-keyword1">as</span> <span class="php-var">$line</span> =&gt; <span class="php-var">$text</span>) {
-</span><span id="115" class="l"><a class="l" href="#115">115: </a>                <span class="php-var">$out</span> .= <span class="php-quote">&quot;&lt;pre&gt;&quot;</span> . <span class="php-keyword2">filter_var</span>(<span class="php-var">$line</span> . <span class="php-quote">&quot;\t &quot;</span> . <span class="php-var">$text</span>, FILTER_SANITIZE_SPECIAL_CHARS) . <span class="php-quote">&quot;&lt;/pre&gt;&quot;</span>;
-</span><span id="116" class="l"><a class="l" href="#116">116: </a>            }
-</span><span id="117" class="l"><a class="l" href="#117">117: </a>            <span class="php-var">$out</span> .= <span class="php-quote">&quot;&lt;/div&gt;&quot;</span>;
-</span><span id="118" class="l"><a class="l" href="#118">118: </a>        } <span class="php-keyword1">else</span> {
-</span><span id="119" class="l"><a class="l" href="#119">119: </a>            <span class="php-var">$out</span> = <span class="php-quote">''</span>;
-</span><span id="120" class="l"><a class="l" href="#120">120: </a>        }
-</span><span id="121" class="l"><a class="l" href="#121">121: </a>        <span class="php-keyword1">return</span> <span class="php-var">$out</span>;
-</span><span id="122" class="l"><a class="l" href="#122">122: </a>    }
-</span><span id="123" class="l"><a class="l" href="#123">123: </a>
-</span><span id="124" class="l"><a class="l" href="#124">124: </a>}
-</span><span id="125" class="l"><a class="l" href="#125">125: </a></span></code></pre>
+</span><span id="110" class="l"><a class="l" href="#110">110: </a>        self::addDebug(DEBUG_FUNCTION_TRACE);
+</span><span id="111" class="l"><a class="l" href="#111">111: </a>        <span class="php-keyword1">if</span> (DEBUG &amp; DEBUG_ECHO) {
+</span><span id="112" class="l"><a class="l" href="#112">112: </a>            <span class="php-var">$out</span> = <span class="php-quote">&quot;&lt;div&gt;&quot;</span>;
+</span><span id="113" class="l"><a class="l" href="#113">113: </a>            <span class="php-keyword1">foreach</span> (<span class="php-var">$this</span>-&gt;debugLog <span class="php-keyword1">as</span> <span class="php-var">$line</span> =&gt; <span class="php-var">$text</span>) {
+</span><span id="114" class="l"><a class="l" href="#114">114: </a>                <span class="php-var">$out</span> .= <span class="php-quote">&quot;&lt;pre&gt;&quot;</span> . <span class="php-keyword2">filter_var</span>(<span class="php-var">$line</span> . <span class="php-quote">&quot;\t &quot;</span> . <span class="php-var">$text</span>, FILTER_SANITIZE_SPECIAL_CHARS) . <span class="php-quote">&quot;&lt;/pre&gt;&quot;</span>;
+</span><span id="115" class="l"><a class="l" href="#115">115: </a>            }
+</span><span id="116" class="l"><a class="l" href="#116">116: </a>            <span class="php-var">$out</span> .= <span class="php-quote">&quot;&lt;/div&gt;&quot;</span>;
+</span><span id="117" class="l"><a class="l" href="#117">117: </a>        } <span class="php-keyword1">else</span> {
+</span><span id="118" class="l"><a class="l" href="#118">118: </a>            <span class="php-var">$out</span> = <span class="php-quote">''</span>;
+</span><span id="119" class="l"><a class="l" href="#119">119: </a>        }
+</span><span id="120" class="l"><a class="l" href="#120">120: </a>        <span class="php-keyword1">return</span> <span class="php-var">$out</span>;
+</span><span id="121" class="l"><a class="l" href="#121">121: </a>    }
+</span><span id="122" class="l"><a class="l" href="#122">122: </a>
+</span><span id="123" class="l"><a class="l" href="#123">123: </a>}
+</span><span id="124" class="l"><a class="l" href="#124">124: </a></span></code></pre>
 
 	<div id="footer">
 		HTML4PHP API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
