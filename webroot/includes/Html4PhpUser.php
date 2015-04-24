@@ -182,7 +182,7 @@ class Html4PhpUser extends Html4PhpDatabase {
      */
     private function setPasshashFromPassword($password) {
         if ($this->validator->isMatch("password", $password)) {
-            $this->passhash = password_hash($password, PASSWORD_BCRYPT);
+            $this->passhash = password_hash(base64_encode(hash('sha256',$password, true)), PASSWORD_BCRYPT);
             return true;
         } else {
             $this->errors[] = 'Password: ' . $this->validator->getRuleErrorMsg("password");
@@ -234,7 +234,7 @@ class Html4PhpUser extends Html4PhpDatabase {
         if (
                 is_array($userDetails) &&
                 isset($userDetails['passhash']) &&
-                $userDetails['passhash'] == password_verify($password, $userDetails['passhash'])
+                $userDetails['passhash'] == password_verify(base64_encode(hash('sha256',$password,true)), $userDetails['passhash'])
         ) {
 
             if ($this->updateTokenWithUserId($userDetails['userid'])) {
