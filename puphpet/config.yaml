@@ -97,7 +97,7 @@ apache:
             directories:
                 lovbv8wmntuf:
                     provider: directory
-                    path: /var/www
+                    path: /var/www/webroot
                     options:
                         - Indexes
                         - FollowSymlinks
