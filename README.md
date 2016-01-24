@@ -35,6 +35,7 @@ https://releases.hashicorp.com/vagrant/1.8.1/vagrant_1.8.1_x86_64.deb
 cd ~/Downloads
 wget https://releases.hashicorp.com/vagrant/1.8.1/vagrant_1.8.1_x86_64.deb
 sudo dpkg -i ~/Downloads/vagrant_1.8.1_x86_64.deb
+vagrant plugin install vagrant-bindfs
 ```
 
 SSH Keys for git
@@ -109,6 +110,42 @@ sudo service apache2 restart
 Make your database
 
 
+Puphpet Configuration
+=======================
+Providor: Vistualbox
+Distro: Ubuntu Trusty 14.04 LTS x64
+IP: 192.168.56.156
+Hostname: local.html4php
+Memory: 512
+CPU: 1
+Forwarded Ports: 7200 -> 22
+Shared Folders: ./ -> /var/www
+Shared Type: NFS
+
+Next -> Next -> Next
+Deselect Nginx WebServer, Continue to Apache
+
+Install Apache:
+  Servername: html4php.dev
+  ServerAliases www.html4php.dev
+  Document Root: /var/www/webroot
+  Port: 80
+  Environment Variables: APP_ENV dev
+  Enable SSL: No
+  Directory Block Path: /var/www/webroot
+  
+Install Xdebug: Yes
+   xdebug.default_enable = 1, xdebug.remote_autostart=0, xdebug.remote_connect_back=1, xedbug.remote_enable=1, xdebug.remote_handler=dbgp, xdebug>remote_port=9000
+   
+ MartiaDB: No
+ Mysql: Yes
+ Mysql Password: html4php
+ Mysql User: dbuser
+ mysql User Pasword: dbpassword
+ Create DB: html4php
+  
+  Install MailHog: Yes
+  Port : 8025
 
 
 Regenerate Phphet configuration
