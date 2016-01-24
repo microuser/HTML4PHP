@@ -19,30 +19,40 @@ A Lightweight PHP Framework, where as shown in this example:
 Pre Install Instructions On Ubuntu 14.04(Updated 2016)
 =====================
 ```sh
-sudo apt-get -y install virtualbox vagrant nfs-kernel-server nfs-common git
+sudo apt-get -y install virtualbox vagrant nfs-kernel-server nfs-common git dialog
 ```
-//Download the newest netbeans from Oracle's website
+Download the newest netbeans from Oracle's website
 ```sh
 cd ~/Downloads
 sudo chmod +x netbeans8.1-php-linux-x86.sh
 sudo ./netbeans-8.1-php-linux-x64.sh
 mkdir -p ~/NetBeansProjects
+```
+
+Download Vagrant, because ubuntu's version is old
+https://releases.hashicorp.com/vagrant/1.8.1/vagrant_1.8.1_x86_64.deb
 ```sh
-//SSH Keys for git
-//https://help.github.com/articles/generating-an-ssh-key/
+cd ~/Downloads
+wget https://releases.hashicorp.com/vagrant/1.8.1/vagrant_1.8.1_x86_64.deb
+sudo dpkg -i ~/Downloads/vagrant_1.8.1_x86_64.deb
+vagrant plugin install vagrant-bindfs
+```
+
+SSH Keys for git
+https://help.github.com/articles/generating-an-ssh-key/
 ```sh
 ssh-keygen -t rsa -b 4096 -C "macro_user@outlook.com" -f ~/.ssh/id_rsa_github
 ```
-#Option 1)look at the last lines, it should give you your fingerprint
+Option 1)look at the last lines, it should give you your fingerprint
 
-//Option 2)print the public portion of the key you just generated
-//If you already have a key you like, you can just give github your public key
+Option 2)print the public portion of the key you just generated
+If you already have a key you like, you can just give github your public key
  ```sh
  cat id_rsa_github.pub
 ```
-//Copy above to you github ssh-keys.
-//https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/
-//Github.com -> Edit Profile -> SSh-Keys -> Add Key
+Copy above to you github ssh-keys.
+https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/
+Github.com -> Edit Profile -> SSh-Keys -> Add Key
 
 Start SSH Agent with keys
 ```sh
@@ -53,7 +63,9 @@ ssh-add ~/.ssh/id_rsa_github
 Install Instructions for Ubuntu 14.04
 =======================
 cd ~/NetBeansProjects
-git clone 
+git clone git@github.com:microuser/HTML4PHP.git
+
+
 
 
 To test sample page
@@ -98,6 +110,42 @@ sudo service apache2 restart
 Make your database
 
 
+Puphpet Configuration
+=======================
+Providor: Vistualbox
+Distro: Ubuntu Trusty 14.04 LTS x64
+IP: 192.168.56.156
+Hostname: local.html4php
+Memory: 512
+CPU: 1
+Forwarded Ports: 7200 -> 22
+Shared Folders: ./ -> /var/www
+Shared Type: NFS
+
+Next -> Next -> Next
+Deselect Nginx WebServer, Continue to Apache
+
+Install Apache:
+  Servername: html4php.dev
+  ServerAliases www.html4php.dev
+  Document Root: /var/www/webroot
+  Port: 80
+  Environment Variables: APP_ENV dev
+  Enable SSL: No
+  Directory Block Path: /var/www/webroot
+  
+Install Xdebug: Yes
+   xdebug.default_enable = 1, xdebug.remote_autostart=0, xdebug.remote_connect_back=1, xedbug.remote_enable=1, xdebug.remote_handler=dbgp, xdebug>remote_port=9000
+   
+ MartiaDB: No
+ Mysql: Yes
+ Mysql Password: html4php
+ Mysql User: dbuser
+ mysql User Pasword: dbpassword
+ Create DB: html4php
+  
+  Install MailHog: Yes
+  Port : 8025
 
 
 Regenerate Phphet configuration
