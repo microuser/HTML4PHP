@@ -16,6 +16,23 @@ A Lightweight PHP Framework, where as shown in this example:
  - the model
 
 
+Install Instructions On Ubuntu 14.04(Updated 2016)
+=====================
+
+sudo apt-get -y install virtualbox vagrant nfs-kernel-server nfs-common git
+
+#Download the newest netbeans from Oracle's website
+cd ~/Downloads
+sudo chmod +x netbeans8.1-php-linux-x86.sh
+sudo ./netbeans-8.1-php-linux-x64.sh
+mkdir -p ~/NetBeansProjects
+
+##SSH Keys for git
+#https://help.github.com/articles/generating-an-ssh-key/
+
+
+
+
 
 To test sample page
 ======================
