@@ -37,8 +37,11 @@ ssh-keygen -t rsa -b 4096 -C "macro_user@outlook.com" -f ~/.ssh/id_rsa_github
  cat id_rsa_github.pub
 
 #Copy above to you github ssh-keys.
+#Github.com -> Edit Profile -> SSh-Keys -> Add Key
 
-
+#Start SSH Agent with keys
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_rsa_github
 
 
 
