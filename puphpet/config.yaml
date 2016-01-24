@@ -217,7 +217,7 @@ apache:
 php:
     install: '1'
     settings:
-        version: '56'
+        version: '70'
     modules:
         php:
             - cli
@@ -335,11 +335,14 @@ mysql:
     users:
         mysqlnu_dfo16qezrvjc:
             name: dbuser
-            password: dbpassword
+            password: html4php
+        mysqlnu_na318hvizij1:
+            name: ''
+            password: ''
     databases:
         mysqlnd_td4ypdpqc1vd:
             name: html4php
-            sql: ''
+            sql: /var/www/dbname.sql
     grants:
         mysqlng_9dwk1tvmoute:
             user: dbuser
