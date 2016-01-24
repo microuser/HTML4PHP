@@ -30,9 +30,13 @@ mkdir -p ~/NetBeansProjects
 ##SSH Keys for git
 #https://help.github.com/articles/generating-an-ssh-key/
 ssh-keygen -t rsa -b 4096 -C "macro_user@outlook.com" -f ~/.ssh/id_rsa_github
-#print the public portion of the key you just generated
-cat id_rsa_github.pub
-#Copy this to you github authorized keys.
+#Option 1)look at the last lines, it should give you your fingerprint
+
+#Option 2)print the public portion of the key you just generated
+ #If you already have a key you like, you can just give github your public key
+ cat id_rsa_github.pub
+
+#Copy above to you github ssh-keys.
 
 
 
