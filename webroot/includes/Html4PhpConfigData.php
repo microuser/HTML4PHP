@@ -17,7 +17,7 @@ $developmentConfig = array(
         'dbHost' => 'localhost',
         'dbName' => 'dbname',
         'dbUser' => 'root',
-        'dbPass' => '123456'
+        'dbPass' => 'html4php'
     ),
     'email' => array(
         'smtpDebug' => 2,
