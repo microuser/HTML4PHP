@@ -3,7 +3,7 @@ vagrantfile:
     vm:
         box: puphpet/ubuntu1404-x64
         box_url: puphpet/ubuntu1404-x64
-        hostname: local.html4php
+        hostname: html4php.dev
         memory: '512'
         cpus: '1'
         chosen_provider: virtualbox
@@ -11,8 +11,8 @@ vagrantfile:
         network:
             private_network: 192.168.56.156
             forwarded_port:
-                vflnp_6gg1dddcbbuz:
-                    host: '7200'
+                vflnp_en5cmjsefwc2:
+                    host: '5701'
                     guest: '22'
         post_up_message: ''
         provider:
@@ -34,9 +34,31 @@ vagrantfile:
                     - '--verbose'
                     - '--hiera_config /vagrant/puphpet/puppet/hiera.yaml'
         synced_folder:
-            vflsf_wipb6hk8cin0:
-                source: ./
+            vflsf_l759xthu4ept:
+                source: ./webroot
                 target: /var/www
+                sync_type: nfs
+                smb:
+                    smb_host: ''
+                    smb_username: ''
+                    smb_password: ''
+                    mount_options:
+                        dir_mode: '0775'
+                        file_mode: '0664'
+                rsync:
+                    args:
+                        - '--verbose'
+                        - '--archive'
+                        - '-z'
+                    exclude:
+                        - .vagrant/
+                        - .git/
+                    auto: 'true'
+                owner: www-data
+                group: www-data
+            vflsf_uer9woh2dxo8:
+                source: ./
+                target: /vagrant
                 sync_type: nfs
                 smb:
                     smb_host: ''
@@ -111,7 +133,7 @@ nginx:
         names_hash_bucket_size: 128
     upstreams: {  }
     vhosts:
-        nxv_r25km82xiu1f:
+        nxv_hj7kwwctpqar:
             server_name: awesome.dev
             server_aliases:
                 - www.awesome.dev
@@ -131,7 +153,7 @@ nginx:
             rewrite_to_https: '1'
             spdy: '1'
             locations:
-                nxvl_yrbnt08bszu1:
+                nxvl_ne76raeryqzq:
                     location: /
                     autoindex: 'off'
                     internal: 'false'
@@ -144,7 +166,7 @@ nginx:
                     fastcgi_split_path: ''
                     proxy: ''
                     proxy_redirect: ''
-                nxvl_5lq9ooqauso1:
+                nxvl_53p3k31p3ok0:
                     location: '~ \.php$'
                     autoindex: 'off'
                     internal: 'false'
@@ -177,11 +199,9 @@ apache:
         - proxy_fcgi
         - rewrite
     vhosts:
-        av_1obtfq5w67ys:
+        av_w0px677pv58a:
             servername: html4php.dev
-            serveraliases:
-                - www.html4php.dev
-            docroot: /var/www/html4php
+            docroot: /var/www/
             port: '80'
             setenv:
                 - 'APP_ENV dev'
@@ -196,8 +216,8 @@ apache:
             ssl_protocol: ''
             ssl_cipher: ''
             directories:
-                avd_dwt7j3yr8p8b:
-                    path: /var/www/webroot
+                avd_cf98t50v5ojp:
+                    path: /var/www/
                     options:
                         - Indexes
                         - FollowSymlinks
@@ -208,7 +228,7 @@ apache:
                         - 'all granted'
                     custom_fragment: ''
                     files_match:
-                        avdfm_4c0u9hsqxgp7:
+                        avdfm_zml379x0udou:
                             path: \.php$
                             sethandler: 'proxy:fcgi://127.0.0.1:9000'
                             custom_fragment: ''
@@ -232,7 +252,7 @@ php:
     fpm_ini:
         error_log: /var/log/php-fpm.log
     fpm_pools:
-        phpfp_yz0svndc12ul:
+        phpfp_f4xlr80nvx00:
             ini:
                 prefix: www
                 listen: '127.0.0.1:9000'
@@ -250,7 +270,6 @@ xdebug:
         xdebug.remote_enable: '1'
         xdebug.remote_handler: dbgp
         xdebug.remote_port: '9000'
-        xdebug.collect_assignments: '0'
 blackfire:
     install: '0'
     settings:
@@ -276,7 +295,7 @@ drush:
 ruby:
     install: '1'
     versions:
-        rv_bvkorjcs2j50:
+        rv_8zmqxw7pbwll:
             default: '1'
             bundler: '1'
             version: 1.9.3
@@ -312,15 +331,15 @@ mariadb:
         override_options: {  }
     adminer: 0
     users:
-        mariadbnu_3q0k1kywt839:
+        mariadbnu_cgzbbz9hb5bh:
             name: dbuser
             password: '123'
     databases:
-        mariadbnd_hhmu0f1z1g7u:
+        mariadbnd_z21zryjmq5rs:
             name: dbname
             sql: ''
     grants:
-        mariadbng_us2vccq8nkvy:
+        mariadbng_vha1xy7abkhx:
             user: dbuser
             table: '*.*'
             privileges:
@@ -333,18 +352,15 @@ mysql:
         override_options: {  }
     adminer: 0
     users:
-        mysqlnu_dfo16qezrvjc:
+        mysqlnu_i7lbwoqab1nx:
             name: dbuser
             password: html4php
-        mysqlnu_na318hvizij1:
-            name: ''
-            password: ''
     databases:
-        mysqlnd_td4ypdpqc1vd:
-            name: html4php
-            sql: /var/www/dbname.sql
+        mysqlnd_qagzri2a09fa:
+            name: dbname
+            sql: /vagrant/dbname.sql
     grants:
-        mysqlng_9dwk1tvmoute:
+        mysqlng_9b62h2tfntue:
             user: dbuser
             table: '*.*'
             privileges:
@@ -410,7 +426,7 @@ elastic_search:
         version: 2.1.0
         java_install: true
     instances:
-        esi_4myqbgbjrguv:
+        esi_mif8llaztews:
             name: es-01
 solr:
     install: '0'
